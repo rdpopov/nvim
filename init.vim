@@ -31,6 +31,8 @@ set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 set hidden	  " makes it so files are kept in memory ?
 
+
+
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.out,*.so
@@ -50,6 +52,7 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 if has('autocmd')
 	autocmd filetype python set expandtab
 	autocmd filetype nim set expandtab
+	autocmd BufNewFile,BufRead *.nim set filetype=nim
 endif
 " commands bound on f-s
 "f1
@@ -73,7 +76,7 @@ nmap <silent> ,/ :nohlsearch<CR>
 nnoremap ,tt :sp<bar>term<cr><c-w>J:resize10<cr>
 
 "custom homemade snippets
-"#nnoremap ,somecmd_ :-1read $HOME/.vim/somebullshit<CR>"
+"#nnoremap ,somecmd_ :-1read $HOME/.vim/somebullshit<CR>
 
 "color theme
 colorscheme badwolf
@@ -82,37 +85,18 @@ colorscheme badwolf
 ""NERDTreee
 let g:NERDTreeWinPos = "right"
 "ALE"
-let g:ale_completion_enabled = 1
-let g:ale_sign_error                  = '✘'
-let g:ale_sign_warning                = '⚠'
-highlight ALEErrorSign ctermbg        =NONE ctermfg=red
-highlight ALEWarningSign ctermbg      =NONE ctermfg=yellow
-let g:ale_linters_explicit            = 1
-let g:ale_lint_on_text_changed        = 'never'
-let g:ale_lint_on_enter               = 0
-let g:ale_lint_on_save                = 1
-let g:ale_fix_on_save                 = 1
 
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-
-"NIM
-let g:LanguageClient_serverCommands = {
-\   'nim': ['~/.nimble/bin/nimlsp'],
-\ }
-let g:ale_linters = {
-\   'nim':      ['nimlsp', 'nimcheck'],
-\}
-
-let g:ale_fixers = {
-\   'nim':      ['nimpretty'],
-\   '*':        ['remove_trailing_lines', 'trim_whitespace'],
-\}
-
+let g:ycm_language_server =
+  \ [{
+  \   'name': 'ccls',
+  \   'cmdline': [ 'ccls' ],
+  \   'filetypes': [ 'c', 'cpp', 'cuda', 'objc', 'objcpp' ],
+  \   'project_root_files': [ '.ccls-root', 'compile_commands.json' ]
+  \ }]
 
 
 call plug#begin()
-Plug 'dense-analysis/ale'
+Plug 'valloric/youcompleteme'
 Plug 'wakatime/vim-wakatime'
 Plug 'thinca/vim-quickrun'
 Plug 'fergdev/vim-cursor-hist'
@@ -121,10 +105,11 @@ Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 Plug 'davidhalter/jedi-vim'
 Plug 'jreybert/vimagit'
 call plug#end()
+
+
+"https://github.com/BitR/ycm-nimsuggest nim plugin for ycm
+"cd ~/.vim/bundle/YouCompleteMe \ ./install.py --clangd-completer setup ycm
+"server
