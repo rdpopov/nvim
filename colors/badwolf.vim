@@ -665,5 +665,3 @@ call s:HL('VimNotation', 'dress', '', 'none')
 call s:HL('VimBracket', 'dress', '', 'none')
 
 " }}}
-
-" }}}

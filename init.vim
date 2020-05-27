@@ -81,22 +81,38 @@ colorscheme badwolf
 "plugin config params
 ""NERDTreee
 let g:NERDTreeWinPos = "right"
+"ALE"
+let g:ale_completion_enabled = 1
+let g:ale_sign_error                  = '✘'
+let g:ale_sign_warning                = '⚠'
+highlight ALEErrorSign ctermbg        =NONE ctermfg=red
+highlight ALEWarningSign ctermbg      =NONE ctermfg=yellow
+let g:ale_linters_explicit            = 1
+let g:ale_lint_on_text_changed        = 'never'
+let g:ale_lint_on_enter               = 0
+let g:ale_lint_on_save                = 1
+let g:ale_fix_on_save                 = 1
 
-"autoformat settings
-"let g:autoformat_autoindent = 0
-"let g:autoformat_retab = 0
-"let g:autoformat_remove_trailing_spaces = 0
 
-"plugins
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+
+"NIM
+let g:LanguageClient_serverCommands = {
+\   'nim': ['~/.nimble/bin/nimlsp'],
+\ }
+let g:ale_linters = {
+\   'nim':      ['nimlsp', 'nimcheck'],
+\}
+
+let g:ale_fixers = {
+\   'nim':      ['nimpretty'],
+\   '*':        ['remove_trailing_lines', 'trim_whitespace'],
+\}
+
+
+
 call plug#begin()
-if has('nvim')
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-	Plug 'Shougo/deoplete.nvim'
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
+Plug 'dense-analysis/ale'
 Plug 'wakatime/vim-wakatime'
 Plug 'thinca/vim-quickrun'
 Plug 'fergdev/vim-cursor-hist'
@@ -105,7 +121,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 Plug 'davidhalter/jedi-vim'
-Plug 'autozimu/LanguageClient-neovim'
 Plug 'jreybert/vimagit'
 call plug#end()
