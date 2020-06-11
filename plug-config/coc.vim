@@ -51,6 +51,10 @@ if exists('*complete_info')
 else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
+" view all errors
+nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<CR>
+" list all errors
+nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<cr>
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
