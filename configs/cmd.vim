@@ -1,5 +1,6 @@
-nnoremap ; :
-
+"nnoremap ; :
+"sneak
+let g:sneak#label = 1
 if has('autocmd')
 	autocmd filetype python set expandtab
 	autocmd filetype nim set expandtab

@@ -12,6 +12,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'jreybert/vimagit'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'justinmk/vim-sneak'
 call plug#end()
 
 autocmd VimEnter *
