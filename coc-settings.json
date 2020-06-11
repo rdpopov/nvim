@@ -1,25 +1,21 @@
-"languageserver":{
-"clangd":{ 
-      "command": "clangd",
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
-      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
-    }
-},
-"languageserver":{
-   "bash": {
-      "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh"],
-      "ignoredRootPaths": ["~"]
-    },
-"languageserver":{
-    "nim": {
-      "command": "nimlsp",
-      "filetypes": ["nim"]
-    },
-"languageserver":{
-    "python": {
-      "command": "python",
-      "filetypes": ["py"]
-    }
+{
+	// C config
+	"clangd.enabled": true,
+	// go-lang config
+	"go.enable" : true,
+	// html config
+	"html.enable": true,
+	"html.format.enable":true,
+	"html.autoClosingTags":true,
+	// js config
+	"tsserver.enable": true,
+	// python config
+	"jedi.enable": true,
+  	"jedi.startupMessage": true,
+  	"jedi.markupKindPreferred": "plaintext",
+ 	"jedi.jediSettings.autoImportModules": [],
+ 	"jedi.executable.command": "jedi-language-server",
+ 	"jedi.executable.args": [],
+	// swift
+	"sourcekit.enable":true
 }
