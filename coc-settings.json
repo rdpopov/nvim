@@ -17,5 +17,6 @@
  	"jedi.executable.command": "jedi-language-server",
  	"jedi.executable.args": [],
 	// swift
-	"sourcekit.enable":true
+  "sourcekit.enable": true,
+  "clangd.path": "/home/rpopov/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd"
 }

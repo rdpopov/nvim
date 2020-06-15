@@ -2,7 +2,7 @@
 "language servers:
 
 set hidden
-let g:coc_node_path = '/usr/bin/node'
+let g:coc_node_path = system('which node | tr -d "\n"')
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
