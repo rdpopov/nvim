@@ -32,7 +32,18 @@ Plug 'airblade/vim-gitgutter'
 Plug 'hari-rangarajan/cctree'
 "project managment
 Plug 'tpope/vim-projectionist'
+" languages:
+Plug 'clangd/coc-clangd'
+Plug 'pappasam/coc-jedi'
+Plug 'josa42/coc-go'
+Plug 'neoclide/coc-html'
+Plug 'neoclide/coc-lists'
+Plug 'klaaspieter/coc-sourcekit'
+Plug 'iamcco/coc-vimlsp'
+Plug 'neoclide/coc-tsserver'
+Plug 'morhetz/gruvbox'
 call plug#end()
+
 
 autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
