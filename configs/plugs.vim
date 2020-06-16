@@ -21,7 +21,8 @@ Plug 'godlygeek/tabular'
 "?
 Plug 'plasticboy/vim-markdown'
 "git
-Plug 'jreybert/vimagit'
+"Plug 'jreybert/vimagit'
+Plug 'tpope/vim-fugitive'
 "completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "movmnet
@@ -41,7 +42,6 @@ Plug 'neoclide/coc-lists'
 Plug 'klaaspieter/coc-sourcekit'
 Plug 'iamcco/coc-vimlsp'
 Plug 'neoclide/coc-tsserver'
-Plug 'morhetz/gruvbox'
 call plug#end()
 
 
