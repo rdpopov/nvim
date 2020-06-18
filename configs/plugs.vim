@@ -42,6 +42,9 @@ Plug 'neoclide/coc-lists'
 Plug 'klaaspieter/coc-sourcekit'
 Plug 'iamcco/coc-vimlsp'
 Plug 'neoclide/coc-tsserver'
+Plug 'arcticicestudio/nord-vim'
+Plug 'junegunn/fzf'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 
