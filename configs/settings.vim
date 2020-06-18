@@ -9,7 +9,7 @@ set wildmenu
 
 
 set nowrap        " don't wrap lines
-set tabstop=4  softtabstop=4    " a tab is four spaces
+set tabstop=4  softtabstop=4 expandtab   " a tab is four spaces
 set backspace=indent,eol,start
 " allow backspacing over everything in insert mode
 set autoindent    " always set autoindenting on
