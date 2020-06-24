@@ -43,6 +43,7 @@ Plug 'klaaspieter/coc-sourcekit'
 Plug 'iamcco/coc-vimlsp'
 Plug 'neoclide/coc-tsserver'
 Plug 'arcticicestudio/nord-vim'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/fzf'
 Plug 'morhetz/gruvbox'
 call plug#end()
@@ -50,6 +51,6 @@ call plug#end()
 
 autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | q
+  \|   PlugInstall --sync | q| PlugInstall --sync |q|
   \| endif
 
