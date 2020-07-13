@@ -46,6 +46,9 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/fzf'
 Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'alaviss/nim.nvim'
+Plug 'prabirshrestha/asyncomplete.vim'
 call plug#end()
 
 
@@ -54,3 +57,8 @@ autocmd VimEnter *
   \|   PlugInstall --sync | q| PlugInstall --sync |q|
   \| endif
 
+au User asyncomplete_setup call asyncomplete#register_source({
+    \ 'name': 'nim',
+    \ 'whitelist': ['nim'],
+    \ 'completor': {opt, ctx -> nim#suggest#sug#GetAllCandidates({start, candidates -> asyncomplete#complete(opt['name'], ctx, start, candidates)})}
+    \ })
