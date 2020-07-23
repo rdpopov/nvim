@@ -1,17 +1,20 @@
 "nnoremap ; :
 "sneak
 let g:sneak#label = 1
+set foldmethod=syntax
+
 if has('autocmd')
-	autocmd filetype python set expandtab
-	autocmd filetype nim set expandtab
-	autocmd BufNewFile,BufRead *.nim set filetype=nim
+    autocmd filetype python set expandtab
+    autocmd filetype nim set expandtab
+    autocmd BufNewFile,BufRead *.nim set filetype=nim
 endif
 " commands bound on f-s
 "f1
 nnoremap <F2> :QuickRun<CR>
 "f2
 "f3
-noremap <F3> :Autoformat<CR>
+noremap <F3> :Autoformat<CR>:retab<CR>
+
 ""make code tags for jumping
 command! MakeTags !ctags -R
 "hide highlights searches
