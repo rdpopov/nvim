@@ -2,6 +2,8 @@
 "sneak
 let g:sneak#label = 1
 set foldmethod=syntax
+nnoremap <SPACE> <Nop>
+let mapleader = " "
 
 if has('autocmd')
     autocmd filetype python set expandtab
