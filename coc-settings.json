@@ -1,0 +1,9 @@
+{"diagnostic.displayByAle": true,
+    "languageserver": {
+        "nim": {
+            "command": "nimlsp",
+            "filetypes": ["nim"],
+            "trace.server": "verbose"
+        }
+    }
+}

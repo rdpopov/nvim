@@ -5,7 +5,7 @@ let g:autoformat_retab = 1
 let g:autoformat_remove_trailing_spaces =1
 
 let g:ale_disable_lsp = 1
-let g:ale_hover_to_preview =1
+let g:ale_hover_to_preview = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -13,7 +13,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
 \   'nim': ['nimlsp', 'nimcheck'],
 \   'python': ['pyflakes','pyls'],
-\   'c':['/home/users/mms00476/newfolder/cquery/build/cquery'],
+\   'c':['clangd'],
 \}
 let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_error = '✖✖'
@@ -21,13 +21,19 @@ let g:ale_sign_warning = '⚠⚠'
 
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls','pyflakes'],
-    \ 'c':['/home/users/mms00476/newfolder/cquery/build/cquery'],
+    \ 'c':['clangd'],
+    \ 'nim':['nimlsp','nimcheck'],
     \ }
 highlight ALEErrorSign guifg=Red
 highlight ALEWarningSign guifg=Yellow
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
