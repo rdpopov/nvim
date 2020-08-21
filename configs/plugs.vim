@@ -88,6 +88,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'mbbill/undotree'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'mkitt/tabline.vim'
+Plug 'ayu-theme/ayu-vim' " or other package manager
+Plug 'sheerun/vim-wombat-scheme'
+Plug 'mhartington/oceanic-next'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 autocmd VimEnter *

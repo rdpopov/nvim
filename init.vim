@@ -3,5 +3,6 @@ source $HOME/.config/nvim/configs/cmd.vim
 source $HOME/.config/nvim/configs/plugs.vim
 "plug configs
 ":colorscheme gruvbox
-set background=dark
-colorscheme PaperColor
+set termguicolors     " enable true colors support
+colorscheme tequila-sunrise
+let g:airline_theme='wombat'
