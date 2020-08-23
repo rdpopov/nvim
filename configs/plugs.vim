@@ -11,19 +11,19 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
-\   'nim': ['nimlsp', 'nimcheck'],
-\   'python': ['pyflakes','pyls'],
-\   'c':['clangd'],
-\}
+            \   'nim': ['nimlsp', 'nimcheck'],
+            \   'python': ['pyflakes','pyls'],
+            \   'c':['clangd'],
+            \}
 let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_error = '✖✖'
 let g:ale_sign_warning = '⚠⚠'
 
 let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls','pyflakes'],
-    \ 'c':['clangd'],
-    \ 'nim':['nimlsp','nimcheck'],
-    \ }
+            \ 'python': ['pyls','pyflakes'],
+            \ 'c':['clangd'],
+            \ 'nim':['nimlsp','nimcheck'],
+            \ }
 highlight ALEErrorSign guifg=Red
 highlight ALEWarningSign guifg=Yellow
 
@@ -42,13 +42,47 @@ function! LinterStatus() abort
     let l:all_non_errors = l:counts.total - l:all_errors
 
     return l:counts.total == 0 ? 'OK' : printf(
-    \   'FUCK : %dW %dE',
-    \   all_non_errors,
-    \   all_errors
-    \)
+                \   'FUCK : %dW %dE',
+                \   all_non_errors,
+                \   all_errors
+                \)
 endfunction
 
 set statusline=%{LinterStatus()}
+let g:asyncomplete_auto_completeopt = 0
+
+set completeopt=menuone,noinsert,noselect,preview
+let s:nimlspexecutable = "nimlsp"
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('/tmp/vim-lsp.log')
+let g:asyncomplete_log_file = expand('/tmp/asyncomplete.log')
+
+let g:asyncomplete_auto_popup = 0
+
+if has('win32')
+    let s:nimlspexecutable = "nimlsp.cmd"
+    let g:lsp_log_file = expand('$TEMP/vim-lsp.log')
+    let g:asyncomplete_log_file = expand('$TEMP/asyncomplete.log')
+endif
+if executable(s:nimlspexecutable)
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'nimlsp',
+                \ 'cmd': {server_info->[s:nimlspexecutable]},
+                \ 'whitelist': ['nim'],
+                \ })
+endif
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~'\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ asyncomplete#force_refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 
 call plug#begin()
 "nim
@@ -93,9 +127,13 @@ Plug 'ayu-theme/ayu-vim' " or other package manager
 Plug 'sheerun/vim-wombat-scheme'
 Plug 'mhartington/oceanic-next'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()
 
 autocmd VimEnter *
-  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | q| PlugInstall --sync |q|
-  \| endif
+            \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+            \|   PlugInstall --sync | q| PlugInstall --sync |q|
+            \| endif
