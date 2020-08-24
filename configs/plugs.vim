@@ -4,6 +4,8 @@ let g:autoformat_autoindent = 1
 let g:autoformat_retab = 1
 let g:autoformat_remove_trailing_spaces =1
 
+
+"" ALE Cnfig
 let g:ale_disable_lsp = 1
 let g:ale_hover_to_preview = 1
 let g:airline#extensions#ale#enabled = 1
@@ -13,7 +15,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
             \   'nim': ['nimlsp', 'nimcheck'],
             \   'python': ['pyflakes','pyls'],
-            \   'c':['clangd'],
+            \   'c':['cquery'],
             \}
 let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_error = '✖✖'
@@ -21,7 +23,7 @@ let g:ale_sign_warning = '⚠⚠'
 
 let g:LanguageClient_serverCommands = {
             \ 'python': ['pyls','pyflakes'],
-            \ 'c':['clangd'],
+            \ 'c':['cquery'],
             \ 'nim':['nimlsp','nimcheck'],
             \ }
 highlight ALEErrorSign guifg=Red
@@ -29,11 +31,6 @@ highlight ALEWarningSign guifg=Yellow
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -47,45 +44,51 @@ function! LinterStatus() abort
                 \   all_errors
                 \)
 endfunction
+""ALE CONFIG END
 
-set statusline=%{LinterStatus()}
-let g:asyncomplete_auto_completeopt = 0
-
-set completeopt=menuone,noinsert,noselect,preview
-let s:nimlspexecutable = "nimlsp"
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('/tmp/vim-lsp.log')
-let g:asyncomplete_log_file = expand('/tmp/asyncomplete.log')
-
-let g:asyncomplete_auto_popup = 0
-
-if has('win32')
-    let s:nimlspexecutable = "nimlsp.cmd"
-    let g:lsp_log_file = expand('$TEMP/vim-lsp.log')
-    let g:asyncomplete_log_file = expand('$TEMP/asyncomplete.log')
-endif
-if executable(s:nimlspexecutable)
+if executable('cquery')
     au User lsp_setup call lsp#register_server({
-                \ 'name': 'nimlsp',
-                \ 'cmd': {server_info->[s:nimlspexecutable]},
-                \ 'whitelist': ['nim'],
+                \ 'name': 'cquery',
+                \ 'cmd': {server_info->['cquery']},
+                \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+                \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/cache' },
+                \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+                \ })
+endif
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'pyls',
+                \ 'cmd': {server_info->['pyls']},
+                \ 'whitelist': ['python'],
                 \ })
 endif
 
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~'\s'
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> <leader> gd <plug>(lsp-definition)
+    nmap <buffer> <leader> gy <plug>(lsp-references)
+    nmap <buffer> <leader> gi <plug>(lsp-implementation)
+    nmap <buffer> <leader> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    "    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+    "   nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
 endfunction
 
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ asyncomplete#force_refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+let g:lsp_fold_enabled = 0
+let g:lsp_highlight_references_enabled = 1
+highlight lspReference ctermfg=red guifg=red ctermbg=green guibg=green
+
 
 
 call plug#begin()
-"nim
 " qick test
 Plug 'thinca/vim-quickrun'
 "
@@ -95,6 +98,7 @@ Plug 'chiel92/vim-autoformat'
 "?
 Plug 'alaviss/nim.nvim'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-abolish'
 "fiel browser
 Plug 'preservim/nerdtree'
 "?
@@ -104,7 +108,6 @@ Plug 'plasticboy/vim-markdown'
 "git
 Plug 'tpope/vim-fugitive'
 "completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "movmnet
 Plug 'justinmk/vim-sneak'
 "diff
@@ -121,16 +124,20 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'mbbill/undotree'
 Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mkitt/tabline.vim'
 Plug 'ayu-theme/ayu-vim' " or other package manager
 Plug 'sheerun/vim-wombat-scheme'
 Plug 'mhartington/oceanic-next'
 Plug 'vim-airline/vim-airline-themes'
+"completion
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+"language plugins for completion
+Plug 'pdavydov108/vim-lsp-cquery'
+Plug 'ryanolsonx/vim-lsp-python'
+Plug 'rosenfeld/rgrep.vim'
 call plug#end()
 
 autocmd VimEnter *
