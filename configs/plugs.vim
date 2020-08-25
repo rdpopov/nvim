@@ -46,47 +46,21 @@ function! LinterStatus() abort
 endfunction
 ""ALE CONFIG END
 
-if executable('cquery')
-    au User lsp_setup call lsp#register_server({
-                \ 'name': 'cquery',
-                \ 'cmd': {server_info->['cquery']},
-                \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-                \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/cache' },
-                \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-                \ })
-endif
-if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-                \ 'name': 'pyls',
-                \ 'cmd': {server_info->['pyls']},
-                \ 'whitelist': ['python'],
-                \ })
-endif
+let g:ycm_seed_identifiers_with_syntax = 1
+set completeopt=menu
 
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> <leader> gd <plug>(lsp-definition)
-    nmap <buffer> <leader> gy <plug>(lsp-references)
-    nmap <buffer> <leader> gi <plug>(lsp-implementation)
-    nmap <buffer> <leader> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    "    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
-    "   nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
-endfunction
+" make YCM compatible with UltiSnips (using <Ctrl-N>, <Ctrl-P>)
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
 
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
-let g:lsp_fold_enabled = 0
-let g:lsp_highlight_references_enabled = 1
-highlight lspReference ctermfg=red guifg=red ctermbg=green guibg=green
+" commands mappings
+nnoremap <S-F1> :pclose<CR>
+nnoremap <leader>gd :pclose<CR>:silent YcmCompleter GetDoc<CR>
+nnoremap <leader>gt :YcmCompleter GetType<CR>
+nnoremap <leader>gd  :YcmCompleter GoTo<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 
-
+let g:ycm_use_clangd = 1
 
 call plug#begin()
 " qick test
@@ -110,6 +84,7 @@ Plug 'tpope/vim-fugitive'
 "completion
 "movmnet
 Plug 'justinmk/vim-sneak'
+Plug 'rosenfeld/rgrep.vim'
 "diff
 Plug 'airblade/vim-gitgutter'
 "call tree
@@ -129,15 +104,8 @@ Plug 'ayu-theme/ayu-vim' " or other package manager
 Plug 'sheerun/vim-wombat-scheme'
 Plug 'mhartington/oceanic-next'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ycm-core/YouCompleteMe'
 "completion
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-"language plugins for completion
-Plug 'pdavydov108/vim-lsp-cquery'
-Plug 'ryanolsonx/vim-lsp-python'
-Plug 'rosenfeld/rgrep.vim'
 call plug#end()
 
 autocmd VimEnter *
