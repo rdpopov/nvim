@@ -22,16 +22,34 @@ if executable('pyls')
                 \ })
 endif
 
-if executable('ccls')
-    au User lsp_setup call
-    lsp#register_server({
-                \ 'name': 'ccls',
-                \ 'cmd': {server_info->['ccls']},
-                \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-                \'initialization_options': {'cache': {'directory': '/tmp/ccls/cache' }},
-                \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'], \
-    })
-endif
+"augroup GlobalComplete
+"  autocmd!
+"  autocmd FileType c setlocal omnifunc=GlobalComplete
+"augroup END
+"
+"function! GlobalComplete(findstart, base)
+"  if a:findstart == 1
+"    return s:LocateCurrentWordStart()
+"  else
+"    return split(system('global -c ' . a:base), '\n')
+"  endif
+"endfunction
+"
+"function! s:LocateCurrentWordStart()
+"  let l:line = getline('.')
+"  let l:start = col('.') - 1
+"  while l:start > 0 && l:line[l:start - 1] =~# '\a'
+"    let l:start -= 1
+"  endwhile
+"  return l:start
+"endfunction
+"c completion based on gn tags
+
+let g:lsp_settings_root_markers = [
+\   '.git',
+\   '.git/',
+\   '.prjroot',
+\ ]
 
 if executable(s:nimlspexecutable)
     au User lsp_setup call lsp#register_server({
@@ -65,13 +83,6 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> K <plug>(lsp-hover)
 endfunction
 autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup lsp_install
-    au!
-    call s:on_lsp_buffer_enabled only for languages that has the
-    server registered.
-    autocmd User lsp_buffer_enabled call
-    s:on_lsp_buffer_enabled()
-augroup END
 "lightline
 set laststatus=2
 if !has('gui_running')
@@ -148,6 +159,8 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'm-pilia/vim-ccls'
 Plug 'ryanolsonx/vim-lsp-python'
+Plug 'mattn/vim-lsp-settings'
+Plug 'halkn/lightline-lsp'
 "completion
 call plug#end()
 
