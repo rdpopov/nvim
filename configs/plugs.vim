@@ -128,7 +128,7 @@ function! LinterStatus() abort
                 \   all_errors
                 \)
 endfunction
-
+let g:fzf_layout = {'window':{'width':0.64, 'height':0.64}}
 set statusline=%{LinterStatus()}
 
 call plug#begin()
@@ -150,6 +150,7 @@ Plug 'hari-rangarajan/cctree'
 Plug 'arcticicestudio/nord-vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
 Plug 'mbbill/undotree'
 Plug 'ayu-theme/ayu-vim'
