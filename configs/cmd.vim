@@ -2,13 +2,11 @@
 "sneak
 let g:sneak#label = 1
 set foldmethod=syntax
-nnoremap <SPACE> <Nop>
-let mapleader = " "
 
 if has('autocmd')
     autocmd filetype python set expandtab
     autocmd filetype nim set expandtab
-    autocmd BufNewFile,BufRead *.nim set filetype=nim
+    "`autocmd BufNewFile,BufRead *.nim set filetype=nim
 endif
 " commands bound on f-s
 "f1
