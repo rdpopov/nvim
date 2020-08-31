@@ -4,5 +4,5 @@ source $HOME/.config/nvim/configs/plugs.vim
 "plug configs
 ":colorscheme gruvbox
 set termguicolors     " enable true colors support
-colorscheme paper
+colorscheme base16-synth-midnight-dark
 let g:airline_theme='wombat'

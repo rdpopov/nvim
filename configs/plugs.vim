@@ -1,5 +1,7 @@
 nnoremap <SPACE> <Nop>
 let mapleader = " "
+
+"let g:rg_binary='rgrep'
 let g:NERDTreeWinPos = "right"
 let g:NERDTreeShowHidden = 1
 let g:autoformat_autoindent = 1
@@ -29,13 +31,13 @@ let g:ccls_float_width = 50
 let g:ccls_float_height = 20
 
 if executable('ccls')
-       au User lsp_setup call lsp#register_server({
-             \ 'name': 'ccls',
-             \ 'cmd': {server_info->['ccls']},
-             \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-             \ 'initialization_options': {'cache': {'directory': '/tmp/ccls/cache' }},
-             \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-             \ })
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'ccls',
+                \ 'cmd': {server_info->['ccls']},
+                \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+                \ 'initialization_options': {'cache': {'directory': '/tmp/ccls/cache' }},
+                \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+                \ })
 endif
 
 "if executable('clangd')
@@ -47,7 +49,7 @@ endif
 "endif
 
 if executable('pyls')
-        au User lsp_setup call lsp#register_server({
+    au User lsp_setup call lsp#register_server({
                 \ 'name': 'pyls',
                 \ 'cmd': {server_info->['pyls']},
                 \ 'whitelist': ['python'],
@@ -101,7 +103,11 @@ nmap <leader> yd :CclsDerived<CR>
 nmap <leader> yh :CclsDerivedHierarchy<CR>
 nmap <leader> yr :CclsCallers<CR>
 nmap <leader> yt :CclsCallHierarchy<CR>
-
+let g:ale_cpp_ccls_init_options = {
+            \   'cache': {
+            \       'directory': '/tmp/ccls/cache'
+            \   }
+            \ }
 
 let g:ale_disable_lsp = 0
 let g:ale_hover_to_preview =1
@@ -153,7 +159,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-fugitive'
 Plug 'justinmk/vim-sneak'
-Plug 'rosenfeld/rgrep.vim'
+Plug 'jremmen/vim-ripgrep'
 Plug 'airblade/vim-gitgutter'
 Plug 'hari-rangarajan/cctree'
 Plug 'arcticicestudio/nord-vim'
@@ -176,7 +182,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jsfaint/gen_tags.vim'
 Plug 'dense-analysis/ale'
+Plug 'chriskempson/base16-vim'
 Plug 'm-pilia/vim-ccls'
+Plug 'kyoz/purify', { 'rtp': 'vim' }
 "Plug 'piec/vim-lsp-clangd'
 "completion
 call plug#end()
