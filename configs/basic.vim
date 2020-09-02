@@ -1,5 +1,4 @@
-nnoremap <SPACE> <Nop>
-let mapleader = " "
+let mapleader = "\\"
 
 let g:rg_binary='rgrep'
 let g:NERDTreeWinPos = "right"

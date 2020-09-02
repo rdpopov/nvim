@@ -13,6 +13,8 @@ source $HOME/.config/nvim/configs/plugs.vim             "Plugins
 source $HOME/.config/nvim/configs/auto.vim              "Auto commnds
 
 
+source $HOME/.config/nvim/snippets/snippets.vim              "Auto commnds
+
 if (empty($TMUX))
   if (has("nvim"))
   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
