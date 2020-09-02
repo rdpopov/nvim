@@ -38,4 +38,6 @@ Plug 'm-pilia/vim-ccls'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'heraldofsolace/nisha-vim'
 Plug 'ajmwagar/vim-deus'
+Plug 'rakr/vim-one'
 call plug#end()
+
