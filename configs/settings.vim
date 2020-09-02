@@ -38,9 +38,10 @@ set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 
-set nobackup		" hate these swaps and backups
+set nobackup " hate these swaps and backups
 set noswapfile
 
+set cursorcolumn
 set cursorline
 set relativenumber
 
