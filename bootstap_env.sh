@@ -4,13 +4,12 @@
 
 add_to_PATH(){
     shell=${SHELL##*/}
-    if [[ "$shell" == "zsh"]];then
+    if [["$shell" == "zsh"]];then
         echo "PATH=$1:\$PATH">>.zshrc
     elif [[ "$shell" == "bahs" ]];then
         echo "PATH=$1:\$PATH">>.bashrc
     fi
 
-    echo .zshrc
 }
 
 apt_install(){
@@ -23,7 +22,7 @@ pip_isntall(){
 
 gtags_ctags_source(){
     cd ~ && wget https://ftp.gnu.org/pub/gnu/global/global-6.6.tar.gz && tar -xf global-6.6.tar.gz && cd global-6.6.tar && ./configure && make && sudo make install
-    sudo apt install ctags
+    apt_install ctags
 }
 
 setup_nvim(){
@@ -57,16 +56,19 @@ setup_ripgrep_fzf(){
     cd ripgrep
     cargo build --release
     cd ..
+
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
 }
 
 setup_nim(){
+    cd ~
     curl https://nim-lang.org/choosenim/init.sh -sSf | sh
     nimble install nimlsp
+    add_to_PATH ~/.nimble/bin
 }
 
-sudo apt install python3-pip wget curl git clang cmake fuse-libs ack python3-pip -y
+apt_install python3-pip wget curl git clang cmake fuse-libs ack python3-pip ranger -y
 
 
 
