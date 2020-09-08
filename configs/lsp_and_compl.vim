@@ -93,3 +93,9 @@ nmap <leader> yd :CclsDerived<CR>
 nmap <leader> yh :CclsDerivedHierarchy<CR>
 nmap <leader> yr :CclsCallers<CR>
 nmap <leader> yt :CclsCallHierarchy<CR>
+
+"quickr-previw
+let g:quickr_preview_position = 'above'
+let g:quickr_preview_on_cursor = 1
+let g:quickr_preview_exit_on_enter = 1
+let g:quickr_preview_size = '10'
