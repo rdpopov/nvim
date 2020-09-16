@@ -1,0 +1,6 @@
+#? stdtmpl(subsChar = '$', metaChar = '#')
+#proc generateCodeGenerator(language: string): string =
+#result = ""
+import "snip_$language.nimf"
+import os
+
