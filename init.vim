@@ -12,6 +12,7 @@ source $HOME/.config/nvim/configs/plugs.vim             "Plugins
 
 source $HOME/.config/nvim/configs/auto.vim              "Auto commnds
 
+source $HOME/.config/nvim/configs/fzf.vim              "Auto commnds
 
 source $HOME/.config/nvim/snippets/snippets.vim              "Auto commnds
 
@@ -30,6 +31,9 @@ endif
 
 set background=dark" for the light version
 let g:one_allow_italics = 1 " I love italic for comments
-
 colorscheme srcery  
-let g:airline_theme='molokai'
+
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_theme='dark'
+
