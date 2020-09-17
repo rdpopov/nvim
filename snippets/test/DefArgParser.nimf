@@ -16,4 +16,4 @@ proc PruneArgs(commands:seq[string]):seq[string]=
   return commands.filter(dir_criteria)
 
 proc PruneArgs(commands:varargs[string]):seq[string]=
-  return commands.split(" ").filter(dir_criteria)
+  return commands.filter(dir_criteria)

@@ -27,8 +27,11 @@ for directory in languages:
     write(file,content)
     close(file)
     let specific_arg_fixer_name = foldername & "arg_" & directory & ".nim"
-    if fileExists(specific_arg_fixer_name):
+    if fileExists(specific_arg_fixer_name) == false:
       if open(def_Arg,specific_arg_fixer_name,fmWrite):
+        echo "Argument parser for " & directory & "not found. Creating ..."
         var content:string = DefArg()
         write(def_Arg,content)
         close(def_Arg)
+
+echo "Finished!"
