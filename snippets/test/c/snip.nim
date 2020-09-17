@@ -1,3 +1,3 @@
-import "snip_c.nimf" 
-import arg
+include "snip_c.nimf" 
+import arg_c
 echo gen_main()

@@ -1,5 +1,6 @@
 #? stdtmpl(subsChar = '$', metaChar = '#')
 #proc gen_Code_Gen(language: string): string =
 #result = "include \"snip_" & language & ".nimf\" \nimport arg_" & language
+import os
 
 echo gen_main()

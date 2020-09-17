@@ -13,7 +13,6 @@ proc dir_criteria(inp:string): bool =
 
 proc readableResult(command:string,pred: proc(x:string):bool):seq[string]=
    result = execProcess(command).split("\n").filter(dir_criteria)
-  
 
 let dir = readableResult("pwd",dir_criteria)[0]
 let languages =readableResult("find -maxdepth 1 -mindepth 1 -type d -printf '%P\n'",dir_criteria);
@@ -29,7 +28,7 @@ for directory in languages:
     let specific_arg_fixer_name = foldername & "arg_" & directory & ".nim"
     if fileExists(specific_arg_fixer_name) == false:
       if open(def_Arg,specific_arg_fixer_name,fmWrite):
-        echo "Argument parser for " & directory & "not found. Creating ..."
+        echo "Argument parser for " & directory & " not found. Creating ..."
         var content:string = DefArg()
         write(def_Arg,content)
         close(def_Arg)
