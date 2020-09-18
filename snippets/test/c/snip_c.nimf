@@ -1,7 +1,0 @@
-#? stdtmpl(subsChar = '$', metaChar = '#')
-#proc gen_main(): string =
-#result = "include <stdio.h>\n\n"
-int mian(<++>){
-  printf("hello world form c");
-  return 0; 
-}
