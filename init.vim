@@ -12,9 +12,11 @@ source $HOME/.config/nvim/configs/plugs.vim             "Plugins
 
 source $HOME/.config/nvim/configs/auto.vim              "Auto commnds
 
-source $HOME/.config/nvim/configs/fzf.vim              "Auto commnds
+source $HOME/.config/nvim/configs/fzf.vim               "Fzf & Rg configs
 
-source $HOME/.config/nvim/snippets/snippets.vim              "Auto commnds
+source $HOME/.config/nvim/snippets/snippets.vim         "Snippets
+
+source $HOME/.config/nvim/configs/netrw.vim              "Netrw config. Netrw is good enough
 
 if (empty($TMUX))
   if (has("nvim"))

@@ -1,34 +1,39 @@
 call plug#begin()
+"to be removed most likely
 Plug 'thinca/vim-quickrun'
 Plug 'fergdev/vim-cursor-hist'
+"unknown usefulness
 Plug 'chiel92/vim-autoformat'
-Plug 'alaviss/nim.nvim'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-abolish'
-Plug 'preservim/nerdtree'
-Plug 'plasticboy/vim-markdown'
-Plug 'tpope/vim-fugitive'
-Plug 'justinmk/vim-sneak'
-Plug 'airblade/vim-gitgutter'
-Plug 'hari-rangarajan/cctree'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'rking/ag.vim'
-Plug 'mbbill/undotree'
-Plug 'sheerun/vim-wombat-scheme'
-Plug 'mhartington/oceanic-next'
+"used plugins 
+"completion
+Plug 'dense-analysis/ale'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'ryanolsonx/vim-lsp-python'
 Plug 'mattn/vim-lsp-settings'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'jsfaint/gen_tags.vim'
-Plug 'ronakg/quickr-preview.vim'
-Plug 'dense-analysis/ale'
+Plug 'ryanolsonx/vim-lsp-python'
 Plug 'm-pilia/vim-ccls'
-Plug 'srcery-colors/srcery-vim'
+"quality of life 
+Plug 'ronakg/quickr-preview.vim'
 Plug 'jeetsukumaran/vim-buffergator'
+Plug 'vim-airline/vim-airline'
+Plug 'mbbill/undotree'
+Plug 'tpope/vim-fugitive'
+Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-abolish'
+"essential
+Plug 'jsfaint/gen_tags.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-gitgutter'
+"language plugins
+Plug 'alaviss/nim.nvim'
+Plug 'sheerun/vim-polyglot'
+Plug 'plasticboy/vim-markdown'
+"colorschemes
+Plug 'srcery-colors/srcery-vim'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sheerun/vim-wombat-scheme'
+Plug 'mhartington/oceanic-next'
 call plug#end()

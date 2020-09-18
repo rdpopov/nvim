@@ -23,4 +23,8 @@ nmap <silent> ,/ :nohlsearch<CR>
 ""esc terminal mode when in it
 :tnoremap <Esc> <C-\><C-n>
 ""open small terminal window down
-nnoremap ,tt :sp<bar>term<cr><c-w>J:resize10<cr>
+
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
