@@ -2,7 +2,6 @@ let g:lsp_diagnostics_enabled = 1
 let g:gen_tags#gtags_default_map=1
 
 let g:lsp_fold_enabled = 0
-
 let g:lsp_virtual_text_enabled = 0
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1

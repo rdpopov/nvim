@@ -10,7 +10,7 @@ if has('autocmd')
 endif
 " commands bound on f-s
 "f1
-nnoremap <F2> :QuickRun<CR>
+noremap <F2> :Neomake<CR>
 "f2
 "f3
 noremap <F3> :Autoformat<CR>:retab<CR>

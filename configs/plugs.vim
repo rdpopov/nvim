@@ -1,10 +1,7 @@
 call plug#begin()
 "to be removed most likely
-Plug 'thinca/vim-quickrun'
-Plug 'fergdev/vim-cursor-hist'
 "unknown usefulness
 Plug 'chiel92/vim-autoformat'
-"used plugins 
 "completion
 Plug 'dense-analysis/ale'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -15,8 +12,7 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'ryanolsonx/vim-lsp-python'
 Plug 'm-pilia/vim-ccls'
 "quality of life 
-Plug 'ronakg/quickr-preview.vim'
-Plug 'jeetsukumaran/vim-buffergator'
+Plug 'neomake/neomake'
 Plug 'vim-airline/vim-airline'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
