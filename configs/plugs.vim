@@ -12,6 +12,8 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'ryanolsonx/vim-lsp-python'
 Plug 'm-pilia/vim-ccls'
 "quality of life 
+Plug 'justincampbell/vim-eighties'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 Plug 'neomake/neomake'
 Plug 'vim-airline/vim-airline'
 Plug 'mbbill/undotree'
