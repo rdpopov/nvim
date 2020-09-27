@@ -8,7 +8,6 @@ add_to_PATH(){
     elif [[ "$shell" == "bahs" ]];then
         echo "PATH=$1:\$PATH">>.bashrc
     fi
-
 }
 
 setup_g_c_tags(){
@@ -20,6 +19,7 @@ setup_g_c_tags(){
 setup_vimplug(){
     cd ~
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    curl -fLo ~/.local/share/vim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     echo
 }
 
@@ -57,6 +57,14 @@ compile_snippet_generators(){
     echo
 }
 
+setup_qtile(){
+    pip install xcffib
+    pip install --no-cache-dir cairocffi
+    package_install libpangocairo-1.0-0
+
+}
+
+
 setup_nvim(){
     wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output-document nvim
     chmod +x nvim
@@ -64,7 +72,7 @@ setup_nvim(){
     sudo mv nvim /usr/bin
     cd ~
     mkdir -p .config/nvim
-    pip install --user neovim
+    pip3 install --user pynvim
     setup_vimplug
     echo
 }

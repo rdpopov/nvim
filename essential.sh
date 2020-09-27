@@ -10,7 +10,7 @@ safe_exec(){
 get_pip(){
     cd ~
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    python get-pip.py
+    python3 get-pip.py
 }
 
 get_distro(){

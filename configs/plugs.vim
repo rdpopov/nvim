@@ -34,4 +34,6 @@ Plug 'srcery-colors/srcery-vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-wombat-scheme'
 Plug 'mhartington/oceanic-next'
+"fluff stuff and project managment
+Plug 'jceb/vim-orgmode'
 call plug#end()
