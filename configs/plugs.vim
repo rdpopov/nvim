@@ -13,7 +13,6 @@ Plug 'ryanolsonx/vim-lsp-python'
 Plug 'm-pilia/vim-ccls'
 "quality of life 
 Plug 'justincampbell/vim-eighties'
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 Plug 'neomake/neomake'
 Plug 'vim-airline/vim-airline'
 Plug 'mbbill/undotree'
@@ -36,4 +35,7 @@ Plug 'sheerun/vim-wombat-scheme'
 Plug 'mhartington/oceanic-next'
 "fluff stuff and project managment
 Plug 'jceb/vim-orgmode'
+"external file manager
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 call plug#end()

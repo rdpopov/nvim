@@ -1,3 +1,5 @@
+""<<netrw>>
+
 function! ToggleVExplorer()
     if exists("t:expl_buf_num")
         let expl_win_num = bufwinnr(t:expl_buf_num)
@@ -21,3 +23,9 @@ map <silent> <C-E> :call ToggleVExplorer()<CR>
 let g:netrw_browse_split = 4 
 let g:netrw_altv = 1
 let g:netrw_liststyle=3
+
+
+""<<ranger>>
+
+let g:ranger_replace_netrw = 1
+let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
