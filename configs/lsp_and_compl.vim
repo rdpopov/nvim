@@ -80,18 +80,20 @@ function! s:on_lsp_buffer_enabled() abort
 endfunction
 autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 
-
-
 nmap yd :LspDefinition<CR>
 nmap yr :LspReferences<CR>
 nmap yi :LspImplementation <CR>
 nmap yf :LspRename <CR>
 
-
 nmap <leader> yd :CclsDerived<CR>
 nmap <leader> yh :CclsDerivedHierarchy<CR>
 nmap <leader> yr :CclsCallers<CR>
 nmap <leader> yt :CclsCallHierarchy<CR>
+
+autocmd BufEnter *.nim nmap <buffer> yd :call nim#suggest#def#GoTo('b')<lf>
+autocmd BufEnter *.nim nmap <buffer> yt :call nim#suggest#outline#OpenLocList('v')<lf>
+autocmd BufEnter *.nim nmap <buffer> yi :call nim#suggest#def#GoTo('v')<lf>
+autocmd BufEnter *.nim nmap <buffer> yr :call nim#suggest#use#ShowReferences()<lf>
 
 "quickr-previw
 let g:quickr_preview_position = 'above'
