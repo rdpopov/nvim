@@ -13,7 +13,6 @@ Plug 'ryanolsonx/vim-lsp-python'
 Plug 'm-pilia/vim-ccls'
 "quality of life 
 Plug 'justincampbell/vim-eighties'
-Plug 'neomake/neomake'
 Plug 'vim-airline/vim-airline'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
@@ -27,15 +26,11 @@ Plug 'airblade/vim-gitgutter'
 "language plugins
 Plug 'alaviss/nim.nvim'
 Plug 'sheerun/vim-polyglot'
-Plug 'plasticboy/vim-markdown'
 "colorschemes
 Plug 'srcery-colors/srcery-vim'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'sheerun/vim-wombat-scheme'
-Plug 'mhartington/oceanic-next'
-"fluff stuff and project managment
-Plug 'jceb/vim-orgmode'
-"external file manager
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
+"rice
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()

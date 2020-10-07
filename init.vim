@@ -18,6 +18,8 @@ source $HOME/.config/nvim/configs/netrw.vim              "Netrw config. Netrw is
 
 source $HOME/.config/nvim/configs/plugs.vim             "Plugins
 
+source $HOME/.config/nvim/configs/nerdtree.vim             "Plugins
+
 if (empty($TMUX))
   if (has("nvim"))
   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >

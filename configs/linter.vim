@@ -1,4 +1,3 @@
-
 let g:ale_disable_lsp = 0
 let g:ale_hover_to_preview =1
 let g:airline#extensions#ale#enabled = 1
@@ -9,8 +8,8 @@ let g:ale_linters = {
             \   'nim': ['nimlsp', 'nimcheck'],
             \   'python': ['pyls'],
             \   'c':['ccls'],
+            \   'go':['gopls']
             \}
-"            \   'c':['clangd'],
 let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_error = '✖✖'
 let g:ale_sign_warning = '⚠⚠'
@@ -34,4 +33,3 @@ function! LinterStatus() abort
                 \)
 endfunction
 set statusline=%{LinterStatus()}
-
