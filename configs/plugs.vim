@@ -15,15 +15,12 @@ Plug 'm-pilia/vim-ccls'
 Plug 'justincampbell/vim-eighties'
 Plug 'vim-airline/vim-airline'
 Plug 'mbbill/undotree'
-Plug 'gregsexton/gitv'
-Plug 'tpope/vim-fugitive'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-abolish'
 "essential
 Plug 'jsfaint/gen_tags.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-gitgutter'
 "language plugins
 Plug 'alaviss/nim.nvim'
 Plug 'sheerun/vim-polyglot'
@@ -34,4 +31,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
+"git intergations
+Plug 'airblade/vim-gitgutter'
+Plug 'sodapopcan/vim-twiggy'
+Plug 'gregsexton/gitv'
+Plug 'tpope/vim-fugitive'
+Plug 'rhysd/git-messenger.vim'
+Plug 'apzelos/blamer.nvim'
 call plug#end()
