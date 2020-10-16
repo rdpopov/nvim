@@ -38,4 +38,5 @@ Plug 'gregsexton/gitv'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'apzelos/blamer.nvim'
+Plug 'mickaobrien/vim-stackoverflow'
 call plug#end()
