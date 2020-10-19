@@ -15,6 +15,8 @@ nnoremap <leader>g :Rg<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>m :Marks<CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>h :History<CR>
+nnoremap <leader>f :execute ":Rg ".expand('<cword>')<CR>
 
 let g:fzf_tags_command = 'ctags -R'
 " Border color
@@ -68,5 +70,4 @@ command! -bang -nargs=* GGrep
   \   'git grep --line-number '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
-noremap <leader>f  :execute ":Rg ".expand('<cword>')<CR>
 
