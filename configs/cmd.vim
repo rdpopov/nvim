@@ -28,3 +28,5 @@ noremap <Leader>p "*p
 noremap <Leader>Y "+y
 noremap <Leader>P "+p
 nmap <Leader>gm <Plug>(git-messenger)
+
+noremap <leader>c :ContextToggleWindow<CR> 

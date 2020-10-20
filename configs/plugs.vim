@@ -13,6 +13,7 @@ Plug 'ryanolsonx/vim-lsp-python'
 Plug 'm-pilia/vim-ccls'
 "quality of life 
 Plug 'justincampbell/vim-eighties'
+Plug 'wellle/context.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'mbbill/undotree'
 Plug 'justinmk/vim-sneak'
@@ -39,4 +40,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'apzelos/blamer.nvim'
 Plug 'mickaobrien/vim-stackoverflow'
+"fmi
+Plug 'wlangstroth/vim-racket'
 call plug#end()

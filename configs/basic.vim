@@ -7,3 +7,4 @@ let g:blamer_enabled = 1
 let g:blamer_delay = 1000
 let g:blamer_prefix = ' > '
 highlight Blamer guifg=yellow
+let g:context_enabled = 0
