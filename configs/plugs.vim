@@ -26,8 +26,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'alaviss/nim.nvim'
 Plug 'sheerun/vim-polyglot'
 "colorschemes
-Plug 'srcery-colors/srcery-vim'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'joshdick/onedark.vim'
 "rice
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
