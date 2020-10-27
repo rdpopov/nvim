@@ -27,7 +27,9 @@ Plug 'alaviss/nim.nvim'
 Plug 'sheerun/vim-polyglot'
 "colorschemes
 Plug 'vim-airline/vim-airline-themes'
-Plug 'joshdick/onedark.vim'
+Plug 'jacoborus/tender.vim'
+Plug 'letorbi/vim-colors-modern-borland'
+"Plug 'joshdick/onedark.vim'
 "rice
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'

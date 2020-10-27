@@ -32,31 +32,32 @@ if (empty($TMUX))
 endif
 
 
-let g:onedark_termcolors=256
+"let g:onedark_termcolors=256
 
-if (has("autocmd"))
-  augroup colorextend
-    autocmd!
-    " Make `Function`s bold in GUI mode
-    autocmd ColorScheme * call onedark#extend_highlight("Function", { "gui": "bold" })
-    " Override the `Statement` foreground color in 256-color mode
-    autocmd ColorScheme * call onedark#extend_highlight("Statement", { "fg": { "cterm": 128 } })
-    " Override the `Identifier` background color in GUI mode
-    autocmd ColorScheme * call onedark#extend_highlight("Identifier", { "bg": { "gui": "#333333" } })
-  augroup END
-endif
-let g:onedark_color_overrides = {
-    \ "black": {"gui": "#101010", "cterm": "235", "cterm16": "0" },
-    \ "purple": { "gui": "#C678DF", "cterm": "170", "cterm16": "5" }
-\}
+"if (has("autocmd"))
+"  augroup colorextend
+"    autocmd!
+"    " Make `Function`s bold in GUI mode
+"    autocmd ColorScheme * call onedark#extend_highlight("Function", { "gui": "bold" })
+"    " Override the `Statement` foreground color in 256-color mode
+"    autocmd ColorScheme * call onedark#extend_highlight("Statement", { "fg": { "cterm": 128 } })
+"    " Override the `Identifier` background color in GUI mode
+"    autocmd ColorScheme * call onedark#extend_highlight("Identifier", { "bg": { "gui": "#333333" } })
+"  augroup END
+"endif
+"let g:onedark_color_overrides = {
+"    \ "black": {"gui": "#101010", "cterm": "235", "cterm16": "0" },
+"    \ "purple": { "gui": "#C678DF", "cterm": "170", "cterm16": "5" }
+"\}
+"
+"let g:onedark_terminal_italics = 1
 
-let g:onedark_terminal_italics = 1
-
-colorscheme onedark
+set background=dark
+colorscheme tender
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-let g:airline_theme='onedark'
+let g:airline_theme='tender'
 
