@@ -9,6 +9,8 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
+Plug 'fatih/vim-go'
+Plug 'piec/vim-lsp-gopls'
 Plug 'ryanolsonx/vim-lsp-python'
 Plug 'm-pilia/vim-ccls'
 "quality of life 
