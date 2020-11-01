@@ -12,8 +12,8 @@ endif
 " commands bound on f-s
 "f1
 "f3
+noremap <F2> :QuickRun
 noremap <F3> :Autoformat<CR>:retab<CR>
-"noremap <c-A> :Ag
 
 ""make code tags for jumping
 command! MakeTags !ctags -R
