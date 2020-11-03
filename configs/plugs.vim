@@ -30,11 +30,9 @@ Plug 'alaviss/nim.nvim'
 Plug 'sheerun/vim-polyglot'
 "colorschemes
 Plug 'vim-airline/vim-airline-themes'
-Plug 'letorbi/vim-colors-modern-borland'
-"Plug 'joshdick/onedark.vim'
 "rice
 Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'philrunninger/nerdtree-visual-selection'
 Plug 'ryanoasis/vim-devicons'
 "git intergations
 Plug 'airblade/vim-gitgutter'
@@ -43,7 +41,6 @@ Plug 'gregsexton/gitv'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'apzelos/blamer.nvim'
-Plug 'mickaobrien/vim-stackoverflow'
 "fmi
 Plug 'wlangstroth/vim-racket'
 call plug#end()
