@@ -29,6 +29,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'alaviss/nim.nvim'
 Plug 'sheerun/vim-polyglot'
 "colorschemes
+Plug 'letorbi/vim-colors-modern-borland'
+Plug 'lmintmate/blue-mood-vim'
+Plug 'cseelus/vim-colors-tone'
 Plug 'vim-airline/vim-airline-themes'
 "rice
 Plug 'preservim/nerdtree'
