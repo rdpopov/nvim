@@ -12,7 +12,7 @@ endif
 " commands bound on f-s
 "f1
 "f3
-noremap <F2> :QuickRun
+noremap <F2> :QuickRun<CR>
 noremap <F3> :Autoformat<CR>:retab<CR>
 
 ""make code tags for jumping
@@ -30,3 +30,13 @@ noremap <Leader>P "+p
 nmap <Leader>gm <Plug>(git-messenger)
 
 noremap <leader>c :ContextToggleWindow<CR> 
+noremap <C-s> :execute "vsplit term://".$SHELL<CR>
+" replace all occurances of word under cursor with user input 
+nnoremap <M-x> :execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/g"<CR>
+nnoremap <M-t> :tabdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/g"<CR>
+nnoremap <M-b> :bufdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/g"<CR>
+
+" replace all occurances of word under cursor with user input interactively
+nnoremap <C-x> :execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
+nnoremap <C-t> :tabdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
+nnoremap <C-b> :bufdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
