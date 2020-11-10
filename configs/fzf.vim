@@ -10,13 +10,14 @@ let g:fzf_action = {
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-map <C-f> :Files<CR>
-nnoremap <leader>g :Rg<CR>
-nnoremap <leader>t :Tags<CR>
-nnoremap <leader>m :Marks<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>h :History<CR>
-nnoremap <leader>f :execute ":Rg ".expand('<cword>')<CR>
+map <C-f> :Files<CR>                                      ;FZF files in current directory
+nnoremap <leader>g :Rg<CR>                                ;Rg on files in current directory
+nnoremap <leader>t :Tags<CR>                              ;FZF on tags current directory
+nnoremap <leader>m :Marks<CR>                             ;FZF on marks
+nnoremap <leader>b :Buffers<CR>                           ;FZF on buffers 
+nnoremap <leader>h :History<CR>                           ;FZF on recent files
+nnoremap <leader>f :execute ":Rg ".expand('<cword>')<CR>  ;Rg file under cursor 
+nnoremap <leader>q :BCommits<CR>                          ;Show commits which changed the file
 
 let g:fzf_tags_command = 'ctags -R'
 " Border color
@@ -61,6 +62,7 @@ function! RipgrepFzf(query, fullscreen)
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
+
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 

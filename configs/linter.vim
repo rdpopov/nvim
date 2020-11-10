@@ -17,8 +17,8 @@ let g:ale_sign_warning = '⚠⚠'
 highlight ALEErrorSign guifg=Red
 highlight ALEWarningSign guifg=Yellow
 
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)       ;Go to previous ale lint error 
+nmap <silent> <C-j> <Plug>(ale_next_wrap)           ;Go to next ale lint error
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))

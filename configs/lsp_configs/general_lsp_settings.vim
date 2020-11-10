@@ -34,14 +34,12 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    "    nmap <buffer> <C-k> <Plug>(lsp-previous-diagnostic)
-    "    nmap <buffer> <C-j> <Plug>(lsp-next-diagnostic)
 endfunction
 autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 
-nmap yd :LspDefinition<CR>
-nmap yr :LspReferences<CR>
-nmap yi :LspImplementation <CR>
-nmap yf :LspRename <CR>
-nmap K  :LspHover<CR>
-nmap F  :LspPeekDefinition<CR>
+nmap yd :LspDefinition<CR>         ;Get Defineition
+nmap yr :LspReferences<CR>         ;Get Refferences
+nmap yi :LspImplementation <CR>    ;Go to implementation
+nmap yf :LspRename <CR>            ;Rename the symbol
+nmap K  :LspHover<CR>              ;Get hover information
+nmap F  :LspPeekDefinition<CR>     ;Peek Definition
