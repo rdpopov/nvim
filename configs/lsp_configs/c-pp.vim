@@ -13,8 +13,12 @@ if executable('ccls')
                 \ })
 endif
 
-autocmd BufEnter *.c,*.cpp,*.h,*.cc nmap<leader> yd :CclsDerived<CR>          ;Get Derrived <C/C++>
-autocmd BufEnter *.c,*.cpp,*.h,*.cc nmap<leader> yh :CclsDerivedHierarchy<CR> ;Get Class hierarchy?<C/C++>
-autocmd BufEnter *.c,*.cpp,*.h,*.cc nmap<leader> yr :CclsCallers<CR>          ;Get Caller functions <C/C++>
-autocmd BufEnter *.c,*.cpp,*.h,*.cc nmap<leader> yt :CclsCallHierarchy<CR>    ;Get Call hierarchy <C/C++>
+autocmd BufEnter *.c,*.cpp,*.h,*.cc nmap <leader>yd :CclsDerived<CR>
+";Get Derrived <C/C++>
+autocmd BufEnter *.c,*.cpp,*.h,*.cc nmap <leader>yh :CclsDerivedHierarchy<CR>
+";Get Class hierarchy?<C/C++>
+autocmd BufEnter *.c,*.cpp,*.h,*.cc nmap <leader>yr :CclsCallers<CR>
+";Get Caller functions <C/C++>
+autocmd BufEnter *.c,*.cpp,*.h,*.cc nmap <leader>yt :CclsCallHierarchy<CR>
+";Get Call hierarchy <C/C++>
 

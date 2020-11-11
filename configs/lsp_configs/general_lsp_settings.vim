@@ -37,9 +37,15 @@ function! s:on_lsp_buffer_enabled() abort
 endfunction
 autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 
-nmap yd :LspDefinition<CR>         ;Get Defineition
-nmap yr :LspReferences<CR>         ;Get Refferences
-nmap yi :LspImplementation <CR>    ;Go to implementation
-nmap yf :LspRename <CR>            ;Rename the symbol
-nmap K  :LspHover<CR>              ;Get hover information
-nmap F  :LspPeekDefinition<CR>     ;Peek Definition
+nmap yd :LspDefinition<CR>
+";Get Defineition
+nmap yr :LspReferences<CR>
+";Get Refferences
+nmap yi :LspImplementation <CR>
+";Go to implementation
+nmap yf :LspRename <CR>
+";Rename the symbol
+nmap K  :LspHover<CR>
+";Get hover information
+nmap F  :LspPeekDefinition<CR>
+";Peek Definition
