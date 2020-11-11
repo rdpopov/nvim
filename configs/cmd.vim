@@ -12,7 +12,7 @@ noremap <F3> :Autoformat<CR>:retab<CR>
 ";Format file 
 
 function! g:Help_bind()
-    cexpr system("bash find.sh")
+    cexpr system("bash .find.sh")
     copen
 endfunction
 
