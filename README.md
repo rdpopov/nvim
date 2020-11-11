@@ -1,7 +1,7 @@
 # Wellcome to the (n)vim side
 This is my neovim configuration.\
 Made as portable as I could, but still needs alot of external progrmas.\
-Not the very vest, but it's mine and i like it.\
+Not the very best, but it's mine and i like it.\
 Just kidding. Actually I don't like it, I edit it constatnly.
 
 ## Initial setup
@@ -27,7 +27,7 @@ Just kidding. Actually I don't like it, I edit it constatnly.
 - **cmd.vim** - Some mappings that I have. Press Alt + h to see all of them
 - **fzf.vim** - Fzf config stolen from the original repo, and modified slightly
 - **linter.vim** - Ale is used for linter and this is where it's config resides
-- **lsp_and_compl.vim** - Loads basic vimlsp config and then loads specific configs for specificlanguages
+- **lsp_and_compl.vim** - Loads basic vimlsp config and then loads specific configs for specific languages
 - **lsp_configs** - Holds vimlsp and asyncomplete configurations basic and specific
 - **nerdtree.vim** - Nerdtree configuration
 - **plugs.vim** - Here are all the plugin currently in use, 
@@ -39,4 +39,4 @@ There is support for snippets however you have to write them yourself.\
 If you need to use them that is.\
 But bindings are present in **repo_root/snippets/snippets.vim**\
 Very easy to modify.\
-For any language you need to put snippets in a folder named the result of **:echo &filetype** in vim\
+For any language you need to put snippets in a folder named the result of **:echo &filetype** in vim
