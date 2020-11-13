@@ -12,11 +12,11 @@ noremap <F3> :Autoformat<CR>:retab<CR>
 ";Format file 
 
 function! g:Help_bind()
-    cexpr system("bash .find.sh")
+    cexpr system("$HOME/.config/nvim/.find.sh")
     copen
 endfunction
 
-nnoremap <M-h> :call Help_bind()<CR>
+nnoremap <F10> :call Help_bind()<CR>
 ";Open window with all the userdefined binfigs 
 command! MakeTags !ctags -R
 ";Generate tags recursively
@@ -45,7 +45,7 @@ noremap <leader>c :ContextToggleWindow<CR>
 noremap <C-s> :execute "vsplit term://".$SHELL<CR>
 ";Cteate a terminal in Vertical Split
 " replace all occurances of word under cursor with user input 
-nnoremap <M-x> :execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/g"<CR>
+nnoremap <M-d> :execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/g"<CR>
 ";Execute a search and replace in current file w/o conform
 nnoremap <M-t> :tabdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/g"<CR>
 ";Execute a search and replace in all tabs w/o conform
@@ -53,13 +53,12 @@ nnoremap <M-b> :bufdo execute ":%s/".expand('<cword>')."/".input('replace <'.exp
 ";Execute a search and replace in all buffers w/o conform
 
 " replace all occurances of word under cursor with user input interactively
-nnoremap <C-x> :execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
+nnoremap <C-d> :execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
 ";Execute a search and replace in current file w/ conform
 nnoremap <C-t> :tabdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
 ";Execute a search and replace in all tabs w/ conform
 nnoremap <C-b> :bufdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
 ";Execute a search and replace in all buffers w/ conform
+nnoremap <F9> :e $MYVIMRC<CR> 
 nnoremap <F12> :source $MYVIMRC<CR> 
 ";Resource Config
-
-
