@@ -27,6 +27,8 @@ nnoremap <leader>f :execute ":Rg ".expand('<cword>')<CR>
 nnoremap <leader>q :BCommits<CR>
 ";Show commits which changed the file
 
+nnoremap <F8> :execute ":Rg @TODO :"<CR>
+
 let g:fzf_tags_command = 'ctags -R'
 " Border color
 let g:fzf_layout = {'down':'25%'  }
