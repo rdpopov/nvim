@@ -6,7 +6,7 @@ Just kidding. Actually I don't like it, I edit it constatnly.
 
 ## Initial setup
 - https://www.linode.com/docs/tools-reference/tools/how-to-install-neovim-and-plugins-with-vim-plug/
-- or with a bootstap_env.sh (NYI but will do)
+- or with a bootstap_env.sh (NYI but will do...at some point)
 
 ### Needed external programs 
 - **fzf** (go-lang) (will install itself)
@@ -32,6 +32,8 @@ Just kidding. Actually I don't like it, I edit it constatnly.
 - **nerdtree.vim** - Nerdtree configuration
 - **plugs.vim** - Here are all the plugin currently in use, 
 - **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.
+
+Press F10 for a list of my custom keybinfings
 
 ## Snippets support
 
