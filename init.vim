@@ -52,7 +52,7 @@ endif
 "let g:onedark_terminal_italics = 1
 
 set background=dark
-colorscheme base16-helios
+colorscheme srcery
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '

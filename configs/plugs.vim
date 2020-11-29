@@ -43,5 +43,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'apzelos/blamer.nvim'
 "fmi
+Plug 'srcery-colors/srcery-vim'
 Plug 'wlangstroth/vim-racket'
 call plug#end()
