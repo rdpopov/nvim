@@ -5,7 +5,6 @@ Plug 'chiel92/vim-autoformat'
 "completion
 Plug 'dense-analysis/ale'
 Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
@@ -33,14 +32,10 @@ Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline-themes'
 "rice
 Plug 'preservim/nerdtree'
-Plug 'philrunninger/nerdtree-visual-selection'
 Plug 'ryanoasis/vim-devicons'
 "git intergations
 Plug 'airblade/vim-gitgutter'
-Plug 'sodapopcan/vim-twiggy'
-Plug 'gregsexton/gitv'
 Plug 'tpope/vim-fugitive'
-Plug 'rhysd/git-messenger.vim'
 Plug 'apzelos/blamer.nvim'
 "fmi
 Plug 'srcery-colors/srcery-vim'
