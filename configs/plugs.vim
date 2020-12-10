@@ -29,6 +29,8 @@ Plug 'alaviss/nim.nvim'
 Plug 'sheerun/vim-polyglot'
 "colorschemes
 Plug 'chriskempson/base16-vim'
+Plug 'embark-theme/vim', { 'as': 'embark' }
+Plug 'srcery-colors/srcery-vim'
 Plug 'vim-airline/vim-airline-themes'
 "rice
 Plug 'preservim/nerdtree'
@@ -36,8 +38,6 @@ Plug 'ryanoasis/vim-devicons'
 "git intergations
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'apzelos/blamer.nvim'
 "fmi
-Plug 'srcery-colors/srcery-vim'
 Plug 'wlangstroth/vim-racket'
 call plug#end()
