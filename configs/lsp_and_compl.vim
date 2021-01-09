@@ -1,1 +1,0 @@
-source $HOME/.config/nvim/configs/lsp_configs/coc.vim

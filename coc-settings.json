@@ -3,7 +3,19 @@
     "nim": {
       "command": "nimlsp",
       "trace.server": "verbose",
-      "filetypes": ["nim"]
+      "filetypes": ["nim"],
+      "rootPatterns": ["main.nim","README.md",".git/",".git"],
+      "disableCompletion":"true"
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": ["README.md", "compile_commands.json"],
+      "initializationOptions": {
+        "cache": {
+          "directory": ".ccls-cache"
+        }
+      }
     }
   }
 }

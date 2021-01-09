@@ -3,6 +3,13 @@ call plug#begin()
 Plug 'chiel92/vim-autoformat'
 "completion
 Plug 'neoclide/coc.nvim'
+"nim spcific
+Plug 'alaviss/nim.nvim'
+Plug 'dense-analysis/ale'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'mattn/vim-lsp-settings'
 "quality of life 
 Plug 'justincampbell/vim-eighties'
 Plug 'wellle/context.vim'
@@ -16,7 +23,6 @@ Plug 'jsfaint/gen_tags.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "language plugins
-Plug 'alaviss/nim.nvim'
 Plug 'sheerun/vim-polyglot'
 "colorschemes
 Plug 'chriskempson/base16-vim'

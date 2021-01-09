@@ -4,7 +4,7 @@ source $HOME/.config/nvim/configs/cmd.vim               "commands and mappings
 
 source $HOME/.config/nvim/configs/basic.vim             "basic config for other plugins
 
-source $HOME/.config/nvim/configs/lsp_and_compl.vim     "Vimlsp + asynccomplete
+source $HOME/.config/nvim/configs/coc.vim     "Vimlsp + asynccomplete
 
 source $HOME/.config/nvim/configs/linter.vim            "Ale setup
 
