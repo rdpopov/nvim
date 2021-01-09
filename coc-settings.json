@@ -1,0 +1,9 @@
+{
+  "languageserver": {
+    "nim": {
+      "command": "nimlsp",
+      "trace.server": "verbose",
+      "filetypes": ["nim"]
+    }
+  }
+}

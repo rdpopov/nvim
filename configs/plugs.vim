@@ -1,17 +1,8 @@
 call plug#begin()
-"to be removed most likely
 "unknown usefulness
 Plug 'chiel92/vim-autoformat'
 "completion
-Plug 'dense-analysis/ale'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'mattn/vim-lsp-settings'
-Plug 'fatih/vim-go'
-Plug 'piec/vim-lsp-gopls'
-Plug 'ryanolsonx/vim-lsp-python'
-Plug 'm-pilia/vim-ccls'
+Plug 'neoclide/coc.nvim'
 "quality of life 
 Plug 'justincampbell/vim-eighties'
 Plug 'wellle/context.vim'
@@ -40,4 +31,5 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 "fmi
 Plug 'wlangstroth/vim-racket'
+Plug 'plasticboy/vim-markdown'
 call plug#end()
