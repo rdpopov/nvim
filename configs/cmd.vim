@@ -18,6 +18,7 @@ endfunction
 
 nnoremap <F10> :call Help_bind()<CR>
 nnoremap <F4> :Cheat 
+nnoremap <F5> :HowIn 
 ";Open window with all the userdefined binfigs 
 command! MakeTags !ctags -R
 ";Generate tags recursively
