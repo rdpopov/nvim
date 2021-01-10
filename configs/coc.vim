@@ -15,6 +15,9 @@ let g:lsp_fold_enabled = 0
 let g:lsp_virtual_text_enabled = 0
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1
+let g:asyncomplete_auto_completeopt = 0
+set completeopt=menuone,noinsert,noselect
+
 
 let g:asyncomplete_auto_popup = 1
 
@@ -53,8 +56,7 @@ function! s:SwitchCompletionToCOC() abort
         \ coc#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
   inoremap <silent><expr> <c-space> coc#refresh()
-  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
   nnoremap <silent> K :call <SID>show_documentation()<CR>
 endfunction
 

@@ -1,12 +1,5 @@
 {
   "languageserver": {
-    "nim": {
-      "command": "nimlsp",
-      "trace.server": "verbose",
-      "filetypes": ["nim"],
-      "rootPatterns": ["main.nim","README.md",".git/",".git"],
-      "disableCompletion":"true"
-    },
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
@@ -16,6 +9,41 @@
           "directory": ".ccls-cache"
         }
       }
+    },
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": [
+        "--lsp"
+      ],
+      "rootPatterns": [
+        ".stack.yaml",
+        ".hie-bios",
+        "BUILD.bazel",
+        "cabal.config",
+        "package.yaml"
+      ],
+      "filetypes": [
+        "hs",
+        "lhs",
+        "haskell"
+      ]
+    },
+    "racket": {
+      "command": "racket",
+      "args": [
+        "--lib",
+        "racket-langserver"
+      ],
+      "filetypes": [
+        "scheme"
+      ]
+    },
+    "nim": {
+      "command": "nimlsp",
+      "trace.server": "verbose",
+      "filetypes": ["nim"],
+      "rootPatterns": ["main.nim","README.md",".git/",".git"],
+      "disableCompletion":"true"
     }
   }
 }

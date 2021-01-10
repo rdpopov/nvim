@@ -2,7 +2,6 @@ call plug#begin()
 "unknown usefulness
 Plug 'chiel92/vim-autoformat'
 "completion
-Plug 'neoclide/coc.nvim'
 "nim spcific
 Plug 'alaviss/nim.nvim'
 Plug 'dense-analysis/ale'
@@ -10,6 +9,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
+Plug 'neoclide/coc.nvim'
 "quality of life 
 Plug 'justincampbell/vim-eighties'
 Plug 'wellle/context.vim'
