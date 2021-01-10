@@ -6,20 +6,19 @@ Just kidding. Actually I don't like it, I edit it constatnly.
 
 ## Initial setup
 - https://www.linode.com/docs/tools-reference/tools/how-to-install-neovim-and-plugins-with-vim-plug/
-- or with a bootstap_env.sh (NYI but will do...at some point)
+- or with a bootstap_env.sh (NYI but will do...at some point, maybe with compiling neovim-nightly)
 
 ### Needed external programs 
 - **fzf** (go-lang) (will install itself)
 - **ripgrep** (rust)
 - **Gnu Global** + Ctags
 - **nodejs**
-- various language servers 
+- various language servers (hasklell, nim, racket)
 
 ####  Current configurations for  
-- **C/C++** with ccls 
-- **Python** with pyls
-- **Nim-lang** witn nimsuggest and nimlsp 
-- **Go-lang** with gopls
+- **Nim-lang** witn nimsuggest and asyncomplete for completion and coc for anything else
+- **Haskell**
+- **C/C++** with ccls
 
 ## Configuraton is split into several files all(most) in configs
 - **auto.vim** - Auto commands, currenty only one that install new plugins and clears old ones.
@@ -27,8 +26,7 @@ Just kidding. Actually I don't like it, I edit it constatnly.
 - **cmd.vim** - Some mappings that I have. Press Alt + h to see all of them
 - **fzf.vim** - Fzf config stolen from the original repo, and modified slightly
 - **linter.vim** - Ale is used for linter and this is where it's config resides
-- **lsp_and_compl.vim** - Loads basic vimlsp config and then loads specific configs for specific languages
-- **lsp_configs** - Holds vimlsp and asyncomplete configurations basic and specific
+- **coc.vim** - Joint configuration for asyncomplete and coc 
 - **nerdtree.vim** - Nerdtree configuration
 - **plugs.vim** - Here are all the plugin currently in use, 
 - **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.

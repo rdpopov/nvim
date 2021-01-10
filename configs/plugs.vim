@@ -38,4 +38,5 @@ Plug 'tpope/vim-fugitive'
 "fmi
 Plug 'wlangstroth/vim-racket'
 Plug 'plasticboy/vim-markdown'
+Plug 'dbeniamine/cheat.sh-vim'
 call plug#end()

@@ -44,6 +44,7 @@ set nofoldenable
 set cursorcolumn
 set cursorline
 set relativenumber
+set signcolumn=yes
 
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.

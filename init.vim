@@ -28,11 +28,11 @@ if (empty($TMUX))
 endif
 
 
-set background=dark
-colorscheme aurora
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
+set background=dark
+colorscheme aurora
 let g:airline_theme='embark'
