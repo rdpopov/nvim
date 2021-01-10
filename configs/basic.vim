@@ -1,4 +1,4 @@
-let mapleader = "\\"
+let mapleader = " "
 
 let g:autoformat_autoindent = 1
 let g:autoformat_retab = 1
