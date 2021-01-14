@@ -8,4 +8,4 @@ let g:blamer_delay = 1000
 let g:blamer_prefix = ' > '
 highlight Blamer guifg=yellow
 let g:context_enabled = 0
-let g:CheatSheetReaderCmd='vsplit"'
+let g:CheatSheetReaderCmd='new"'

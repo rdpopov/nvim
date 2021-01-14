@@ -72,7 +72,10 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> go :CocList outline <CR>
+nmap <silent> <leader>w :CocAction<CR>
 
+let g:coc_global_extensions = ['coc-marketplace', 'coc-html', 'coc-fzf-preview', 'coc-python', 'coc-json', 'coc-go','coc-rls' ]
 
 function! s:show_documentation()
   if (index(['vim','help'], &fau BufNewFile,BufRead *.nim set filetype=nimiletype) >= 0)
