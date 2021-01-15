@@ -17,19 +17,16 @@ function! g:Help_bind()
 endfunction
 
 nnoremap <F10> :call Help_bind()<CR>
+";Open window with all the user defined binfigs 
 nnoremap <F4> :Cheat 
+";Write a :Cheat in command mode, ready to write a cheat.sh query
 nnoremap <F5> :HowIn 
-";Open window with all the userdefined binfigs 
-command! MakeTags !ctags -R
-";Generate tags recursively
-"hide highlights searches
+";Write a :HowIn in command mode, ready to write a cheat.sh query
 nmap <silent> ,/ :nohlsearch<CR>
 ";Clear search selection  
 ""esc terminal mode when in it
 :tnoremap <Esc> <C-\><C-n>
 ";Use Esc key to clear modes in terminal
-""open small terminal window down
-"saasadasd
 noremap <Leader>y "*y
 ";Yank into system clipboard (might not work)
 noremap <Leader>p "*p
@@ -38,9 +35,6 @@ noremap <Leader>Y "+y
 ";Yank into system clipboard (might not work)
 noremap <Leader>P "+p
 ";Paste from system clipboard (might not work)
-
-nmap <Leader>gm <Plug>(git-messenger)
-";Toggle Git Messenger
 
 noremap <leader>c :ContextToggleWindow<CR>
 ";Toggle function context

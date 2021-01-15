@@ -29,7 +29,6 @@ Plug 'embark-theme/vim', { 'as': 'embark' }
 Plug 'srcery-colors/srcery-vim'
 Plug 'vim-airline/vim-airline-themes'
 "rice
-Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 "git intergations
 Plug 'airblade/vim-gitgutter'

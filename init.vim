@@ -16,8 +16,6 @@ source $HOME/.config/nvim/snippets/snippets.vim         "Snippets
 
 source $HOME/.config/nvim/configs/plugs.vim             "Plugins
 
-source $HOME/.config/nvim/configs/nerdtree.vim             "Plugins
-
 if (empty($TMUX))
   if (has("nvim"))
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
