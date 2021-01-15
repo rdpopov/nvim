@@ -19,7 +19,6 @@ Plug 'mbbill/undotree'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-abolish'
 "essential
-Plug 'jsfaint/gen_tags.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "language plugins
