@@ -1,7 +1,6 @@
 set hidden
 set nobackup
 set nowritebackup
-set cmdheight=2
 set updatetime=300
 
 ""----------------------------------------
@@ -75,7 +74,7 @@ nmap <silent> gd <Plug>(coc-definition)
 ";Jump to definition (requres language server for filetype)
 nmap <silent> gy <Plug>(coc-type-definition)
 ";Jump to type definition (requres language server for filetype)
-nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gy <Plug>(coc-implementation)
 ";Jump to implementation (requres language server for filetype)
 nmap <silent> gr <Plug>(coc-references)
 ";Open Coc refferences for symbol (requres language server for filetype)
@@ -84,7 +83,7 @@ nmap <silent> <leader>o :CocList outline <CR>
 nmap <silent> <leader>w :CocAction<CR>
 ";If a code action is suggested from language server, open a menu to chose (requres language server for filetype)
 
-let g:coc_global_extensions = ['coc-marketplace', 'coc-html', 'coc-fzf-preview', 'coc-python', 'coc-json', 'coc-go','coc-rls' ]
+let g:coc_global_extensions = ['coc-marketplace', 'coc-html', 'coc-fzf-preview', 'coc-python', 'coc-json', 'coc-go','coc-rls','coc-tsserver','coc-vimlsp' ]
 
 function! s:show_documentation()
   if (index(['vim','help'], &fau BufNewFile,BufRead *.nim set filetype=nimiletype) >= 0)

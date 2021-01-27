@@ -10,6 +10,8 @@ source $HOME/.config/nvim/configs/linter.vim            "Ale setup
 
 source $HOME/.config/nvim/configs/auto.vim              "Auto commnds
 
+source $HOME/.config/nvim/configs/file_tree.vim         "Auto commnds
+
 source $HOME/.config/nvim/configs/fzf.vim               "Fzf & Rg configs
 
 source $HOME/.config/nvim/snippets/snippets.vim         "Snippets
@@ -32,5 +34,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 set background=dark
-colorscheme aurora
-let g:airline_theme='embark'
+colorscheme base16-gruvbox-dark-hard
+" for colorsceheme from github photo
+"colorscheme aurora
+"let g:airline_theme='embark'

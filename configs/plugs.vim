@@ -30,6 +30,8 @@ Plug 'srcery-colors/srcery-vim'
 Plug 'vim-airline/vim-airline-themes'
 "rice
 Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 "git intergations
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -37,4 +39,5 @@ Plug 'tpope/vim-fugitive'
 Plug 'wlangstroth/vim-racket'
 Plug 'plasticboy/vim-markdown'
 Plug 'dbeniamine/cheat.sh-vim'
+Plug 'rust-lang/rust.vim'
 call plug#end()
