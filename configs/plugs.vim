@@ -36,7 +36,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 "fmi
-Plug 'wlangstroth/vim-racket'
+Plug 'ghifarit53/tokyonight-vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'dbeniamine/cheat.sh-vim'
 Plug 'rust-lang/rust.vim'

@@ -33,8 +33,16 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-set background=dark
-colorscheme base16-gruvbox-dark-hard
-" for colorsceheme from github photo
+"===============================================================
+"gruvbox colors
+"set background=dark
+"colorscheme base16-gruvbox-dark-hard
+"===============================================================
+"tokyo night 
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+colorscheme tokyonight
+"===============================================================
+"for colorsceheme from github photo
 "colorscheme aurora
 "let g:airline_theme='embark'
