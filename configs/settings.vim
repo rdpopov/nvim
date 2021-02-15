@@ -45,6 +45,7 @@ set cursorcolumn
 set cursorline
 set relativenumber
 set signcolumn=yes
+set lazyredraw
 
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
@@ -54,17 +55,3 @@ if has("persistent_undo")
     set undodir=$HOME"/.undodir"
     set undofile
 endif
-"Ststusline
-set statusline=
-set statusline+=%#PmenuSel#
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m\
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-set statusline+=\ 

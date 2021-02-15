@@ -15,13 +15,11 @@ Plug 'prabirshrestha/vim-lsp'                       "   provides help for nim
 Plug 'prabirshrestha/asyncomplete-lsp.vim'          "   thats the only thing its good for
 Plug 'mattn/vim-lsp-settings'                       "   still only for nim, alot of work went into that
 "any other language
-Plug 'scrooloose/syntastic'                         "   syntax checking
-Plug 'sheerun/vim-polyglot'                         "   support for programming languages? 
+Plug 'dense-analysis/ale'                           "   linter
 Plug 'neoclide/coc.nvim'                            "   best completion plugin preconfigured lsp-s, provides nim code navigation, as well
 "quality of life 
-Plug 'tpope/vim-surround'                           "   for brackets
 Plug 'justincampbell/vim-eighties'                  "   autoresize curretn window to be 80 characters
-Plug 'vim-airline/vim-airline'                      "   that nifty airlne at the bottom, duh
+Plug 'itchyny/lightline.vim'
 Plug 'thinca/vim-quickrun'                          "   quickrun code files, useful for nqythung but c/c++
 Plug 'justinmk/vim-sneak'                           "   easier movment that i have yet to learn to use
 Plug 'tpope/vim-abolish'                            "   better find and replace, tpope stuff is blessed

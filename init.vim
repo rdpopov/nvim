@@ -8,11 +8,15 @@ source $HOME/.config/nvim/configs/coc.vim               "Vimlsp + asynccomplete 
 
 source $HOME/.config/nvim/configs/auto.vim              "Auto commnds
 
+source $HOME/.config/nvim/configs/linter.vim            "Auto commnds
+
 source $HOME/.config/nvim/configs/fzf.vim               "Fzf & Rg configs
 
 source $HOME/.config/nvim/snippets/snippets.vim         "Snippets  (currently unused)
 
 source $HOME/.config/nvim/configs/plugs.vim             "Plugins
+
+source $HOME/.config/nvim/configs/statusline.vim        "Statusline
 
 if (empty($TMUX))
   if (has("nvim"))
@@ -23,10 +27,7 @@ if (empty($TMUX))
   endif
 endif
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-
+set t_Co=256
 "===============================================================
 "gruvbox colors
 "set background=dark
@@ -38,6 +39,6 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 "colorscheme tokyonight
 "===============================================================
 "for colorsceheme from github photo
-"colorscheme aurora
+colorscheme aurora
 "let g:airline_theme='embark'
-colorscheme srcery
+"colorscheme srcery
