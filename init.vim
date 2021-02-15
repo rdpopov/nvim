@@ -8,15 +8,18 @@ source $HOME/.config/nvim/configs/coc.vim               "Vimlsp + asynccomplete 
 
 source $HOME/.config/nvim/configs/auto.vim              "Auto commnds
 
-source $HOME/.config/nvim/configs/linter.vim            "Auto commnds
+source $HOME/.config/nvim/configs/linter.vim            "Ale setup
+
+source $HOME/.config/nvim/configs/netrw.vim             "netrw config like nerdtree not as flashy but fast af
 
 source $HOME/.config/nvim/configs/fzf.vim               "Fzf & Rg configs
 
 source $HOME/.config/nvim/snippets/snippets.vim         "Snippets  (currently unused)
 
+source $HOME/.config/nvim/configs/statusline.vim        "Statusline
+
 source $HOME/.config/nvim/configs/plugs.vim             "Plugins
 
-source $HOME/.config/nvim/configs/statusline.vim        "Statusline
 
 if (empty($TMUX))
   if (has("nvim"))

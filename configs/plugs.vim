@@ -18,7 +18,7 @@ Plug 'mattn/vim-lsp-settings'                       "   still only for nim, alot
 Plug 'dense-analysis/ale'                           "   linter
 Plug 'neoclide/coc.nvim'                            "   best completion plugin preconfigured lsp-s, provides nim code navigation, as well
 "quality of life 
-Plug 'justincampbell/vim-eighties'                  "   autoresize curretn window to be 80 characters
+Plug 'anotherproksy/ez-window'                      "   window managment
 Plug 'itchyny/lightline.vim'
 Plug 'thinca/vim-quickrun'                          "   quickrun code files, useful for nqythung but c/c++
 Plug 'justinmk/vim-sneak'                           "   easier movment that i have yet to learn to use

@@ -2,11 +2,6 @@
 "statusline
 
 
-"Airline : currently i think its too slow 
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-"Ststusline
 set statusline=
 set statusline+=%#PmenuSel#
 set statusline+=%#LineNr#
@@ -23,7 +18,6 @@ set statusline+=\
 "
 "Lightline 
 "
-
 set laststatus=2
 set noshowmode
 let g:lightline = {
@@ -37,7 +31,6 @@ let g:lightline = {
       \   'linter':'LinterStatus',
       \ },
       \ }
-
 function! GitStatus()
   let [a,m,r] = GitGutterGetHunkSummary()
   return printf('+%d ~%d -%d', a, m, r)
