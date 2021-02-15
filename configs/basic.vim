@@ -9,3 +9,4 @@ let g:blamer_prefix = ' > '
 highlight Blamer guifg=yellow
 let g:context_enabled = 0
 let g:CheatSheetReaderCmd='new"'
+let g:indentLine_char = '┊'

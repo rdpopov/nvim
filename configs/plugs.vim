@@ -1,43 +1,36 @@
 call plug#begin()
-"unknown usefulness
-Plug 'chiel92/vim-autoformat'
-"completion
-"nim spcific
-Plug 'alaviss/nim.nvim'
-Plug 'dense-analysis/ale'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'mattn/vim-lsp-settings'
-Plug 'neoclide/coc.nvim'
+"nifty stuff
+Plug 'mbbill/undotree'                              "   Undotree
+Plug 'wellle/context.vim'                           "   shows the current context in code function, namespace, if/switch branches above, etc.
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } "   fuzzy file finder and multitool
+Plug 'junegunn/fzf.vim'                             "   it is
+Plug 'tpope/vim-fugitive'                           "   git client
+Plug 'Yggdroot/indentLine'                          "   indentline for puython and nim and other languages that need indentation 
+Plug 'rnevius/vim-execution'                        "   something to execute a macro over a visual selection, would probs replace it with mt own 
+Plug 'tpope/vim-vinegar'                            "   supercharge for netrw, dont care about file trees anymore
+"needed for nim
+Plug 'alaviss/nim.nvim'                             "   best nim language plugin, provides syntax highlight
+Plug 'prabirshrestha/asyncomplete.vim'              "   nim completion works better with vimlsp + asyncomplete
+Plug 'prabirshrestha/vim-lsp'                       "   provides help for nim
+Plug 'prabirshrestha/asyncomplete-lsp.vim'          "   thats the only thing its good for
+Plug 'mattn/vim-lsp-settings'                       "   still only for nim, alot of work went into that
+"any other language
+Plug 'sheerun/vim-polyglot'                         "   support for programming languages? 
+Plug 'neoclide/coc.nvim'                            "   best completion plugin preconfigured lsp-s, provides nim code navigation, as well
 "quality of life 
-Plug 'justincampbell/vim-eighties'
-Plug 'wellle/context.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'thinca/vim-quickrun'
-Plug 'mbbill/undotree'
-Plug 'justinmk/vim-sneak'
-Plug 'tpope/vim-abolish'
-"essential
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-"language plugins
-Plug 'sheerun/vim-polyglot'
-"colorschemes
-Plug 'chriskempson/base16-vim'
-Plug 'embark-theme/vim', { 'as': 'embark' }
-Plug 'srcery-colors/srcery-vim'
-Plug 'vim-airline/vim-airline-themes'
-"rice
-Plug 'ryanoasis/vim-devicons'
-Plug 'kyazdani42/nvim-web-devicons' " for file icons
-Plug 'kyazdani42/nvim-tree.lua'
+Plug 'justincampbell/vim-eighties'                  "   autoresize curretn window to be 80 characters
+Plug 'vim-airline/vim-airline'                      "   that nifty airlne at the bottom, duh
+Plug 'thinca/vim-quickrun'                          "   quickrun code files, useful for nqythung but c/c++
+Plug 'justinmk/vim-sneak'                           "   easier movment that i have yet to learn to use
+Plug 'tpope/vim-abolish'                            "   better find and replace, tpope stuff is blessed
 "git intergations
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-"fmi
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'plasticboy/vim-markdown'
-Plug 'dbeniamine/cheat.sh-vim'
-Plug 'rust-lang/rust.vim'
+Plug 'airblade/vim-gitgutter'                       "   git integration
+Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
+Plug 'dbeniamine/cheat.sh-vim'                      "   query help from inside vim
+Plug 'rust-lang/rust.vim'                           "   rust integration
+"colorschemes
+Plug 'ghifarit53/tokyonight-vim'                    "   cool blueish coloscheme
+Plug 'chriskempson/base16-vim'                      "   only for gruvbox-hard 
+Plug 'embark-theme/vim', { 'as': 'embark' }         "   a cool airline theme that complements aurora colorscheme
+Plug 'srcery-colors/srcery-vim'                     "   gruvbox-hard but with blue 
 call plug#end()

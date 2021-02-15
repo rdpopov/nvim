@@ -56,5 +56,6 @@ nnoremap <C-t> :tabdo execute ":%s/".expand('<cword>')."/".input('replace <'.exp
 nnoremap <C-b> :bufdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
 ";Execute a search and replace in all buffers w/ conform
 nnoremap <F9> :e $MYVIMRC<CR> 
+";open vimrc
 nnoremap <F12> :source $MYVIMRC<CR> 
 ";Resource Config
