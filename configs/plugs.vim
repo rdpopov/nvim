@@ -23,6 +23,7 @@ Plug 'vim-airline/vim-airline'                      "   that nifty airlne at the
 Plug 'thinca/vim-quickrun'                          "   quickrun code files, useful for nqythung but c/c++
 Plug 'justinmk/vim-sneak'                           "   easier movment that i have yet to learn to use
 Plug 'tpope/vim-abolish'                            "   better find and replace, tpope stuff is blessed
+Plug 'mattn/emmet-vim'                              "   i need this shit for web class, tho emmet is kinda nifty ngl
 "git intergations
 Plug 'airblade/vim-gitgutter'                       "   git integration
 Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
