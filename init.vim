@@ -1,47 +1,30 @@
-source $HOME/.config/nvim/configs/settings.vim          "basic editor settings
+"color preset
+set background=dark
 
-source $HOME/.config/nvim/configs/cmd.vim               "commands and mappings
-
-source $HOME/.config/nvim/configs/basic.vim             "basic config for other plugins
-
-source $HOME/.config/nvim/configs/coc.vim               "Vimlsp + asynccomplete + coc
-
-source $HOME/.config/nvim/configs/auto.vim              "Auto commnds
-
-source $HOME/.config/nvim/configs/linter.vim            "Ale setup
-
-source $HOME/.config/nvim/configs/netrw.vim             "netrw config like nerdtree not as flashy but fast af
-
-source $HOME/.config/nvim/configs/fzf.vim               "Fzf & Rg configs
-
-source $HOME/.config/nvim/snippets/snippets.vim         "Snippets  (currently unused)
-
-source $HOME/.config/nvim/configs/statusline.vim        "Statusline
-
-source $HOME/.config/nvim/configs/plugs.vim             "Plugins
-
-
-if (empty($TMUX))
-  if (has("nvim"))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-
-set t_Co=256
-"===============================================================
-"gruvbox colors
-"set background=dark
-"colorscheme base16-gruvbox-dark-hard
-"===============================================================
-"tokyo night 
-"let g:tokyonight_style = 'night' " available: night, storm
-"let g:tokyonight_enable_italic = 1
-"colorscheme tokyonight
-"===============================================================
-"for colorsceheme from github photo
 colorscheme aurora
-"let g:airline_theme='embark'
-"colorscheme srcery
+let status_line = "embark"
+
+let configs_folder = "$HOME/.config/nvim/configs/"
+let snippets_folder = "$HOME/.config/nvim/snippets/"
+"basic editor settings
+exec "source ". configs_folder ."settings.vim"
+"commands and mappings
+exec "source ". configs_folder ."cmd.vim"
+"basic config for other plugins
+exec "source ". configs_folder ."basic.vim"
+"Vimlsp + asynccomplete + coc
+exec "source ". configs_folder ."coc.vim"
+"Auto commnds
+exec "source ". configs_folder ."auto.vim"
+"Ale setup
+exec "source ". configs_folder ."linter.vim"
+"netrw config like nerdtree not as flashy but fast af
+exec "source ". configs_folder ."netrw.vim"
+"Fzf & Rg configs
+exec "source ". configs_folder ."fzf.vim"
+"Statusline and colors
+exec "source ". configs_folder ."colors.vim"
+"Plugins
+exec "source ". configs_folder ."plugs.vim"
+"Snippets  (currently unused)
+exec "source ". snippets_folder ."snippets.vim"
