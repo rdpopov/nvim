@@ -18,8 +18,9 @@ Airline colors : embark (comes with https://github.com/embark-theme/vim)
 - might add a version of this as a debian docker container, already configured and ready to go
 
 ### Needed external programs 
-- **ripgrep** (rust)
-- **nodejs**
+- **ripgrep** (also rust is needed)
+- **nodejs**, npm, yarn
+- python3-venv (or [ms-jpq/chadtree] wont work)
 - various language servers 
     - hasklell, 
     - nim (nimlsp , installed with nimble)
@@ -36,14 +37,18 @@ Airline colors : embark (comes with https://github.com/embark-theme/vim)
 ## Configuraton is split into several files all(most) in configs
 - **auto.vim** - Auto commands, currenty only one that install new plugins and clears old ones.
 - **basic.vim** - Basic plugin settings, here i put plugins that need at most 2-3 lines of config.
-- **cmd.vim** - Some mappings that I have. Press Alt + h to see all of them
+- **cmd.vim** - Some mappings that I have.
+- **coc.vim** - Joint configuration for asyncomplete and coc (1)
+- **colors.vim** - Lightline config and color theme
 - **fzf.vim** - Fzf config stolen from the original repo, and modified slightly
 - **linter.vim** - Ale is used for linter and this is where it's config resides
-- **coc.vim** - Joint configuration for asyncomplete and coc 
-- **nerdtree.vim** - Nerdtree configuration
 - **plugs.vim** - Here are all the plugin currently in use, 
 - **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.
+- **wm.vim** - rudamentary window managment, will probably become first plugin
 - **stashed/**  - past configs for plugins i might come back to on a later date
+
+ (1) if i figue out how to make coc display information to be more like \
+ asyncomplete for nimslp (it has no documentation + suggestions are bland and same-y)
 
 Press **F10**  in normal mode for a list of my custom keybinfings.
 
@@ -65,8 +70,7 @@ Quickstart for  [Neovim].
 
 [Vim way]: https://www.youtube.com/watch?v=DogKdiRx7ls
 [vim can do]: https://www.youtube.com/watch?v=XA2WjJbmmoM
-
+[ms-jpq/chadtree]:https://github.com/ms-jpq/chadtree
 [First (n)vimrc], write your own, and steal form this one ;) .
-
 [First (n)vimrc]: https://www.youtube.com/watch?v=DogKdiRx7ls
 

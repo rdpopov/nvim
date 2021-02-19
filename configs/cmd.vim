@@ -24,7 +24,7 @@ nnoremap <F5> :HowIn
 ";Write a :HowIn in command mode, ready to write a cheat.sh query
 nmap <silent> ,/ :nohlsearch<CR>
 ";Clear search selection  
-nnoremap <C-n> :Lexplore<CR>
+nnoremap <C-n> :CHADopen<CR>
 ";Execute a search and replace in current file w/ conform
 ""esc terminal mode when in it
 :tnoremap <Esc> <C-\><C-n>
@@ -37,6 +37,27 @@ noremap <Leader>Y "+y
 ";Yank into system clipboard (might not work)
 noremap <Leader>P "+p
 ";Paste from system clipboard (might not work)
+
+
+"Window managment
+nnoremap <C-h> :call ResizeWith('h')<CR>
+";Resize window left
+nnoremap <C-j> :call ResizeWith('j')<CR>
+";Resize window down
+nnoremap <C-k> :call ResizeWith('k')<CR>
+";Resize window up
+nnoremap <C-l> :call ResizeWith('l')<CR>
+";Resize window right
+nnoremap <M-h> :wincmd h<CR>
+";go to window left
+nnoremap <M-j> :wincmd j<CR>
+";go to window down
+nnoremap <M-k> :wincmd k<CR>
+";go to window up
+nnoremap <M-l> :wincmd l<CR>
+";go to window right
+nmap  -  <Plug>(choosewin)
+";activate choosewin
 
 noremap <leader>c :ContextToggleWindow<CR>
 ";Toggle function context
