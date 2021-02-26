@@ -6,20 +6,8 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
-"set t_Co=256
-
-""   gruvbox colors
-"    colorscheme base16-gruvbox-dark-hard
-"    let status_line = 'wombat'
-""   tokyo night 
-"    let g:tokyonight_style = 'night'
-"    "available: night, storm
-"    let g:tokyonight_enable_italic = 1
-"    colorscheme tokyonight
-"    let status_line = 'tokyonight'
-""   srcery colors
-"    colorscheme srcery
-"    let status_line = 'srcery'
+colorscheme embark
+let status_line = "embark"
 
 
 "statusline

@@ -1,8 +1,6 @@
 "color preset
 set background=dark
 
-colorscheme aurora
-let status_line = "embark"
 
 let configs_folder = "$HOME/.config/nvim/configs/"
 let snippets_folder = "$HOME/.config/nvim/snippets/"
@@ -22,11 +20,11 @@ exec "source ". configs_folder ."linter.vim"
 exec "source ". configs_folder ."chad.vim"
 "Fzf & Rg configs
 exec "source ". configs_folder ."fzf.vim"
-"Statusline and colors
-exec "source ". configs_folder ."colors.vim"
 "Plugins
 exec "source ". configs_folder ."plugs.vim"
 "Snippets  (currently unused)
 exec "source ". snippets_folder ."snippets.vim"
 "commands and mappings
 exec "source ". configs_folder ."cmd.vim"
+"Statusline and colors
+exec "source ". configs_folder ."colors.vim"
