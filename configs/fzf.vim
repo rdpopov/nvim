@@ -1,4 +1,6 @@
-" This is the default extra key bindings
+" Contents: Fzf configuration, mostly ripped from default config on github
+" But I have some things added to it
+"
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
       \ 'ctrl-x': 'split',

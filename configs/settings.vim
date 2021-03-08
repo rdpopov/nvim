@@ -1,7 +1,11 @@
+" Contents: Basic editor settings for neovim
+
 set nocompatible
 
 syntax enable
 filetype plugin on
+
+" input languages
 
 set path+=**
 
@@ -55,3 +59,4 @@ if has("persistent_undo")
     set undodir=$HOME"/.undodir"
     set undofile
 endif
+

@@ -1,6 +1,10 @@
-let g:sneak#label = 1
-set foldmethod=syntax
+" Contents: Keybinds that i have  all in one place
+" I have a thing that indexes them and puts them in a menu
+" with descruiption for help, its pretty nifty
 
+"Leader key, any place there is <Leader> substitute for this
+" currnetly it is the \ symbol
+let mapleader = "\\"
 if has('autocmd')
     autocmd filetype python set expandtab
     autocmd filetype nim set expandtab
@@ -11,11 +15,17 @@ noremap <F2> :QuickRun<CR>
 noremap <F3> :Autoformat<CR>:retab<CR>
 ";Format file 
 
+" Finds all keybinds written in a predetermined format and puts them in a
+" quickfix list
 function! g:Help_bind()
     cexpr system("$HOME/.config/nvim/.find.sh")
     copen
 endfunction
 
+inoremap <Leader>l <Esc>:call CycleLanguagesUp()<CR>a
+";Cycle input language for Insert mode up, Search for CycleLanguagesDown for opposite 
+nnoremap <Leader>l :call CycleLanguagesUp()<CR>
+";Cycle input language for Insert mode up, Search for CycleLanguagesDown for opposite 
 nnoremap <F10> :call Help_bind()<CR>
 ";Open window with all the user defined binfigs 
 nnoremap <F4> :Cheat 

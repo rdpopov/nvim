@@ -1,3 +1,9 @@
+" Contents: Coc and vimlsp + asyncomplete configuration
+" needed both because of nimlang, asyncomplete + vimlsp is better for
+" completion, suggestion list is just plain better but coc is better for going
+" around the code
+" And coc is just king when it comes to plug and play lsp
+
 set hidden
 set nobackup
 set nowritebackup

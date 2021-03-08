@@ -3,7 +3,7 @@ This is my neovim configuration.\
 Not the very best, but it's mine and i like it.\
 Made as portable as I could, but still needs alot of external progrmas.\
 Just kidding. Actually I don't like it, I edit it constatnly.\
-*"No one ever accomplished anything by being content with who they were" - Adolin Kholin*
+*"No one ever accomplished anything by being content with who they were"* - Adolin Kholin
 
 <p>
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/nvim.png"  title="This is what peak performance looks like">
@@ -12,6 +12,8 @@ Just kidding. Actually I don't like it, I edit it constatnly.\
 Coolorscheme : https://github.com/rafalbromirski/vim-aurora \
 Airline colors : embark (comes with https://github.com/embark-theme/vim) 
 
+## Also, works on termux, with all the completion stuff and fast too. Can your bloated ide do that? Of course not!
+
 ## Initial setup
 - [Neovim]
 - or with a bootstap_env.sh (NYI but will do...at some point, maybe with compiling neovim-nightly)
@@ -19,8 +21,9 @@ Airline colors : embark (comes with https://github.com/embark-theme/vim)
 
 ### Needed external programs 
 - **ripgrep** (also rust is needed)
-- **nodejs**, npm, yarn
-- python3-venv (or [ms-jpq/chadtree] wont work)
+- **nodejs, npm, yarn**
+- **pynvim** for python support
+- **python3-venv** (or [ms-jpq/chadtree] wont work)
 - various language servers 
     - hasklell, 
     - nim (nimlsp , installed with nimble)
@@ -42,13 +45,17 @@ Airline colors : embark (comes with https://github.com/embark-theme/vim)
 - **colors.vim** - Lightline config and color theme
 - **fzf.vim** - Fzf config stolen from the original repo, and modified slightly
 - **linter.vim** - Ale is used for linter and this is where it's config resides
+- **lang.vim** - Language switching controls, switch up and down a list onf predetermined languages in init.vim (2)
 - **plugs.vim** - Here are all the plugin currently in use, 
 - **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.
 - **wm.vim** - rudamentary window managment, will probably become first plugin
 - **stashed/**  - past configs for plugins i might come back to on a later date
 
- (1) if i figue out how to make coc display information to be more like \
- asyncomplete for nimslp (it has no documentation + suggestions are bland and same-y)
+ (1) If i figure out how to make coc display information to be more like \
+ asyncomplete for nimslp (it has no documentation + suggestions are bland and same-y)\
+ (2) There are maybe better solutions for that, but this is using vim's builtin\
+ keymaps feature, and changes input just for vim, and is independant of system\
+ input language state (well, system has to be in english(as input) for vim to work)\
 
 Press **F10**  in normal mode for a list of my custom keybinfings.
 
@@ -62,15 +69,13 @@ For any language you need to put snippets in a folder named the result of **:ech
 
 
 ## Useful links for more delving in
-Quickstart for  [Neovim].
+Quickstart for [Neovim].
 
 [Neovim]: https://www.linode.com/docs/guides/how-to-install-neovim-and-plugins-with-vim-plug/
 
-[Vim way] configuration and what [vim can do], just like that.
+[Vim way] configuration and what [vim can do], just like that. This is the way.\
 
 [Vim way]: https://www.youtube.com/watch?v=DogKdiRx7ls
 [vim can do]: https://www.youtube.com/watch?v=XA2WjJbmmoM
-[ms-jpq/chadtree]:https://github.com/ms-jpq/chadtree
-[First (n)vimrc], write your own, and steal form this one ;) .
-[First (n)vimrc]: https://www.youtube.com/watch?v=DogKdiRx7ls
+[ms-jpq/chadtree]:https://github.com/ms-jpq/chadtree 
 

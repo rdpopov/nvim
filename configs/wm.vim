@@ -1,8 +1,15 @@
+" Contents: Functions for window managment(resizing)
+
 let g:choosewin_overlay_enable = 1
+
+" Allows override for resizing cmd heigth when resizing up or down
 if !exists("g:AllowCmdheightResize")
     let g:AllowCmdheightResize = 0
 endif
 
+" Resize function ofr windows to do it with Ctrl + h/j/k/l
+" Couldnt find a plugin that doesn't resize the command line and other plugins
+" had features that i didn't really need, or are confusng
 function ResizeWith(cmd)
     let l:vim_size_horz = &columns
     let l:vim_size_vert = &lines

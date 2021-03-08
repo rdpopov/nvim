@@ -1,6 +1,7 @@
 "color preset
 set background=dark
 
+let g:lang = ['english','bulgarian-phonetic']
 
 let configs_folder = "$HOME/.config/nvim/configs/"
 let snippets_folder = "$HOME/.config/nvim/snippets/"
@@ -10,6 +11,8 @@ exec "source ". configs_folder ."settings.vim"
 exec "source ". configs_folder ."basic.vim"
 "window managment for fo vim (currnetly only resizing)
 exec "source ". configs_folder ."wm.vim"
+"Language input for vim
+exec "source ". configs_folder ."lang.vim"
 "Vimlsp + asynccomplete + coc
 exec "source ". configs_folder ."coc.vim"
 "Auto commnds

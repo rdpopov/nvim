@@ -1,3 +1,5 @@
+" Contents: Basic linter settings for ale
+
 let g:ale_disable_lsp = 0
 let g:ale_hover_to_preview =1
 let g:airline#extensions#ale#enabled = 1

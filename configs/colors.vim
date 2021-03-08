@@ -1,3 +1,5 @@
+" Contents: Colorscheme , statusline and itchyny/lightline.vim configuration
+
 if (empty($TMUX))
   if (has("nvim"))
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -9,9 +11,9 @@ endif
 colorscheme embark
 let status_line = "embark"
 
-
-"statusline
+" Statusline configuration 
 set statusline=
+set statusline+=%#g:lang_id#
 set statusline+=%#PmenuSel#
 set statusline+=%#LineNr#
 set statusline+=\ %f
@@ -33,11 +35,12 @@ let g:lightline = {
       \ 'colorscheme': status_line ,
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'filename', 'modified','git_gutter','linter' ] ]
+      \             [ 'lang','filename', 'modified','git_gutter','linter' ] ]
       \ },
       \ 'component_function': {
       \   'git_gutter': 'GitStatus',
       \   'linter':'LinterStatus',
+      \   'lang' :'GetInputLang',
       \ },
       \ }
 function! GitStatus()
