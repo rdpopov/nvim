@@ -1,7 +1,5 @@
 " Contents: Functions for window managment(resizing)
 
-let g:choosewin_overlay_enable = 1
-
 " Allows override for resizing cmd heigth when resizing up or down
 if !exists("g:AllowCmdheightResize")
     let g:AllowCmdheightResize = 0

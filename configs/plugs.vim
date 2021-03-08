@@ -17,7 +17,6 @@ Plug 'thinca/vim-quickrun'                          "   quickrun code files, use
 Plug 'justinmk/vim-sneak'                           "   easier movment that i have yet to learn to use
 Plug 'tpope/vim-abolish'                            "   better find and replace, tpope stuff is blessed
 Plug 'mattn/emmet-vim'                              "   i need this shit for web class, tho emmet is kinda nifty ngl
-Plug 't9md/vim-choosewin'                           "   window managment plugin
 Plug 'mbbill/undotree'                              "   Undotree
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } "   fuzzy file finder and multitool
 Plug 'junegunn/fzf.vim'                             "   it is
