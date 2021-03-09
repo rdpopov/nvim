@@ -3,31 +3,29 @@ set background=dark
 
 let g:lang = ['english','bulgarian-phonetic']
 
-let configs_folder = "$HOME/.config/nvim/configs/"
-let snippets_folder = "$HOME/.config/nvim/snippets/"
 "basic editor settings
-exec "source ". configs_folder ."settings.vim"
+source $HOME/.config/nvim/configs/settings.vim
 "basic config for other plugins
-exec "source ". configs_folder ."basic.vim"
+source $HOME/.config/nvim/configs/basic.vim
 "window managment for fo vim (currnetly only resizing)
-exec "source ". configs_folder ."wm.vim"
+source $HOME/.config/nvim/configs/wm.vim
 "Language input for vim
-exec "source ". configs_folder ."lang.vim"
+source $HOME/.config/nvim/configs/lang.vim
 "Vimlsp + asynccomplete + coc
-exec "source ". configs_folder ."coc.vim"
+source $HOME/.config/nvim/configs/coc.vim
 "Auto commnds
-exec "source ". configs_folder ."auto.vim"
+source $HOME/.config/nvim/configs/auto.vim
 "Ale setup
-exec "source ". configs_folder ."linter.vim"
+source $HOME/.config/nvim/configs/linter.vim
 "no nerdtree. CHAD tree
-exec "source ". configs_folder ."chad.vim"
+source $HOME/.config/nvim/configs/chad.vim
 "Fzf & Rg configs
-exec "source ". configs_folder ."fzf.vim"
+source $HOME/.config/nvim/configs/fzf.vim
 "Plugins
-exec "source ". configs_folder ."plugs.vim"
+source $HOME/.config/nvim/configs/plugs.vim
 "Snippets  (currently unused)
-exec "source ". snippets_folder ."snippets.vim"
+source $HOME/.config/nvim/snippets/snippets.vim
 "commands and mappings
-exec "source ". configs_folder ."cmd.vim"
+source $HOME/.config/nvim/configs/cmd.vim
 "Statusline and colors
-exec "source ". configs_folder ."colors.vim"
+source $HOME/.config/nvim/configs/colors.vim

@@ -1,3 +1,4 @@
+
 # Wellcome to the (n)vim side
 This is my neovim configuration.\
 Not the very best, but it's mine and i like it.\
@@ -12,7 +13,8 @@ Just kidding. Actually I don't like it, I edit it constatnly.\
 Coolorscheme : https://github.com/rafalbromirski/vim-aurora \
 Airline colors : embark (comes with https://github.com/embark-theme/vim) 
 
-## Also, works on termux, with all the completion stuff and fast too. Can your bloated ide do that? Of course not!
+## Also, works on termux, with all the completion stuff and fast too.
+Can your bloated ide do that? Of course not!
 
 ## Initial setup
 - [Neovim]
@@ -41,21 +43,21 @@ Airline colors : embark (comes with https://github.com/embark-theme/vim)
 - **auto.vim** - Auto commands, currenty only one that install new plugins and clears old ones.
 - **basic.vim** - Basic plugin settings, here i put plugins that need at most 2-3 lines of config.
 - **cmd.vim** - Some mappings that I have.
-- **coc.vim** - Joint configuration for asyncomplete and coc (1)
+- **coc.vim** - Joint configuration for asyncomplete and coc <sup>(1)</sup>
 - **colors.vim** - Lightline config and color theme
 - **fzf.vim** - Fzf config stolen from the original repo, and modified slightly
 - **linter.vim** - Ale is used for linter and this is where it's config resides
-- **lang.vim** - Language switching controls, switch up and down a list onf predetermined languages in init.vim (2)
+- **lang.vim** - Language switching controls, switch up and down a list onf predetermined languages in init.vim <sup>(2)</sup>
 - **plugs.vim** - Here are all the plugin currently in use, 
 - **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.
 - **wm.vim** - rudamentary window managment, will probably become first plugin
 - **stashed/**  - past configs for plugins i might come back to on a later date
 
- (1) If i figure out how to make coc display information to be more like \
- asyncomplete for nimslp (it has no documentation + suggestions are bland and same-y)\
- (2) There are maybe better solutions for that, but this is using vim's builtin\
+ <sup>(1)If i figure out how to make coc display information to be more like \
+ asyncomplete for nimslp (it has no documentation + suggestions are bland and same-y) </sup>\
+ <sup>(2) There are maybe better solutions for that, but this is using vim's builtin\
  keymaps feature, and changes input just for vim, and is independant of system\
- input language state (well, system has to be in english(as input) for vim to work)\
+ input language state (well, system has to be in english(as input) for vim to work)<sup>
 
 Press **F10**  in normal mode for a list of my custom keybinfings.
 
