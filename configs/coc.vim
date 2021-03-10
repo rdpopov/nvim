@@ -8,49 +8,29 @@ set hidden
 set nobackup
 set nowritebackup
 set updatetime=300
-
-""----------------------------------------
-" Asyncomplete , just for nim
-""----------------------------------------
-
-let g:lsp_diagnostics_enabled = 1
-let g:gen_tags#gtags_default_map=1
-
-let g:lsp_fold_enabled = 0
-let g:lsp_virtual_text_enabled = 0
-let g:lsp_diagnostics_enabled = 0
-let g:lsp_diagnostics_echo_cursor = 1
-let g:asyncomplete_auto_completeopt = 0
 set completeopt=menuone,noinsert,noselect
+
+let g:asyncomplete_auto_completeopt = 0
 
 
 let g:asyncomplete_auto_popup = 1
 
-let g:lsp_settings_root_markers = [
-            \   '.git',
-            \   '.git/',
-            \   '.prjroot',
-            \   'compile_command.json',
-            \ ]
 function!  s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1] =~ '\s'
 endfunction
 
+au User asyncomplete_setup call asyncomplete#register_source({
+    \ 'name': 'nim',
+    \ 'whitelist': ['nim'],
+    \ 'completor': {opt, ctx -> nim#suggest#sug#GetAllCandidates({start, candidates -> asyncomplete#complete(opt['name'], ctx, start, candidates)})}
+    \ })
+
 function! s:NimCompletion() abort
   inoremap <silent><expr> <TAB> pumvisible() ?  "\<C-n>" :  <SID>check_back_space() ?  "\<TAB>" :  asyncomplete#force_refresh()
-  inoremap <expr><S-TAB> pumvisible() ?  "\<C-p>" : \<C-h>"
-  nnoremap <silent> K :call <SID>show_documentation()<CR>
-  nnoremap  K  :LspHover<CR>
-  nnoremap  F  :LspPeekDefinition<CR>
+  inoremap <expr><S-TAB> pumvisible() ?  "\<C-p>" :call <SID>show_documentation<CR>
 endfunction
-
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-endfunction
-autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 ""----------------------------------------
 " COC
 ""----------------------------------------
@@ -62,14 +42,12 @@ function! s:SwitchCompletionToCOC() abort
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
   inoremap <silent><expr> <c-space> coc#refresh()
   inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-  nnoremap <silent> K :call <SID>show_documentation()<CR>
 endfunction
 
 function! s:check_back_space_coc() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 ";Jump to previous Coc diagnostic
@@ -92,9 +70,7 @@ nmap <silent> <leader>w :CocAction<CR>
 let g:coc_global_extensions = ['coc-marketplace', 'coc-html', 'coc-fzf-preview', 'coc-python', 'coc-json', 'coc-go','coc-rls','coc-tsserver','coc-vimlsp' ]
 
 function! s:show_documentation()
-  if (index(['vim','help'], &fau BufNewFile,BufRead *.nim set filetype=nimiletype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
+  if (coc#rpc#ready())
     call CocActionAsync('doHover')
   else 
     execute '!' . &keywordprg . " " . expand('<cword>')
@@ -111,4 +87,5 @@ function s:SwitchBuffers()abort
         call s:NimCompletion()
     endif
 endfunction
+
 autocmd BufEnter * call s:SwitchBuffers()

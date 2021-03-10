@@ -3,14 +3,13 @@
 call plug#begin()
 "needed for nim
 Plug 'alaviss/nim.nvim'                             "   best nim language plugin, provides syntax highlight
-Plug 'prabirshrestha/asyncomplete.vim'              "   nim completion works better with vimlsp + asyncomplete
-Plug 'prabirshrestha/vim-lsp'                       "   provides help for nim
-Plug 'prabirshrestha/asyncomplete-lsp.vim'          "   thats the only thing its good for
-Plug 'mattn/vim-lsp-settings'                       "   still only for nim, alot of work went into that
+Plug 'prabirshrestha/asyncomplete.vim'              "   nim completion works better with asyncomplete
 "any other language
 Plug 'dense-analysis/ale'                           "   linter
 Plug 'neoclide/coc.nvim'                            "   best completion plugin preconfigured lsp-s, provides nim code navigation, as well
+Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
 "quality of life 
+Plug 'dbeniamine/cheat.sh-vim'                      "   query help from inside vim
 Plug 'Chiel92/vim-autoformat'                       "   Easy file formatter
 Plug 'itchyny/lightline.vim'                        "   Lightline
 Plug 'thinca/vim-quickrun'                          "   quickrun code files, useful for nothing but c/c++
@@ -25,13 +24,11 @@ Plug 'wellle/context.vim'                           "   shows the current contex
 "git intergations
 Plug 'tpope/vim-fugitive'                           "   git client
 Plug 'airblade/vim-gitgutter'                       "   git integration
-Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
-Plug 'dbeniamine/cheat.sh-vim'                      "   query help from inside vim
 "colorschemes
 Plug 'ghifarit53/tokyonight-vim'                    "   cool blueish coloscheme
 Plug 'chriskempson/base16-vim'                      "   only for gruvbox-hard
 Plug 'embark-theme/vim', { 'as': 'embark' }         "   a cool airline theme that complements aurora colorscheme
-Plug 'srcery-colors/srcery-vim'                     "   gruvbox-hard but with blue
+Plug 'bluz71/vim-nightfly-guicolors'
 "just pure look good sugar 
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'} "   file browser
 Plug 'ryanoasis/vim-devicons'                       "   devicons dunno, maybe make it look good

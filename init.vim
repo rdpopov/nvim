@@ -11,7 +11,7 @@ source $HOME/.config/nvim/configs/basic.vim
 source $HOME/.config/nvim/configs/wm.vim
 "Language input for vim
 source $HOME/.config/nvim/configs/lang.vim
-"Vimlsp + asynccomplete + coc
+"Asynccomplete + coc
 source $HOME/.config/nvim/configs/coc.vim
 "Auto commnds
 source $HOME/.config/nvim/configs/auto.vim
