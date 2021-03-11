@@ -1,4 +1,5 @@
 {
+  "suggest.removeDuplicateItems": true,
   "languageserver": {
     "ccls": {
       "command": "ccls",
@@ -43,7 +44,6 @@
       "trace.server": "verbose",
       "filetypes": ["nim"],
       "rootPatterns": ["main.nim","README.md",".git/",".git"],
-      "disableCompletion":"true"
     }
   }
 }

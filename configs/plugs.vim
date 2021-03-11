@@ -3,7 +3,7 @@
 call plug#begin()
 "needed for nim
 Plug 'alaviss/nim.nvim'                             "   best nim language plugin, provides syntax highlight
-Plug 'prabirshrestha/asyncomplete.vim'              "   nim completion works better with asyncomplete
+"Plug 'prabirshrestha/asyncomplete.vim'              "   nim completion works better with asyncomplete
 "any other language
 Plug 'dense-analysis/ale'                           "   linter
 Plug 'neoclide/coc.nvim'                            "   best completion plugin preconfigured lsp-s, provides nim code navigation, as well
@@ -28,7 +28,7 @@ Plug 'airblade/vim-gitgutter'                       "   git integration
 Plug 'ghifarit53/tokyonight-vim'                    "   cool blueish coloscheme
 Plug 'chriskempson/base16-vim'                      "   only for gruvbox-hard
 Plug 'embark-theme/vim', { 'as': 'embark' }         "   a cool airline theme that complements aurora colorscheme
-Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'NLKNguyen/papercolor-theme'
 "just pure look good sugar 
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'} "   file browser
 Plug 'ryanoasis/vim-devicons'                       "   devicons dunno, maybe make it look good
