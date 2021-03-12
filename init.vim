@@ -11,12 +11,8 @@ source $HOME/.config/nvim/configs/basic.vim
 source $HOME/.config/nvim/configs/wm.vim
 "Language input for vim
 source $HOME/.config/nvim/configs/lang.vim
-"Asynccomplete + coc
-source $HOME/.config/nvim/configs/coc.vim
 "Auto commnds
 source $HOME/.config/nvim/configs/auto.vim
-"Ale setup
-source $HOME/.config/nvim/configs/linter.vim
 "no nerdtree. CHAD tree
 source $HOME/.config/nvim/configs/chad.vim
 "Fzf & Rg configs
@@ -29,3 +25,5 @@ source $HOME/.config/nvim/snippets/snippets.vim
 source $HOME/.config/nvim/configs/cmd.vim
 "Statusline and colors
 source $HOME/.config/nvim/configs/colors.vim
+" Native Lsp completion
+source $HOME/.config/nvim/configs/nvim_lsp.vim

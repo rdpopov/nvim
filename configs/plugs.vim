@@ -3,11 +3,9 @@
 call plug#begin()
 "needed for nim
 Plug 'alaviss/nim.nvim'                             "   best nim language plugin, provides syntax highlight
-"Plug 'prabirshrestha/asyncomplete.vim'              "   nim completion works better with asyncomplete
 "any other language
-Plug 'dense-analysis/ale'                           "   linter
-Plug 'neoclide/coc.nvim'                            "   best completion plugin preconfigured lsp-s, provides nim code navigation, as well
-Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
+Plug 'neovim/nvim-lspconfig'                        "   lsp configuration api for native lsp
+Plug 'nvim-lua/completion-nvim'                     "   completion api for lsp
 "quality of life 
 Plug 'dbeniamine/cheat.sh-vim'                      "   query help from inside vim
 Plug 'Chiel92/vim-autoformat'                       "   Easy file formatter
@@ -21,14 +19,13 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } "   fuzzy file finder and mu
 Plug 'junegunn/fzf.vim'                             "   it is
 Plug 'rnevius/vim-execution'                        "   something to execute a macro over a visual selection, would probs replace it with mt own
 Plug 'wellle/context.vim'                           "   shows the current context in code function, namespace, if/switch branches above, etc.
+Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
 "git intergations
 Plug 'tpope/vim-fugitive'                           "   git client
 Plug 'airblade/vim-gitgutter'                       "   git integration
 "colorschemes
-Plug 'ghifarit53/tokyonight-vim'                    "   cool blueish coloscheme
-Plug 'chriskempson/base16-vim'                      "   only for gruvbox-hard
 Plug 'embark-theme/vim', { 'as': 'embark' }         "   a cool airline theme that complements aurora colorscheme
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'lighthaus-theme/vim-lighthaus'
 "just pure look good sugar 
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'} "   file browser
 Plug 'ryanoasis/vim-devicons'                       "   devicons dunno, maybe make it look good

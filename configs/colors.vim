@@ -8,8 +8,8 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
-colorscheme PaperColor
-let status_line = "PaperColor"
+colorscheme lighthaus
+let status_line = "lighthaus"
 
 " Statusline configuration 
 set statusline=
@@ -26,6 +26,18 @@ set statusline+=\[%{&fileformat}\]
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
 set statusline+=\ 
+
+function! LspStatus() abort
+  let sl = ''
+  if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
+    let sl.=' E: '
+    let sl.= luaeval("vim.lsp.diagnostic.get_count(0, [[Error]])")
+    let sl.= ' W: '
+    let sl.=luaeval("vim.lsp.diagnostic.get_count(0, [[Warning]])")
+  endif
+  return sl
+endfunction
+
 "
 "Lightline 
 "
@@ -35,11 +47,11 @@ let g:lightline = {
       \ 'colorscheme': status_line ,
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'lang','filename', 'modified','git_gutter','linter' ] ]
+      \             [ 'lang','filename', 'modified','git_gutter','lsp' ] ]
       \ },
       \ 'component_function': {
       \   'git_gutter': 'GitStatus',
-      \   'linter':'LinterStatus',
+      \   'lsp':'LspStatus',
       \   'lang' :'GetInputLang',
       \ },
       \ }
