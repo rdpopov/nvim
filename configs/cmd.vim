@@ -92,3 +92,15 @@ nnoremap <F9> :e $MYVIMRC<CR>
 ";open vimrc
 nnoremap <F12> :source $MYVIMRC<CR> 
 ";Resource Config
+
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+"; go to definition if lsp is on fior file format
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+"; show hover info
+nnoremap <silent> gm   <cmd>lua vim.lsp.buf.implementation()<CR>
+"; go to implemenmtaion
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+"; show refferences
+nnoremap <silent> gs    <cmd>lua vim.lsp.buf.declaration()<CR>
+"; go to declaration if lsp is on fior file format
+

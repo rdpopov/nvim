@@ -17,8 +17,6 @@ Plug 'mattn/emmet-vim'                              "   i need this shit for web
 Plug 'mbbill/undotree'                              "   Undotree
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } "   fuzzy file finder and multitool
 Plug 'junegunn/fzf.vim'                             "   it is
-Plug 'rnevius/vim-execution'                        "   something to execute a macro over a visual selection, would probs replace it with mt own
-Plug 'wellle/context.vim'                           "   shows the current context in code function, namespace, if/switch branches above, etc.
 Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
 "git intergations
 Plug 'tpope/vim-fugitive'                           "   git client
@@ -26,6 +24,7 @@ Plug 'airblade/vim-gitgutter'                       "   git integration
 "colorschemes
 Plug 'embark-theme/vim', { 'as': 'embark' }         "   a cool airline theme that complements aurora colorscheme
 Plug 'lighthaus-theme/vim-lighthaus'
+Plug 'ayu-theme/ayu-vim'
 "just pure look good sugar 
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'} "   file browser
 Plug 'ryanoasis/vim-devicons'                       "   devicons dunno, maybe make it look good
