@@ -8,3 +8,8 @@ let g:CheatSheetReaderCmd='new"'
 let g:indentLine_char = '┊'
 let g:sneak#label = 1
 set foldmethod=syntax
+
+
+"emmet
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall

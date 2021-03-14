@@ -10,12 +10,6 @@ Just kidding. Actually I don't like it, I edit it constatnly.\
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/nvim.png"  title="This is what peak performance looks like">
 </p>
 
-Coolorscheme : https://github.com/rafalbromirski/vim-aurora \
-Airline colors : embark (comes with https://github.com/embark-theme/vim) 
-
-## Also, works on termux, with all the completion stuff and fast too.
-Can your bloated ide do that? Of course not!
-
 ## Initial setup
 - [Neovim]
 - or with a bootstap_env.sh (NYI but will do...at some point, maybe with compiling neovim-nightly)
@@ -47,15 +41,13 @@ Can your bloated ide do that? Of course not!
 - **colors.vim** - Lightline config and color theme
 - **fzf.vim** - Fzf config stolen from the original repo, and modified slightly
 - **nvim-lsp.vim** - naovim native lsp configuration
-- **lang.vim** - Language switching controls, switch up and down a list onf predetermined languages in init.vim <sup>(2)</sup>
+- **lang.vim** - Language switching controls, switch up and down a list onf predetermined languages in init.vim <sup>(1)</sup>
 - **plugs.vim** - Here are all the plugin currently in use, 
 - **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.
 - **wm.vim** - rudamentary window managment, will probably become first plugin
 - **stashed/**  - past configs for plugins i might come back to on a later date
 
- <sup>(1)If i figure out how to make coc display information to be more like \
- asyncomplete for nimslp (it has no documentation + suggestions are bland and same-y) </sup>\
- <sup>(2) There are maybe better solutions for that, but this is using vim's builtin\
+ <sup>(1) There are maybe better solutions for that, but this is using vim's builtin\
  keymaps feature, and changes input just for vim, and is independant of system\
  input language state (well, system has to be in english(as input) for vim to work)<sup>
 

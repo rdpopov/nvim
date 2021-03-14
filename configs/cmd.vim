@@ -25,6 +25,7 @@ function! g:OpenLspConfHelp()
     execute ":vsplit "."$HOME/.config/nvim/plugged/nvim-lspconfig/CONFIG.md"
 endfunction
 
+
 inoremap <Leader>l <Esc>:call CycleLanguagesUp()<CR>a
 ";Cycle input language for Insert mode up, Search for CycleLanguagesDown for opposite 
 nnoremap <Leader>l :call CycleLanguagesUp()<CR>
@@ -108,4 +109,5 @@ vnoremap <M-t> :call ExecInTerminal()<cr>
 "; Execute thing in vuisual selection in terminal
 vnoremap <M-T> :call SudoExecInTerminal()<cr>
 "; Execute thing in visual selection in terminal w/ sudo
+nnoremap <silent> <leader>e :norm<C-Y>,<cr>
 
