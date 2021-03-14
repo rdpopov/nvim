@@ -43,10 +43,9 @@ Can your bloated ide do that? Of course not!
 - **auto.vim** - Auto commands, currenty only one that install new plugins and clears old ones.
 - **basic.vim** - Basic plugin settings, here i put plugins that need at most 2-3 lines of config.
 - **cmd.vim** - Some mappings that I have.
-- **coc.vim** - Joint configuration for asyncomplete and coc <sup>(1)</sup>
 - **colors.vim** - Lightline config and color theme
 - **fzf.vim** - Fzf config stolen from the original repo, and modified slightly
-- **linter.vim** - Ale is used for linter and this is where it's config resides
+- **nvim-lsp.vim** - naovim native lsp configuration
 - **lang.vim** - Language switching controls, switch up and down a list onf predetermined languages in init.vim <sup>(2)</sup>
 - **plugs.vim** - Here are all the plugin currently in use, 
 - **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.

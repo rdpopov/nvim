@@ -8,8 +8,8 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
-colorscheme ayu
-let status_line = "ayu"
+colorscheme PaperColor
+let status_line = "PaperColor"
 
 " Statusline configuration 
 set statusline=
