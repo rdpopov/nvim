@@ -1,29 +1,32 @@
 "color preset
 set background=dark
 
+let g:prefered_browser = "brave-browser"
 let g:lang = ['english','bulgarian-phonetic']
 
-"basic editor settings
+" Basic editor settings
 source $HOME/.config/nvim/configs/settings.vim
-"basic config for other plugins
+" Basic config for other plugins
 source $HOME/.config/nvim/configs/basic.vim
-"window managment for fo vim (currnetly only resizing)
+" Window managment for fo vim (currnetly only resizing)
 source $HOME/.config/nvim/configs/wm.vim
-"Language input for vim
+" Language input for vim
 source $HOME/.config/nvim/configs/lang.vim
-"Auto commnds
+" Auto commnds
 source $HOME/.config/nvim/configs/auto.vim
-"no nerdtree. CHAD tree
+" No nerdtree. CHAD tree
 source $HOME/.config/nvim/configs/chad.vim
-"Fzf & Rg configs
+" Fzf & Rg configs
 source $HOME/.config/nvim/configs/fzf.vim
-"Plugins
+" Plugins
 source $HOME/.config/nvim/configs/plugs.vim
-"Snippets  (currently unused)
+" Snippets  (currently unused)
 source $HOME/.config/nvim/snippets/snippets.vim
-"commands and mappings
+" Commands and mappings
 source $HOME/.config/nvim/configs/cmd.vim
-"Statusline and colors
+" Helper functions for opening things in bowser/executing things in shell
+source $HOME/.config/nvim/configs/open_utils.vim
+" Statusline and colors
 source $HOME/.config/nvim/configs/colors.vim
 " Native Lsp completion
 source $HOME/.config/nvim/configs/nvim_lsp.vim

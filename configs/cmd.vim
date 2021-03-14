@@ -14,12 +14,15 @@ noremap <F2> :QuickRun<CR>
 ";Run current file
 noremap <F3> :Autoformat<CR>:retab<CR>
 ";Format file 
-
 " Finds all keybinds written in a predetermined format and puts them in a
 " quickfix list
 function! g:Help_bind()
     cexpr system("$HOME/.config/nvim/.find.sh")
     copen
+endfunction
+
+function! g:OpenLspConfHelp()
+    execute ":vsplit "."$HOME/.config/nvim/plugged/nvim-lspconfig/CONFIG.md"
 endfunction
 
 inoremap <Leader>l <Esc>:call CycleLanguagesUp()<CR>a
@@ -48,7 +51,6 @@ noremap <Leader>Y "+y
 noremap <Leader>P "+p
 ";Paste from system clipboard (might not work)
 
-
 "Window managment
 nnoremap <C-h> :call ResizeWith('h')<CR>
 ";Resize window left
@@ -73,13 +75,6 @@ noremap <leader>c :ContextToggleWindow<CR>
 ";Toggle function context
 noremap <C-s> :execute "vsplit term://".$SHELL<CR>
 ";Cteate a terminal in Vertical Split
-" replace all occurances of word under cursor with user input 
-nnoremap <M-d> :execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/g"<CR>
-";Execute a search and replace in current file w/o conform
-nnoremap <M-t> :tabdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/g"<CR>
-";Execute a search and replace in all tabs w/o conform
-nnoremap <M-b> :bufdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/g"<CR>
-";Execute a search and replace in all buffers w/o conform
 
 " replace all occurances of word under cursor with user input interactively
 nnoremap <C-d> :execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
@@ -88,6 +83,7 @@ nnoremap <C-t> :tabdo execute ":%s/".expand('<cword>')."/".input('replace <'.exp
 ";Execute a search and replace in all tabs w/ conform
 nnoremap <C-b> :bufdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
 ";Execute a search and replace in all buffers w/ conform
+
 nnoremap <F9> :e $MYVIMRC<CR> 
 ";open vimrc
 nnoremap <F12> :source $MYVIMRC<CR> 
@@ -103,4 +99,13 @@ nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 "; show refferences
 nnoremap <silent> gs    <cmd>lua vim.lsp.buf.declaration()<CR>
 "; go to declaration if lsp is on fior file format
+nnoremap <F6> :call OpenLspConfHelp()<CR>
+"; Open information for neovim-native-lsp supported language servers
+
+vnoremap <M-b> :call OpenInBrowser()<cr>
+"; Open thing in visual selection in a browser
+vnoremap <M-t> :call ExecInTerminal()<cr>
+"; Execute thing in vuisual selection in terminal
+vnoremap <M-T> :call SudoExecInTerminal()<cr>
+"; Execute thing in visual selection in terminal w/ sudo
 

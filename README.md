@@ -43,6 +43,7 @@ Can your bloated ide do that? Of course not!
 - **auto.vim** - Auto commands, currenty only one that install new plugins and clears old ones.
 - **basic.vim** - Basic plugin settings, here i put plugins that need at most 2-3 lines of config.
 - **cmd.vim** - Some mappings that I have.
+- **open_utils.vim** - Some functions to open and execute text in visual selectionform vim
 - **colors.vim** - Lightline config and color theme
 - **fzf.vim** - Fzf config stolen from the original repo, and modified slightly
 - **nvim-lsp.vim** - naovim native lsp configuration
