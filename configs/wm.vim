@@ -10,22 +10,20 @@ function ResizeWith(cmd)
     let l:win_coords_u = win_screenpos(0)
     let l:layout = winlayout()
     let l:winid = win_getid(0)
-    if tabpagenr('$')!=1 && &showtabline == 1
-        let l:win_coords_u[0] -= 1
-    endif
     let l:cmd_heigth_size = &cmdheight + 1
-    let l:real_heigth = l:vim_size_vert - l:cmd_heigth_size
-    "echo win_coords_u l:spl_dims l:vim_size_horz l:vim_size_vert
+    let l:exists_tabline = 0
+    if tabpagenr('$')>1 && &showtabline == 1
+        let l:cmd_heigth_size = l:cmd_heigth_size + 1
+        let l:exists_tabline = 1
+    endif
     if a:cmd == 'k'
         " is full vertical window
-        if l:spl_dims[0] + 2 == l:vim_size_vert 
+        if l:spl_dims[0] + 2 + l:exists_tabline == l:vim_size_vert
             echo ""
         else
-            " is upper window
-            if l:win_coords_u[0] == 1
+            if l:win_coords_u[0] == (1 + l:exists_tabline)
                 :resize -1
                 redraw
-            " is lower window 
             elseif l:spl_dims[0] + l:win_coords_u[0] + 1 == l:vim_size_vert
                 :resize +1
                 redraw
@@ -33,11 +31,11 @@ function ResizeWith(cmd)
         endif 
     elseif a:cmd == 'j'
         " is full vertical window
-        if l:spl_dims[0] + 2 == l:vim_size_vert
+        if l:spl_dims[0] + 2 + l:exists_tabline == l:vim_size_vert
             echo ""
         else
             " is upper window
-            if l:win_coords_u[0] == 1
+            if l:win_coords_u[0] == (1 + l:exists_tabline)
                 :resize +1
                 redraw
             " is lower window
