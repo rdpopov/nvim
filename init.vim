@@ -6,7 +6,7 @@ let g:lang = ['english','bulgarian-phonetic']
 
 " Basic editor settings
 source $HOME/.config/nvim/configs/settings.vim
-" Basic config for other plugins
+" Basic config for other plgins
 source $HOME/.config/nvim/configs/basic.vim
 " Window managment for fo vim (currnetly only resizing)
 source $HOME/.config/nvim/configs/wm.vim
@@ -18,7 +18,7 @@ source $HOME/.config/nvim/configs/auto.vim
 source $HOME/.config/nvim/configs/chad.vim
 " Fzf & Rg configs
 source $HOME/.config/nvim/configs/fzf.vim
-" Plugins
+" Plgins
 source $HOME/.config/nvim/configs/plugs.vim
 " Snippets  (currently unused)
 source $HOME/.config/nvim/snippets/snippets.vim

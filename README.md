@@ -1,10 +1,44 @@
-
 # Wellcome to the (n)vim side
 This is my neovim configuration.\
-Not the very best, but it's mine and i like it.\
 Made as portable as I could, but still needs alot of external progrmas.\
-Just kidding. Actually I don't like it, I edit it constatnly.\
+Not the very best, but it's mine and i like it.\
+Just kidding. Actually I don't like it and I edit it constatnly.\
 *"No one ever accomplished anything by being content with who they were"* - Adolin Kholin
+
+## Why vim?
+ - First of all why not? There is the meme of people fearing vim.\
+   I guess because it's different. But there is nothing to be afraid of.
+ - **Speed** - It is way faster and lighter than any editor/ide I have used.\
+   Especialy for big projects. Compared to vscode. Vscode indexing\
+   grinds a fairly modern computer to a halt, often crashing.\
+   Granted with (n)vim I was using a language server, but things like that are\
+   a bit more intimidating than normal plugin instalation on vscode\ 
+   and heavy configuration seems very rare afaik but it is there and seems limited.\
+   While with vim this is the name of the game. My config is not that heavy,\
+   so it could be worse, but startup time is about 140 ms. Compare that to something like pycharm.
+ - **Power** - (n)vim's commands may seem strange at first. But they are more of a language.\
+   than simple commands.
+ - **Customizablity** - Make (n)vim the edtior you want. It takes time,\
+   but so does learing any other tool. But with great power comes great customization time
+ - **Extendabilty** - Vim is less barebones than it looks. It is a clean slate at the beginning.\
+   It has a lot of powerfull functionality built into it. Like include paths and :make\
+   It can do a lot on its own, but there are also plugins for it form the vim community.\
+   And if there isn't waht you are looking for, you can write it yourself,\
+   and the barier to entry is pretty low. You could script in vimscript,\
+   or at something like python or lua (neovim even ships with the lua compiler).
+ - **Keymap** - The normal (vscode) shortcuts are somewaht long or similar functions are\
+   at opposite ends of the keyboard. Vim being modal, has more combinations per mode,\
+   and combinations are shorter on average. Basic keymap uses mneumonics,\
+   and everytinng is remapable. Movment commands are superb.\
+   There is more variety of movment commands and are more efficient at little movments.
+ - **Portable** - I keep my vim config in a git so its easy to set it up almost anywhere.
+
+## Main goal
+The main goal for this configuration was to be able to have a neovim config\
+for writing in [nim-lang] or any other language but nim in particualr.\
+And have completion like vscode has, but lighter, faster.
+
+[nim-lang]:https://nim-lang.org/
 
 <p>
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/nvim.png"  title="This is what peak performance looks like">
@@ -61,6 +95,13 @@ But bindings are present in **repo_root/snippets/snippets.vim**\
 Very easy to modify.\
 For any language you need to put snippets in a folder named the result of **:echo &filetype** in vim.
 
+## My homebrew utils
+I have had some defficulties with finding some things that I want as plugins.\
+So I wrote my own. They are not anything grand or groundbraking,\
+but they are useful which is more important for any code.\
+Easily find them here [Code-Fragments/vimscript]
+
+[Code-Fragments/vimscript]: https://github.com/rdpopov/Code-Fragments/tree/main/vimscript
 
 ## Useful links for more delving in
 Quickstart for [Neovim].
