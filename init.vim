@@ -20,11 +20,13 @@ source $HOME/.config/nvim/configs/netrw.vim
 source $HOME/.config/nvim/configs/fzf.vim
 " Plgins
 source $HOME/.config/nvim/configs/plugs.vim
+" linter configuration
+source $HOME/.config/nvim/configs/linter.vim
 " Snippets  (currently unused)
 source $HOME/.config/nvim/snippets/snippets.vim
 " Commands and mappings
 source $HOME/.config/nvim/configs/cmd.vim
 "Homebrew Statusline and colors
 source $HOME/.config/nvim/configs/colors.vim
-" Native Lsp completion
-source $HOME/.config/nvim/configs/nvim_lsp.vim
+" Lsp configuration with coc 
+source $HOME/.config/nvim/configs/coc.vim

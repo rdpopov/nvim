@@ -1,9 +1,11 @@
 call plug#begin()
 "needed for nim
 Plug 'alaviss/nim.nvim'                             "   best nim language plugin, provides regex based syntax highlight syntax highlight
-"any other language
-Plug 'neovim/nvim-lspconfig'                        "   lsp configuration api for native lsp
-Plug 'nvim-lua/completion-nvim'                     "   completion api for lsp
+Plug 'prabirshrestha/asyncomplete.vim'              "   nim completion works better with asyncomplete
+ "any other language
+Plug 'dense-analysis/ale'                           "   linter
+Plug 'neoclide/coc.nvim'                            "   best completion plugin preconfigured lsp-s, provides nim code navigation, as well
+Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
 "quality of life 
 Plug 'dbeniamine/cheat.sh-vim'                      "   query help from inside vim
 Plug 'Chiel92/vim-autoformat'                       "   Easy file formatter
