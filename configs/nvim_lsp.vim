@@ -35,13 +35,52 @@ local on_attach = function(client, bufnr)
       augroup END
     ]], false)
   end
-end
+	
 
--- Use a loop to conveniently both setup defined servers 
--- and map buffer local keybindings when the ver attaches
-local servers = { "nimls", "ccls","jedi_language_server", "tsserver","html","gopls"}
-
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = require'completion'.on_attach }
 end
+local servers = { "nimls", "ccls","jedi_language_server", "tsserver","html","gopls","vimls"}
+
+	for _, lsp in ipairs(servers) do
+	  nvim_lsp[lsp].setup { on_attach = require'completion'.on_attach }
+	end
+
+
+local sumneko_root_path = "/home/godrosko/lua-language-server"
+local sumneko_binary = sumneko_root_path.."/bin/Linux/lua-language-server"
+
+nvim_lsp.sumneko_lua.setup {
+	on_attach = require'completion'.on_attach,
+  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+  settings = {
+    Lua = {
+			completion = {
+				enable = true
+			},
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = vim.split(package.path, ';'),
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      hover = {
+				enable = true,
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = {
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+        },
+      },
+    },
+  },
+}
+
+
+
+
 EOF

@@ -9,8 +9,8 @@ if (empty($TMUX))
   endif
 endif
 
-colorscheme aurora
-let status_line = "embark"
+colorscheme ayu	
+let status_line = "ayu"
 
 " Statusline configuration 
 set statusline=

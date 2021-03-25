@@ -1,4 +1,4 @@
-" Contents: Basic editor settings for neovim
+" Basic editor settings
 
 set nocompatible
 
@@ -52,7 +52,7 @@ set signcolumn=yes
 set lazyredraw
 
 set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set listchars=tab:\|.,trail:.,extends:#,nbsp:.
 
 
 if has("persistent_undo")
