@@ -28,6 +28,5 @@ Plug 'ayu-theme/ayu-vim'                            "   or other package manager
 "just pure look good sugar 
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'} "   file browser
 Plug 'ryanoasis/vim-devicons'                       "   devicons dunno, maybe make it look good
-Plug 'Yggdroot/indentLine'                          "   indentline for puython and nim and other languages that need indentation
 Plug 'sheerun/vim-polyglot'
 call plug#end()

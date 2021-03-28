@@ -18,6 +18,8 @@ source $HOME/.config/nvim/configs/auto.vim
 source $HOME/.config/nvim/configs/chad.vim
 " Fzf & Rg configs
 source $HOME/.config/nvim/configs/fzf.vim
+" own minimal implementaiton of surround
+source $HOME/.config/nvim/configs/around.vim
 " Plgins
 source $HOME/.config/nvim/configs/plugs.vim
 " Snippets  (currently unused)
