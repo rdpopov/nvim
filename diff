@@ -1,0 +1,101 @@
+commit 030859d0191d2a4c1ff7efbe8f5d41391dc42732
+Merge: 2e568a6 3c79dae
+Author: Rosen Popov <rpopov@qti.qualcomm.com>
+Date:   Mon Mar 29 17:59:55 2021 +0300
+
+    Merge branch 'master' of https://www.github.com/rdpopov/nvim into HEAD
+
+diff --cc configs/around.vim
+index 0000000,60d96fd..000074c
+mode 000000,100644..100644
+--- a/configs/around.vim
++++ b/configs/around.vim
+@@@ -1,0 -1,14 +1,32 @@@
+ -let s:pairs = { "(" : {"o": "(", "c":")"},
+ -	           \"["  : {"o": "[", "c":"]"},
+ -	           \"{"  : {"o": "{", "c":"}"},
+ -	           \"\"" : {"o": "\"", "c":"\""},
+++let s:pairs = { "(" : {"o": "( ", "c":" )"},
+++			   \")" : {"o": "(", "c":")"},
+++	           \"["  : {"o": "[ ", "c":" ]"},
+++	           \"]"  : {"o": "[", "c":"]"},
+++	           \"{"  : {"o": "{ ", "c":" }"},
+++	           \"}"  : {"o": "{", "c":"}"},
++ 	           \"\'" : {"o": "\'", "c":"\'"},
+ -	           \"<"  : {"o": "<", "c":">"},
+ -	           \"/"  : {"o": "/", "c":"/"}}
+ -
+ -
+++	           \"<"  : {"o": "< ", "c":" >"},
+++	           \">"  : {"o": "<", "c":">"},
+++	           \"/"  : {"o": "/ ", "c":"/"},
+++               \}
++ function Around(str) "only for normal mode, will have another for visua
+ -	exe ":norm ciw" . s:pairs[a:str]["o"] . "\<Esc>gpa" . s:pairs[a:str]["c"] ."\<Esc>"
+++	let l:col = col('.')
+++	if l:col > 1
+++		if getline('.')[col('.') - 1] != ' ' && getline('.')[col('.') - 2] == ' '
+++			let l:go_to_start = "i"
+++		elseif getline('.')[col('.') - 1] == 'a'
+++            a
+++		else
+++			let l:go_to_start = "bi"
+++		endif
+++	else
+++		let l:go_to_start = "i"
+++	endif
+++	if has_key(s:pairs,a:str)
+++		exe ":norm ". l:go_to_start . s:pairs[a:str]["o"] . "\<Esc>ea" . s:pairs[a:str]["c"] ."\<Esc>"
+++	else
+++		exe ":norm ". l:go_to_start . a:str . "\<Esc>ea" . a:str ."\<Esc>"
+++	endif
++ endfunction
+ -
+ -
+++dasadasd
+++(adasdas) adas ad asd a
+diff --cc configs/cmd.vim
+index c4c20ee,c4c20ee..eca2d6c
+--- a/configs/cmd.vim
++++ b/configs/cmd.vim
+@@@ -111,3 -111,3 +111,4 @@@ vnoremap <M-T> :call SudoExecInTerminal
+  "; Execute thing in visual selection in terminal w/ sudo
+  nnoremap <silent> <leader>e :norm<C-Y>,<cr>
+  
+++nnoremap <silent><M-s>a :silent call Around(input("surround \w: "))<CR>
+diff --cc configs/plugs.vim
+index 3e8dc8c,31137d6..9f3bd73
+--- a/configs/plugs.vim
++++ b/configs/plugs.vim
+@@@ -1,11 -1,9 +1,8 @@@
+  call plug#begin()
+  "needed for nim
+--Plug 'alaviss/nim.nvim'                             "   best nim language plugin, provides regex based syntax highlight syntax highlight
+- Plug 'prabirshrestha/asyncomplete.vim'              "   nim completion works better with asyncomplete
+-  "any other language
+ -"any other language
+ -Plug 'neovim/nvim-lspconfig'                        "   lsp configuration api for native lsp
+ -Plug 'nvim-lua/completion-nvim'                     "   completion api for lsp
+ +Plug 'dense-analysis/ale'                           "   linter
+ +Plug 'neoclide/coc.nvim'                            "   best completion plugin preconfigured lsp-s, provides nim code navigation, as well
+ +Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
+  "quality of life 
+  Plug 'dbeniamine/cheat.sh-vim'                      "   query help from inside vim
+  Plug 'Chiel92/vim-autoformat'                       "   Easy file formatter
+diff --cc init.vim
+index 868425c,3751a55..b241cd7
+--- a/init.vim
++++ b/init.vim
+@@@ -18,10 -18,10 +18,12 @@@ source $HOME/.config/nvim/configs/auto.
+  source $HOME/.config/nvim/configs/chad.vim
+  " Fzf & Rg configs
+  source $HOME/.config/nvim/configs/fzf.vim
++ " own minimal implementaiton of surround
++ source $HOME/.config/nvim/configs/around.vim
+  " Plgins
+  source $HOME/.config/nvim/configs/plugs.vim
+ +" linter configuration
+ +source $HOME/.config/nvim/configs/linter.vim
+  " Snippets  (currently unused)
+  source $HOME/.config/nvim/snippets/snippets.vim
+  " Commands and mappings

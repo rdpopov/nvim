@@ -12,6 +12,8 @@ source $HOME/.config/nvim/functions/incl.vim
 source $HOME/.config/nvim/configs/basic.vim
 " Window managment for fo vim (currnetly only resizing)
 source $HOME/.config/nvim/functions/incl.vim
+" Netrw config
+source $HOME/.config/nvim/configs/netrw.vim
 " Auto commnds
 source $HOME/.config/nvim/configs/auto.vim
 " Snippets  (currently unused)
