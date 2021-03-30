@@ -1,15 +1,10 @@
 " Contents: Colorscheme , statusline and itchyny/lightline.vim configuration
 
-if (empty($TMUX))
-  if (has("nvim"))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  if (has("termguicolors"))
-    set termguicolors
-  endif
+if (has("termguicolors"))
+  set termguicolors
 endif
 
-colorscheme ayu	
+colorscheme ayu
 let status_line = "ayu"
 
 " Statusline configuration 

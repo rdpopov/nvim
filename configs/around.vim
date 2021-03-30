@@ -83,10 +83,3 @@ function VBAround(str) "only for normal mode, will have another for visual
     endif
     exe ":'<,'>s/\%V.*\%V./".l:beg."&".l:end."/"
 endfunction
-
-
-asdasdasddas
-asdasdasddas
-asdasdasddas
-asdasdasddas
-asdasdasddas
