@@ -9,7 +9,7 @@ let s:pairs = { "(" : {"o": "( ", "c":" )"},
             \">"  : {"o": "<", "c":">"},
             \"/"  : {"o": "/ ", "c":"/"},
             \}
-function Is_html_tag(str) "checks if something is htm tag
+function! Is_html_tag(str) "checks if something is htm tag
     let l:tag_test   = matchstr(a:str,"\<.*\>")
     if !empty(l:tag_test)
         let l:has_fields = matchstr(a:str,"\<[a-zA-Z0-9]* .*\>")
@@ -51,35 +51,42 @@ function Around(str) "only for normal mode, will have another for visual
     exe ":norm ". l:go_to_start . l:beg . "\<Esc>ea" . l:end ."\<Esc>"
 endfunction
 
-
-function VAround(str) "only for normal mode, will have another for visual
-    let l:col = col('.')
-    let l:is_tag = Is_html_tag(a:str)
-    if !empty(l:is_tag)
-        let l:beg = l:is_tag["o"]
-        let l:end = l:is_tag["c"]
-    elseif has_key(s:pairs,a:str)
-        let l:beg = s:pairs[a:str]["o"]
-        let l:end = s:pairs[a:str]["c"]
-    else
-        let l:beg = a:str
-        let l:end = a:str
-    endif
-    exe ":'<i".l:beg."\<Esc>'>a".l:end."\<Esc>"
-endfunction
-
-function VBAround(str) "only for normal mode, will have another for visual
-    let l:col = col('.')
-    let l:is_tag = Is_html_tag(a:str)
-    if !empty(l:is_tag)
-        let l:beg = l:is_tag["o"]
-        let l:end = l:is_tag["c"]
-    elseif has_key(s:pairs,a:str)
-        let l:beg = s:pairs[a:str]["o"]
-        let l:end = s:pairs[a:str]["c"]
-    else
-        let l:beg = a:str
-        let l:end = a:str
-    endif
-    exe ":'<,'>s/\%V.*\%V./".l:beg."&".l:end."/"
-endfunction
+"function! VAround(str) range "only for normal mode, will have another for visual
+"    let l:col = col('.')
+"    let l:is_tag = Is_html_tag(a:str)
+"    let l:spattern = @/
+"    let @/ = ""
+"    if !empty(l:is_tag)
+"        let l:beg = l:is_tag["o"]
+"        let l:end = l:is_tag["c"]
+"    elseif has_key(s:pairs,a:str)
+"        let l:beg = s:pairs[a:str]["o"]
+"        let l:end = s:pairs[a:str]["c"]
+"    else
+"        let l:beg = a:str
+"        let l:end = a:str
+"    endif
+"    exe ":'<,'>s//".l:beg."&".l:end."/"
+"    exe ":set noh"
+"    let @/ = l:spattern
+"endfunction
+"
+"function! VBAround(str) "only for normal mode, will have another for visual
+"    let l:col = col('.')
+"    let l:is_tag = Is_html_tag(a:str)
+""    let l:spattern = @/
+""    let @/ = ""
+"    if !empty(l:is_tag)
+"        let l:beg = l:is_tag["o"]
+"        let l:end = l:is_tag["c"]
+"    elseif has_key(s:pairs,a:str)
+"        let l:beg = s:pairs[a:str]["o"]
+"        let l:end = s:pairs[a:str]["c"]
+"    else
+"        let l:beg = a:str
+"        let l:end = a:str
+"    endif
+"    exe "<esc>'>a".l:beg."<esc>'<i".l:end
+""    exe ":set noh"
+""    let @/ = l:spattern
+"endfunction
