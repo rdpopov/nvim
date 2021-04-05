@@ -15,7 +15,7 @@ source $HOME/.config/nvim/functions/incl.vim
 " Auto commnds
 source $HOME/.config/nvim/configs/auto.vim
 " No nerdtree. CHAD tree
-source $HOME/.config/nvim/configs/chad.vim
+source $HOME/.config/nvim/configs/netrw.vim
 " Fzf & Rg configs
 source $HOME/.config/nvim/configs/fzf.vim
 " Plgins

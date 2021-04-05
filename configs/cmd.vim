@@ -37,7 +37,7 @@ nnoremap <F5> :HowIn
 ";Write a :HowIn in command mode, ready to write a cheat.sh query
 nmap <silent> ,/ :nohlsearch<CR>
 ";Clear search selection  
-nnoremap <C-n> :CHADopen<CR>
+nnoremap <C-n> :Lexplore<CR>
 ";Execute a search and replace in current file w/ conform
 ""esc terminal mode when in it
 :tnoremap <Esc> <C-\><C-n>
