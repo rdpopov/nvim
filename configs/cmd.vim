@@ -10,10 +10,6 @@ if has('autocmd')
     autocmd filetype nim set expandtab
     "`autocmd BufNewFile,BufRead *.nim set filetype=nim
 endif
-noremap <F2> :QuickRun<CR>
-";Run current file
-noremap <F3> :Autoformat<CR>:retab<CR>
-";Format file 
 " Finds all keybinds written in a predetermined format and puts them in a
 " quickfix list
 function! g:Help_bind()
@@ -31,10 +27,6 @@ nnoremap <Leader>l :call CycleLanguagesUp()<CR>
 ";Cycle input language for Insert mode up, Search for CycleLanguagesDown for opposite 
 nnoremap <F10> :call Help_bind()<CR>
 ";Open window with all the user defined binfigs 
-nnoremap <F4> :Cheat 
-";Write a :Cheat in command mode, ready to write a cheat.sh query
-nnoremap <F5> :HowIn 
-";Write a :HowIn in command mode, ready to write a cheat.sh query
 nmap <silent> ,/ :nohlsearch<CR>
 ";Clear search selection  
 nnoremap <C-n> :Lexplore<CR>
@@ -68,11 +60,7 @@ nnoremap <M-k> :wincmd k<CR>
 ";go to window up
 nnoremap <M-l> :wincmd l<CR>
 ";go to window right
-nmap  -  <Plug>(choosewin)
-";activate choosewin
 
-noremap <leader>c :ContextToggleWindow<CR>
-";Toggle function context
 noremap <C-s> :execute "vsplit term://".$SHELL<CR>
 ";Cteate a terminal in Vertical Split
 
@@ -88,19 +76,6 @@ nnoremap <F9> :e $MYVIMRC<CR>
 ";open vimrc
 nnoremap <F12> :source $MYVIMRC<CR> 
 ";Resource Config
-
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-"; go to definition if lsp is on fior file format
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-"; show hover info
-nnoremap <silent> gm   <cmd>lua vim.lsp.buf.implementation()<CR>
-"; go to implemenmtaion
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-"; show refferences
-nnoremap <silent> gs    <cmd>lua vim.lsp.buf.declaration()<CR>
-"; go to declaration if lsp is on fior file format
-nnoremap <F6> :call OpenLspConfHelp()<CR>
-"; Open information for neovim-native-lsp supported language servers
 
 vnoremap <M-b> :call OpenInBrowser()<cr>
 "; Open thing in visual selection in a browser
