@@ -7,7 +7,6 @@ Plug 'nvim-lua/completion-nvim'                     "   completion api for lsp
 "quality of life 
 Plug 'dbeniamine/cheat.sh-vim'                      "   query help from inside vim
 Plug 'Chiel92/vim-autoformat'                       "   Easy file formatter
-Plug 'itchyny/lightline.vim'                        "   Lightline
 Plug 'thinca/vim-quickrun'                          "   quickrun code files, useful for nothing but c/c++
 Plug 'justinmk/vim-sneak'                           "   easier movment that i have yet to learn to use
 Plug 'tpope/vim-abolish'                            "   better find and replace, tpope stuff is blessed
@@ -24,7 +23,6 @@ Plug 'airblade/vim-gitgutter'                       "   git integration
 "colorschemes
 Plug 'embark-theme/vim', { 'as': 'embark' }         "   a cool airline theme that complements aurora colorscheme
 Plug 'NLKNguyen/papercolor-theme'                   "   papercolor 
-Plug 'ayu-theme/ayu-vim'                            "   or other package manager
 "just pure look good sugar 
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'} "   file browser
 Plug 'ryanoasis/vim-devicons'                       "   devicons dunno, maybe make it look good

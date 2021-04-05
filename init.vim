@@ -24,7 +24,7 @@ source $HOME/.config/nvim/configs/plugs.vim
 source $HOME/.config/nvim/snippets/snippets.vim
 " Commands and mappings
 source $HOME/.config/nvim/configs/cmd.vim
-" Statusline and colors
+"Homebrew Statusline and colors
 source $HOME/.config/nvim/configs/colors.vim
 " Native Lsp completion
 source $HOME/.config/nvim/configs/nvim_lsp.vim

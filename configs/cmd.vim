@@ -25,10 +25,6 @@ function! g:OpenLspConfHelp()
     execute ":vsplit "."$HOME/.config/nvim/plugged/nvim-lspconfig/CONFIG.md"
 endfunction
 
-
-nnoremap <space> <Plug>Sneak_s
-nnoremap <C-space> <Plug>Sneak_S
-
 inoremap <Leader>l <Esc>:call CycleLanguagesUp()<CR>a
 ";Cycle input language for Insert mode up, Search for CycleLanguagesDown for opposite 
 nnoremap <Leader>l :call CycleLanguagesUp()<CR>
@@ -114,6 +110,4 @@ vnoremap <M-T> :call SudoExecInTerminal()<cr>
 "; Execute thing in visual selection in terminal w/ sudo
 nnoremap <silent> <leader>e :norm<C-Y>,<cr>
 "; write around word 
-nnoremap <silent> s :call Around(input("Surround With: "))<CR>
-vnoremap <silent> s :call VAround(input("Surround Selection With: "))<CR>
-vnoremap <silent> S :call VBAround(input("Surround Each Line With: "))<CR>
+nnoremap <silent> sa :call Around(input("Surround With: "))<CR>
