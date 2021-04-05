@@ -31,7 +31,9 @@ Just kidding. Actually I don't like it and I edit it constatnly.\
    and combinations are shorter on average. Basic keymap uses mneumonics,\
    and everytinng is remapable. Movment commands are superb.\
    There is more variety of movment commands and are more efficient at little movments.
- - **Portable** - I keep my vim config in a git so its easy to set it up almost anywhere.
+ - **Portable** - I keep my vim config in a git so its easy to set it up almost anywhere.\
+   and I'm trying to make some things in vimscript as much as I can, so I have most\
+   what I'm used to regardless of location(colorscheme, lightline, using netrw)
 
 ## Main goal
 The main goal for this configuration was to be able to have a neovim config\
@@ -53,33 +55,37 @@ And have completion like vscode has, but lighter, faster.
 - **ripgrep** (also rust is needed)
 - **nodejs, npm, yarn**
 - **pynvim** for python support
-- **python3-venv** (or [ms-jpq/chadtree] wont work)
-- various language servers 
-    - hasklell, 
-    - nim (nimlsp , installed with nimble)
-    - ccls(snap install for that, after trying to compile from source and failing)
-    - rls
-    - others are installed from coc
+- various language servers(look at the nvim-lsp page for what and how)
 
 ####  Current configurations for  
 - **Nim-lang** witn nimsuggest and asyncomplete for completion and coc for anything else
-- **Haskell**
+- **Lua** with sumneko/lua
+- **Python** with jedi language server
+- **Js/Ts** with tsserver
+- **Lua** with sumneko/lua
+- **html** (not a language, but) vscode-lang_server for html
+- **Golang** with golsp
+- **Vim-Script** vscode-vimlsp server (oh the irony)
 - **C/C++** with ccls
 - **Rust**(maybe)
 
 ## Configuraton is split into several files all(most) in configs
 - **auto.vim** - Auto commands, currenty only one that install new plugins and clears old ones.
+- **around.vim** - A weak implementation for surround, have no visual mode
 - **basic.vim** - Basic plugin settings, here i put plugins that need at most 2-3 lines of config.
 - **cmd.vim** - Some mappings that I have.
-- **open_utils.vim** - Some functions to open and execute text in visual selectionform vim
-- **colors.vim** - Lightline config and color theme
+- **colors.vim** - Statusline in vimscript(based on u/SamLovesNotion) colors based on ayu
 - **fzf.vim** - Fzf config stolen from the original repo, and modified slightly
+- **netrw.vim** - Config for netrw file browser
 - **nvim-lsp.vim** - naovim native lsp configuration
-- **lang.vim** - Language switching controls, switch up and down a list onf predetermined languages in init.vim <sup>(1)</sup>
 - **plugs.vim** - Here are all the plugin currently in use, 
 - **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.
-- **wm.vim** - rudamentary window managment, will probably become first plugin
 - **stashed/**  - past configs for plugins i might come back to on a later date
+
+## My vimscript implemnetations for soem somewaht basic things
+- **functions/open_utils.vim** - Some functions to open and execute text in visual selectionform vim
+- **finctions/lang.vim** - Language switching controls, switch up and down a list onf predetermined languages in init.vim <sup>(1)</sup>
+- **functions/wm.vim** - rudamentary window managment, will probably become first plugin
 
  <sup>(1) There are maybe better solutions for that, but this is using vim's builtin\
  keymaps feature, and changes input just for vim, and is independant of system\

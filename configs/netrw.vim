@@ -3,8 +3,9 @@
 let g:netrw_winsize = 14
 let g:netrw_liststyle = 3
 let g:netrw_sizestyle= "h"
+let g:netrw_banner=0
 " sort is affecting only: directories on the top, files below
-"let g:netrw_sort_sequence = '[\/]$,*'
+let g:netrw_sort_sequence = '[\/]$,*'
 " use the previous window to open file
 let g:netrw_browse_split = 4
 

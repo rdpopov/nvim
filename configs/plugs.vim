@@ -24,7 +24,5 @@ Plug 'airblade/vim-gitgutter'                       "   git integration
 Plug 'embark-theme/vim', { 'as': 'embark' }         "   a cool airline theme that complements aurora colorscheme
 Plug 'NLKNguyen/papercolor-theme'                   "   papercolor 
 "just pure look good sugar 
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'} "   file browser
-Plug 'ryanoasis/vim-devicons'                       "   devicons dunno, maybe make it look good
 Plug 'sheerun/vim-polyglot'
 call plug#end()
