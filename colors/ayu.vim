@@ -70,6 +70,7 @@ let s:i      = ",italic"
 exe "let s:fmt_none = ' gui=NONE".          " cterm=NONE".          " term=NONE"        ."'"
 exe "let s:fmt_bold = ' gui=NONE".s:b.      " cterm=NONE".s:b.      " term=NONE".s:b    ."'"
 exe "let s:fmt_bldi = ' gui=NONE".s:b.      " cterm=NONE".s:b.      " term=NONE".s:b    ."'"
+exe "let s:fmt_tbl = ' gui=NONE".s:n. " guibg=#14191F guifg=#2BBB4F "     " cterm=NONE".s:n.      " term=NONE".s:n    ."'"
 exe "let s:fmt_undr = ' gui=NONE".s:u.      " cterm=NONE".s:u.      " term=NONE".s:u    ."'"
 exe "let s:fmt_undb = ' gui=NONE".s:u.s:b.  " cterm=NONE".s:u.s:b.  " term=NONE".s:u.s:b."'"
 exe "let s:fmt_undi = ' gui=NONE".s:u.      " cterm=NONE".s:u.      " term=NONE".s:u    ."'"
@@ -80,6 +81,7 @@ exe "let s:fmt_revr = ' gui=NONE".s:r.      " cterm=NONE".s:r.      " term=NONE"
 exe "let s:fmt_revb = ' gui=NONE".s:r.s:b.  " cterm=NONE".s:r.s:b.  " term=NONE".s:r.s:b."'"
 "}}}
 
+highlight TabLine guibg=#2BBB4F guifg=#14191F
 
 " Vim Highlighting: (see :help highlight-groups)"{{{
 " ----------------------------------------------------------------------------
@@ -120,7 +122,8 @@ exe "hi! SpellRare"     .s:fg_regexp      .s:bg_none        .s:fmt_undr
 exe "hi! StatusLine"    .s:fg_fg          .s:bg_panel       .s:fmt_none
 exe "hi! StatusLineNC"  .s:fg_fg_idle     .s:bg_panel       .s:fmt_none
 exe "hi! WildMenu"      .s:fg_bg          .s:bg_markup      .s:fmt_none
-exe "hi! TabLine"       .s:fg_fg          .s:bg_panel       .s:fmt_revr
+exe "hi! TabLine"       .s:bg_panel          .s:fg_fg       .s:fmt_tbl
+
 "   TabLineFill"
 "   TabLineSel"
 exe "hi! Title"         .s:fg_keyword     .s:bg_none        .s:fmt_none

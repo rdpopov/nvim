@@ -57,6 +57,12 @@ execute 'highlight StslineBackColorFGSecColorBG guifg=' . g:StslineBackColor ' g
 execute 'highlight StslineSecColorFGBackColorBG guifg=' . g:StslineSecColor ' guibg=' . g:StslineBackColor
 execute 'highlight StslineModColorFG guifg=' . g:StslineColorYellow ' guibg=' . g:StslineBackColor
 
+execute "highlight TabLineFill guifg=" .g:StslineColorDark2   . " guibg=" . g:StslineColorGreen
+execute "highlight TabLineSel guifg=" . g:StslineColorDark2  . " guibg=". g:StslineColorGreen
+execute "highlight TabLine guifg=". g:StslineColorGreen. "guibg=". g:StslineColorGreen
+
+
+
 function! ActivateStatusline()
 	setlocal statusline=%#StslinePriColorBG#\ %{StslineMode()}%#StslineSecColorBG#\%{GitStatus()}%#StslinePriColorBG#\%{GetInputLang()}%#StslinePriColorFG#\ %f\ %#StslineModColorFG#%{&modified?\"[+]\ \":\"\"}%=%{LspStatus()}%#StslinePriColorFG#\ %{&filetype}\ %#StslineSecColorBG#%{&fenc!='utf-8'?\"\ \":''}%{&fenc!='utf-8'?&fenc:''}%{&fenc!='utf-8'?\"\ \":''}%#StslinePriColorBG#\ %p\%%\ %#StslinePriColorBGBold#%l%#StslinePriColorBG#/%L\ :%c\ 
 endfunction

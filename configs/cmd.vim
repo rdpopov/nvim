@@ -68,8 +68,8 @@ nnoremap <M-k> :wincmd k<CR>
 ";go to window up
 nnoremap <M-l> :wincmd l<CR>
 ";go to window right
-nmap  -  <Plug>(choosewin)
-";activate choosewin
+nnoremap <C-L> :tabNext <CR>
+nnoremap <C-H> :tabprevious <CR>
 
 noremap <leader>c :ContextToggleWindow<CR>
 ";Toggle function context
