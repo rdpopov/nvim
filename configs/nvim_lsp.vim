@@ -1,3 +1,5 @@
+
+if index(g:plug_mode,"lsp") >= 0  || index(g:plug_mode,"all") >= 0
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 set pumheight=15
@@ -79,8 +81,5 @@ nvim_lsp.sumneko_lua.setup {
     },
   },
 }
-
-
-
-
 EOF
+endif 

@@ -3,6 +3,7 @@ set background=dark
 
 let g:prefered_browser = "brave-browser"
 let g:lang = ['english','bulgarian-phonetic']
+let g:plug_mode = ["all"]
 
 " Basic editor settings
 source $HOME/.config/nvim/configs/settings.vim
