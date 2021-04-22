@@ -52,6 +52,8 @@ let g:StslineOnSecColor  = g:StslineColorLight
 
 execute 'highlight StslineSecColorFG guifg=' . g:StslineSecColor   ' guibg=' . g:StslineBackColor
 execute 'highlight StslineSecColorBG guifg=' . g:StslineColorLight ' guibg=' . g:StslineSecColor
+execute 'highlight StslineSecColorInactiveBG guifg=' . g:StslineColorViolet ' guibg=' . g:StslineBackColor
+execute 'highlight StslineNetrwActiveBG guifg=' . g:StslineColorYellow ' guibg=' . g:StslineBackColor
 execute 'highlight StslineBackColorBG guifg=' . g:StslineColorLight ' guibg=' . g:StslineBackColor
 execute 'highlight StslineBackColorFGSecColorBG guifg=' . g:StslineBackColor ' guibg=' . g:StslineSecColor
 execute 'highlight StslineSecColorFGBackColorBG guifg=' . g:StslineSecColor ' guibg=' . g:StslineBackColor
@@ -63,13 +65,29 @@ execute "highlight TabLine guifg=". g:StslineColorGreen. "guibg=". g:StslineColo
 
 
 
+let len_home = len($HOME)
+let len_cwd =len('~'.getcwd()[len_home:])
+
 function! ActivateStatusline()
-	setlocal statusline=%#StslinePriColorBG#\ %{StslineMode()}%#StslineSecColorBG#\%{GitStatus()}%#StslinePriColorBG#\%{GetInputLang()}%#StslinePriColorFG#\ %f\ %#StslineModColorFG#%{&modified?\"[+]\ \":\"\"}%=%{LspStatus()}%#StslinePriColorFG#\ %{&filetype}\ %#StslineSecColorBG#%{&fenc!='utf-8'?\"\ \":''}%{&fenc!='utf-8'?&fenc:''}%{&fenc!='utf-8'?\"\ \":''}%#StslinePriColorBG#\ %p\%%\ %#StslinePriColorBGBold#%l%#StslinePriColorBG#/%L\ :%c\ 
+	if &filetype == 'netrw'
+	   setlocal statusline=%#StslinePriColorBG#\ %{StslineMode()}%#StslineNetrwActiveBG#%=%{'~'.expand('%:p:h')[len_home:]}
+	elseif &buftype ==# "terminal" 
+	    setlocal statusline=%#StslinePriColorBG#\ %{StslineMode()}%#StslinePriColorFG#\ %{expand('%:f')[len_cwd+9:]}\%=%#StslinePriColorBG#\ %p\%%\ %#StslinePriColorBGBold#%l%#StslinePriColorBG#/%L\ :%c\ 
+	else
+	    setlocal statusline=%#StslinePriColorBG#\ %{StslineMode()}%#StslineSecColorBG#\%{GitStatus()}%#StslinePriColorBG#\%{GetInputLang()}%#StslinePriColorFG#\ %f\ %#StslineModColorFG#%{&modified?\"[+]\ \":\"\"}%=%{LspStatus()}%#StslinePriColorFG#\ %{&filetype}\ %#StslineSecColorBG#%{&fenc!='utf-8'?\"\ \":''}%{&fenc!='utf-8'?&fenc:''}%{&fenc!='utf-8'?\"\ \":''}%#StslinePriColorBG#\ %p\%%\ %#StslinePriColorBGBold#%l%#StslinePriColorBG#/%L\ :%c\ 
+	endif
 endfunction
 
 function! DeactivateStatusline()
-	setlocal statusline=%#StslineSecColorBG#\ INACTIVE\ %#StslineSecColorBG#%#GitStatus#%{GetInputLang()}%#StslineBackColorFGSecColorBG#%%F\ %#StslineModColorFG#%=%#StslineBackColorBG#\ %{&filetype}\ %#StslineSecColorFGBackColorBG#%#StslineSecColorBG#\ %p\%%\ %l/%L\ :%c\ 
+	if &filetype == 'netrw'
+	    setlocal statusline=%#StslineSecColorBG#\ INACTIVE\%#StslineSecColorInactiveBG#%=%{'~'.expand('%:p:h')[len_home:]}%#StslineModColorFG#
+	elseif &buftype ==# "terminal" 
+	    setlocal statusline=%#StslineSecColorBG#\ INACTIVE\ %#StslineSecColorInactiveBG#\ %{expand('%:f')[len_cwd+9:]}\ %#StslineModColorFG#%=%#StslineSecColorFGBackColorBG#%#StslineSecColorBG#\ %p\%%\ %l/%L\ :%c\ 
+    else 
+	    setlocal statusline=%#StslineSecColorBG#\ INACTIVE\ %#StslineSecColorInactiveBG#\ %F\ %#StslineModColorFG#%=%#StslineBackColorBG#\ %{&filetype}\ %#StslineSecColorFGBackColorBG#%#StslineSecColorBG#\ %p\%%\ %l/%L\ :%c\ 
+    endif
 endfunction
+""==============================NETRW=======================================
 " Get Statusline mode & also set primary color for that that mode
 function! StslineMode()
     let l:CurrentMode=mode()
