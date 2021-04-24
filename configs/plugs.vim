@@ -8,6 +8,9 @@ call plug#begin()
 	if index(g:plug_mode,"nim") >= 0  || index(g:plug_mode,"all") >= 0
 		Plug 'alaviss/nim.nvim'                             "   best nim language plugin, provides regex based syntax highlight syntax highlight
 	endif
+	if index(g:plug_mode,"tree") >= 0
+		Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " tree-sitter for neovim
+	endif
 	if index(g:plug_mode,"lsp") >= 0  || index(g:plug_mode,"all") >= 0
 		Plug 'neovim/nvim-lspconfig'                        "   lsp configuration api for native lsp
 		Plug 'nvim-lua/completion-nvim'                     "   completion api for lsp

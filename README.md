@@ -46,6 +46,10 @@ And have completion like vscode has, but lighter, faster.
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/nvim.png"  title="This is what peak performance looks like">
 </p>
 
+<p>
+<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/lsp.png"  title="Tree-sitter + lsp">
+</p>
+
 ## Initial setup
 - [Neovim]
 - or with a bootstap_env.sh (NYI but will do...at some point, maybe with compiling neovim-nightly)
