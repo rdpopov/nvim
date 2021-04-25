@@ -82,18 +82,26 @@ And have completion like vscode has, but lighter, faster.
 - **fzf.vim** - Fzf config stolen from the original repo, and modified slightly
 - **netrw.vim** - Config for netrw file browser
 - **nvim-lsp.vim** - naovim native lsp configuration
+- **treesitter.vim** - naovim native lsp configuration
 - **plugs.vim** - Here are all the plugin currently in use, 
 - **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.
 - **stashed/**  - past configs for plugins i might come back to on a later date
 
-## My vimscript implemnetations for soem somewaht basic things
+## My vimscript implemnetations for some somewaht basic things
 - **functions/open_utils.vim** - Some functions to open and execute text in visual selectionform vim
 - **finctions/lang.vim** - Language switching controls, switch up and down a list onf predetermined languages in init.vim <sup>(1)</sup>
 - **functions/wm.vim** - rudamentary window managment, will probably become first plugin
+- **functions/around.vim** - a try of making a sensibel implementaion of placing characters around things , not yet fully ready <sup>(2)</sup>
+
+- **configs/colors.vim** - implementation of lightline, not mine, source is in file
 
  <sup>(1) There are maybe better solutions for that, but this is using vim's builtin\
  keymaps feature, and changes input just for vim, and is independant of system\
- input language state (well, system has to be in english(as input) for vim to work)<sup>
+ input language state (well, system has to be in english(as input) for vim to work)</sup>
+
+ <sup>(2) I am aware that there is the vim surround by tpope, I would use it, BUT\
+ I want to have something that is not dependant of plugins, as I consider it to be a\
+ somewhat basic functionality</sup>
 
 Press **F10**  in normal mode for a list of my custom keybinfings.
 
