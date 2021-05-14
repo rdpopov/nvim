@@ -11,8 +11,6 @@ source $HOME/.config/nvim/configs/settings.vim
 source $HOME/.config/nvim/functions/incl.vim
 " Basic config for other plgins
 source $HOME/.config/nvim/configs/basic.vim
-" Window managment for fo vim (currnetly only resizing)
-source $HOME/.config/nvim/functions/incl.vim
 " Auto commnds
 source $HOME/.config/nvim/configs/auto.vim
 " No nerdtree. CHAD tree
