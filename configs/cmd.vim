@@ -68,8 +68,7 @@ nnoremap <M-k> :wincmd k<CR>
 ";go to window up
 nnoremap <M-l> :wincmd l<CR>
 ";go to window right
-nnoremap <C-L> :tabNext <CR>
-nnoremap <C-H> :tabprevious <CR>
+nnoremap <M-;> :tabNext <CR>
 
 noremap <leader>c :ContextToggleWindow<CR>
 ";Toggle function context
@@ -77,12 +76,12 @@ noremap <C-s> :execute "vsplit term://".$SHELL<CR>
 ";Cteate a terminal in Vertical Split
 
 " replace all occurances of word under cursor with user input interactively
-nnoremap <C-d> :execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
-";Execute a search and replace in current file w/ conform
-nnoremap <C-t> :tabdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
-";Execute a search and replace in all tabs w/ conform
-nnoremap <C-b> :bufdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
-";Execute a search and replace in all buffers w/ conform
+"nnoremap <C-d> :execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
+"";Execute a search and replace in current file w/ conform
+"nnoremap <C-t> :tabdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
+"";Execute a search and replace in all tabs w/ conform
+"nnoremap <C-b> :bufdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
+"";Execute a search and replace in all buffers w/ conform
 
 nnoremap <F9> :e $MYVIMRC<CR> 
 ";open vimrc
