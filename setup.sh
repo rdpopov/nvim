@@ -5,19 +5,41 @@ apt_install(){
     sudo apt-get install  $@ -y
 }
 
-setup_nvim(){
-
+setup_deps(){
     apt_install fuse libfuse2 git python3-pip ack-grep 
     apt_install nodejs npm yarn
     apt_install ripgrep
+}
+
+setup_nvim(){
     wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output-document nvim
     chmod +x nvim && sudo chown root:root nvim && sudo mv nvim /usr/bin
     pip3 install --user neovim
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+}
 
-    if [[ $HOME/.tmux.conf -e ]]; then
+setup_tmux(){
+    if [[ -e $HOME/.tmux.conf ]]; then
       mv $HOME/.tmux.conf $HOME/.tmux.conf.bak
     fi
     cp tmux.conf $HOME/.tmux.conf
-
 }
+
+for arg in "$@";do
+  case "$arg" in
+    "--tmux" | "-t" )
+      setup_tmux
+    ;;
+    "--nvim" | "-n" )
+      setup_nvim
+    ;;
+    "--deps" | "-d" )
+      setup_deps
+    ;;
+    "--all" | "-a" )
+      setup_deps
+      setup_nvim
+      setup_tmux
+    ;;
+  esac
+done

@@ -3,6 +3,7 @@ This is my neovim configuration.\
 Made as portable as I could, but still needs alot of external progrmas.\
 Not the very best, but it's mine and i like it.\
 Just kidding. Actually I don't like it and I edit it constatnly.\
+
 *"No one ever accomplished anything by being content with who they were"* - Adolin Kholin
 
 ## Why vim?
@@ -52,7 +53,7 @@ And have completion like vscode has, but lighter, faster.
 
 ## Initial setup
 - [Neovim]
-- or with a bootstap_env.sh (NYI but will do...at some point, maybe with compiling neovim-nightly)
+- or with a setup.sh (NYI but will do...at some point, maybe with compiling neovim-nightly)
 - might add a version of this as a debian docker container, already configured and ready to go
 
 ### Needed external programs 
@@ -86,13 +87,13 @@ And have completion like vscode has, but lighter, faster.
 - **plugs.vim** - Here are all the plugin currently in use, 
 - **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.
 - **stashed/**  - past configs for plugins i might come back to on a later date
+- **tmux.conf** - this is my tmux configuration 
 
 ## My vimscript implemnetations for some somewaht basic things
 - **functions/open_utils.vim** - Some functions to open and execute text in visual selectionform vim
 - **finctions/lang.vim** - Language switching controls, switch up and down a list onf predetermined languages in init.vim <sup>(1)</sup>
 - **functions/wm.vim** - rudamentary window managment, will probably become first plugin
 - **functions/around.vim** - a try of making a sensibel implementaion of placing characters around things , not yet fully ready <sup>(2)</sup>
-
 - **configs/colors.vim** - implementation of lightline, not mine, source is in file
 
  <sup>(1) There are maybe better solutions for that, but this is using vim's builtin\
