@@ -22,7 +22,14 @@ setup_tmux(){
     if [[ -e $HOME/.tmux.conf ]]; then
       mv $HOME/.tmux.conf $HOME/.tmux.conf.bak
     fi
-    cp tmux.conf $HOME/.tmux.conf
+    cp dots/tmux.conf $HOME/.tmux.conf
+}
+
+setup_alac(){
+    if [[ -e $HOME/alacritty.yml ]]; then
+      mv $HOME/.alacritty.yml $HOME/.alacritty.yml.bak
+    fi
+    cp dots/alacritty.yml $HOME/.alacritty.yml
 }
 
 for arg in "$@";do
@@ -30,16 +37,20 @@ for arg in "$@";do
     "--tmux" | "-t" )
       setup_tmux
     ;;
+    "--alac" | "-a" )
+      setup_alac
+    ;;
     "--nvim" | "-n" )
       setup_nvim
     ;;
     "--deps" | "-d" )
       setup_deps
     ;;
-    "--all" | "-a" )
+    "--all" | "-A" )
       setup_deps
       setup_nvim
       setup_tmux
+      setup_alac
     ;;
   esac
 done
