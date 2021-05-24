@@ -2,7 +2,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-colorscheme codedark
+colorscheme ayu
 
 function! LspStatus() abort
   let sl = ''
@@ -32,30 +32,30 @@ set laststatus=2
 set noshowmode
 "" This was made by Reddit user u/SamLovesNotion. Also with the help of - https://tdaly.co.uk/projects/vim-statusline-generator/ for learning the syntax. Sorry for English & grammar, this post was made in hurry.""
 ""ayu
-""let g:StslineColorGreen  = "#2BBB4F"
-""let g:StslineColorBlue   = "#39BAE6"
-""let g:StslineColorViolet = "#A37ACC"
-""let g:StslineColorYellow = "#E6B450"
-""let g:StslineColorOrange = "#FF8F40"
-""
-""let g:StslineColorLight  = "#C0C0C0"
-""let g:StslineColorDark   = "#080808"
-""let g:StslineColorDark1  = "#181818"
-""let g:StslineColorDark2  = "#14191F"
-""let g:StslineColorDark3  = "#161F2A"
-""codedark
-let g:StslineColorGreen  = "#4EC9B0"
-let g:StslineColorBlue   = "#0A7ACA"
+let g:StslineColorGreen  = "#2BBB4F"
+let g:StslineColorBlue   = "#39BAE6"
 let g:StslineColorViolet = "#A37ACC"
-let g:StslineColorYellow = "#FFAF00"
-let g:StslineColorOrange = "#F44747"
+let g:StslineColorYellow = "#E6B450"
+let g:StslineColorOrange = "#FF8F40"
 
 let g:StslineColorLight  = "#C0C0C0"
 let g:StslineColorDark   = "#080808"
-let g:StslineColorDark1  = "#1E1E1E"
-let g:StslineColorDark2  = "#1E1E1E"
-let g:StslineColorDark3  = "#1E1E1E"
-
+let g:StslineColorDark1  = "#181818"
+let g:StslineColorDark2  = "#14191F"
+let g:StslineColorDark3  = "#161F2A"
+""codedark
+""let g:StslineColorGreen  = "#4EC9B0"
+""let g:StslineColorBlue   = "#0A7ACA"
+""let g:StslineColorViolet = "#A37ACC"
+""let g:StslineColorYellow = "#FFAF00"
+""let g:StslineColorOrange = "#F44747"
+""
+""let g:StslineColorLight  = "#C0C0C0"
+""let g:StslineColorDark   = "#080808"
+""let g:StslineColorDark1  = "#1E1E1E"
+""let g:StslineColorDark2  = "#1E1E1E"
+""let g:StslineColorDark3  = "#1E1E1E"
+""
 let g:StslineBackColor   = g:StslineColorDark2
 let g:StslineOnBackColor = g:StslineColorLight
 
