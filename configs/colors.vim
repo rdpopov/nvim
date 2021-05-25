@@ -55,7 +55,6 @@ let g:StslineColorDark3  = "#161F2A"
 ""let g:StslineColorDark1  = "#1E1E1E"
 ""let g:StslineColorDark2  = "#1E1E1E"
 ""let g:StslineColorDark3  = "#1E1E1E"
-""
 let g:StslineBackColor   = g:StslineColorDark2
 let g:StslineOnBackColor = g:StslineColorLight
 

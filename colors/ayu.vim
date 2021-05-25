@@ -278,3 +278,16 @@ hi! link diffAdded String
 let &background = s:style
 
 " }}}
+" homebrew statusline colors {{{
+let g:StslineColorGreen  = "#2BBB4F"
+let g:StslineColorBlue   = "#39BAE6"
+let g:StslineColorViolet = "#A37ACC"
+let g:StslineColorYellow = "#E6B450"
+let g:StslineColorOrange = "#FF8F40"
+
+let g:StslineColorLight  = "#C0C0C0"
+let g:StslineColorDark   = "#080808"
+let g:StslineColorDark1  = "#181818"
+let g:StslineColorDark2  = "#14191F"
+let g:StslineColorDark3  = "#161F2A"
+" }}}

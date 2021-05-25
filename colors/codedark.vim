@@ -551,3 +551,18 @@ call <sid>hi('yamlConstant', s:cdBlue, {}, 'none', {})
 
 " Coc Explorer:
 call <sid>hi('CocExplorerIndentLine', s:cdCursorDark, {}, 'none', {})
+
+" code dark homebrew colorscheme
+let g:StslineColorGreen  = "#4EC9B0"
+let g:StslineColorBlue   = "#0A7ACA"
+let g:StslineColorViolet = "#A37ACC"
+let g:StslineColorYellow = "#FFAF00"
+let g:StslineColorOrange = "#F44747"
+
+let g:StslineColorLight  = "#C0C0C0"
+let g:StslineColorDark   = "#080808"
+let g:StslineColorDark1  = "#1E1E1E"
+let g:StslineColorDark2  = "#1E1E1E"
+let g:StslineColorDark3  = "#1E1E1E"
+
+
