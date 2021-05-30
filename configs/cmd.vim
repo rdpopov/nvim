@@ -70,8 +70,8 @@ nnoremap <M-l> :wincmd l<CR>
 ";go to window right
 nnoremap <M-;> :tabNext <CR>
 
-noremap <leader>c :ContextToggleWindow<CR>
-";Toggle function context
+noremap <leader><ESC> :cclose<CR>
+
 noremap <C-s> :execute "vsplit term://".$SHELL<CR>
 ";Cteate a terminal in Vertical Split
 

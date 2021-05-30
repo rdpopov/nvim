@@ -3,7 +3,12 @@ set background=dark
 
 let g:prefered_browser = "brave-browser"
 let g:lang = ['english','bulgarian-phonetic']
-let g:plug_mode = ["all","tree"]
+if exists('$WORK')
+	let g:plug_mode = ["git","qof"]
+else
+	let g:plug_mode = ["all","tree","navigator"]
+endif
+
 
 " Basic editor settings
 source $HOME/.config/nvim/configs/settings.vim
@@ -26,6 +31,8 @@ source $HOME/.config/nvim/configs/cmd.vim
 "Homebrew Statusline and colors
 source $HOME/.config/nvim/configs/colors.vim
 " Native Lsp completion
+if !exists('$WORK')
 source $HOME/.config/nvim/configs/nvim_lsp.vim
 " Native Lsp completion
 source $HOME/.config/nvim/configs/treesitter.vim
+endif
