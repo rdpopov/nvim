@@ -26,6 +26,9 @@ require'compe'.setup {
 	max_kind_width = 100;
 	max_menu_width = 100;
 	documentation = true;
+  lsp = {
+    format_on_save = true;
+  };
 
 	source = {
 	path = true;
