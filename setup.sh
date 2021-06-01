@@ -23,6 +23,7 @@ setup_tmux(){
       mv $HOME/.tmux.conf $HOME/.tmux.conf.bak
     fi
     cp dots/tmux.conf $HOME/.tmux.conf
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm #tmux package manager
 }
 
 setup_alac(){
