@@ -22,7 +22,7 @@ let g:langid = GetLangLabl()
 
 " Meant for getting the current language form the list, for lightline and similar
 function! GetInputLang()
-    return "  ".g:langid." "
+    return g:langid
 endfunction
 
 " Cycles to the next language in the list

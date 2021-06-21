@@ -30,6 +30,9 @@ source $HOME/.config/nvim/snippets/snippets.vim
 source $HOME/.config/nvim/configs/cmd.vim
 "Homebrew Statusline and colors
 source $HOME/.config/nvim/configs/colors.vim
+lua require('statusline')
+"colorizer
+source $HOME/.config/nvim/configs/colorizer.vim
 " Native Lsp completion
 if !exists('$WORK')
 source $HOME/.config/nvim/configs/nvim_lsp.vim
