@@ -6,3 +6,5 @@ source $HOME/.config/nvim/functions/lang.vim
 source $HOME/.config/nvim/functions/around.vim
 " Helper functions for opening things in bowser/executing things in shell
 source $HOME/.config/nvim/functions/open_utils.vim
+" functions taht the statusline ueses
+source $HOME/.config/nvim/functions/status_line_utils.vim
