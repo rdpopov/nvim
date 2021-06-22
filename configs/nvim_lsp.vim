@@ -12,6 +12,7 @@ lua<<EOF
 	require'lspconfig'.html.setup{}
 	require'lspconfig'.gopls.setup{}
 	require'lspconfig'.vimls.setup{}
+
 vim.o.completeopt = "menuone,noinsert,preview"
 require'compe'.setup {
 	enabled = true;
@@ -27,7 +28,7 @@ require'compe'.setup {
 	max_menu_width = 100;
 	documentation = true;
   lsp = {
-    format_on_save = true;
+    format_on_save = false;
   };
 
 	source = {
@@ -43,13 +44,10 @@ require'compe'.setup {
 EOF
 if index(g:plug_mode,"navigator") >=0
 	lua<<EOF
-	require'navigator'.setup()
+	require'navigator'.setup{
+  lsp = {
+    format_on_save = false};
+  }
 EOF
-else
-	nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-	nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-	nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-	nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-	nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-	nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 endif
+nnoremap <space>q <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
