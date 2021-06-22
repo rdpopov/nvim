@@ -271,7 +271,7 @@ M.get_lang_git_name = function(self)
   if git == '' then
     return  lang ..  to_hl_group('LangCenter') .. self.separators[active_sep][1] .. colors.filetype .. self:get_filename()
   end
-    return  lang ..  to_hl_group('LangGit') .. self.separators[active_sep][1] .. colors.git .. git .. to_hl_group('GitCenter') .. self.separators[active_sep][1].. colors.filetype .. self:get_filename()
+    return  lang ..  to_hl_group('LangGit') .. self.separators[active_sep][1] .. colors.git .. git .. to_hl_group('GitCenter') .. self.separators[active_sep][1].. colors.filetype.." ".. self:get_filename()
 end
 
 M.get_format_lsp_diagn = function(self)
@@ -289,18 +289,18 @@ M.get_format_lsp_diagn = function(self)
   end
 
   if errs  and  warn == '' then 
-    return to_hl_group('CenterError') .. self.separators[active_sep][2] .. colors.lsp_error .. "E: ".. errs.. to_hl_group('ErrorFormat').. self.separators[active_sep][2] ..  colors.filetype .. self:get_filetype() 
+    return to_hl_group('CenterError') .. self.separators[active_sep][2] .. colors.lsp_error .. " E: ".. errs.. to_hl_group('ErrorFormat').. self.separators[active_sep][2] ..  colors.filetype .. self:get_filetype() 
   end
 
   if errs == '' and  warn  then 
-    return to_hl_group('WarningFormat') .. self.separators[active_sep][2] .. colors.lsp_warn  .. "W: "..  warn .. to_hl_group('ErrorFormat').. self.separators[active_sep][2] ..  colors.filetype .. self:get_filetype() 
+    return to_hl_group('WarningFormat') .. self.separators[active_sep][2] .. colors.lsp_warn  .. " W: "..  warn .. to_hl_group('ErrorFormat').. self.separators[active_sep][2] ..  colors.filetype .. self:get_filetype() 
   end
 
   if errs  and  warn then 
     return to_hl_group('CenterWrning') .. self.separators[active_sep][2] ..
-            colors.lsp_warn  ..  warn ..
+            colors.lsp_warn  .. " W:" ..  warn ..
             to_hl_group('ErrorWarning').. self.separators[active_sep][2] ..
-            colors.lsp_error .. errs ..
+            colors.lsp_error .. " E:" .. errs ..
             to_hl_group('ErrorFormat')..  self.separators[active_sep][2] ..
             colors.filetype .. self:get_filetype()
   end

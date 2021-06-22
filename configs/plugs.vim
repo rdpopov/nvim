@@ -35,7 +35,6 @@ call plug#begin()
 	endif
 	if index(g:plug_mode,"web") >= 0  || index(g:plug_mode,"all") >= 0
 		Plug 'norcalli/nvim-colorizer.lua'                  "   colorizer for colors in css and anywhere really 
-		Plug 'mattn/emmet-vim'                              "   i need this shit for web class, tho emmet is kinda nifty ngl
 	endif
 	if index(g:plug_mode,"git") >= 0  || index(g:plug_mode,"all") >= 0
 		"git intergations
