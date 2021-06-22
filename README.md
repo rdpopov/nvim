@@ -51,6 +51,13 @@ And have completion like vscode has, but lighter, faster.
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/lsp.png"  title="Tree-sitter + lsp">
 </p>
 
+<p>
+<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/diagn.png"  title="Get all diagnostics">
+</p>
+
+<p>
+<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/descr.png"  title="Hover definition">
+</p>
 ## Initial setup
 - [Neovim]
 - or with a setup.sh (NYI but will do...at some point, maybe with compiling neovim-nightly)
@@ -58,7 +65,7 @@ And have completion like vscode has, but lighter, faster.
 
 ### Needed external programs 
 - **ripgrep** (also rust is needed)
-- **nodejs, npm, yarn**
+- **nodejs, npm, yarn** -if you want to install lsp-s, nvim has built in client
 - **pynvim** for python support
 - various language servers(look at the nvim-lsp page for what and how)
 
@@ -79,13 +86,15 @@ And have completion like vscode has, but lighter, faster.
 - **around.vim** - A weak implementation for surround, have no visual mode
 - **basic.vim** - Basic plugin settings, here i put plugins that need at most 2-3 lines of config.
 - **cmd.vim** - Some mappings that I have.
-- **colors.vim** - Statusline in vimscript(based on u/SamLovesNotion) colors based on ayu
+- **colors.vim** -  ayu and other color stuff
+- **colorizer.vim** -  colorizer config
 - **fzf.vim** - Fzf config stolen from the original repo, and modified slightly
 - **netrw.vim** - Config for netrw file browser
-- **nvim-lsp.vim** - naovim native lsp configuration
-- **treesitter.vim** - naovim native lsp configuration
+- **nvim-lsp.vim** - neovim native lsp configuration
+- **treesitter.vim** - neovim native lsp configuration
 - **plugs.vim** - Here are all the plugin currently in use, 
 - **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.
+- **lua/statusline.lua** - fancy Statusline in lua 
 - **stashed/**  - past configs for plugins i might come back to on a later date
 - **tmux.conf** - this is my tmux configuration 
 
@@ -94,6 +103,7 @@ And have completion like vscode has, but lighter, faster.
 - **finctions/lang.vim** - Language switching controls, switch up and down a list onf predetermined languages in init.vim <sup>(1)</sup>
 - **functions/wm.vim** - rudamentary window managment, will probably become first plugin
 - **functions/around.vim** - a try of making a sensibel implementaion of placing characters around things , not yet fully ready <sup>(2)</sup>
+- **functions/status_line_utils.vim** - Functions used by statusline. 
 - **configs/colors.vim** - implementation of lightline, not mine, source is in file
 
  <sup>(1) There are maybe better solutions for that, but this is using vim's builtin\
