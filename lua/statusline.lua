@@ -17,6 +17,23 @@ M.separators = {
   triangle = {'' ,''},
 }
 
+local ColorPalette = {
+    ayu = setmetatable({
+      ['Blue']  = '#14191F',
+      ['Red']  = '#14191F',
+      ['LightBlue'] = '#14191F',
+      ['Yellow']  = '#14191F',
+      ['Orange']  = '#14191F',
+      ['Green']  = '#14191F',
+      ['Violet']  = '#14191F',
+      ['Gray']  = '#14191F',
+      ['Black']  = '#14191F',
+      ['Warning'] = '#14191F',
+    }, { __index = function() return '#FFFFFF' end })
+--   ['PaperColor'] = {},
+--   ['codedark'] = {},
+}
+
 --==============================================================================
 --Highlights for basic stuff
 --==============================================================================

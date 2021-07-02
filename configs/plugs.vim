@@ -2,11 +2,10 @@ if !exists("g:plug_mode")
 	let g:plug_mode = ["all"]
 endif 
 
-
 call plug#begin()
 		Plug 'sheerun/vim-polyglot'
 	if index(g:plug_mode,"nim") >= 0  || index(g:plug_mode,"all") >= 0
-		Plug 'alaviss/nim.nvim'                             "   best nim language plugin, provides regex based syntax highlight syntax highlight
+		Plug 'alaviss/nim.nvim'                             
 	endif
 	if index(g:plug_mode,"tree") >= 0
 		Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " tree-sitter for neovim
@@ -38,7 +37,7 @@ call plug#begin()
 	endif
 	if index(g:plug_mode,"git") >= 0  || index(g:plug_mode,"all") >= 0
 		"git intergations
-		Plug 'tpope/vim-fugitive'                           "   git client
+		Plug 'tpope/vim-fugitive'                           
 		Plug 'airblade/vim-gitgutter'                       "   git integration
 		Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
 	endif

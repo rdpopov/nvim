@@ -35,9 +35,9 @@ require'compe'.setup {
 	path = true;
 	buffer = true;
 	nvim_lsp = true;
-	spell = true;
-	tags = true;
-	treesitter = true;
+	spell = false;
+	tags = false;
+	treesitter = false;
 	};
 	}
 
@@ -45,6 +45,7 @@ EOF
 if index(g:plug_mode,"navigator") >=0
 	lua<<EOF
 	require'navigator'.setup{
+	default_mapping = false,
   lsp = {
     format_on_save = false};
   }
