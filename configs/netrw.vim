@@ -37,7 +37,7 @@ fun! Lexplore(dir, right)
     let t:netrw_lexbufnr = bufnr("%")
   endif
 endfun
-
+nnoremap <C-n> :Lexplore<CR>
 " absolute width of netrw window
 
 

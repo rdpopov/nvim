@@ -271,8 +271,12 @@ M.get_git_status = function(self)
   return " "..fn['GitStatus']()
 end
 
+local is_explorer = function()
+	return vim.bo.filetype == 'netrw' or vim.bo.filetype == 'nerdtree' or vim.bo.filetype == 'nvimtree'
+end
+
 M.get_filename = function(self)
-  if vim.bo.filetype == 'netrw' then 
+  if is_explorer()  then 
     if self:is_truncated(self.trunc_width.filename) then return " %<".. fn['getcwd']() .. " " end
     return " %<".. fn['getcwd']() .. " " 
   end
@@ -284,7 +288,7 @@ M.get_filetype = function()
   local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
   local filetype = vim.bo.filetype
 
-  if filetype == '' or filetype == 'netrw' then return '' end
+  if filetype == '' or is_explorer() then return '' end
   return string.format('  %s ', filetype):lower()
 end
 

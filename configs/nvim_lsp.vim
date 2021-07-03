@@ -1,8 +1,6 @@
-if index(g:plug_mode,"lsp") >= 0  || index(g:plug_mode,"all") >= 0
-	inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-	set pumheight=15
-endif
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+set pumheight=15
 
 lua<<EOF
 	require'lspconfig'.nimls.setup{}
@@ -42,13 +40,11 @@ require'compe'.setup {
 	}
 
 EOF
-if index(g:plug_mode,"navigator") >=0
-	lua<<EOF
+lua<<EOF
 	require'navigator'.setup{
 	default_mapping = false,
   lsp = {
     format_on_save = false};
   }
 EOF
-endif
 nnoremap <space>q <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>

@@ -3,11 +3,7 @@ set background=dark
 
 let g:prefered_browser = "brave-browser"
 let g:lang = ['english','bulgarian-phonetic']
-if exists('$WORK')
-	let g:plug_mode = ["git","qof"]
-else
-	let g:plug_mode = ["all","tree","navigator"]
-endif
+let g:file_explorer = "nvim-tree"
 
 
 " Basic editor settings
@@ -19,7 +15,12 @@ source $HOME/.config/nvim/configs/basic.vim
 " Auto commnds
 source $HOME/.config/nvim/configs/auto.vim
 " No nerdtree. CHAD tree
-source $HOME/.config/nvim/configs/netrw.vim
+if g:file_explorer != ''
+    source $HOME/.config/nvim/configs/tree_explorer.vim
+else
+    source $HOME/.config/nvim/configs/netrw.vim
+endif
+
 " Fzf & Rg configs
 source $HOME/.config/nvim/configs/fzf.vim
 " Plgins
@@ -35,7 +36,7 @@ lua require('statusline')
 source $HOME/.config/nvim/configs/colorizer.vim
 " Native Lsp completion
 if !exists('$WORK')
-source $HOME/.config/nvim/configs/nvim_lsp.vim
-" Native Lsp completion
-source $HOME/.config/nvim/configs/treesitter.vim
+    source $HOME/.config/nvim/configs/nvim_lsp.vim
+    " Native Lsp completion
+    source $HOME/.config/nvim/configs/treesitter.vim
 endif
