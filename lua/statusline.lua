@@ -17,20 +17,38 @@ M.separators = {
   triangle = {'' ,''},
 }
 
+local cpal = 'PaperColor'
+
 local ColorPalette = {
-    ayu = setmetatable({
-      ['Blue']  = '#14191F',
-      ['Red']  = '#14191F',
-      ['LightBlue'] = '#14191F',
-      ['Yellow']  = '#14191F',
-      ['Orange']  = '#14191F',
-      ['Green']  = '#14191F',
-      ['Violet']  = '#14191F',
+    ['ayu'] = 
+    setmetatable({
+      ['Blue']  = '#39BAE6',
+      ['Red']  = '#FF3333',
+      ['Yellow']  = '#E7C547',
+      ['Orange']  = '#FF7733',
+      ['Green']  = '#2BBB4F',
+      ['Violet']  = '#A37ACC',
       ['Gray']  = '#14191F',
       ['Black']  = '#14191F',
-      ['Warning'] = '#14191F',
-    }, { __index = function() return '#FFFFFF' end })
---   ['PaperColor'] = {},
+      ['Name']  = '#0087af',
+      ['Background']  = '#14191F',
+      ['Warning'] = '#F29718',
+      ['Error'] = '#FF3333',
+    }, { __index = function() return '#FFFFFF' end }),
+   ['PaperColor'] = setmetatable({
+      ['Blue']  = '#5fafd7',
+      ['Red']  = '#df0000',
+      ['Yellow']  = '#ffff00',
+      ['Orange']  = '#FF7733',
+      ['Green']  = '#2BBB4F',
+      ['Violet']  = '#af87d7',
+      ['Gray']  = '#14191F',
+      ['Black']  = '#14191F',
+      ['Background']  = '#1c1c1c',
+      ['Name']  = '#00afaf',
+      ['Warning'] = '#d75f00',
+      ['Error'] = '#d70000',
+    }, { __index = function() return '#FFFFFF' end }),
 --   ['codedark'] = {},
 }
 
@@ -39,8 +57,8 @@ local ColorPalette = {
 --==============================================================================
 -- highlight groups
 M.colors = {
-  active        = '%#StatusLine#',
-  inactive      = '%#StatuslineNC#',
+  active        = '%#StatusLineNC#',
+  inactive      = '%#StatusLine#',
   mode          = '%#Mode#',
   mode_alt      = '%#ModeAlt#',
   git           = '%#Git#',
@@ -52,8 +70,6 @@ M.colors = {
   lsp_error		=	'%#LspErr#',
   lsp_warn		=	'%#LspWarn#',
   ins_language	=	'%#InssLang#',
-  -- git changes
-  -- language
 }
 
 local set_hl = function(group, options)
@@ -67,22 +83,22 @@ end
 -- you can of course pick whatever colour you want, I picked these colours
 -- because I use Gruvbox and I like them
 local highlights = {
-  {'StatusLine',    { fg = '#14191F', bg = '#FF7733' }},
-  {'StatusLineNC',  { fg = '#FF7733', bg = '#14191F' }},
-  {'Mode',          { bg = '#2BBB4F', fg = '#14191F', gui="bold" }},
-  {'LineCol',       { bg = '#928374', fg = '#14191F', gui="bold" }},
-  {'Git',           { bg = '#E7C547', fg = '#14191F' }},
-  {'Filetype',      { bg = '#14191F', fg = '#E7C547' }},
-  {'Filename',      { bg = '#14191F', fg = '#EBDBB2' }},
-  {'ModeAlt',       { bg = '#14191F', fg = '#2BBB4F' }},
+  {'StatusLine',    { fg = ColorPalette[cpal].Background, bg = ColorPalette[cpal].Name }},
+  {'StatusLineNC',  { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
+  {'Mode',          { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {'LineCol',       { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
+  {'Git',           { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
+  {'Filetype',      { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
+  {'Filename',      { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
+  {'ModeAlt',       { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
   {'GitAlt',        { bg = '#3C3836', fg = '#504945' }},
   {'LineColAlt',    { bg = '#504945', fg = '#928374' }},
   {'FiletypeAlt',   { bg = '#3C3836', fg = '#504945' }},
   {'LineCol',		{ bg = '#3C3836', fg = '#504945' }},
   {'LineColAlt',	{ bg = '#3C3836', fg = '#504945' }},
-  {'LspErr',		{ bg = '#FF3333', fg = '#14191F' }},
-  {'LspWarn',       { bg = '#F29718', fg = '#14191F' }},
-  {'InssLang',       { bg = '#39BAE6', fg = '#14191F' }},
+  {'LspErr',		{ bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background }},
+  {'LspWarn',       { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background }},
+  {'InssLang',       { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
 }
 
 local set_hl_inv = function (group,options)
@@ -175,64 +191,64 @@ local to_hl_group = function(str)
 end
 
 local color_table = {
-  {"NOR" ,{ bg = '#2BBB4F', fg = '#14191F', gui="bold" }},
-  {"VIS" ,{ bg = '#FF8F40', fg = '#14191F', gui="bold" }},
-  {"VIL" ,{ bg = '#FF8F40', fg = '#14191F', gui="bold" }},
-  {"VIB" ,{ bg = '#A37ACC', fg = '#14191F', gui="bold" }},
-  {"SEL" ,{ bg = '#E6B450', fg = '#14191F', gui="bold" }},
-  {"INS" ,{ bg = '#39BAE6', fg = '#14191F', gui="bold" }},
-  {"REP" ,{ bg = '#39BAE6', fg = '#14191F', gui="bold" }},
-  {"COM" ,{ bg = '#E6B450', fg = '#14191F', gui="bold" }},
-  {"EEX" ,{ bg = '#2BBB4F', fg = '#14191F', gui="bold" }},
-  {"UNK" ,{ bg = '#A37ACC', fg = '#14191F', gui="bold" }},
+  {"NOR" ,{ bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"VIS" ,{ bg = ColorPalette[cpal].Orange, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"VIL" ,{ bg = ColorPalette[cpal].Orange, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"VIB" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"SEL" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"INS" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"REP" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"COM" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"EEX" ,{ bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"UNK" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
 }
 
 local overlap = {
   -- mode - language overlap
-  {"NORLang" ,{ bg = '#39BAE6', fg = '#2BBB4F', gui="bold" }},
-  {"VISLang" ,{ bg = '#39BAE6', fg = '#FF8F40', gui="bold" }},
-  {"VILLang" ,{ bg = '#39BAE6', fg = '#FF8F40', gui="bold" }},
-  {"VIBLang" ,{ bg = '#39BAE6', fg = '#A37ACC', gui="bold" }},
-  {"SELLang" ,{ bg = '#39BAE6', fg = '#E6B450', gui="bold" }},
-  {"INSLang" ,{ bg = '#39BAE6', fg = '#39BAE6', gui="bold" }},
-  {"REPLang" ,{ bg = '#39BAE6', fg = '#39BAE6', gui="bold" }},
-  {"COMLang" ,{ bg = '#39BAE6', fg = '#E6B450', gui="bold" }},
-  {"EEXLang" ,{ bg = '#39BAE6', fg = '#2BBB4F', gui="bold" }},
-  {"UNKLang" ,{ bg = '#39BAE6', fg = '#A37ACC', gui="bold" }},
+  {"NORLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Green, gui="bold" }},
+  {"VISLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Orange, gui="bold" }},
+  {"VILLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Orange, gui="bold" }},
+  {"VIBLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+  {"SELLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+  {"INSLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Blue, gui="bold" }},
+  {"REPLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Blue, gui="bold" }},
+  {"COMLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+  {"EEXLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Green, gui="bold" }},
+  {"UNKLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
   -- git - lang
-  {"LangGit" ,{ bg = '#E7C547', fg = '#39BAE6', gui="bold" }},
+  {"LangGit" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Blue, gui="bold" }},
   -- git - center
-  {"GitCenter" ,{ bg = '#14191F', fg = '#E7C547', gui="bold" }},
+  {"GitCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
   -- lang - center
-  {"LangCenter" ,{ bg = '#14191F', fg = '#39BAE6', gui="bold" }},
+  {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
   -- for truncated use
-  {"NORName" ,{ bg = '#E7C547', fg = '#2BBB4F', gui="bold" }},
-  {"VISName" ,{ bg = '#E7C547', fg = '#FF8F40', gui="bold" }},
-  {"VILName" ,{ bg = '#E7C547', fg = '#FF8F40', gui="bold" }},
-  {"VIBName" ,{ bg = '#E7C547', fg = '#A37ACC', gui="bold" }},
-  {"SELName" ,{ bg = '#E7C547', fg = '#E6B450', gui="bold" }},
-  {"INSName" ,{ bg = '#E7C547', fg = '#39BAE6', gui="bold" }},
-  {"REPName" ,{ bg = '#E7C547', fg = '#39BAE6', gui="bold" }},
-  {"COMName" ,{ bg = '#E7C547', fg = '#E6B450', gui="bold" }},
-  {"EEXName" ,{ bg = '#E7C547', fg = '#2BBB4F', gui="bold" }},
-  {"UNKName" ,{ bg = '#E7C547', fg = '#A37ACC', gui="bold" }},
+  {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+  {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+  {"VILName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+  {"VIBName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+  {"SELName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+  {"INSName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+  {"REPName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+  {"COMName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+  {"EEXName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+  {"UNKName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
 
-  {"NORFFormat" ,{ bg = '#14191F', fg = '#2BBB4F', gui="bold" }},
-  {"VISFFormat" ,{ bg = '#14191F', fg = '#FF8F40', gui="bold" }},
-  {"VILFFormat" ,{ bg = '#14191F', fg = '#FF8F40', gui="bold" }},
-  {"VIBFFormat" ,{ bg = '#14191F', fg = '#A37ACC', gui="bold" }},
-  {"SELFFormat" ,{ bg = '#14191F', fg = '#E6B450', gui="bold" }},
-  {"INSFFormat" ,{ bg = '#14191F', fg = '#39BAE6', gui="bold" }},
-  {"REPFFormat" ,{ bg = '#14191F', fg = '#39BAE6', gui="bold" }},
-  {"COMFFormat" ,{ bg = '#14191F', fg = '#E6B450', gui="bold" }},
-  {"EEXFFormat" ,{ bg = '#14191F', fg = '#2BBB4F', gui="bold" }},
-  {"UNKFFormat" ,{ bg = '#14191F', fg = '#A37ACC', gui="bold" }},
+  {"NORFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+  {"VISFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+  {"VILFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+  {"VIBFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+  {"SELFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+  {"INSFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+  {"REPFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+  {"COMFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+  {"EEXFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+  {"UNKFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
 
-  {"WarningFormat", { bg = '#F29718', fg = '#14191F', gui="bold" }},
-  {"ErrorFormat"  , { bg = '#FF3333', fg = '#14191F', gui="bold" }},
-  {"ErrorWarning" , { bg = '#F29718', fg = '#FF3333', gui="bold" }},
-  {"CenterWrning" , { bg = '#14191F', fg = '#F29718', gui="bold" }},
-  {"CenterError"  , { bg = '#14191F', fg = '#FF3333', gui="bold" }},
+  {"WarningFormat", { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"ErrorFormat"  , { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"ErrorWarning" , { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Error, gui="bold" }},
+  {"CenterWrning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning, gui="bold" }},
+  {"CenterError"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
 }
 
 for _, highlight in ipairs(color_table) do
@@ -252,10 +268,14 @@ M.get_current_mode = function(self)
 end
 
 M.get_git_status = function(self)
-  return " "..fn['GitStatus']().." "
+  return " "..fn['GitStatus']()
 end
 
 M.get_filename = function(self)
+  if vim.bo.filetype == 'netrw' then 
+    if self:is_truncated(self.trunc_width.filename) then return " %<".. fn['getcwd']() .. " " end
+    return " %<".. fn['getcwd']() .. " " 
+  end
   if self:is_truncated(self.trunc_width.filename) then return " %<%f " .. fn['Modified']() end
   return " %<%F " .. fn['Modified']()
 end
@@ -264,7 +284,7 @@ M.get_filetype = function()
   local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
   local filetype = vim.bo.filetype
 
-  if filetype == '' then return '' end
+  if filetype == '' or filetype == 'netrw' then return '' end
   return string.format('  %s ', filetype):lower()
 end
 
@@ -273,22 +293,21 @@ M.get_line_col = function(self)
   return ' Ln:%l Co:%c '
 end
 M.get_Input_language = function()
-  return " "..fn['GetInputLang']().." "
+  return " "..fn['GetInputLang']()
 end
 
 
 M.get_lang_git_name = function(self)
   local git = self:get_git_status()
   local colors = self.colors
-  if self:is_truncated(self.trunc_width.mode)then 
-
-    return to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'Name') .. self.separators[active_sep][1].. colors.filetype .. self:get_filename()
+  if self:is_truncated(self.trunc_width.mode) then
+    return to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'Name') .. self.separators[active_sep][1] .. colors.filetype .. self:get_filename()
   end 
-  local lang = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'Lang').. self.separators[active_sep][1] .. colors.ins_language .. self:get_Input_language()
+  local lang = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'Lang').. self.separators[active_sep][1] .. colors.ins_language .. self:get_Input_language() .. " "
   if git == '' then
     return  lang ..  to_hl_group('LangCenter') .. self.separators[active_sep][1] .. colors.filetype .. self:get_filename()
   end
-    return  lang ..  to_hl_group('LangGit') .. self.separators[active_sep][1] .. colors.git .. git .. to_hl_group('GitCenter') .. self.separators[active_sep][1].. colors.filetype.." ".. self:get_filename()
+    return  lang ..  to_hl_group('LangGit') .. self.separators[active_sep][1] .. colors.git .. git.." " .. to_hl_group('GitCenter') .. self.separators[active_sep][1].. colors.filetype.." ".. self:get_filename()
 end
 
 M.get_format_lsp_diagn = function(self)
@@ -341,7 +360,7 @@ M.set_active = function(self)
     self:get_lang_git_name(), 
     "%=",
     self:get_format_lsp_diagn(),
-    line_col_alt, 
+    line_col_alt,
     line_col
   })
 end
@@ -372,6 +391,5 @@ api.nvim_exec([[
   au!
   au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
-  au WinEnter,BufEnter FileType netrw setlocal statusline=%!v:lua.Statusline('explorer')
   augroup END
 ]], false)
