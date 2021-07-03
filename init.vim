@@ -14,13 +14,12 @@ source $HOME/.config/nvim/functions/incl.vim
 source $HOME/.config/nvim/configs/basic.vim
 " Auto commnds
 source $HOME/.config/nvim/configs/auto.vim
-" No nerdtree. CHAD tree
+" tree explorer
 if g:file_explorer != ''
     source $HOME/.config/nvim/configs/tree_explorer.vim
 else
     source $HOME/.config/nvim/configs/netrw.vim
 endif
-
 " Fzf & Rg configs
 source $HOME/.config/nvim/configs/fzf.vim
 " Plgins

@@ -7,3 +7,5 @@ autocmd VimEnter *
             \|   PlugClean! | q|
             \| endi
 au BufRead * try | execute "compiler ".&filetype | catch /./ | endtry
+au WinEnter,BufEnter markdown,gitcommit,tex let g:compe.source.spell = v:true
+au WinLeave,BufLeave markdown,gitcommit,tex let g:compe.source.spell = v:false

@@ -1,6 +1,6 @@
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-set pumheight=15
+set pumheight=16
 
 lua<<EOF
 	require'lspconfig'.nimls.setup{}
@@ -38,7 +38,6 @@ require'compe'.setup {
 	treesitter = false;
 	};
 	}
-
 EOF
 lua<<EOF
 	require'navigator'.setup{
