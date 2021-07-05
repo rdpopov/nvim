@@ -7,7 +7,7 @@ local api = vim.api
 local M = {}
 
 -- possible values are 'arrow' | 'rounded' | 'blank'
-local active_sep = 'triangle'
+local active_sep = 'blank'
 
 -- change them if you want to different separator
 M.separators = {
@@ -315,8 +315,8 @@ M.get_lang_git_name = function(self)
 end
 
 M.get_format_lsp_diagn = function(self)
-   local errs = fn['LspError']()
-   local warn = fn['LspWarn']()
+   local errs = fn['LspError']() .. " "
+   local warn = fn['LspWarn']() .. " "
   local git = self:get_git_status()
   local colors = self.colors
 
@@ -324,19 +324,19 @@ M.get_format_lsp_diagn = function(self)
     return colors.filetype .. self:get_filetype() 
   end 
 
-  if errs == '' and  warn == '' then 
+  if errs == ' ' and  warn == ' ' then
     return colors.filetype .. self:get_filetype() 
   end
 
-  if errs  and  warn == '' then 
+  if errs ~= ' ' and  warn == ' ' then
     return to_hl_group('CenterError') .. self.separators[active_sep][2] .. colors.lsp_error .. " E: ".. errs.. to_hl_group('ErrorFormat').. self.separators[active_sep][2] ..  colors.filetype .. self:get_filetype() 
   end
 
-  if errs == '' and  warn  then 
+  if errs == ' ' and  warn ~= ' '  then 
     return to_hl_group('WarningFormat') .. self.separators[active_sep][2] .. colors.lsp_warn  .. " W: "..  warn .. to_hl_group('ErrorFormat').. self.separators[active_sep][2] ..  colors.filetype .. self:get_filetype() 
   end
 
-  if errs  and  warn then 
+  if errs ~= ' ' and  warn ~= ' '  then
     return to_hl_group('CenterWrning') .. self.separators[active_sep][2] ..
             colors.lsp_warn  .. " W:" ..  warn ..
             to_hl_group('ErrorWarning').. self.separators[active_sep][2] ..
