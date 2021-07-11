@@ -2,7 +2,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-colorscheme PaperColor
+colorscheme aurora
 
 set laststatus=2
 set noshowmode

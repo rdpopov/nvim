@@ -17,7 +17,7 @@ M.separators = {
   triangle = {'' ,''},
 }
 
-local cpal = 'PaperColor'
+local cpal = 'aurora'
 
 local ColorPalette = {
     ['ayu'] = 
@@ -48,6 +48,20 @@ local ColorPalette = {
       ['Name']  = '#00afaf',
       ['Warning'] = '#d75f00',
       ['Error'] = '#d70000',
+    }, { __index = function() return '#FFFFFF' end }),
+   ['aurora'] = setmetatable({
+      ['Blue']  = '#65b2ff',
+      ['Red']  = '#F02E6E',
+      ['Yellow']  = '#ffe6b3',
+      ['Orange']  = '#FF7733',
+      ['Green']  = '#62d196',
+      ['Violet']  = '#d4bfff',
+      ['Gray']  = '#14191F',
+      ['Black']  = '#14191F',
+      ['Background']  = '#1e1c31',
+      ['Name']  = '#87DFEB',
+      ['Warning'] = '#F2B482',
+      ['Error'] = '#F02E6E',
     }, { __index = function() return '#FFFFFF' end }),
 --   ['codedark'] = {},
 }
