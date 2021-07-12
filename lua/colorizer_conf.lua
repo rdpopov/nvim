@@ -1,4 +1,3 @@
-lua<<EOF
 require 'colorizer'.setup({
   'css';
   'javascript';
@@ -6,4 +5,3 @@ require 'colorizer'.setup({
   'lua';
   'html';
 })
-EOF

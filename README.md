@@ -23,23 +23,23 @@ Just kidding. Actually I don't like it and I edit it constatnly.\
    but so does learing any other tool. But with great power comes great customization time
  - **Extendabilty** - Vim is less barebones than it looks. It is a clean slate at the beginning.\
    It has a lot of powerfull functionality built into it. Like include paths and :make\
-   It can do a lot on its own, but there are also plugins for it form the vim community.\
-   And if there isn't waht you are looking for, you can write it yourself,\
-   and the barier to entry is pretty low. You could script in vimscript,\
-   or at something like python or lua (neovim even ships with the lua compiler).
- - **Keymap** - The normal (vscode) shortcuts are somewaht long or similar functions are\
-   at opposite ends of the keyboard. Vim being modal, has more combinations per mode,\
+   It can do a lot on its own, but there are also plugins for it form the vim community.
+ - **Keymap** - The normal (vscode or the ISO standard that is present almost everywhere)\
+   shortcuts are somewaht long or similar functions are at opposite ends of the keyboard, \
+   or make no sense at all. Vim being modal, has more combinations per mode,\
    and combinations are shorter on average. Basic keymap uses mneumonics,\
    and everytinng is remapable. Movment commands are superb.\
    There is more variety of movment commands and are more efficient at little movments.
  - **Portable** - I keep my vim config in a git so its easy to set it up almost anywhere.\
    and I'm trying to make some things in vimscript as much as I can, so I have most\
-   what I'm used to regardless of location(colorscheme, lightline, using netrw)
+   what I'm used to regardless of location(colorscheme, lightline, using netrw).
+   It is made mainly for neovim since it uses lua for some things. But, neovim\ 
+   has built in lsp support, so one less bulky dependancy to have.
 
 ## Main goal
 The main goal for this configuration was to be able to have a neovim config\
 for writing in [nim-lang] or any other language but nim in particualr.\
-And have completion like vscode has, but lighter, faster.
+And have completion like vscode has, but lighter, faster. 
 
 [nim-lang]:https://nim-lang.org/
 
@@ -64,22 +64,9 @@ And have completion like vscode has, but lighter, faster.
 - might add a version of this as a debian docker container, already configured and ready to go
 
 ### Needed external programs 
-- **ripgrep** (also rust is needed)
-- **nodejs, npm, yarn** -if you want to install lsp-s, nvim has built in client
-- **pynvim** for python support
-- various language servers(look at the nvim-lsp page for what and how)
-
-####  Current configurations for  
-- **Nim-lang** witn nimsuggest and asyncomplete for completion and coc for anything else
-- **Lua** with sumneko/lua
-- **Python** with jedi language server
-- **Js/Ts** with tsserver
-- **Lua** with sumneko/lua
-- **html** (not a language, but) vscode-lang_server for html
-- **Golang** with golsp
-- **Vim-Script** vscode-vimlsp server (oh the irony)
-- **C/C++** with ccls
-- **Rust**(maybe)
+- **ripgrep** as fzf needs. Until I can figure out how to replace it with good ol grep
+- **node.js** - jk. Neovim has built in lsp support, so to strictly needed.\
+    that said some lsp-s are gotten from there
 
 ## Configuraton is split into several files all(most) in configs
 - **auto.vim** - Auto commands, currenty only one that install new plugins and clears old ones.
@@ -113,16 +100,6 @@ And have completion like vscode has, but lighter, faster.
  <sup>(2) I am aware that there is the vim surround by tpope, I would use it, BUT\
  I want to have something that is not dependant of plugins, as I consider it to be a\
  somewhat basic functionality</sup>
-
-Press **F10**  in normal mode for a list of my custom keybinfings.
-
-## Snippets support
-
-There is support for snippets however you have to write them yourself.\
-If you need to use them that is.\
-But bindings are present in **repo_root/snippets/snippets.vim**\
-Very easy to modify.\
-For any language you need to put snippets in a folder named the result of **:echo &filetype** in vim.
 
 ## My homebrew utils
 I have had some defficulties with finding some things that I want as plugins.\

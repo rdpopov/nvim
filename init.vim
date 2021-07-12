@@ -5,7 +5,6 @@ let g:prefered_browser = "brave-browser"
 let g:lang = ['english','bulgarian-phonetic']
 let g:file_explorer = "nvim-tree"
 
-
 " Basic editor settings
 source $HOME/.config/nvim/configs/settings.vim
 " My homeprew functions separated in files
@@ -14,7 +13,7 @@ source $HOME/.config/nvim/functions/incl.vim
 source $HOME/.config/nvim/configs/basic.vim
 " Auto commnds
 source $HOME/.config/nvim/configs/auto.vim
-" tree explorer
+" File tree
 if g:file_explorer != ''
     source $HOME/.config/nvim/configs/tree_explorer.vim
 else
@@ -28,14 +27,7 @@ source $HOME/.config/nvim/configs/plugs.vim
 source $HOME/.config/nvim/snippets/snippets.vim
 " Commands and mappings
 source $HOME/.config/nvim/configs/cmd.vim
-"Homebrew Statusline and colors
-source $HOME/.config/nvim/configs/colors.vim
-lua require('statusline')
-"colorizer
-source $HOME/.config/nvim/configs/colorizer.vim
-" Native Lsp completion
-if !exists('$WORK')
-    source $HOME/.config/nvim/configs/nvim_lsp.vim
-    " Native Lsp completion
-    source $HOME/.config/nvim/configs/treesitter.vim
-endif
+"Homebrew Statusline and colors and colorizer
+source $HOME/.config/nvim/configs/colors.vim 
+" Native Lsp, navigator, nvim compe adn treesitter
+source $HOME/.config/nvim/configs/nvim_lsp.vim
