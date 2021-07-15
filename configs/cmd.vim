@@ -109,3 +109,4 @@ vnoremap <M-T> :call SudoExecInTerminal()<cr>
 nnoremap <silent> <leader>e :norm<C-Y>,<cr>
 "; write around word 
 nnoremap <silent> sa :call Around(input("Surround With: "))<CR>
+nnoremap <silent> <C-t> :Vista!!<CR>

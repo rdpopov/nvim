@@ -18,6 +18,7 @@ Plug 'norcalli/nvim-colorizer.lua'                  "   colorizer for colors in 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'                       "   git integration
 Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
+Plug 'liuchengxu/vista.vim'
 if g:file_explorer == 'nvim-tree'
 Plug 'kyazdani42/nvim-tree.lua'
 endif
