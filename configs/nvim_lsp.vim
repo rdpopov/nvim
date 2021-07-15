@@ -7,5 +7,5 @@ source $HOME/.config/nvim/configs/vista.vim
 
 lua require('lsp_conf')
 lua require('compe_conf')
-lua require('navigator_conf')
+lua require('lspsaga_conf')
 lua require('treesitter_conf')
