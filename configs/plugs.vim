@@ -1,11 +1,10 @@
 call plug#begin()
-Plug 'sheerun/vim-polyglot'
 Plug 'alaviss/nim.nvim'
+Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " tree-sitter for neovim
 Plug 'neovim/nvim-lspconfig'                        "   lsp configuration api for native lsp
 Plug 'hrsh7th/nvim-compe'                      "   completion api for lsp
-Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' }
-Plug 'ray-x/navigator.lua'
+Plug 'glepnir/lspsaga.nvim'
 Plug 'Chiel92/vim-autoformat'                       "   Easy file formatter
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } "   fuzzy file finder and multitool
 Plug 'junegunn/fzf.vim'                             "   it is
