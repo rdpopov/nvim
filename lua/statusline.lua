@@ -63,7 +63,20 @@ local ColorPalette = {
       ['Warning'] = '#F2B482',
       ['Error'] = '#F02E6E',
     }, { __index = function() return '#FFFFFF' end }),
---   ['codedark'] = {},
+   ['codedark'] = setmetatable({
+      ['Blue']  = '#0A7ACA',
+      ['Red']  = '#F44747',
+      ['Yellow']  = '#FFAF00',
+      ['Orange']  = '#CE9178',
+      ['Green']  = '#4EC9B0',
+      ['Violet']  = '#d4bfff',
+      ['Gray']  = '#14191F',
+      ['Black']  = '#14191F',
+      ['Background']  = '#262626',
+      ['Name']  = '#5CB6F8',
+      ['Warning'] = '#FFAF00',
+      ['Error'] = '#FB0101',
+    }, { __index = function() return '#FFFFFF' end }),
 }
 
 --==============================================================================
