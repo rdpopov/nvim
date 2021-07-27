@@ -4,7 +4,8 @@
 
 "Leader key, any place there is <Leader> substitute for this
 " currnetly it is the \ symbol
-let mapleader = "\\"
+let mapleader ="\\"
+map <Space> <Leader>
 if has('autocmd')
     autocmd filetype python set expandtab
     autocmd filetype nim set expandtab

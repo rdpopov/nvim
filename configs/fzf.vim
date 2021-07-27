@@ -14,7 +14,9 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 map <C-f> :Files<CR>
 ";FZF files in current directory
-nnoremap <leader>g :Rg<CR>
+nnoremap <leader>g :Rg 
+";FZF files in current directory
+nnoremap <leader>G :Rg<CR>
 ";Rg on files in current directory
 nnoremap <leader>t :Tags<CR>
 ";FZF on tags current directory
@@ -23,10 +25,12 @@ nnoremap <leader>m :Marks<CR>
 nnoremap <leader>b :Buffers<CR>
 ";FZF on buffers
 nnoremap <leader>h :History<CR>
+";Files
+nnoremap <leader>F :Files<CR>
 ";FZF on recent files
 nnoremap <leader>f :execute ":Rg ".expand('<cword>')<CR>
 ";Rg file under cursor
-nnoremap <leader>q :BCommits<CR>
+nnoremap <leader>c :BCommits<CR>
 ";Show commits which changed the file
 
 nnoremap <F8> :execute ":Rg @TODO :"<CR>
