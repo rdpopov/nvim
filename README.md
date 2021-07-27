@@ -48,16 +48,22 @@ And have completion like vscode has, but lighter, faster.
 </p>
 
 <p>
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/lsp.png"  title="Tree-sitter + lsp">
-</p>
-
-<p>
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/diagn.png"  title="Get all diagnostics">
 </p>
 
 <p>
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/descr.png"  title="Hover definition">
 </p>
+
+<p>
+<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/preview.png"  title="Preview definition with fzf">
+</p>
+
+<p>
+<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/tree.png"  title="Tree undo is best undo">
+</p>
+
+
 ## Initial setup
 - [Neovim]
 - or with a setup.sh (NYI but will do...at some point, maybe with compiling neovim-nightly)
