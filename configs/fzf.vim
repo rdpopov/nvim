@@ -39,8 +39,8 @@ let g:fzf_tags_command = 'ctags -R'
 " Border color
 let g:fzf_layout = {'down':'25%'  }
 
-let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-let $FZF_DEFAULT_COMMAND="rg --files --hidden"
+let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline  --preview-window border-vertical '
+let $FZF_DEFAULT_COMMAND='if ([ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1); then { git ls-files & git ls-files --others --exclude-standard; }; else find 2>/dev/null; fi'
 
 
 " Customize fzf colors to match your color scheme
