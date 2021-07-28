@@ -17,10 +17,6 @@ noremap <F3> :Autoformat<CR>:retab<CR>
 ";Format file 
 " Finds all keybinds written in a predetermined format and puts them in a
 " quickfix list
-function! g:Help_bind()
-    cexpr system("$HOME/.config/nvim/.find.sh")
-    copen
-endfunction
 
 function! g:OpenLspConfHelp()
     execute ":vsplit "."$HOME/.config/nvim/plugged/nvim-lspconfig/CONFIG.md"
@@ -30,7 +26,7 @@ inoremap <Leader>l <Esc>:call CycleLanguagesUp()<CR>a
 ";Cycle input language for Insert mode up, Search for CycleLanguagesDown for opposite 
 nnoremap <Leader>l :call CycleLanguagesUp()<CR>
 ";Cycle input language for Insert mode up, Search for CycleLanguagesDown for opposite 
-nnoremap <F10> :call Help_bind()<CR>
+nnoremap <F10> :Maps<CR>
 ";Open window with all the user defined binfigs 
 nnoremap <F4> :Cheat 
 ";Write a :Cheat in command mode, ready to write a cheat.sh query
@@ -100,14 +96,15 @@ nnoremap <silent> gs    <cmd>lua vim.lsp.buf.declaration()<CR>
 "; go to declaration if lsp is on fior file format
 nnoremap <F6> :call OpenLspConfHelp()<CR>
 "; Open information for neovim-native-lsp supported language servers
-
 vnoremap <M-b> :call OpenInBrowser()<cr>
 "; Open thing in visual selection in a browser
 vnoremap <M-t> :call ExecInTerminal()<cr>
 "; Execute thing in vuisual selection in terminal
 vnoremap <M-T> :call SudoExecInTerminal()<cr>
 "; Execute thing in visual selection in terminal w/ sudo
-nnoremap <silent> <leader>e :norm<C-Y>,<cr>
+"nnoremap <silent> <leader>e :norm<C-Y>,<cr> 
+";wtf?
+nnoremap <silent> <leader>u :UndotreeToggle<cr>
 "; write around word 
-nnoremap <silent> sa :call Around(input("Surround With: "))<CR>
+nnoremap <silent> <leader>s :call Around(input("Surround With: "))<CR>
 nnoremap <silent> <C-t> :Vista!!<CR>

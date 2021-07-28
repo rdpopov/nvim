@@ -10,13 +10,29 @@ let g:fzf_action = {
 " CTRL-N and CTRL-P will be automatically bound to next-history and
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+
+function! g:Grep(var)
+	execute "grep -srnw --binary-files=without-match --exclude-dir=.git . -e " . a:var
+	copen
+endfunction
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-map <C-f> :Files<CR>
+if exists("g:use_ripgrep") 
+	nnoremap <leader>g :Rg
+	nnoremap <leader>G :execute ":Rg ".expand('<cword>')<CR>
+	let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline  --preview-window border-vertical '
+	let $FZF_DEFAULT_COMMAND="rg --files --hidden"
+else
+	nnoremap <leader>g :call Grep(expand("<cword>"))<CR>
+	nnoremap <leader>G :call Grep(input('Search for: '))<CR>
+	let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline  --preview-window border-vertical '
+	let $FZF_DEFAULT_COMMAND='if ([ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1); then { git ls-files & git ls-files --others --exclude-standard; }; else find 2>/dev/null; fi'
+endif
+
 ";FZF files in current directory
-nnoremap <leader>g :Rg 
+"nnoremap <leader>g :Rg 
 ";FZF files in current directory
-nnoremap <leader>G :Rg<CR>
+"nnoremap <leader>G :Rg<CR>
 ";Rg on files in current directory
 nnoremap <leader>t :Tags<CR>
 ";FZF on tags current directory
@@ -26,9 +42,8 @@ nnoremap <leader>b :Buffers<CR>
 ";FZF on buffers
 nnoremap <leader>h :History<CR>
 ";Files
-nnoremap <leader>F :Files<CR>
+nnoremap <leader>o :Files<CR>
 ";FZF on recent files
-nnoremap <leader>f :execute ":Rg ".expand('<cword>')<CR>
 ";Rg file under cursor
 nnoremap <leader>c :BCommits<CR>
 ";Show commits which changed the file
@@ -38,10 +53,6 @@ nnoremap <F8> :execute ":Rg @TODO :"<CR>
 let g:fzf_tags_command = 'ctags -R'
 " Border color
 let g:fzf_layout = {'down':'25%'  }
-
-let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline  --preview-window border-vertical '
-let $FZF_DEFAULT_COMMAND='if ([ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1); then { git ls-files & git ls-files --others --exclude-standard; }; else find 2>/dev/null; fi'
-
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
