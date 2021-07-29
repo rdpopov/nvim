@@ -10,8 +10,6 @@ let g:use_netrw		= v:true
 source $HOME/.config/nvim/configs/settings.vim
 " My homeprew functions separated in files
 source $HOME/.config/nvim/functions/incl.vim
-" Basic config for other plgins
-source $HOME/.config/nvim/configs/basic.vim
 " Auto commnds
 source $HOME/.config/nvim/configs/auto.vim
 " Plgins
