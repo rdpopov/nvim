@@ -17,15 +17,15 @@ function! g:Grep(var)
 endfunction
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-if exists("g:use_ripgrep") 
+
+let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline  --preview-window border-vertical --bind ctrl-h:preview-up,ctrl-l:preview-down --no-unicode'
+if g:use_ripgrep
 	nnoremap <leader>g :Rg
 	nnoremap <leader>G :execute ":Rg ".expand('<cword>')<CR>
-	let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline  --preview-window border-vertical '
 	let $FZF_DEFAULT_COMMAND="rg --files --hidden"
 else
 	nnoremap <leader>g :call Grep(expand("<cword>"))<CR>
 	nnoremap <leader>G :call Grep(input('Search for: '))<CR>
-	let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline  --preview-window border-vertical '
 	let $FZF_DEFAULT_COMMAND='if ([ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1); then { git ls-files & git ls-files --others --exclude-standard; }; else find 2>/dev/null; fi'
 endif
 
@@ -47,6 +47,7 @@ nnoremap <leader>o :Files<CR>
 ";Rg file under cursor
 nnoremap <leader>c :BCommits<CR>
 ";Show commits which changed the file
+nnoremap <leader>s :GFiles?<CR>
 
 nnoremap <F8> :execute ":Rg @TODO :"<CR>
 
@@ -98,5 +99,4 @@ command! -bang -nargs=* GGrep
       \ call fzf#vim#grep(
       \   'git grep --line-number '.shellescape(<q-args>), 0,
       \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
-
 
