@@ -106,5 +106,5 @@ vnoremap <M-T> :call SudoExecInTerminal()<cr>
 ";wtf?
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
 "; write around word 
-nnoremap <silent> <leader>s :call Around(input("Surround With: "))<CR>
+"nnoremap <silent> <leader>s :call Around(input("Surround With: "))<CR>
 nnoremap <silent> <C-t> :Vista!!<CR>

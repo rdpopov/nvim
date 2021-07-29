@@ -33,6 +33,7 @@ set incsearch     " show search matches as you type
 set hidden	  " makes it so files are kept in memory ?
 set expandtab
 set colorcolumn=80
+set foldmethod=syntax
 
 
 set history=10000         " remember more commands and search history

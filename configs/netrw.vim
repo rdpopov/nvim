@@ -1,6 +1,6 @@
 " stolen form here: https://stackoverflow.com/questions/5006950/setting-netrw-like-nerdtree
 " tree-view
-let g:netrw_winsize = 14
+let g:netrw_winsize = 10
 let g:netrw_liststyle = 3
 let g:netrw_sizestyle= "h"
 let g:netrw_banner=0
@@ -39,5 +39,3 @@ fun! Lexplore(dir, right)
 endfun
 nnoremap <C-n> :Lexplore<CR>
 " absolute width of netrw window
-
-
