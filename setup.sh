@@ -16,20 +16,17 @@ setup_nvim(){
     chmod +x nvim && sudo chown root:root nvim && sudo mv nvim /usr/bin
     pip3 install --user neovim
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    ls $HOME"/.undodir" > /dev/null || mkdir $HOME"/.undodir"
 }
 
 setup_tmux(){
-    if [[ -e $HOME/.tmux.conf ]]; then
-      mv $HOME/.tmux.conf $HOME/.tmux.conf.bak
-    fi
+    ls $HOME/.tmux.conf > /dev/null && mv $HOME/.tmux.conf $HOME/.tmux.conf.bak
     cp dots/tmux.conf $HOME/.tmux.conf
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm #tmux package manager
+    ls $HOME/.tmux/plugins/tpm > /dev/null || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm #tmux package manager
 }
 
 setup_alac(){
-    if [[ -e $HOME/alacritty.yml ]]; then
-      mv $HOME/.alacritty.yml $HOME/.alacritty.yml.bak
-    fi
+    ls $HOME/alacritty.yml >/dev/null && mv $HOME/.alacritty.yml $HOME/.alacritty.yml.bak
     cp dots/alacritty.yml $HOME/.alacritty.yml
 }
 
