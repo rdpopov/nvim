@@ -20,7 +20,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline  --preview-window border-vertical --bind ctrl-h:preview-up,ctrl-l:preview-down --no-unicode'
 if g:use_ripgrep
-	nnoremap <leader>g :Rg
+	nnoremap <leader>g :Rg 
 	nnoremap <leader>G :execute ":Rg ".expand('<cword>')<CR>
 	let $FZF_DEFAULT_COMMAND="rg --files --hidden"
 else
