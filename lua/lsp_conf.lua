@@ -6,6 +6,7 @@ require'lspconfig'.html.setup{}
 require'lspconfig'.gopls.setup{}
 require'lspconfig'.vimls.setup{}
 require'lspconfig'.rls.setup{}
+require'lspconfig'.hls.setup{}
 
 require "lsp_signature".setup({
     bind = true, 
