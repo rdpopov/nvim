@@ -1,8 +1,16 @@
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 set pumheight=16
-nnoremap <leader>d <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+function! g:ToggleDiagn()
+    if get(getloclist(0, {'winid':0}), 'winid', 0)
+        lclose
+    else
+        lua vim.lsp.diagnostic.set_loclist()
+    endif
+endfunction
 
+
+nnoremap <leader>d :call ToggleDiagn()<CR>
 
 nnoremap gD <Cmd>lua vim.lsp.buf.declaration()<CR> 
 nnoremap gd <Cmd>lua vim.lsp.buf.definition()<CR> 
