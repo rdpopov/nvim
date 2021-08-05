@@ -57,7 +57,7 @@ set listchars=tab:\|.,trail:.,extends:#,nbsp:.
 
 
 if has("persistent_undo")
-    set undodir=$HOME"/.undodir"
+    call system("[ -d \"$HOME/.undodir\" ] || mkdir $HOME/.undodir")
+    set undodir=$HOME/.undodir
     set undofile
 endif
-
