@@ -19,16 +19,21 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline  --preview-window border-vertical --bind ctrl-h:preview-up,ctrl-l:preview-down --no-unicode'
-if g:use_ripgrep
-	nnoremap <leader>g :Rg 
-	nnoremap <leader>G :execute ":Rg ".expand('<cword>')<CR>
-	let $FZF_DEFAULT_COMMAND="rg --files --hidden"
+if exists("g:use_ripgrep")
+      if g:use_ripgrep
+            nnoremap <leader>g :Rg 
+            nnoremap <leader>G :execute ":Rg ".expand('<cword>')<CR>
+            let $FZF_DEFAULT_COMMAND="rg --files --hidden"
+      else
+            nnoremap <leader>g :call Grep(expand("<cword>"))<CR>
+            nnoremap <leader>G :call Grep(input('Search for: '))<CR>
+            let $FZF_DEFAULT_COMMAND='if ([ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1); then { git ls-files & git ls-files --others --exclude-standard; }; else find 2>/dev/null; fi'
+      endif
 else
-	nnoremap <leader>g :call Grep(expand("<cword>"))<CR>
-	nnoremap <leader>G :call Grep(input('Search for: '))<CR>
-	let $FZF_DEFAULT_COMMAND='if ([ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1); then { git ls-files & git ls-files --others --exclude-standard; }; else find 2>/dev/null; fi'
+      nnoremap <leader>g :call Grep(expand("<cword>"))<CR>
+      nnoremap <leader>G :call Grep(input('Search for: '))<CR>
+      let $FZF_DEFAULT_COMMAND='if ([ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1); then { git ls-files & git ls-files --others --exclude-standard; }; else find 2>/dev/null; fi'
 endif
-
 ";FZF files in current directory
 "nnoremap <leader>g :Rg 
 ";FZF files in current directory

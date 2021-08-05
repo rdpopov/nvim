@@ -9,3 +9,13 @@ autocmd VimEnter *
 au BufRead * try | execute "compiler ".&filetype | catch /./ | endtry
 au WinEnter,BufEnter markdown,gitcommit,tex let g:compe.source.spell = v:true
 au WinLeave,BufLeave markdown,gitcommit,tex let g:compe.source.spell = v:false
+
+if filereadable("localrc.vim")
+    source ./localrc.vim
+endif
+
+if exists("g:auto_session")
+    if g:auto_session && filereadable("Session.vim")
+        source ./Session.vim
+    endif
+endif

@@ -108,3 +108,6 @@ nnoremap <silent> <leader>u :UndotreeToggle<cr>
 "; write around word 
 "nnoremap <silent> <leader>s :call Around(input("Surround With: "))<CR>
 nnoremap <silent> <C-t> :Vista!!<CR>
+nnoremap <F6> :mksession!<CR>
+nnoremap <F7> :!echo -e "let g:auto_session= v:true\nlet g:use_ripgrep = v:true" > localrc.vim <CR><CR>
+nnoremap <leader>w :source Session.vim<CR>

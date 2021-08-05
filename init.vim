@@ -3,8 +3,6 @@ set background=dark
 
 let g:prefered_browser = "brave-browser"
 let g:lang = ['english','bulgarian-phonetic']
-let g:use_ripgrep = v:false
-let g:use_netrw		= v:true
 
 " Basic editor settings
 source $HOME/.config/nvim/configs/settings.vim
