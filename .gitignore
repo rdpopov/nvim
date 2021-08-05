@@ -3,3 +3,4 @@ plugged
 .ccls
 Session.vim
 localrc.vim
+machinerc.vim

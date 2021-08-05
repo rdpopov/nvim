@@ -9,6 +9,11 @@ autocmd VimEnter *
 au BufRead * try | execute "compiler ".&filetype | catch /./ | endtry
 au WinEnter,BufEnter markdown,gitcommit,tex let g:compe.source.spell = v:true
 au WinLeave,BufLeave markdown,gitcommit,tex let g:compe.source.spell = v:false
+if filereadable("$HOME/.config/nvim/machinerc.vim")
+    source $HOME/.config/nvim/machinerc.vim
+else
+    call system("echo -e \"let g:auto_session= v:false\nlet g:use_ripgrep = v:false\" > $HOME/.config/nvim/machinerc.vim") 
+endif
 
 if filereadable("localrc.vim")
     source ./localrc.vim
