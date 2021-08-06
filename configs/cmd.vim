@@ -46,6 +46,9 @@ noremap <Leader>Y "+y
 ";Yank into system clipboard (might not work)
 noremap <Leader>P "+p
 ";Paste from system clipboard (might not work)
+nnoremap Y y$
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 "Window managment
 nnoremap <C-h> :call ResizeWith('h')<CR>
