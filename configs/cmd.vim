@@ -114,3 +114,14 @@ nnoremap <silent> <C-t> :Vista!!<CR>
 nnoremap <F6> :mksession!<CR>
 nnoremap <F7> :!echo -e "let g:auto_session= v:true\nlet g:use_ripgrep = v:true" > localrc.vim <CR><CR>
 nnoremap <leader>w :source Session.vim<CR>
+nnoremap <leader>x :make <cr>
+function! g:QfToggle()
+	for winnr in range(1, winnr('$'))
+		 if getwinvar(winnr, '&syntax') == 'qf'
+			cclose
+			return
+		 endif
+	endfor
+	copen
+endfunction
+nnoremap <leader>c :call QfToggle()<cr>
