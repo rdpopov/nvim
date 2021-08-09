@@ -21,14 +21,10 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline  --preview-window border-vertical --bind ctrl-h:preview-up,ctrl-l:preview-down --no-unicode'
 nnoremap <leader>g :call Grep(input('Search for: '))<CR>
 nnoremap <leader>G :call Grep(expand("<cword>"))<CR>
-let $FZF_DEFAULT_COMMAND='if ([ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1); then { git ls-files & git ls-files --others --exclude-standard; }; else find 2>/dev/null; fi'
-if exists("g:use_ripgrep")
-      if g:use_ripgrep
-            nnoremap <leader>g :execute ":Rg ".input('Search for: ')<CR>
-            nnoremap <leader>G :execute ":Rg ".expand('<cword>')<CR>
-            let $FZF_DEFAULT_COMMAND="rg --files --hidden"
-      endif
-endif
+"let $FZF_DEFAULT_COMMAND='rg --files --hidden'
+let $FZF_DEFAULT_COMMAND='rg --files --hidden || if ([ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1); then { git ls-files & git ls-files --others --exclude-standard; }; else find 2>/dev/null; fi'
+nnoremap <leader>r :execute ":Rg ".input('Search for: ')<CR>
+nnoremap <leader>R :execute ":Rg ".expand('<cword>')<CR>
 ";FZF files in current directory
 "nnoremap <leader>g :Rg 
 ";FZF files in current directory
