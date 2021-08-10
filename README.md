@@ -2,28 +2,20 @@
 This is my neovim configuration.\
 Made as portable as I could, but still needs alot of external progrmas.\
 Not the very best, but it's mine and i like it.\
-Just kidding. Actually I don't like it and I edit it constatnly.\
+Just kidding. Actually I don't like it and I edit it constatnly.
 
 *"No one ever accomplished anything by being content with who they were"* - Adolin Kholin
 
 ## Why vim?
- - First of all why not? There is the meme of people fearing vim.\
-   I guess because it's different. But there is nothing to be afraid of.
- - **Speed** - It is way faster and lighter than any editor/ide I have used.\
-   Especialy for big projects. Compared to vscode. Vscode indexing\
-   grinds a fairly modern computer to a halt, often crashing.\
-   Granted with (n)vim I was using a language server, but things like that are\
-   a bit more intimidating than normal plugin instalation on vscode\ 
-   and heavy configuration seems very rare afaik but it is there and seems limited.\
-   While with vim this is the name of the game. My config is not that heavy,\
-   so it could be worse, but startup time is about 140 ms. Compare that to something like pycharm.
+ - **Speed** - It is way faster and lighter than any ide I have used.\
+     Blows past anything in written with electron, and smokes heavier stuff, too.
  - **Power** - (n)vim's commands may seem strange at first. But they are more of a language.\
-   than simple commands.
+   than simple commands. And  you can always write your own
  - **Customizablity** - Make (n)vim the edtior you want. It takes time,\
    but so does learing any other tool. But with great power comes great customization time
  - **Extendabilty** - Vim is less barebones than it looks. It is a clean slate at the beginning.\
    It has a lot of powerfull functionality built into it. Like include paths and :make\
-   It can do a lot on its own, but there are also plugins for it form the vim community.
+   It can do a lot on its own, but there are also plugins for it fromm the vim community.
  - **Keymap** - The normal (vscode or the ISO standard that is present almost everywhere)\
    shortcuts are somewaht long or similar functions are at opposite ends of the keyboard, \
    or make no sense at all. Vim being modal, has more combinations per mode,\
@@ -62,6 +54,15 @@ And have completion like vscode has, but lighter, faster.
 <p>
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/tree.png"  title="Tree undo is best undo">
 </p>
+## Features
+- Git git gutter
+- Visual git client (some things are faster than console)
+- Build from within neovim(setup keybinds for that)
+- Lsp support (also buffer, tag and dictionary based completion)
+- Per project config
+- Undo tree(like a small per file git also can brach)
+- File managment - netrw is surprisingly robust
+- and what else do you need?
 
 
 ## Initial setup
@@ -70,9 +71,7 @@ And have completion like vscode has, but lighter, faster.
 - might add a version of this as a debian docker container, already configured and ready to go
 
 ### Needed external programs 
-- **ripgrep** as fzf needs. Until I can figure out how to replace it with good ol grep
-- **node.js** - jk. Neovim has built in lsp support, so to strictly needed.\
-    that said some lsp-s are gotten from there
+- **ripgrep** as fzf needs it ... sort of. can do it with grep but is easier with this
 
 ## Configuraton is split into several files all(most) in configs
 - **auto.vim** - Auto commands, currenty only one that install new plugins and clears old ones.
@@ -80,15 +79,15 @@ And have completion like vscode has, but lighter, faster.
 - **basic.vim** - Basic plugin settings, here i put plugins that need at most 2-3 lines of config.
 - **cmd.vim** - Some mappings that I have.
 - **colors.vim** -  ayu and other color stuff
-- **colorizer.vim** -  colorizer config
 - **fzf.vim** - Fzf config stolen from the original repo, and modified slightly
-- **netrw.vim** - Config for netrw file browser
+- **netrw.vim** - Config for netrw file browser. Surprisingly useful
 - **nvim-lsp.vim** - neovim native lsp configuration
-- **treesitter.vim** - neovim native lsp configuration
+- **navigation.vim** - neovim native lsp configuration
 - **plugs.vim** - Here are all the plugin currently in use, 
 - **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.
 - **lua/statusline.lua** - fancy Statusline in lua 
 - **stashed/**  - past configs for plugins i might come back to on a later date
+- **patches/**  - sometimes you have to patch plugins yourself.
 - **tmux.conf** - this is my tmux configuration 
 
 ## My vimscript implemnetations for some somewaht basic things
