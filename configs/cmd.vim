@@ -125,3 +125,8 @@ function! g:QfToggle()
 	copen
 endfunction
 nnoremap <leader>c :call QfToggle()<cr>
+
+nnoremap <leader>] :GitGutterNextHunk<CR>
+nnoremap <leader>[ :GitGutterPrevHunk<CR>
+nnoremap <leader>A :GitGutterPreviewHunk<CR>
+nnoremap <leader>D :GitGutterQuickFix<CR>
