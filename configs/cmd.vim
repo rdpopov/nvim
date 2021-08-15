@@ -7,33 +7,32 @@
 let mapleader ="\\"
 map <Space> <Leader>
 if has('autocmd')
-    autocmd filetype python set expandtab
-    autocmd filetype nim set expandtab
-    "`autocmd BufNewFile,BufRead *.nim set filetype=nim
+	autocmd filetype python set expandtab
+	autocmd filetype nim set expandtab
+	"`autocmd BufNewFile,BufRead *.nim set filetype=nim
 endif
 noremap <F2> :QuickRun<CR>
 ";Run current file
 noremap <F3> :Autoformat<CR>:retab<CR>
-";Format file 
+";Format file
 " Finds all keybinds written in a predetermined format and puts them in a
 " quickfix list
 
 function! g:OpenLspConfHelp()
-    execute ":vsplit "."$HOME/.config/nvim/plugged/nvim-lspconfig/CONFIG.md"
+	execute ":vsplit "."$HOME/.config/nvim/plugged/nvim-lspconfig/CONFIG.md"
 endfunction
 
+
 inoremap <Leader>l <Esc>:call CycleLanguagesUp()<CR>a
-";Cycle input language for Insert mode up, Search for CycleLanguagesDown for opposite 
+";Cycle input language for Insert mode up, Search for CycleLanguagesDown for opposite
 nnoremap <Leader>l :call CycleLanguagesUp()<CR>
-";Cycle input language for Insert mode up, Search for CycleLanguagesDown for opposite 
-nnoremap <F10> :Maps<CR>
-";Open window with all the user defined binfigs 
-nnoremap <F4> :Cheat 
+";Cycle input language for Insert mode up, Search for CycleLanguagesDown for opposite
+nnoremap <F4> :Cheat
 ";Write a :Cheat in command mode, ready to write a cheat.sh query
-nnoremap <F5> :HowIn 
+nnoremap <F5> :HowIn
 ";Write a :HowIn in command mode, ready to write a cheat.sh query
 nmap <silent> ,/ :nohlsearch<CR>
-";Clear search selection  
+";Clear search selection
 ";Execute a search and replace in current file w/ conform
 ""esc terminal mode when in it
 :tnoremap <Esc> <C-\><C-n>
@@ -82,9 +81,9 @@ noremap <C-s> :execute "vsplit term://".$SHELL<CR>
 "nnoremap <C-b> :bufdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
 "";Execute a search and replace in all buffers w/ conform
 
-nnoremap <F9> :e $MYVIMRC<CR> 
+nnoremap <F9> :e $MYVIMRC<CR>
 ";open vimrc
-nnoremap <F12> :source $MYVIMRC<CR> 
+nnoremap <F12> :source $MYVIMRC<CR>
 ";Resource Config
 
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
@@ -92,6 +91,10 @@ nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 "; show hover info
 nnoremap <silent> gm   <cmd>lua vim.lsp.buf.implementation()<CR>
+
+command! -bang -nargs=* MakeTags !ctags -R --exclude=.git --exclude=.ccls-cache --exclude=test
+
+
 "; go to implemenmtaion
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 "; show refferences
@@ -105,10 +108,10 @@ vnoremap <M-t> :call ExecInTerminal()<cr>
 "; Execute thing in vuisual selection in terminal
 vnoremap <M-T> :call SudoExecInTerminal()<cr>
 "; Execute thing in visual selection in terminal w/ sudo
-"nnoremap <silent> <leader>e :norm<C-Y>,<cr> 
+"nnoremap <silent> <leader>e :norm<C-Y>,<cr>
 ";wtf?
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
-"; write around word 
+"; write around word
 "nnoremap <silent> <leader>s :call Around(input("Surround With: "))<CR>
 nnoremap <silent> <C-t> :Vista!!<CR>
 nnoremap <F6> :mksession!<CR>
@@ -117,10 +120,10 @@ nnoremap <leader>w :source Session.vim<CR>
 nnoremap <leader>x :make <cr>
 function! g:QfToggle()
 	for winnr in range(1, winnr('$'))
-		 if getwinvar(winnr, '&syntax') == 'qf'
+		if getwinvar(winnr, '&syntax') == 'qf'
 			cclose
 			return
-		 endif
+		endif
 	endfor
 	copen
 endfunction
