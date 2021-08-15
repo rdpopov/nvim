@@ -23,6 +23,7 @@ function! g:OpenLspConfHelp()
 endfunction
 
 
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 inoremap <Leader>l <Esc>:call CycleLanguagesUp()<CR>a
 ";Cycle input language for Insert mode up, Search for CycleLanguagesDown for opposite
 nnoremap <Leader>l :call CycleLanguagesUp()<CR>
