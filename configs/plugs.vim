@@ -1,4 +1,3 @@
-
 call plug#begin()
   " -- Language features
   Plug 'alaviss/nim.nvim'                             "   Nim language support
@@ -26,4 +25,5 @@ call plug#begin()
   Plug 'dbeniamine/cheat.sh-vim'                      "   query help from inside vim query help from inside vim
   Plug 'norcalli/nvim-colorizer.lua'                  "   colorizer for colors in css and anywhere really
   Plug 'nvim-lua/plenary.nvim'                        "   telescope needs it dunno
+	Plug 'shaunsingh/moonlight.nvim'
 call plug#end()
