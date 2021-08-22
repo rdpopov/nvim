@@ -17,6 +17,13 @@ M.separators = {
   triangle = {'' ,''},
 }
 
+local LspDiagn  = function(diagn)
+  if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then 
+  	  return vim.lsp.diagnostic.get_count(0, diagn)
+  end
+  	  return -1
+end
+
 local status_style = "minimal"
 local cpal = 'aurora'
 vim.cmd('colorscheme ' ..cpal)
@@ -103,6 +110,8 @@ local ColorPalette = {
 M.colors = {
   active        = '%#StatusLineNC#',
   inactive      = '%#StatusLine#',
+  simple_error  = '%#StatusLineSimpleError#',
+  simple_warn   = '%#StatusLineSimpleWarning#',
   mode          = '%#Mode#',
   mode_alt      = '%#ModeAlt#',
   git           = '%#Git#',
@@ -129,6 +138,8 @@ end
 local highlights = {
   {'StatusLine',    { fg = ColorPalette[cpal].Background, bg = ColorPalette[cpal].Name }},
   {'StatusLineNC',  { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
+  {'StatusLineSimpleError',  { fg = ColorPalette[cpal].Error, bg = ColorPalette[cpal].Background }},
+  {'StatusLineSimpleWarning',  { fg = ColorPalette[cpal].Warning, bg = ColorPalette[cpal].Background }},
   {'Mode',          { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
   {'LineCol',       { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
   {'Git',           { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
@@ -359,8 +370,8 @@ M.get_lang_git_name = function(self)
 end
 
 M.get_format_lsp_diagn = function(self,nof)
-   local errs = fn['LspError']() .. " "
-   local warn = fn['LspWarn']() .. " "
+  local errs = LspDiagn([[Error]])
+  local warn = LspDiagn([[Warning]])
   local colors = self.colors
   local ft = ""
   if nof == false then
@@ -371,48 +382,37 @@ M.get_format_lsp_diagn = function(self,nof)
     return colors.filetype .. ft 
   end 
 
-  if errs == ' ' and  warn == ' ' then
+  if errs == -1 and  warn == -1 then
     return colors.filetype .. ft 
   end
 
-  if errs ~= ' ' and  warn == ' ' then
-    return to_hl_group('CenterError') .. self.separators[active_sep][2] .. colors.lsp_error .. " E: ".. errs.. to_hl_group('ErrorFormat').. self.separators[active_sep][2] ..  colors.filetype .. ft 
-  end
+  --  if errs ~= ' ' and  warn == ' ' then
+    --    return to_hl_group('CenterError') .. self.separators[active_sep][2] .. colors.lsp_error .. " E: ".. errs.. to_hl_group('ErrorFormat').. self.separators[active_sep][2] ..  colors.filetype .. ft 
+  --  end
+  --
+  --  if errs == ' ' and  warn ~= ' '  then 
+    --    return to_hl_group('WarningFormat') .. self.separators[active_sep][2] .. colors.lsp_warn  .. " W: "..  warn .. to_hl_group('ErrorFormat').. self.separators[active_sep][2] ..  colors.filetype .. ft
+  --  end
 
-  if errs == ' ' and  warn ~= ' '  then 
-    return to_hl_group('WarningFormat') .. self.separators[active_sep][2] .. colors.lsp_warn  .. " W: "..  warn .. to_hl_group('ErrorFormat').. self.separators[active_sep][2] ..  colors.filetype .. ft
-  end
-
-  if errs ~= ' ' and  warn ~= ' '  then
-    return to_hl_group('CenterWrning') .. self.separators[active_sep][2] ..
-            colors.lsp_warn  .. " W:" ..  warn ..
-            to_hl_group('ErrorWarning').. self.separators[active_sep][2] ..
-            colors.lsp_error .. " E:" .. errs ..
-            to_hl_group('ErrorFormat')..  self.separators[active_sep][2] ..
-            colors.filetype ..ft 
-  end
-  return "err"
+  return to_hl_group('CenterWrning') .. self.separators[active_sep][2] ..
+         colors.lsp_warn  .. " W:" ..  warn ..
+         to_hl_group('ErrorWarning').. self.separators[active_sep][2] ..
+         colors.lsp_error .. "E:" .. errs ..
+         to_hl_group('ErrorFormat')..  self.separators[active_sep][2] ..
+         colors.filetype ..ft 
 end
 
 M.simple_lsp = function(self)
-  local errs = fn['LspError']() .. " "
-  local warn = fn['LspWarn']() .. " "
-  if errs == ' ' and  warn == ' ' then
+  local errs = LspDiagn([[Error]])
+  local warn = LspDiagn([[Warning]])
+  local colors = self.colors
+
+  if errs == -1 and  warn == -1 then
     return ""
+  else
+    return colors.simple_error.."E:" .. errs .. colors.simple_warn .. " W:"..warn .." " --.. colors.filename
   end
-
-  if errs ~= ' ' and  warn == ' ' then
-    return " E:" .. errs .." "
-  end
-
-  if errs == ' ' and  warn ~= ' '  then 
-    return " W: "..warn .." "
-  end
-
-  return " E:" .. errs .. "W:"..warn .." "
 end
-
-
 
 M.fancy_line = function(self )
   local colors = self.colors
@@ -467,26 +467,6 @@ local style_callback  = setmetatable({
   },{ __index = M.simple_line})
 
 M.set_active = function(self)
---  local colors = self.colors
---  --mode
---  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. self:get_current_mode()
---  --filename 
---  local filename = colors.inactive .. self:get_filename()
---  local filetype_alt = colors.filetype_alt .. self.separators[active_sep][1]
---  --filename 
---  local filetype = colors.filetype .. self:get_filetype()
---  local line_col = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. self:get_line_col()
---  local line_col_alt = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat') .. self.separators[active_sep][2]
---  local res = ""
---  return table.concat({
---    colors.active, 
---    mode,
---    self:get_lang_git_name(), 
---    "%=",
---    self:get_format_lsp_diagn(),
---    line_col_alt,
---    line_col
---  })
   return style_callback[status_style](self)
 end
 
