@@ -19,13 +19,13 @@ M.separators = {
 
 local LspDiagn  = function(diagn)
   if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then 
-  	  return vim.lsp.diagnostic.get_count(0, diagn)
+      return vim.lsp.diagnostic.get_count(0, diagn)
   end
-  	  return -1
+      return -1
 end
 
 local status_style = "minimal"
-local cpal = 'aurora'
+local cpal = 'gruvbox'
 vim.cmd('colorscheme ' ..cpal)
 
 local ColorPalette = {
@@ -101,6 +101,22 @@ local ColorPalette = {
       ['Warning'] = '#ffc777',
       ['Error'] = '#ff757f',
     }, { __index = function() return '#FFFFFF' end }),
+    ['gruvbox'] = 
+    setmetatable({
+      ['Blue']  = '#83a598',
+      ['Red']  = '#ff757f',
+      ['Yellow']  = '#fabd2f',
+      ['Orange']  = '#fe8019',
+      ['Green']  = '#b8bb26',
+      ['Violet']  = '#d3869b',
+      ['Gray']  = '#665c54',
+      ['Black']  = '#14191F',
+      ['Name']  = '#fbf1c7',
+      ['Background']  = '#3c3836',
+      ['Warning'] = '#fe8019',
+      ['Error'] = '#fb4934',
+    }, { __index = function() return '#FFFFFF' end }),
+
 }
 
 --==============================================================================
@@ -112,6 +128,7 @@ M.colors = {
   inactive      = '%#StatusLine#',
   simple_error  = '%#StatusLineSimpleError#',
   simple_warn   = '%#StatusLineSimpleWarning#',
+  simple_hint   = '%#StatusLineSimpleHint#',
   mode          = '%#Mode#',
   mode_alt      = '%#ModeAlt#',
   git           = '%#Git#',
@@ -120,9 +137,9 @@ M.colors = {
   filetype_alt  = '%#FiletypeAlt#',
   line_col      = '%#LineCol#',
   line_col_alt  = '%#LineColAlt#',
-  lsp_error		=	'%#LspErr#',
-  lsp_warn		=	'%#LspWarn#',
-  ins_language	=	'%#InssLang#',
+  lsp_error    =  '%#LspErr#',
+  lsp_warn    =  '%#LspWarn#',
+  ins_language  =  '%#InssLang#',
 }
 
 local set_hl = function(group, options)
@@ -136,24 +153,25 @@ end
 -- you can of course pick whatever colour you want, I picked these colours
 -- because I use Gruvbox and I like them
 local highlights = {
-  {'StatusLine',    { fg = ColorPalette[cpal].Background, bg = ColorPalette[cpal].Name }},
-  {'StatusLineNC',  { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
-  {'StatusLineSimpleError',  { fg = ColorPalette[cpal].Error, bg = ColorPalette[cpal].Background }},
+  {'StatusLine',               { fg = ColorPalette[cpal].Background, bg = ColorPalette[cpal].Name }},
+  {'StatusLineNC',             { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
+  {'StatusLineSimpleError',     { fg = ColorPalette[cpal].Error, bg = ColorPalette[cpal].Background }},
   {'StatusLineSimpleWarning',  { fg = ColorPalette[cpal].Warning, bg = ColorPalette[cpal].Background }},
-  {'Mode',          { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {'LineCol',       { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
-  {'Git',           { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
-  {'Filetype',      { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
-  {'Filename',      { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
-  {'ModeAlt',       { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
-  {'GitAlt',        { bg = '#3C3836', fg = '#504945' }},
-  {'LineColAlt',    { bg = '#504945', fg = '#928374' }},
-  {'FiletypeAlt',   { bg = '#3C3836', fg = '#504945' }},
-  {'LineCol',		{ bg = '#3C3836', fg = '#504945' }},
-  {'LineColAlt',	{ bg = '#3C3836', fg = '#504945' }},
-  {'LspErr',		{ bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background }},
-  {'LspWarn',       { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background }},
-  {'InssLang',       { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
+  {'StatusLineSimpleHint',     { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
+  {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
+  {'Git',                      { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
+  {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
+  {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
+  {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
+  {'GitAlt',                   { bg = '#3C3836', fg = '#504945' }},
+  {'LineColAlt',               { bg = '#504945', fg = '#928374' }},
+  {'FiletypeAlt',              { bg = '#3C3836', fg = '#504945' }},
+  {'LineCol',                   { bg = '#3C3836', fg = '#504945' }},
+  {'LineColAlt',               { bg = '#3C3836', fg = '#504945' }},
+  {'LspErr',                   { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background }},
+  {'LspWarn',                   { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background }},
+  {'InssLang',                 { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
 }
 
 local set_hl_inv = function (group,options)
@@ -327,7 +345,7 @@ M.get_git_status = function(self)
 end
 
 local is_explorer = function()
-	return vim.bo.filetype == 'netrw' or vim.bo.filetype == 'nerdtree' or vim.bo.filetype == 'nvimtree'
+  return vim.bo.filetype == 'netrw' or vim.bo.filetype == 'nerdtree' or vim.bo.filetype == 'nvimtree'
 end
 
 M.get_filename = function(self)
@@ -405,12 +423,13 @@ end
 M.simple_lsp = function(self)
   local errs = LspDiagn([[Error]])
   local warn = LspDiagn([[Warning]])
+  local hint = LspDiagn([[Hint]])
   local colors = self.colors
 
   if errs == -1 and  warn == -1 then
     return ""
   else
-    return colors.simple_error.."E:" .. errs .. colors.simple_warn .. " W:"..warn .." " --.. colors.filename
+    return colors.simple_error.."E:" .. errs .. colors.simple_warn .. " W:"..warn .. colors.simple_hint .. " H:"..hint .." " --.. colors.filename
   end
 end
 
