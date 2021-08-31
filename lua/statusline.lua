@@ -25,7 +25,7 @@ local LspDiagn  = function(diagn)
 end
 
 local status_style = "minimal"
-local cpal = 'gruvbox'
+local cpal = 'aurora'
 vim.cmd('colorscheme ' ..cpal)
 
 local ColorPalette = {
@@ -115,6 +115,21 @@ local ColorPalette = {
       ['Background']  = '#3c3836',
       ['Warning'] = '#fe8019',
       ['Error'] = '#fb4934',
+    }, { __index = function() return '#FFFFFF' end }),
+    ['embark'] = 
+    setmetatable({
+      ['Blue']  = '#91ddff',
+      ['Red']  = '#F02E6E',
+      ['Yellow']  = '#ffe6b3',
+      ['Orange']  = '#F2B482',
+      ['Green']  = '#62d196',
+      ['Violet']  = '#d4bfff',
+      ['Gray']  = '#F48FB1',
+      ['Black']  = '#14191F',
+      ['Name']  = '#65b2ff',
+      ['Background']  = '#2D2B40',
+      ['Warning'] = '#F2B482',
+      ['Error'] = '#F02E6E',
     }, { __index = function() return '#FFFFFF' end }),
 
 }
@@ -367,7 +382,7 @@ end
 
 M.get_line_col = function(self)
   if self:is_truncated(self.trunc_width.line_col) then return ' %l:%c ' end
-  return ' Ln:%l Co:%c '
+  return ' L:%l C:%c %p%% '
 end
 M.get_Input_language = function()
   return " "..fn['GetInputLang']()
@@ -476,6 +491,7 @@ M.simple_line  = function(self)
       filename,
       self:simple_lsp(),
       "%=",
+      '%y ',
       line_col,
     })
 end

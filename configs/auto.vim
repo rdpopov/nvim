@@ -25,3 +25,9 @@ if exists("g:auto_session")
         source ./Session.vim
     endif
 endif
+
+if has('autocmd')
+ autocmd filetype python set expandtab
+ autocmd filetype nim set expandtab
+ "`autocmd BufNewFile,BufRead *.nim set filetype=nim
+endif

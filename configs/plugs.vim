@@ -26,4 +26,5 @@ call plug#begin()
   Plug 'norcalli/nvim-colorizer.lua'                  "   colorizer for colors in css and anywhere really
   Plug 'nvim-lua/plenary.nvim'                        "   telescope needs it dunno
 	Plug 'shaunsingh/moonlight.nvim'
+	Plug 'alec-gibson/nvim-tetris'
 call plug#end()

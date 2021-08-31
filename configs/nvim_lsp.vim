@@ -9,9 +9,11 @@ function! g:ToggleDiagn()
     endif
 endfunction
 
+function! g:OpenLspConfHelp()
+ execute ":vsplit "."$HOME/.config/nvim/plugged/nvim-lspconfig/CONFIG.md"
+endfunction
 
 nnoremap <leader>d :call ToggleDiagn()<CR>
-
 nnoremap gD <Cmd>lua vim.lsp.buf.declaration()<CR> 
 nnoremap gd <Cmd>lua vim.lsp.buf.definition()<CR> 
 nnoremap K <Cmd>lua vim.lsp.buf.hover()<CR> 
