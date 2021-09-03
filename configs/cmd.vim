@@ -68,11 +68,12 @@ nnoremap <silent> <C-t> :Vista!!<CR>
 vnoremap <M-b> :call OpenInBrowser()<cr>
 vnoremap <M-t> :call ExecInTerminal()<cr>
 vnoremap <M-T> :call SudoExecInTerminal()<cr>
-"	-- Session managment
+"	-- Session managment and managment in general
+command! Erc :e $MYVIMRC | lcd %:p:h
 nnoremap <F6> :mksession!<CR>
 nnoremap <F7> :!echo -e "let g:auto_session= v:true\nlet g:use_ripgrep = v:true" > localrc.vim <CR><CR>
 nnoremap <leader>w :source Session.vim<CR>
-nnoremap <F9> :e $MYVIMRC<CR>
+nnoremap <silent><F9> :Erc<CR>
 nnoremap <F12> :source $MYVIMRC<CR>
 " -- Git commands
 nnoremap <leader>] :GitGutterNextHunk<CR>

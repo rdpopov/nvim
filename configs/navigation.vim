@@ -15,7 +15,7 @@ lua require('hop_conf')
 
 "nnoremap <leader>g :Rg 
 "nnoremap <leader>G :Rg<CR>
-nnoremap <silent>  <leader>t :Telescope tagstack theme=get_ivy<CR>
+nnoremap <silent>  <leader>t :Telescope <CR>
 nnoremap <silent>  <leader>T :Telescope tags theme=get_ivy<CR>
 nnoremap <silent>  <leader>m :Telescope marks theme=get_ivy<CR>
 nnoremap <silent>  <leader>M :Telescope man_pages <CR>
