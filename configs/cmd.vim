@@ -64,6 +64,7 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
 nnoremap <silent> <C-t> :Vista!!<CR>
+nnoremap <silent> <leader>s :call ToggleLocalSpelling()<CR>
 "	-- Obsolete actially
 vnoremap <M-b> :call OpenInBrowser()<cr>
 vnoremap <M-t> :call ExecInTerminal()<cr>

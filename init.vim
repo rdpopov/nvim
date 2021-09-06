@@ -1,4 +1,3 @@
-"color preset
 set background=dark
 
 let g:prefered_browser = "brave-browser"

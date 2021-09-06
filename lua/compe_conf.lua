@@ -1,5 +1,5 @@
 vim.o.completeopt = "menuone,noinsert,preview"
-require'compe'.setup {
+local config = {
 	enabled = true;
 	autocomplete = true;
 	debug = false;
@@ -20,8 +20,9 @@ require'compe'.setup {
 	path = true;
 	buffer = true;
 	nvim_lsp = true;
-	spell = false;
+	spell = true;
 	tags = false;
 	treesitter = false;
 	};
 	}
+require'compe'.setup(config)

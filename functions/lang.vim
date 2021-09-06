@@ -1,21 +1,33 @@
-" Contents: Language swithing utility functions for (neo)vim internaly
+" Contents: Language swithing utility functions for (neo)vim internally
 " just for insert mode and searching and stuff using builtin keymap
 
 if !exists("g:lang")
     let g:lang = ['english']
 endif
 
-let s:crnt_lang = 0
+let g:crnt_lang=0
+let g:spell_language={'english':'en_us', 'bulgarian-phonetic':'bg' }
+
+function! ToggleLocalSpelling()
+	if &spelllang == ""
+		call SetSpellingTo([g:lang[g:crnt_lang])
+	endif
+	execute('setlocal spell!')
+endfunction
+
+function! SetSpellingTo()
+  execute('setlocal spelllang='.g:spell_language[g:lang[g:crnt_lang]])
+endfunction
 
 " Truncate current language to a 3-letter based string (+ 3-letter for every '-'
 " in it each '-' separated word is considered a new word)
 function! GetLangLabl()
-    let s:cut  = split(g:lang[s:crnt_lang],'-')
-    let s:res = []
-    for part in s:cut
-        let s:res = s:res + [toupper(part[0:2])]
+    let l:cut = split(g:lang[g:crnt_lang],'-')
+    let l:res = []
+    for part in l:cut
+        let l:res = l:res + [toupper(part[0:2])]
     endfor
-    return join(s:res,'-')
+    return join(l:res,'-')
 endfunction
 
 let g:langid = GetLangLabl()
@@ -27,31 +39,33 @@ endfunction
 
 " Cycles to the next language in the list
 function! CycleLanguagesUp()
-    let s:len = len(g:lang)
-    let s:crnt_lang = (s:crnt_lang + 1 ) % s:len
-    call SetKeymapTo(g:lang[s:crnt_lang])
+    let l:len = len(g:lang)
+    let g:crnt_lang = (g:crnt_lang + 1 ) % l:len
+    call SetKeymapTo(g:lang[g:crnt_lang])
+		call SetSpellingTo()
 endfunction
 
 " Cycles to the previous language in the list
 function! CycleLanguagesDown()
-    let s:len = len(g:lang)
-    if s:crnt_lang > 0
-        let s:crnt_lang = (s:crnt_lang + 1 ) % s:len 
+    let l:len = len(g:lang)
+    if g:crnt_lang > 0
+        let g:crnt_lang = (g:crnt_lang + 1 ) % l:len 
     else
-        let s:crnt_lang = s:len - 1
+        let g:crnt_lang = s:len - 1
     endif
-    call SetKeymapTo(g:lang[s:crnt_lang])
+    call SetKeymapTo(g:lang[g:crnt_lang])
+		call SetSpellingTo()
 endfunction
 
 " Sets language to argument
-" Thing is, that vim has no explicit setting for english
+" Thing is, that vim has no explicit setting for English
 " english is default language but does not have a keymap=something setting 
 " so keymap has to be set to the empty sting to reset it 
 function! SetKeymapTo(lang)
-    let s:lng = a:lang
+    let l:lng = a:lang
     if a:lang == 'english'
-        let s:lng = ""
+        let l:lng = ""
     endif
-    execute('set keymap='.s:lng)
+    execute('set keymap='.l:lng)
     let g:langid = GetLangLabl()
 endfunction
