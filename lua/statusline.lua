@@ -23,6 +23,7 @@ local LspDiagn  = function(diagn)
   end
       return -1
 end
+local usr = "/home/"..vim.fn.expand("$USER")
 
 local status_style = "minimal"
 local cpal = 'aurora'
@@ -206,6 +207,7 @@ M.trunc_width = setmetatable({
   mode       = 80,
   git_status = 90,
   filename   = 140,
+  explorer   = 15,
   line_col   = 60,
 }, {
   __index = function()
@@ -363,13 +365,26 @@ local is_explorer = function()
   return vim.bo.filetype == 'netrw' or vim.bo.filetype == 'nerdtree' or vim.bo.filetype == 'nvimtree'
 end
 
+local win_fname_and_dir = function()
+	local win__nr = vim.fn.winbufnr(vim.fn.winnr())
+	return {vim.fn.getcwd(vim.fn.bufwinnr(win__nr)), vim.fn.bufname(win__nr)}
+end
+
 M.get_filename = function(self)
-  if is_explorer()  then 
-    if self:is_truncated(self.trunc_width.filename) then return " %<".. fn['getcwd']() .. " " end
-    return " %<".. fn['getcwd']() .. " " 
+	local win_inf = win_fname_and_dir()
+	local dir = string.gsub(win_inf[1],usr,"~")
+  if win_inf[2] == "NetrwTreeListing" then 
+		if string.len(dir) > self.trunc_width.explorer then 
+			return " %<" .. vim.fn.pathshorten(dir)
+		else
+			return " %<" .. dir
+		end
   end
-  if self:is_truncated(self.trunc_width.filename) then return " %<%f " .. fn['Modified']() end
-  return " %<%F " .. fn['Modified']()
+	if self:is_truncated(self.trunc_width.filename) then 
+		return " %<"..vim.fn.pathshorten(win_inf[2]) .. '%{&modified?" [+]":""}' 
+	else
+		return ' %< %f%{&modified?" [+]":""}'
+	end
 end
 
 M.get_filetype = function()
@@ -482,18 +497,30 @@ M.simple_line  = function(self)
   local filetype = colors.filetype .. self:get_filetype()
   local line_col = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. self:get_line_col()
   local line_col_alt = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat') .. self.separators[active_sep][2]
-  local res = ""
-  return table.concat({
-      colors.active,
-      mode,
-      colors.filetype,
-      "%=",
-      filename,
-      self:simple_lsp(),
-      "%=",
-      '%y ',
-      line_col,
-    })
+  local ft = ""
+  if not is_explorer()  then
+  	ft = '%y '
+  end
+	if is_explorer()then
+		return table.concat({
+				colors.filetype,
+				"%=",
+				filename,
+				"%=",
+			})
+	else
+		return table.concat({
+				colors.active,
+				mode,
+				colors.filetype,
+				"%=",
+				filename,
+				self:simple_lsp(),
+				"%=",
+				ft,
+				line_col,
+			})
+	end
 end
 
 local style_callback  = setmetatable({
@@ -506,7 +533,7 @@ M.set_active = function(self)
 end
 
 M.set_inactive = function(self)
-  return self.colors.inactive .. '%= %F ' .. fn['Modified']().. ' %='
+  return self.colors.inactive .. '%= %{expand("%:p:h")[:len("/home/".$USER)] == "/home/".$USER."/" ? "~"..expand("%:p:h")[len("/home/".$USER):]:expand("%:p:h")}%{&ft!="netrw"?"/".expand("%:t"):""} %{&modified? "[+]":""}'.. ' %='
 end
 
 M.set_explorer = function(self)
