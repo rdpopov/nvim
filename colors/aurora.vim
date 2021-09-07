@@ -70,7 +70,7 @@ let s:none = "NONE"
 " ----------------------------------------------------------------------------
 
 let s:none   = "NONE"
-let s:underline = 'underline'
+let s:underline = 'bold'
 let s:undercurl = 'undercurl'
 let s:bold = 'bold'
 let s:inverse = 'inverse'
