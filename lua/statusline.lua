@@ -459,7 +459,7 @@ M.simple_lsp = function(self)
   if errs == -1 and  warn == -1 then
     return ""
   else
-    return colors.simple_error.."E:" .. errs .. colors.simple_warn .. " W:"..warn .. colors.simple_hint .. " H:"..hint .." " --.. colors.filename
+    return colors.simple_error.." E:" .. errs .. colors.simple_warn .. " W:"..warn .. colors.simple_hint .. " H:"..hint .." " --.. colors.filename
   end
 end
 
