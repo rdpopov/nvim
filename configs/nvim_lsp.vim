@@ -28,6 +28,7 @@ nnoremap ]d <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 source $HOME/.config/nvim/configs/vista.vim
 
-lua require('lsp_conf')
-lua require('compe_conf')
+"lua require('lsp_conf')
+"lua require('compe_conf')
+lua require('cmp_conf')
 lua require('treesitter_conf')
