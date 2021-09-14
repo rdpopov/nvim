@@ -21,7 +21,7 @@ nnoremap <silent>  <leader>m :Telescope marks theme=get_ivy<CR>
 nnoremap <silent>  <leader>M :Telescope man_pages <CR>
 nnoremap <silent>  <leader>b :Telescope buffers <CR>
 nnoremap <silent>  <leader>B :Telescope <CR>
-nnoremap <silent>  <leader>h :Telescope oldfiles <CR>
+nnoremap <silent>  <leader>O :Telescope oldfiles <CR>
 nnoremap <silent>  <leader>o :Telescope find_files <CR>
 nnoremap <silent>  <leader>j :Telescope jumplist <CR>
 nnoremap <silent>  <leader>k :Telescope keymaps <CR>
