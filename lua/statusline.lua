@@ -560,3 +560,16 @@ api.nvim_exec([[
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
   augroup END
 ]], false)
+
+--Special_Highlights
+local custom_highlight = function(group_name,syntax_regex,color )
+  vim.cmd(string.format('highlight %s gui=bold term=bold cterm=bold guifg=%s cterm=bold', group_name, color))
+  vim.cmd(string.format('syntax match %s  %s', group_name, syntax_regex))
+end
+
+custom_highlight("cTodo",'\'\\(TODO \\|Todo \\)\'',ColorPalette[cpal].Green)
+custom_highlight("cFix",'\'\\(FIX \\|Fix \\)\'',ColorPalette[cpal].Yellow)
+custom_highlight("cBug",'\'\\(BUG \\|Bug \\)\'',ColorPalette[cpal].Red)
+custom_highlight("cHack",'\'\\(HACK \\|Hack \\)\'',ColorPalette[cpal].Violet)
+custom_highlight("cWarn",'\'\\(WARN \\|Warn \\)\'',ColorPalette[cpal].Orange)
+custom_highlight("cNote",'\'\\(NOTE \\|Note \\)\'',ColorPalette[cpal].Blue)
