@@ -5,6 +5,15 @@ function! g:Grep(var)
 	execute "grep -srnw --binary-files=without-match --exclude-dir=.git --exclude-dir=.ccls-cache . -e " . a:var
 	copen
 endfunction
+
+" Function to clone my current session and spawn an ewa terminal for it 
+" cos tmux dont play nice with mice and scroll
+
+function! g:Clone()
+	execute 'mksession! ~/.sesh.vim'
+	execute "!xfce4-terminal -e 'nvim -S ~/.sesh.vim'"
+endfunction
+
 nnoremap <leader>g :call Grep(input('Search for: '))<CR>
 nnoremap <leader>G :call Grep(expand("<cword>"))<CR>
 " netrw config
@@ -24,6 +33,7 @@ nnoremap <silent>  <leader>B :Telescope <CR>
 nnoremap <silent>  <leader>O :Telescope oldfiles <CR>
 nnoremap <silent>  <leader>o :Telescope find_files <CR>
 nnoremap <silent>  <leader>j :Telescope jumplist <CR>
+nnoremap <silent>  <leader>h :Telescope help_tags <CR>
 nnoremap <silent>  <leader>k :Telescope keymaps <CR>
 nnoremap <silent>  <leader>f :Telescope current_buffer_fuzzy_find theme=get_ivy<CR>
 "nnoremap <silent>  <leader>s :Telescope git_status theme=get_ivy<CR>

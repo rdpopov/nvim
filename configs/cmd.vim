@@ -12,7 +12,7 @@ command! -bang -nargs=* MakeTags !ctags -R --exclude=.git --exclude=.ccls-cache 
 "	-- Commands  that are sometimes uesd 
 noremap <F2> :QuickRun<CR>
 noremap <F3> :Autoformat<CR>:retab<CR>
-nnoremap <F4> :Cheat
+nnoremap <F4> :call Clone()<CR><CR>
 nnoremap <F5> :HowIn
 "	-- Language Switch
 inoremap <Leader>l <Esc>:call CycleLanguagesUp()<CR>a
