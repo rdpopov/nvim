@@ -9,7 +9,7 @@ call plug#begin()
   Plug 'neovim/nvim-lspconfig'                        "   lsp configuration api for native lsp lsp configuration api for native lsp
   Plug 'ray-x/lsp_signature.nvim'                     "   signatire preview via lsp signatire preview via lsp
   Plug 'liuchengxu/vista.vim'                         "   tag and ouline preview it supports tags which are useful tag and ouline preview it supports tags which are useful
-  "  -- Completion
+  "  -- Completion ... those three should be 1 plugin so it keeps lines at a minimum ... 
   Plug 'hrsh7th/nvim-cmp'                             "    better than compe i guess
   Plug 'hrsh7th/cmp-nvim-lsp'                         "    lsp completion
   Plug 'hrsh7th/cmp-buffer'                           "    buffer completion
@@ -18,6 +18,9 @@ call plug#begin()
   Plug 'f3fora/cmp-spell'                             "    spelling completion
   " -- Better Navigaion and vim as a whole
   Plug 'nvim-telescope/telescope.nvim'                " telescope
+  " depends on
+  Plug 'nvim-lua/plenary.nvim'                        "   telescope needs it dunno
+  Plug 'folke/todo-comments.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " thing that implements fzf for tlelescope
   Plug 'tpope/vim-abolish'                            "   better find and replace, tpope stuff is blessed better find and replace, tpope stuff is blessed
   Plug 'phaazon/hop.nvim'                             "   alternative to sneak more like easymotion alternative to sneak more like easymotion
@@ -30,7 +33,5 @@ call plug#begin()
   Plug 'thinca/vim-quickrun'                          "   quickrun code files, useful for nothing but c/c++ quickrun code files, useful for nothing but c/c++
   Plug 'dbeniamine/cheat.sh-vim'                      "   query help from inside vim query help from inside vim
   Plug 'norcalli/nvim-colorizer.lua'                  "   colorizer for colors in css and anywhere really
-  Plug 'nvim-lua/plenary.nvim'                        "   telescope needs it dunno
   Plug 'shaunsingh/moonlight.nvim'
-  Plug 'alec-gibson/nvim-tetris'
 call plug#end()

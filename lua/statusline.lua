@@ -25,11 +25,11 @@ local LspDiagn  = function(diagn)
 end
 local usr = "/home/"..vim.fn.expand("$USER")
 
-local status_style = "minimal"
-local cpal = 'aurora'
+status_style = "minimal"
+cpal = 'aurora'
 vim.cmd('colorscheme ' ..cpal)
 
-local ColorPalette = {
+ColorPalette = {
     ['ayu'] = 
     setmetatable({
       ['Blue']  = '#39BAE6',
@@ -566,10 +566,22 @@ local custom_highlight = function(group_name,syntax_regex,color )
   vim.cmd(string.format('highlight %s gui=bold term=bold cterm=bold guifg=%s cterm=bold', group_name, color))
   vim.cmd(string.format('syntax match %s  %s', group_name, syntax_regex))
 end
-
 custom_highlight("cTodo",'\'\\(TODO \\|Todo \\)\'',ColorPalette[cpal].Green)
 custom_highlight("cFix",'\'\\(FIX \\|Fix \\)\'',ColorPalette[cpal].Yellow)
 custom_highlight("cBug",'\'\\(BUG \\|Bug \\)\'',ColorPalette[cpal].Red)
 custom_highlight("cHack",'\'\\(HACK \\|Hack \\)\'',ColorPalette[cpal].Violet)
 custom_highlight("cWarn",'\'\\(WARN \\|Warn \\)\'',ColorPalette[cpal].Orange)
 custom_highlight("cNote",'\'\\(NOTE \\|Note \\)\'',ColorPalette[cpal].Blue)
+require("todo-comments").setup{
+  signs = false,
+  keywords = {
+    FIX = { icon = " ",  color = ColorPalette[cpal].Red, alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },},
+    TODO = { icon = " ", color = ColorPalette[cpal].Orange },
+    HACK = { icon = " ", color = ColorPalette[cpal].Violet },
+    WARN = { icon = " ", color = ColorPalette[cpal].Yellow, alt = { "WARNING", "XXX" } },
+    PERF = { icon = " ", color = ColorPalette[cpal].Blue, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+    NOTE = { icon = " ", color = ColorPalette[cpal].Green, alt = { "INFO" } },
+  },
+}
+
+
