@@ -45,6 +45,7 @@ ColorPalette = {
       ['Background']  = '#14191F',
       ['Warning'] = '#F29718',
       ['Error'] = '#FF3333',
+      ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
    ['PaperColor'] = setmetatable({
       ['Blue']  = '#5fafd7',
@@ -59,6 +60,7 @@ ColorPalette = {
       ['Name']  = '#00afaf',
       ['Warning'] = '#d75f00',
       ['Error'] = '#d70000',
+      ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
    ['aurora'] = setmetatable({
       ['Blue']  = '#65b2ff',
@@ -73,6 +75,7 @@ ColorPalette = {
       ['Name']  = '#87DFEB',
       ['Warning'] = '#F2B482',
       ['Error'] = '#F02E6E',
+      ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
    ['codedark'] = setmetatable({
       ['Blue']  = '#0A7ACA',
@@ -87,6 +90,7 @@ ColorPalette = {
       ['Name']  = '#5CB6F8',
       ['Warning'] = '#FFAF00',
       ['Error'] = '#FB0101',
+      ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
     ['moonlight'] = 
     setmetatable({
@@ -102,6 +106,7 @@ ColorPalette = {
       ['Background']  = '#414863',
       ['Warning'] = '#ffc777',
       ['Error'] = '#ff757f',
+      ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
     ['gruvbox'] = 
     setmetatable({
@@ -117,6 +122,7 @@ ColorPalette = {
       ['Background']  = '#3c3836',
       ['Warning'] = '#fe8019',
       ['Error'] = '#fb4934',
+      ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
     ['embark'] = 
     setmetatable({
@@ -132,6 +138,7 @@ ColorPalette = {
       ['Background']  = '#2D2B40',
       ['Warning'] = '#F2B482',
       ['Error'] = '#F02E6E',
+      ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
 
 }
@@ -175,7 +182,7 @@ local highlights = {
   {'StatusLineNC',             { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
   {'StatusLineSimpleError',    { fg = ColorPalette[cpal].Error, bg = ColorPalette[cpal].Background }},
   {'StatusLineSimpleWarning',  { fg = ColorPalette[cpal].Warning, bg = ColorPalette[cpal].Background }},
-  {'StatusLineSimpleHint',     { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
+  {'StatusLineSimpleHint',     { fg = ColorPalette[cpal].Hint, bg = ColorPalette[cpal].Background }},
   {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
   {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
   {'Git',                      { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
@@ -189,7 +196,7 @@ local highlights = {
   {'LineColAlt',               { bg = '#3C3836', fg = '#504945' }},
   {'LspErr',                   { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background }},
   {'LspWarn',                  { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background }},
-  {'LspHint',                  { bg = ColorPalette[cpal].Name, fg = ColorPalette[cpal].Background }},
+  {'LspHint',                  { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Background }},
   {'InssLang',                 { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
 }
 
@@ -339,10 +346,9 @@ local overlap = {
 
   {"WarningFormat", { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background, gui="bold" }},
   {"ErrorFormat"  , { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"HintFormat"   , { bg = ColorPalette[cpal].Name, fg = ColorPalette[cpal].Background, gui="bold" }},
   {"ErrorWarning" , { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Error, gui="bold" }},
-  {"HintFormat"   , { bg = ColorPalette[cpal].Name, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"ErrorHint"		, { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Name, gui="bold" }},
+  {"HintFormat"   , { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"ErrorHint"		, { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Hint, gui="bold" }},
   {"CenterWrning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning, gui="bold" }},
   {"CenterError"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
 }
@@ -526,6 +532,7 @@ M.simple_line  = function(self)
         filename,
         self:simple_lsp(),
         "%=",
+        colors.active,
         ft,
         line_col,
       })
