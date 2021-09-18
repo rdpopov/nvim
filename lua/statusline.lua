@@ -7,14 +7,13 @@ local api = vim.api
 local M = {}
 
 -- possible values are 'arrow' | 'rounded' | 'blank'
-local active_sep = 'blank'
-
 -- change them if you want to different separator
 M.separators = {
   arrow = { '', '' },
   rounded = { '', '' },
   blank = { '', '' },
   triangle = {'' ,''},
+  slice = {'' ,''},
 }
 
 local LspDiagn  = function(diagn)
@@ -25,6 +24,8 @@ local LspDiagn  = function(diagn)
 end
 local usr = "/home/"..vim.fn.expand("$USER")
 
+local active_sep = 'blank'
+local space  = {" "," "}  -- space for the hints 
 status_style = "minimal"
 cpal = 'aurora'
 vim.cmd('colorscheme ' ..cpal)
@@ -154,6 +155,7 @@ M.colors = {
   line_col      = '%#LineCol#',
   line_col_alt  = '%#LineColAlt#',
   lsp_error    =  '%#LspErr#',
+  lsp_hint    =  '%#LspHint#',
   lsp_warn    =  '%#LspWarn#',
   ins_language  =  '%#InssLang#',
 }
@@ -171,7 +173,7 @@ end
 local highlights = {
   {'StatusLine',               { fg = ColorPalette[cpal].Background, bg = ColorPalette[cpal].Name }},
   {'StatusLineNC',             { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
-  {'StatusLineSimpleError',     { fg = ColorPalette[cpal].Error, bg = ColorPalette[cpal].Background }},
+  {'StatusLineSimpleError',    { fg = ColorPalette[cpal].Error, bg = ColorPalette[cpal].Background }},
   {'StatusLineSimpleWarning',  { fg = ColorPalette[cpal].Warning, bg = ColorPalette[cpal].Background }},
   {'StatusLineSimpleHint',     { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
   {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
@@ -183,10 +185,11 @@ local highlights = {
   {'GitAlt',                   { bg = '#3C3836', fg = '#504945' }},
   {'LineColAlt',               { bg = '#504945', fg = '#928374' }},
   {'FiletypeAlt',              { bg = '#3C3836', fg = '#504945' }},
-  {'LineCol',                   { bg = '#3C3836', fg = '#504945' }},
+  {'LineCol',                  { bg = '#3C3836', fg = '#504945' }},
   {'LineColAlt',               { bg = '#3C3836', fg = '#504945' }},
   {'LspErr',                   { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background }},
-  {'LspWarn',                   { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background }},
+  {'LspWarn',                  { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background }},
+  {'LspHint',                  { bg = ColorPalette[cpal].Name, fg = ColorPalette[cpal].Background }},
   {'InssLang',                 { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
 }
 
@@ -236,13 +239,13 @@ M.modes = setmetatable({
   ['R']  = {'Replace', 'R'};
   ['Rv'] = {'V·Replace', 'V·R'};
   ['c']  = {'Command', 'C'};
-  ['cv'] = {'Vim·Ex ', 'V·E'};
-  ['ce'] = {'Ex ', 'E'};
-  ['r']  = {'Prompt ', 'P'};
-  ['rm'] = {'More ', 'M'};
-  ['r?'] = {'Confirm ', 'C'};
-  ['!']  = {'Shell ', 'S'};
-  ['t']  = {'Terminal ', 'T'};
+  ['cv'] = {'Vim·Ex', 'V·E'};
+  ['ce'] = {'Ex', 'E'};
+  ['r']  = {'Prompt', 'P'};
+  ['rm'] = {'More', 'M'};
+  ['r?'] = {'Confirm', 'C'};
+  ['!']  = {'Shell', 'S'};
+  ['t']  = {'Terminal', 'T'};
 }, {
   __index = function()
       return {'Unknown', 'U'} -- handle edge cases
@@ -336,7 +339,10 @@ local overlap = {
 
   {"WarningFormat", { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background, gui="bold" }},
   {"ErrorFormat"  , { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"HintFormat"   , { bg = ColorPalette[cpal].Name, fg = ColorPalette[cpal].Background, gui="bold" }},
   {"ErrorWarning" , { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Error, gui="bold" }},
+  {"HintFormat"   , { bg = ColorPalette[cpal].Name, fg = ColorPalette[cpal].Background, gui="bold" }},
+  {"ErrorHint"		, { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Name, gui="bold" }},
   {"CenterWrning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning, gui="bold" }},
   {"CenterError"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
 }
@@ -366,25 +372,25 @@ local is_explorer = function()
 end
 
 local win_fname_and_dir = function()
-	local win__nr = vim.fn.winbufnr(vim.fn.winnr())
-	return {vim.fn.getcwd(vim.fn.bufwinnr(win__nr)), vim.fn.bufname(win__nr)}
+  local win__nr = vim.fn.winbufnr(vim.fn.winnr())
+  return {vim.fn.getcwd(vim.fn.bufwinnr(win__nr)), vim.fn.bufname(win__nr)}
 end
 
 M.get_filename = function(self)
-	local win_inf = win_fname_and_dir()
-	local dir = string.gsub(win_inf[1],usr,"~")
+  local win_inf = win_fname_and_dir()
+  local dir = string.gsub(win_inf[1],usr,"~")
   if win_inf[2] == "NetrwTreeListing" then 
-		if string.len(dir) > self.trunc_width.explorer then 
-			return " %<" .. vim.fn.pathshorten(dir)
-		else
-			return " %<" .. dir
-		end
+    if string.len(dir) > self.trunc_width.explorer then 
+      return " %<" .. vim.fn.pathshorten(dir)
+    else
+      return " %<" .. dir
+    end
   end
-	if self:is_truncated(self.trunc_width.filename) then 
-		return " %<"..vim.fn.pathshorten(win_inf[2]) .. '%{&modified?" [+]":""}' 
-	else
-		return ' %< %f%{&modified?" [+]":""}'
-	end
+  if self:is_truncated(self.trunc_width.filename) then 
+    return " %<"..vim.fn.pathshorten(win_inf[2]) .. '%{&modified?" [+]":""}' 
+  else
+    return ' %< %f%{&modified?" [+]":""}'
+  end
 end
 
 M.get_filetype = function()
@@ -392,7 +398,7 @@ M.get_filetype = function()
   local filetype = vim.bo.filetype
 
   if filetype == '' or is_explorer() then return '' end
-  return string.format('  %s ', filetype):lower()
+  return string.format('%s', filetype):lower()
 end
 
 M.get_line_col = function(self)
@@ -410,44 +416,37 @@ M.get_lang_git_name = function(self)
   if self:is_truncated(self.trunc_width.mode) then
     return to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'Name') .. self.separators[active_sep][1] .. colors.filetype .. self:get_filename()
   end 
-  local lang = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'Lang').. self.separators[active_sep][1] .. colors.ins_language .. self:get_Input_language() .. " "
+  local lang = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'Lang').. self.separators[active_sep][1] .. colors.ins_language .. self:get_Input_language() .. space[1]
   if git == '' then
     return  lang ..  to_hl_group('LangCenter') .. self.separators[active_sep][1] .. colors.filetype .. self:get_filename()
   end
-    return  lang ..  to_hl_group('LangGit') .. self.separators[active_sep][1] .. colors.git .. git.." " .. to_hl_group('GitCenter') .. self.separators[active_sep][1].. colors.filetype.." ".. self:get_filename()
+    return  lang ..  to_hl_group('LangGit') .. self.separators[active_sep][1] .. colors.git .. git.. space[1] .. to_hl_group('GitCenter') .. self.separators[active_sep][1].. colors.filetype.." ".. self:get_filename()
 end
 
 M.get_format_lsp_diagn = function(self,nof)
   local errs = LspDiagn([[Error]])
   local warn = LspDiagn([[Warning]])
+  local hint = LspDiagn([[Hint]])
   local colors = self.colors
-  local ft = ""
-  if nof == false then
-    ft = self:get_filetype()
-  end 
+  local ft = self:get_filetype()
+  ft = self:get_filetype()
 
   if self:is_truncated(self.trunc_width.mode)then 
     return colors.filetype .. ft 
   end 
 
   if errs == -1 and  warn == -1 then
-    return colors.filetype .. ft 
+    return colors.filetype .. space[1] .. ft .. space[2]
   end
 
-  --  if errs ~= ' ' and  warn == ' ' then
-    --    return to_hl_group('CenterError') .. self.separators[active_sep][2] .. colors.lsp_error .. " E: ".. errs.. to_hl_group('ErrorFormat').. self.separators[active_sep][2] ..  colors.filetype .. ft 
-  --  end
-  --
-  --  if errs == ' ' and  warn ~= ' '  then 
-    --    return to_hl_group('WarningFormat') .. self.separators[active_sep][2] .. colors.lsp_warn  .. " W: "..  warn .. to_hl_group('ErrorFormat').. self.separators[active_sep][2] ..  colors.filetype .. ft
-  --  end
-
-  return to_hl_group('CenterWrning') .. self.separators[active_sep][2] ..
-         colors.lsp_warn  .. " W:" ..  warn ..
-         to_hl_group('ErrorWarning').. self.separators[active_sep][2] ..
-         colors.lsp_error .. "E:" .. errs ..
-         to_hl_group('ErrorFormat')..  self.separators[active_sep][2] ..
-         colors.filetype ..ft 
+	return	to_hl_group('CenterWrning') .. self.separators[active_sep][2] ..
+					colors.lsp_warn .. space[1] .. "W:" ..  warn .. space [2]..
+					to_hl_group('ErrorWarning').. self.separators[active_sep][2] ..
+					colors.lsp_error .. space[1] .. "E:" .. errs .. space[2]..
+					to_hl_group('ErrorHint')..  self.separators[active_sep][2] ..
+					colors.lsp_hint .. space[1] .."H:" .. hint .. space[2] ..
+					to_hl_group('HintFormat')..  self.separators[active_sep][2] ..
+					colors.filetype .. space[1].. ft .. space[2]
 end
 
 M.simple_lsp = function(self)
@@ -466,24 +465,34 @@ end
 M.fancy_line = function(self )
   local colors = self.colors
   --mode
-  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. self:get_current_mode()
+  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. '['..self:get_current_mode()..']'
   --filename 
-  local filename = colors.inactive .. self:get_filename()
+  local filename = colors.filetype .. self:get_filename()
   local filetype_alt = colors.filetype_alt .. self.separators[active_sep][1]
   --filename 
   local filetype = colors.filetype .. self:get_filetype()
   local line_col = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. self:get_line_col()
   local line_col_alt = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat') .. self.separators[active_sep][2]
   local res = ""
-  return table.concat({
-    colors.active, 
-    mode,
-    self:get_lang_git_name(), 
-    "%=",
-    self:get_format_lsp_diagn(),
-    line_col_alt,
-    line_col
-  })
+
+  if is_explorer()then
+    return table.concat({
+    		colors.active,
+        "%=",
+        filename,
+        "%=",
+      })
+  else
+    return table.concat({
+        colors.active, 
+        mode,
+        self:get_lang_git_name(), 
+        "%=",
+        self:get_format_lsp_diagn(),
+        line_col_alt,
+        line_col
+      })
+  end
 end
 
 M.simple_line  = function(self)
@@ -499,28 +508,28 @@ M.simple_line  = function(self)
   local line_col_alt = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat') .. self.separators[active_sep][2]
   local ft = ""
   if not is_explorer()  then
-  	ft = '%y '
+    ft = '%y '
   end
-	if is_explorer()then
-		return table.concat({
-				colors.filetype,
-				"%=",
-				filename,
-				"%=",
-			})
-	else
-		return table.concat({
-				colors.active,
-				mode,
-				colors.filetype,
-				"%=",
-				filename,
-				self:simple_lsp(),
-				"%=",
-				ft,
-				line_col,
-			})
-	end
+  if is_explorer()then
+    return table.concat({
+    		colors.active,
+        "%=",
+        filename,
+        "%=",
+      })
+  else
+    return table.concat({
+        colors.active,
+        mode,
+        colors.filetype,
+        "%=",
+        filename,
+        self:simple_lsp(),
+        "%=",
+        ft,
+        line_col,
+      })
+  end
 end
 
 local style_callback  = setmetatable({

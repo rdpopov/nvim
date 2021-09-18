@@ -11,7 +11,7 @@ endfunction
 
 function! g:Clone()
 	execute 'mksession! ~/.sesh.vim'
-	execute "!xfce4-terminal -e 'nvim -S ~/.sesh.vim'"
+	execute "!xfce4-terminal -e 'nvim -S ~/.sesh.vim' --maximize --title=NVIM-tmp"
 endfunction
 
 nnoremap <leader>g :call Grep(input('Search for: '))<CR>
