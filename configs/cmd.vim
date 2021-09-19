@@ -21,9 +21,9 @@ nnoremap <Leader>l :call CycleLanguagesUp()<CR>
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 nmap <silent> ,/ :nohlsearch<CR>
 "	-- Terminal Remaps
-inoremap <C-w> <Esc><C-w>
-tnoremap <C-w> <Esc><C-w>
 tnoremap <Esc> <C-\><C-n>
+inoremap <C-w> <Esc><C-w>
+tmap <C-w> <Esc><C-w>
 noremap <C-s> :execute "vsplit term://".$SHELL<CR>
 "	-- Connect system clipboard with vim's registers , without cloberring my own
 "	yank register
