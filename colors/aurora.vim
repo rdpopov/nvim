@@ -39,6 +39,8 @@ let s:accent_4 = '#3a3a47'
 let s:accent_5 = '#69697c'
 let s:accent_6 = '#cfcfdd'
 
+let s:accent_inactive = '#1F1F29'
+
 let s:red          = '#ff4040'
 let s:orange       = '#ff9326'
 let s:yellow       = '#ffcb65'
@@ -109,6 +111,7 @@ endfunction
 " ----------------------------------------------------------------------------
 
 call s:HL('Normal', s:accent_6, s:accent_2, s:none)
+call s:HL('NormalNC', s:accent_6, s:accent_inactive, s:none)
 
 call s:HL('ColorColumn', s:none, s:accent_3, s:none)
 " call s:HL('Conceal', ...)

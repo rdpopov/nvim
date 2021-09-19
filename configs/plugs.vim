@@ -36,5 +36,4 @@ call plug#begin()
 	Plug 'dbeniamine/cheat.sh-vim'                      "   query help from inside vim query help from inside vim
 	Plug 'norcalli/nvim-colorizer.lua'                  "   colorizer for colors in css and anywhere really
 	Plug 'shaunsingh/moonlight.nvim'
-	Plug 'ray-x/aurora'
 call plug#end()
