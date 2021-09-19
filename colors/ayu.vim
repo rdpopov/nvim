@@ -86,6 +86,7 @@ highlight TabLine guibg=#2BBB4F guifg=#14191F
 " Vim Highlighting: (see :help highlight-groups)"{{{
 " ----------------------------------------------------------------------------
 exe "hi! Normal"        .s:fg_fg          .s:bg_bg          .s:fmt_none
+exe "hi! NormalNC"      .s:fg_fg          .s:bg_line				.s:fmt_none
 exe "hi! ColorColumn"   .s:fg_none        .s:bg_line        .s:fmt_none
 " Conceal, Cursor, CursorIM
 exe "hi! CursorColumn"  .s:fg_none        .s:bg_line        .s:fmt_none

@@ -1134,6 +1134,7 @@ fun! s:apply_syntax_highlightings()
     exec 'hi FoldColumn' . s:fg_folded_fg . s:bg_transparent . s:ft_none
   else
     exec 'hi Normal' . s:fg_foreground . s:bg_background
+    exec 'hi NormalNC' . s:fg_foreground . s:bg_cursorline
     " Switching between dark & light variant through `set background`
     if s:is_dark " DARK VARIANT
       set background=dark
