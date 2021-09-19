@@ -13,16 +13,13 @@ function! g:OpenLspConfHelp()
  execute ":vsplit "."$HOME/.config/nvim/plugged/nvim-lspconfig/CONFIG.md"
 endfunction
 
-lua require('navigator-conf')
 nnoremap <leader>d :call ToggleDiagn()<CR>
 nnoremap gD <Cmd>lua vim.lsp.buf.declaration()<CR> 
 nnoremap gd <Cmd>lua vim.lsp.buf.definition()<CR> 
 nnoremap K <Cmd>lua vim.lsp.buf.hover()<CR> 
 nnoremap rn <cmd>lua vim.lsp.buf.rename()<CR> 
 nnoremap gca <cmd>lua vim.lsp.buf.code_action()<CR> 
-nnoremap gr <cmd>lua vim.lsp.buf.references()<CR> 
-"nnoremap gr :Telescope lsp_references theme=get_ivy<CR> 
-nnoremap gR :Telescope lsp_references theme=get_ivy<CR> 
+nnoremap gr :Telescope lsp_references theme=get_ivy<CR> 
 "nnoremap \\e <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR> 
 nnoremap \\e :Telescope lsp_document_diagnostics<CR> 
 nnoremap [d <cmd>lua vim.lsp.diagnostic.goto_prev()<CR> 

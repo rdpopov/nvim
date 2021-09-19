@@ -16,8 +16,6 @@ call plug#begin()
 	Plug 'hrsh7th/cmp-nvim-lua'                         "    vim lua api completion
 	Plug 'hrsh7th/cmp-path'                             "    path completion
 	Plug 'f3fora/cmp-spell'                             "    spelling completion
-	Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' } " code display
-	Plug 'ray-x/navigator.lua'													" code display
 	" -- Better Navigaion and vim as a whole
 	Plug 'nvim-telescope/telescope.nvim'                " telescope
 	" depends on
