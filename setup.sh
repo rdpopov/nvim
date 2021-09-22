@@ -23,6 +23,7 @@ setup_tmux(){
     [ -e "$HOME/.tmux.conf" ] && mv $HOME/.tmux.conf $HOME/.tmux.conf.bak
     cp dots/tmux.conf $HOME/.tmux.conf
     [ -d "$HOME/.tmux/plugins/tpm" ] || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm #tmux package manager
+    [[ $(grep ~/.bashrc -e env\.sh -c) == "0" ]] && echo "source ~/.config/nvim/dots/env.sh" >> ~/.bashrc || echo "already in .bashrc"
 }
 
 setup_alac(){
