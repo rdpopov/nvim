@@ -22,6 +22,7 @@ call plug#begin()
 	Plug 'nvim-lua/plenary.nvim'                        "   telescope needs it dunno
 	Plug 'folke/todo-comments.nvim'
 	Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " thing that implements fzf for tlelescope
+	Plug 'nvim-telescope/telescope-symbols.nvim'
 	Plug 'tpope/vim-abolish'                            "   better find and replace, tpope stuff is blessed better find and replace, tpope stuff is blessed
 	Plug 'phaazon/hop.nvim'                             "   alternative to sneak more like easymotion alternative to sneak more like easymotion
 	Plug 'mbbill/undotree'                              "   Undotree Undotree
