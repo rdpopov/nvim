@@ -1,7 +1,6 @@
 #!/bin/sh
 battery=$(\
-upower -i /org/freedesktop/UPower/devices/battery_BAT1|\
-awk 'NR==11 { if ($2 == "charging" || $2 == "fully-charged") { print "#[bg=#1e1e1e,fg=#f02e6e]" } else { print "#[bg=#1e1e1e,fg=#f2b482]"}} NR>=19 && NR<=20 { if ($1 == "percentage:") print "⭍" $2}')
+upower -i /org/freedesktop/UPower/devices/battery_BAT1| awk 'NR==11 {if ($2 == "charging") {print "#[bg=#1e1e1e,fg=#9ceb4f]"} if($2 == "fully-charged") {print "#[bg=#1e1e1e,fg=#f02e6e]"} if($2 == "discharging") {print "#[bg=#1e1e1e,fg=#f2b482]"} } NR>=19 && NR<=20 { if ($1 == "percentage:") print "⭍" $2}')
 battery_time=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1| awk ' NR==19{ if ($1 == "time") print "["$4 substr($5,0,1)"]" }')
 date="#[bg=#1e1e1e,fg=#63f2f1]"$(date +" "%d/%b)
 time="#[bg=#1e1e1e,fg=#62d196]"$(date +" "%H:%M)
