@@ -35,4 +35,6 @@ call plug#begin()
 	Plug 'dbeniamine/cheat.sh-vim'                      "   query help from inside vim query help from inside vim
 	Plug 'norcalli/nvim-colorizer.lua'                  "   colorizer for colors in css and anywhere really
 	Plug 'shaunsingh/moonlight.nvim'
+  " -- Writing, i do write as well might as well use the best biggest gun for it
+  Plug 'smithbm2316/centerpad.nvim'
 call plug#end()

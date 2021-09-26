@@ -81,3 +81,6 @@ nnoremap <leader>] :GitGutterNextHunk<CR>
 nnoremap <leader>[ :GitGutterPrevHunk<CR>
 nnoremap <leader>A :GitGutterPreviewHunk<CR>
 nnoremap <leader>D :GitGutterQuickFix<CR>
+" -- writing
+nnoremap <F8> :Centerpad 50 <CR>
+nnoremap qq vip:s/ \+/ /g<CR>:nohlsearch<CR>vipgq<Esc>

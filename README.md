@@ -56,8 +56,9 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 </p>
 
 <p>
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/spellcheck.png"  title="Yes, can even do spellchecking. Mostly builtin, adding it to completion menu is the addon.">
+<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/writing.png"  title="Yes, can even do spellchecking. Mostly builtin, adding it to completion menu is the addon.">
 </p>
+
 
 ## Features
 - Git git gutter
