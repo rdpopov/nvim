@@ -59,6 +59,7 @@ nnoremap <leader>c :call QfToggle()<cr>
 "nnoremap <C-t> :tabdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
 "nnoremap <C-b> :bufdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
 "	-- Text managment
+nnoremap == vi{=<Esc>
 nnoremap Y y$
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
@@ -84,3 +85,12 @@ nnoremap <leader>D :GitGutterQuickFix<CR>
 " -- writing
 nnoremap <F8> :Centerpad 50 <CR>
 nnoremap qq vip:s/ \+/ /g<CR>:nohlsearch<CR>vipgq<Esc>
+" -- nvim-dap
+nnoremap <silent> <leader><F5> :lua require'dap'.continue()<CR>
+nnoremap <silent> <leader><F10> :lua require'dap'.step_over()<CR>
+nnoremap <silent> <leader><F11> :lua require'dap'.step_into()<CR>
+nnoremap <silent> <leader><F12> :lua require'dap'.step_out()<CR>
+nnoremap <silent> <leader><F4> :lua require'dap'.toggle_breakpoint()<CR>
+" telescope + nvim dap
+nnoremap <silent> <leader>S :Telescope dap frames<CR>
+nnoremap <silent> <leader>B :Telescope dap list_brakpoints<CR>

@@ -18,6 +18,10 @@ call plug#begin()
 	Plug 'f3fora/cmp-spell'                             "    spelling completion
 	" -- Better Navigaion and vim as a whole
 	Plug 'nvim-telescope/telescope.nvim'                " telescope
+	" -- Debugger
+	Plug 'mfussenegger/nvim-dap'
+	Plug 'rcarriga/nvim-dap-ui'
+	Plug 'nvim-telescope/telescope-dap.nvim'
 	" depends on
 	Plug 'nvim-lua/plenary.nvim'                        "   telescope needs it dunno
 	Plug 'folke/todo-comments.nvim'
@@ -37,4 +41,5 @@ call plug#begin()
 	Plug 'shaunsingh/moonlight.nvim'
   " -- Writing, i do write as well might as well use the best biggest gun for it
   Plug 'smithbm2316/centerpad.nvim'
+  
 call plug#end()
