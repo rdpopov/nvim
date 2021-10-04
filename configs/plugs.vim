@@ -1,7 +1,7 @@
 call plug#begin()
 	" -- Language features
 	Plug 'alaviss/nim.nvim'                             "   Nim language support
-	Plug 'sheerun/vim-polyglot'                         "   any other language support
+	Plug 'sheerun/vim-polyglot'                         "   any other language support1
 	Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
 	Plug 'Chiel92/vim-autoformat'                       "   Easy file formatter
 	" -- Languge helpers
@@ -19,9 +19,9 @@ call plug#begin()
 	" -- Better Navigaion and vim as a whole
 	Plug 'nvim-telescope/telescope.nvim'                " telescope
 	" -- Debugger
-	Plug 'mfussenegger/nvim-dap'
-	Plug 'rcarriga/nvim-dap-ui'
-	Plug 'nvim-telescope/telescope-dap.nvim'
+"	Plug 'mfussenegger/nvim-dap'
+"	Plug 'rcarriga/nvim-dap-ui'
+"	Plug 'nvim-telescope/telescope-dap.nvim'
 	" depends on
 	Plug 'nvim-lua/plenary.nvim'                        "   telescope needs it dunno
 	Plug 'folke/todo-comments.nvim'
@@ -41,5 +41,4 @@ call plug#begin()
 	Plug 'shaunsingh/moonlight.nvim'
   " -- Writing, i do write as well might as well use the best biggest gun for it
   Plug 'smithbm2316/centerpad.nvim'
-  
 call plug#end()

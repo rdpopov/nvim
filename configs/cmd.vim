@@ -84,7 +84,7 @@ nnoremap <leader>A :GitGutterPreviewHunk<CR>
 nnoremap <leader>D :GitGutterQuickFix<CR>
 " -- writing
 nnoremap <F8> :Centerpad 50 <CR>
-nnoremap qq vip:s/ \+/ /g<CR>:nohlsearch<CR>vipgq<Esc>
+nnoremap qq vip:s/ \+/ /ge<CR>vip:s/ , /, /ge<CR>vip:s/ \. /. /ge<CR>:nohlsearch<CR>vipgq<Esc>
 " -- nvim-dap
 nnoremap <silent> <leader><F5> :lua require'dap'.continue()<CR>
 nnoremap <silent> <leader><F10> :lua require'dap'.step_over()<CR>
