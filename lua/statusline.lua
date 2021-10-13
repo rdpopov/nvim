@@ -237,7 +237,7 @@ end
 M.trunc_width = setmetatable({
   mode       = 80,
   git_status = 90,
-  filename   = 140,
+  filename   = 60,
   explorer   = 15,
   line_col   = 60,
 }, {

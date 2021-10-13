@@ -9,29 +9,31 @@
 map  <Space> <Leader>
 " -- Procedure to make ctags
 command! -bang -nargs=* MakeTags !ctags -R --exclude=.git --exclude=.ccls-cache --exclude=test
-"	-- Commands  that are sometimes uesd 
+"  -- Commands  that are sometimes uesd 
 noremap <F2> :QuickRun<CR>
 noremap <F3> :Autoformat<CR>:retab<CR>
 nnoremap <F4> :call Clone()<CR><CR>
 nnoremap <F5> :HowIn
-"	-- Language Switch
+"  -- Language Switch
 inoremap <Leader>l <Esc>:call CycleLanguagesUp()<CR>a
 nnoremap <Leader>l :call CycleLanguagesUp()<CR>
-"	-- Search Remaps
+"  -- Search Remaps
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 nmap <silent> ,/ :nohlsearch<CR>
-"	-- Terminal Remaps
+"  -- Terminal Remaps
 tnoremap <Esc> <C-\><C-n>
 inoremap <C-w> <Esc><C-w>
 tmap <C-w> <Esc><C-w>
-noremap <C-s> :execute "vsplit term://".$SHELL<CR>
-"	-- Connect system clipboard with vim's registers , without cloberring my own
-"	yank register
+"  -- Terminal managment commands
+nnoremap <leader>ns :call OpenTerm(v:true)<cr>
+nnoremap <C-s> :call OpenTerm(v:false)<cr>
+"  -- Connect system clipboard with vim's registers , without cloberring my own
+"  yank register
 noremap <Leader>y "*y
 noremap <Leader>p "*p
 noremap <Leader>Y "+y
 noremap <Leader>P "+p
-"	-- Window managment might remove them. I Should make my own managment thingy
+"  -- Window managment might remove them. I Should make my own managment thingy
 nnoremap <C-h> :call ResizeWith('h')<CR>
 nnoremap <C-j> :call ResizeWith('j')<CR>
 nnoremap <C-k> :call ResizeWith('k')<CR>
@@ -42,7 +44,7 @@ nnoremap <M-j> :wincmd j<CR>
 nnoremap <M-k> :wincmd k<CR>
 nnoremap <M-l> :wincmd l<CR>
 nnoremap <M-;> :tabNext <CR>
-"	-- For make integration
+"  -- For make integration
 noremap <leader><ESC> :cclose<CR>
 nnoremap <leader>x :make <cr>
 function! g:QfToggle()
@@ -58,7 +60,7 @@ nnoremap <leader>c :call QfToggle()<cr>
 "nnoremap <C-d> :execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
 "nnoremap <C-t> :tabdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
 "nnoremap <C-b> :bufdo execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
-"	-- Text managment
+"  -- Text managment
 nnoremap == vi{=<Esc>
 nnoremap Y y$
 vnoremap J :m '>+1<CR>gv=gv
@@ -66,11 +68,11 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
 nnoremap <silent> <C-t> :Vista!!<CR>
 nnoremap <silent> <leader>s :call ToggleLocalSpelling()<CR>
-"	-- Obsolete actially
+"    -- Obsolete actially
 vnoremap <M-b> :call OpenInBrowser()<cr>
 vnoremap <M-t> :call ExecInTerminal()<cr>
 vnoremap <M-T> :call SudoExecInTerminal()<cr>
-"	-- Session managment and managment in general
+"    -- Session managment and managment in general
 command! Erc :e $MYVIMRC | lcd %:p:h
 nnoremap <F6> :mksession!<CR>
 nnoremap <F7> :!echo -e "let g:auto_session= v:true\nlet g:use_ripgrep = v:true" > localrc.vim <CR><CR>

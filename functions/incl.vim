@@ -6,3 +6,5 @@ source $HOME/.config/nvim/functions/lang.vim
 source $HOME/.config/nvim/functions/around.vim
 " Helper functions for opening things in bowser/executing things in shell
 source $HOME/.config/nvim/functions/open_utils.vim
+" Terminala managment functions
+source $HOME/.config/nvim/functions/terminal_manager.vim
