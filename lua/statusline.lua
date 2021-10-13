@@ -28,7 +28,11 @@ local active_sep = 'blank'
 local space  = {" "," "}  -- space for the hints 
 status_style = "minimal"
 cpal = 'aurora'
-vim.cmd('colorscheme ' ..cpal)
+if vim.env.TERM == "screen-256color" then 
+  -- this is because aurora looks fucked on older tmux windows
+  cpal = 'badwolf'
+end
+vim.cmd('colorscheme ' .. cpal)
 
 ColorPalette = {
     ['ayu'] = 
@@ -140,7 +144,22 @@ ColorPalette = {
       ['Error'] = '#F02E6E',
       ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
-
+    ['badwolf'] = 
+    setmetatable({
+      ['Blue']  = '#0a9dff',
+      ['Red']  = '#ff2c4b',
+      ['Yellow']  = '#f4cf86',
+      ['Orange']  = '#ffa724',
+      ['Green']  = '#8cffba',
+      ['Violet']  = '#ff9eb8',
+      ['Gray']  = '#14191F',
+      ['Black']  = '#14191F',
+      ['Name']  = '#0a9dff',
+      ['Background']  = '#35322d',
+      ['Warning'] = '#ffa724',
+      ['Error'] = '#ff2c4b',
+      ['Hint'] = '#FFFFFF',
+    }, { __index = function() return '#FFFFFF' end }),
 }
 
 --==============================================================================
