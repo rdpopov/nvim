@@ -24,11 +24,13 @@ local LspDiagn  = function(diagn)
 end
 local usr = "/home/"..vim.fn.expand("$USER")
 
-local active_sep = 'blank'
+local active_sep = 'arrow'
 local space  = {" "," "}  -- space for the hints 
-status_style = "minimal"
+status_style = "fancy"
 cpal = 'aurora'
-if vim.env.TERM == "screen-256color" then 
+local tver = vim.env.TMUX_VER or ""
+
+if tver < '2.3' then 
   -- this is because aurora looks fucked on older tmux windows
   cpal = 'badwolf'
 end
@@ -389,7 +391,17 @@ M.get_current_mode = function(self)
 end
 
 M.get_git_status = function(self)
-  return " "..fn['GitStatus']()
+  local stat = vim.b.gitsigns_status
+  local head = vim.b.gitsigns_head
+  if stat and string.len(stat) > 0 then
+    return " "..stat
+  else
+    if head and string.len(head) >0 then
+      return " ".. head
+    else
+      return ""
+    end
+  end
 end
 
 local is_explorer = function()
@@ -428,7 +440,7 @@ end
 
 M.get_line_col = function(self)
   if self:is_truncated(self.trunc_width.line_col) then return ' %l:%c ' end
-  return ' L:%l C:%c %p%% '
+  return ' %l:%c '
 end
 M.get_Input_language = function()
   return " "..fn['GetInputLang']()

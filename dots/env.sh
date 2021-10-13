@@ -5,5 +5,6 @@ export HAS_BATTERY=$(upower -d 2>/dev/null |grep BAT -c)
 # source QUOTY
 [[ -e ~/.config/quoty/ ]] && source ~/.config/quoty/quoty.sh  || echo "No quotes today sir"
 
+export TMUX_VER=$(tmux -V|cut -f2 -d" ")
 export GOPATH=$(go env GOPATH) 
 export PATH=$PATH:$(go env GOPATH)/bin
