@@ -33,7 +33,8 @@ call plug#begin()
 	Plug 'antoinemadec/FixCursorHold.nvim'              "    ?  ?
 	" -- Git
 	Plug 'tpope/vim-fugitive'                           "   git client git client
-	Plug 'airblade/vim-gitgutter'                       "   git integration git integration
+	"Plug 'airblade/vim-gitgutter'                       "   git integration git integration
+	Plug 'lewis6991/gitsigns.nvim'
 	" -- I dunno ¯\_(ツ)_/¯
 	Plug 'thinca/vim-quickrun'                          "   quickrun code files, useful for nothing but c/c++ quickrun code files, useful for nothing but c/c++
 	Plug 'dbeniamine/cheat.sh-vim'                      "   query help from inside vim query help from inside vim

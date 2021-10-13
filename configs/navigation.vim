@@ -21,7 +21,6 @@ source $HOME/.config/nvim/configs/netrw.vim
 source $HOME/.config/nvim/default_plugins/vinegar.vim
 " Fzf and grep
 " hop.nvim
-lua require('hop_conf')
 
 "nnoremap <leader>g :Rg 
 "nnoremap <leader>G :Rg<CR>
@@ -40,5 +39,7 @@ nnoremap <silent>  <leader>f :Telescope current_buffer_fuzzy_find theme=get_ivy<
 nnoremap <silent>  <leader>r :Telescope grep_string theme=get_ivy<CR>
 nnoremap <silent>  <leader>R :Telescope live_grep theme=get_ivy<CR>
 
+lua require('hop_conf')
 lua require('telescope_conf')
+lua require('gitsigns_conf')
 

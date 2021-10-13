@@ -233,6 +233,9 @@ call s:HL('GitGutterAdd', s:green, s:none, s:none)
 call s:HL('GitGutterDelete', s:red, s:none, s:none)
 call s:HL('GitGutterChange', s:yellow, s:none, s:none)
 
+call s:HL('GitSignsAdd', s:green, s:none, s:none)
+call s:HL('GitSignsDelete', s:red, s:none, s:none)
+call s:HL('GitSignsChange', s:yellow, s:none, s:none)
 " ----------------------------------------------------------------------------
 " Terminal Syntax:
 " ----------------------------------------------------------------------------

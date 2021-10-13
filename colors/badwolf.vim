@@ -33,6 +33,7 @@
 
 if !has("gui_running") && &t_Co != 88 && &t_Co != 256
     finish
+    finish
 endif
 
 set background=dark
@@ -490,6 +491,10 @@ call s:HL('diffNewFile', 'coal', 'taffy', 'bold')
 
 call s:HL('diffLine', 'coal', 'orange', 'bold')
 call s:HL('diffSubname', 'orange', '', 'none')
+
+call s:HL('GitSignsAdd'   , 'lime', '',)
+call s:HL('GitSignsChange', 'tardis', '',)
+call s:HL('GitSignsDelete', 'taffy', '',)
 
 " }}}
 " Django Templates {{{
