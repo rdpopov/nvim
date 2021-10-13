@@ -14,8 +14,22 @@ setup_nvim(){
     wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output-document nvim
     chmod +x nvim && sudo chown root:root nvim && sudo mv nvim /usr/bin
     pip3 install --user neovim
-    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     [ -d "$HOME/.undodir" ]  || mkdir $HOME"/.undodir"
+}
+
+
+update_plug(){
+  if command -v curl; then
+    curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  else
+    if command -v wget; then
+      wget --quiet https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim --output-document ~/.config/nvim/autoload/plug.vim
+    else
+      echo "> neither wget or curl exist."
+      echo "what do?"
+      exit -1
+    fi
+  fi
 }
 
 setup_tmux(){
@@ -60,20 +74,25 @@ else
       "--deps" | "-d" )
         setup_deps
         ;;
+      "--plug" | "-p" )
+        update_plug
+        ;;
       "--all" | "-A" )
         setup_deps
         setup_nvim
+        update_plug
         setup_tmux
         setup_alac
         ;;
       *)
         echo -e "Usage:";
-        echo -e "   --alac,-a\t setup alacritty ";
-        echo -e "   --tmux,-t\t sets up tmux and which requires quoty(optionally)"
-        echo -e "   --quoty,-q\t sets up quoty"
-        echo -e "   --nvim,-n\t sets up neovim latest appimage"
-        echo -e "   --deps,-d\t sets up dependacies for neovim"
-        echo -e "   --all,-A\t sets up all of the above for neovim"
+        echo -e "   --alac,-a\t Setup alacritty.";
+        echo -e "   --tmux,-t\t Sets up tmux and which requires quoty(optionally)."
+        echo -e "   --quoty,-q\t Sets up quoty."
+        echo -e "   --nvim,-n\t Sets up neovim latest appimage."
+        echo -e "   --deps,-d\t Sets up dependacies for neovim."
+        echo -e "   --plug,-p\t Gets new version of vim-plug."
+        echo -e "   --all,-A\t Sets up all of the above for neovim."
         exit 0
         ;;
     esac
