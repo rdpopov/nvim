@@ -219,6 +219,9 @@ call s:HL('Ignore', s:none, s:none, s:none)
 call s:HL('Error', s:red, s:darkred, s:underline)
 call s:HL('Todo', s:orange, s:darkorange, s:underline)
 
+call s:HL('CmpItemAbbr', s:green, s:none, s:none)
+call s:HL('CmpItemAbbrMatch', s:white, s:none, s:none)
+
 " Quickfix window highlighting
 call s:HL('qfLineNr', s:yellow, s:none, s:none)
 "   qfFileName"
@@ -235,7 +238,7 @@ call s:HL('GitGutterChange', s:yellow, s:none, s:none)
 
 call s:HL('GitSignsAdd', s:green, s:none, s:none)
 call s:HL('GitSignsDelete', s:red, s:none, s:none)
-call s:HL('GitSignsChange', s:yellow, s:none, s:none)
+call s:HL('GitSignsChange', s:blue, s:none, s:none)
 " ----------------------------------------------------------------------------
 " Terminal Syntax:
 " ----------------------------------------------------------------------------

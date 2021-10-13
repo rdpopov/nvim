@@ -36,6 +36,7 @@ if !has("gui_running") && &t_Co != 88 && &t_Co != 256
     finish
 endif
 
+
 set background=dark
 
 if exists("syntax_on")
@@ -315,6 +316,10 @@ call s:HL('Pmenu', 'plain', 'deepergravel')
 call s:HL('PmenuSel', 'coal', 'tardis', 'bold')
 call s:HL('PmenuSbar', '', 'deepergravel')
 call s:HL('PmenuThumb', 'brightgravel')
+
+call s:HL('CmpItemAbbr', 'lime','','')
+
+call s:HL('CmpItemAbbrMatch', 'snow','','bold')
 
 " }}}
 " Diffs {{{

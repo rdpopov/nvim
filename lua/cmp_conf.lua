@@ -9,10 +9,9 @@ require "lsp_signature".setup({
   })
 local cmp = require'cmp'
 cmp.setup({
+    formatting = {},
     completion = {
-      autocomplete = {
-        completeopt = 'menu,menuone,noinsert,preview'
-      },
+      completeopt = 'menu,menuone,noinsert,preview'
     },
     snippet = {
       expand = function(args)
@@ -20,7 +19,11 @@ cmp.setup({
       end,
     },
     mapping = {
-      ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+     -- ['<TAB>'] = cmp.mapping.complete(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
     sources = {
       { name = 'path' },
@@ -44,4 +47,3 @@ require'lspconfig'.vimls.setup { capabilities = capabilities, }
 require'lspconfig'.rust_analyzer.setup { capabilities = capabilities, }
 require'lspconfig'.hls.setup { capabilities = capabilities, }
 require'lspconfig'.racket_langserver.setup { capabilities = capabilities, }
-
