@@ -319,7 +319,7 @@ call s:HL('PmenuThumb', 'brightgravel')
 
 call s:HL('CmpItemAbbr', 'lime','','')
 
-call s:HL('CmpItemAbbrMatch', 'snow','','bold')
+call s:HL('CmpItemAbbrMatch', 'snow','','')
 
 " }}}
 " Diffs {{{

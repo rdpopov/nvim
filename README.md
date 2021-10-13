@@ -17,7 +17,7 @@ Just kidding. Actually I don't like it and I edit it constantly.
    It has a lot of powerful functionality built into it. Like include paths and :make\
    It can do a lot on its own, but there are also plugins for it from the vim community.
  - **Keymap** - The normal (vscode or the ISO standard that is present almost everywhere)\
-   shortcuts are somewaht long or similar functions are at opposite ends of the keyboard, \
+   shortcuts are somewhat long or similar functions are at opposite ends of the keyboard, \
    or make no sense at all. Vim being modal, has more combinations per mode,\
    and combinations are shorter on average. Basic keymap uses mneumonics,\
    and everything is remapable. Movement commands are superb.\
@@ -35,32 +35,13 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 
 [nim-lang]:https://nim-lang.org/
 
-<p>
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/nvim.png"  title="This is what peak performance looks like">
-</p>
-
-<p>
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/diagn.png"  title="Get all diagnostics">
-</p>
-
-<p>
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/descr.png"  title="Hover definition">
-</p>
-
-<p>
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/preview.png"  title="Preview definition with fzf">
-</p>
-
-<p>
+<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/preview.png"  title="Preview definition with telescope">
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/tree.png"  title="Tree undo is best undo">
-</p>
-
-<p>
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/writing.png"  title="Yes, can even do spellchecking. Mostly builtin, adding it coleective completion menu is the addon.">
-</p>
-<p>
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/pc_status.jpg"  title="Tmux status bar">
-</p>
 
 
 ## Features
