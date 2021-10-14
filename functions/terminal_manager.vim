@@ -6,8 +6,8 @@ let g:trm_list = []
 " determines how to split the current window the best way
 " if its full width of the editor , split it vertically
 " if its the full heigth of the editor split horizontally
-set splitright
-set splitbelow
+"set splitright
+"set splitbelow
 
 function! g:Det_split()
 	let all_lines=&lines - 1
@@ -37,6 +37,7 @@ function! NewShell()
 		let g:trm_list = g:trm_list + [g:trm_buf]
 	endif
 	let g:trm_list = g:trm_list + [bufname()]
+	call uniq(g:trm_list)
 	let g:trm_buf = bufname()
 endfunction
 
@@ -48,6 +49,8 @@ function! g:OpenTerm(new)
 	let l:spl = Det_split()
 	if g:trm_buf == ""
 		execute l:spl."| term"
+		let g:trm_list = g:trm_list + [bufname()]
+		call uniq(g:trm_list)
 		let g:trm_buf = bufname()
 		return
 	else
@@ -77,11 +80,11 @@ function! g:OpenTerm(new)
 					if bufexists(bufnr(g:trm_buf)) != 1
 						if index(g:trm_list,g:trm_buf) > -1
 							call remove(g:trm_list,index(g:trm_list,g:trm_buf))
+							call uniq(g:trm_list)
 						endif
 						if len(g:trm_list) > 1
-							g:trm_buf = g:trm_list[-1]
+							let g:trm_buf = g:trm_list[-1]
 						else
-							execute l:spl
 							call NewShell()
 							return
 						endif
@@ -94,6 +97,17 @@ function! g:OpenTerm(new)
 				return
 			endif
 		else
+			if bufexists(bufnr(g:trm_buf)) != 1
+				if index(g:trm_list,g:trm_buf) > -1
+					call remove(g:trm_list,index(g:trm_list,g:trm_buf))
+				endif
+				if len(g:trm_list) > 0
+					let g:trm_buf = g:trm_list[-1]
+				else
+					call NewShell()
+					return
+				endif
+			endif
 			execute l:spl." | b ".g:trm_buf
 			if a:new
 				call NewShell()
@@ -104,5 +118,15 @@ function! g:OpenTerm(new)
 endfunction
 
 function! g:CycleTerminal(dir)
-	echo "todo"
+	let l:ind = index(g:trm_list,g:trm_buf)
+	let g:old = g:trm_buf
+	call uniq(g:trm_list)
+	let g:trm_buf = g:trm_list[(ind+a:dir)%len(g:trm_list)]
+
+	if bufwinid(g:old)
+		call win_execute(bufwinid(g:old),"b ".g:trm_buf)
+	else
+		call OpenTerm(v:false)
+	endif
+
 endfunction

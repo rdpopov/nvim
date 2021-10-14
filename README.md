@@ -85,7 +85,7 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 - **functions/lang.vim** - Language switching controls, switch up and down a list of predetermined languages in init.vim <sup>(1)</sup>
 - **functions/wm.vim** - rudamentary window management, will probably become first plugin
 - **functions/around.vim** - a try of making a sensible implementation of placing characters around things , not yet fully ready <sup>(2)</sup>
-- **functions/status_line_utils.vim** - Functions used by statusline. 
+- **functions/terminal_manager.vim** - a set of functions to manage terminal splits
 - **configs/colors.vim** - implementation of lightline, not mine, source is in file
 
  <sup>(1) There are maybe better solutions for that, but this is using vim's builtin\
