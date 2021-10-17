@@ -340,6 +340,11 @@ call s:h("GitGutterDelete",{"fg": s:red, "bg": s:bg})
 call s:h("GitGutterChange",{"fg": s:yellow, "bg": s:bg})
 call s:h("GitGutterChangeDelete",{"fg": s:red, "bg": s:bg})
 
+
+call s:h("GitSignsAdd",{"fg": s:green, "bg": s:bg})
+call s:h("GitSignsDelete",{"fg": s:red, "bg": s:bg})
+call s:h("GitSignsChange",{"fg": s:yellow, "bg": s:bg})
+
 " Ale
 call s:h("ALEErrorSign", {"fg": s:red, "bg": s:bg})
 call s:h("ALEWarningSign", {"fg": s:dark_yellow, "bg": s:bg})

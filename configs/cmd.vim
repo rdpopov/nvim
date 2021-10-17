@@ -26,8 +26,8 @@ inoremap <C-w> <Esc><C-w>
 tmap <C-w> <Esc><C-w>
 "  -- Terminal managment commands
 nnoremap <leader>ns :call OpenTerm(v:true)<cr>
-nnoremap <C-s> :call OpenTerm(v:false)<cr>
-nnoremap <M-s> :call CycleTerminal(1)<cr>
+nnoremap <silent><C-s> :call OpenTerm(v:false)<cr>
+nnoremap <silent><M-s> :call CycleTerminal(1)<cr>
 "  -- Connect system clipboard with vim's registers , without cloberring my own
 "  yank register
 noremap <Leader>y "*y

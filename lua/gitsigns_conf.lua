@@ -37,7 +37,7 @@ signs = {
   current_line_blame_formatter_opts = {
     relative_time = false
   },
-  sign_priority = 6,
+  sign_priority = 10,
   update_debounce = 100,
   status_formatter = nil, -- Use default
 
