@@ -98,22 +98,6 @@ ColorPalette = {
       ['Error'] = '#FB0101',
       ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
-    ['moonlight'] = 
-    setmetatable({
-      ['Blue']  = '#04d1f9',
-      ['Red']  = '#ff757f',
-      ['Yellow']  = '#ffc777',
-      ['Orange']  = '#f67f81',
-      ['Green']  = '#2df4c0',
-      ['Violet']  = '#b4a4f4',
-      ['Gray']  = '#a1abe0',
-      ['Black']  = '#14191F',
-      ['Name']  = '#2df4c0',
-      ['Background']  = '#414863',
-      ['Warning'] = '#ffc777',
-      ['Error'] = '#ff757f',
-      ['Hint'] = '#FFFFFF',
-    }, { __index = function() return '#FFFFFF' end }),
     ['gruvbox'] = 
     setmetatable({
       ['Blue']  = '#83a598',

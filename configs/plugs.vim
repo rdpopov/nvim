@@ -1,9 +1,7 @@
 call plug#begin()
 	" -- Language features
 	Plug 'alaviss/nim.nvim'                             "   Nim language support
-	Plug 'sheerun/vim-polyglot'                         "   any other language support1
 	Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
-	Plug 'Chiel92/vim-autoformat'                       "   Easy file formatter
 	" -- Languge helpers
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " tree-sitter for neovim tree-sitter for neovim
 	Plug 'neovim/nvim-lspconfig'                        "   lsp configuration api for native lsp lsp configuration api for native lsp
@@ -19,9 +17,6 @@ call plug#begin()
 	" -- Better Navigaion and vim as a whole
 	Plug 'nvim-telescope/telescope.nvim'                " telescope
 	" -- Debugger
-"	Plug 'mfussenegger/nvim-dap'
-"	Plug 'rcarriga/nvim-dap-ui'
-"	Plug 'nvim-telescope/telescope-dap.nvim'
 	" depends on
 	Plug 'nvim-lua/plenary.nvim'                        "   telescope needs it dunno
 	Plug 'folke/todo-comments.nvim'
@@ -33,13 +28,11 @@ call plug#begin()
 	Plug 'antoinemadec/FixCursorHold.nvim'              "    ?  ?
 	" -- Git
 	Plug 'tpope/vim-fugitive'                           "   git client git client
-	"Plug 'airblade/vim-gitgutter'                       "   git integration git integration
 	Plug 'lewis6991/gitsigns.nvim'
 	" -- I dunno ¯\_(ツ)_/¯
 	Plug 'thinca/vim-quickrun'                          "   quickrun code files, useful for nothing but c/c++ quickrun code files, useful for nothing but c/c++
-	Plug 'dbeniamine/cheat.sh-vim'                      "   query help from inside vim query help from inside vim
 	Plug 'norcalli/nvim-colorizer.lua'                  "   colorizer for colors in css and anywhere really
-	Plug 'shaunsingh/moonlight.nvim'
   " -- Writing, i do write as well might as well use the best biggest gun for it
   Plug 'smithbm2316/centerpad.nvim'
+	Plug 'henriquehbr/nvim-startup.lua'
 call plug#end()
