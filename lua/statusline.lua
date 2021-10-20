@@ -1,4 +1,4 @@
-
+ 
 -- 'based'(stolen) from https://elianiva.my.id/post/neovim-lua-statusline
 
 local fn = vim.fn
@@ -27,14 +27,13 @@ local usr = "/home/"..vim.fn.expand("$USER")
 local active_sep = 'arrow'
 local space  = {" "," "}  -- space for the hints 
 status_style = "fancy"
-cpal = 'aurora'
 local tver = vim.env.TMUX_VER or ""
 
-if tver < '2.3' then 
-  -- this is because aurora looks fucked on older tmux windows
+cpal = vim.api.nvim_get_var('colors_name')
+
+if tver < '2.3' and tver ~= "" then 
   cpal = 'badwolf'
 end
-vim.cmd('colorscheme ' .. cpal)
 
 ColorPalette = {
     ['ayu'] = 
@@ -98,7 +97,7 @@ ColorPalette = {
       ['Error'] = '#FB0101',
       ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
-    ['gruvbox'] = 
+    ['base16-gruvbox-dark-hard'] = 
     setmetatable({
       ['Blue']  = '#83a598',
       ['Red']  = '#ff757f',
@@ -146,6 +145,22 @@ ColorPalette = {
       ['Error'] = '#ff2c4b',
       ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
+    ['dark'] = 
+    setmetatable({
+      ['Blue']  = '#268bd2',
+      ['Red']  = '#ff0000',
+      ['Yellow']  = '#ffaf00',
+      ['Orange']  = '#ff5f00',
+      ['Green']  = '#afdf00',
+      ['Violet']  = '#5f00af',
+      ['Gray']  = '#14191F',
+      ['Black']  = '#14191F',
+      ['Name']  = '#FFFFFF',
+      ['Background']  = '#35322d',
+      ['Warning'] = '#ffa724',
+      ['Error'] = '#ff0000',
+      ['Hint'] = '#FFFFFF',
+    }, { __index = function() return '#FFFFFF' end }),
 }
 
 --==============================================================================
@@ -172,51 +187,50 @@ M.colors = {
   ins_language  =  '%#InssLang#',
 }
 
+
+-- you can of course pick whatever colour you want, I picked these colours
+-- because I use Gruvbox and I like them
+local gen_highlights = function()
+    return  {
+        {'StatusLine',               { fg = ColorPalette[cpal].Background, bg = ColorPalette[cpal].Name }},
+        {'StatusLineNC',             { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
+        {'StatusLineSimpleError',    { fg = ColorPalette[cpal].Error, bg = ColorPalette[cpal].Background }},
+        {'StatusLineSimpleWarning',  { fg = ColorPalette[cpal].Warning, bg = ColorPalette[cpal].Background }},
+        {'StatusLineSimpleHint',     { fg = ColorPalette[cpal].Hint, bg = ColorPalette[cpal].Background }},
+        {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
+        {'Git',                      { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
+        {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
+        {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
+        {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
+        {'GitAlt',                   { bg = '#3C3836', fg = '#504945' }},
+        {'LineColAlt',               { bg = '#504945', fg = '#928374' }},
+        {'FiletypeAlt',              { bg = '#3C3836', fg = '#504945' }},
+        {'LineCol',                  { bg = '#3C3836', fg = '#504945' }},
+        {'LineColAlt',               { bg = '#3C3836', fg = '#504945' }},
+        {'LspErr',                   { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background }},
+        {'LspWarn',                  { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background }},
+        {'LspHint',                  { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Background }},
+        {'InssLang',                 { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
+    }
+end
+
+local highlights = gen_highlights()
+
 local set_hl = function(group, options)
   local bg = options.bg == nil and '' or 'guibg=' .. options.bg
   local fg = options.fg == nil and '' or 'guifg=' .. options.fg
   local gui = options.gui == nil and '' or 'gui=' .. options.gui
-
   vim.cmd(string.format('hi %s %s %s %s', group, bg, fg, gui))
 end
-
--- you can of course pick whatever colour you want, I picked these colours
--- because I use Gruvbox and I like them
-local highlights = {
-  {'StatusLine',               { fg = ColorPalette[cpal].Background, bg = ColorPalette[cpal].Name }},
-  {'StatusLineNC',             { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
-  {'StatusLineSimpleError',    { fg = ColorPalette[cpal].Error, bg = ColorPalette[cpal].Background }},
-  {'StatusLineSimpleWarning',  { fg = ColorPalette[cpal].Warning, bg = ColorPalette[cpal].Background }},
-  {'StatusLineSimpleHint',     { fg = ColorPalette[cpal].Hint, bg = ColorPalette[cpal].Background }},
-  {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
-  {'Git',                      { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
-  {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
-  {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
-  {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
-  {'GitAlt',                   { bg = '#3C3836', fg = '#504945' }},
-  {'LineColAlt',               { bg = '#504945', fg = '#928374' }},
-  {'FiletypeAlt',              { bg = '#3C3836', fg = '#504945' }},
-  {'LineCol',                  { bg = '#3C3836', fg = '#504945' }},
-  {'LineColAlt',               { bg = '#3C3836', fg = '#504945' }},
-  {'LspErr',                   { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background }},
-  {'LspWarn',                  { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background }},
-  {'LspHint',                  { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Background }},
-  {'InssLang',                 { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
-}
 
 local set_hl_inv = function (group,options)
   local bg = options.bg == nil and '' or 'guibg=' .. options.bg
   local fg = options.fg == nil and '' or 'guifg=' .. options.fg
   local gui = options.gui == nil and '' or 'gui=' .. options.gui
-
   vim.cmd(string.format('hi %s %s %s %s', group, bg, fg, gui))
 end
 -- ============================================================================
-
-for _, highlight in ipairs(highlights) do
-  set_hl(highlight[1], highlight[2])
-end
 
 M.trunc_width = setmetatable({
   mode       = 80,
@@ -294,76 +308,95 @@ local mode_color_group = setmetatable({
 local to_hl_group = function(str)
     return  "%#".. str.. "#";
 end
-
-local color_table = {
-  {"NOR" ,{ bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"VIS" ,{ bg = ColorPalette[cpal].Orange, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"VIL" ,{ bg = ColorPalette[cpal].Orange, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"VIB" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"SEL" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"INS" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"REP" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"COM" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"EEX" ,{ bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"UNK" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
-}
-
-local overlap = {
-  -- mode - language overlap
-  {"NORLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Green, gui="bold" }},
-  {"VISLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Orange, gui="bold" }},
-  {"VILLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Orange, gui="bold" }},
-  {"VIBLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-  {"SELLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-  {"INSLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Blue, gui="bold" }},
-  {"REPLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Blue, gui="bold" }},
-  {"COMLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-  {"EEXLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Green, gui="bold" }},
-  {"UNKLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-  -- git - lang
-  {"LangGit" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Blue, gui="bold" }},
-  -- git - center
-  {"GitCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-  -- lang - center
-  {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
-  -- for truncated use
-  {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
-  {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
-  {"VILName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
-  {"VIBName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-  {"SELName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-  {"INSName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
-  {"REPName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
-  {"COMName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-  {"EEXName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
-  {"UNKName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-
-  {"NORFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
-  {"VISFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
-  {"VILFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
-  {"VIBFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-  {"SELFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-  {"INSFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
-  {"REPFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
-  {"COMFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-  {"EEXFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
-  {"UNKFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-
-  {"WarningFormat", { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"ErrorFormat"  , { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"ErrorWarning" , { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Error, gui="bold" }},
-  {"HintFormat"   , { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Background, gui="bold" }},
-  {"ErrorHint"		, { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Hint, gui="bold" }},
-  {"CenterWrning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning, gui="bold" }},
-  {"CenterError"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
-}
-
-for _, highlight in ipairs(color_table) do
-  set_hl_inv(highlight[1], highlight[2])
+local gen_color_table = function()
+    return {
+        {"NOR" ,{ bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"VIS" ,{ bg = ColorPalette[cpal].Orange, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"VIL" ,{ bg = ColorPalette[cpal].Orange, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"VIB" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"SEL" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"INS" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"REP" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"COM" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"EEX" ,{ bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"UNK" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
+    }
 end
-for _, highlight in ipairs(overlap) do
-  set_hl(highlight[1], highlight[2])
+
+local gen_overlap =function()
+    return {
+        -- mode - language overlap
+        {"NORLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Green, gui="bold" }},
+        {"VISLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Orange, gui="bold" }},
+        {"VILLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Orange, gui="bold" }},
+        {"VIBLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+        {"SELLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+        {"INSLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Blue, gui="bold" }},
+        {"REPLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Blue, gui="bold" }},
+        {"COMLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+        {"EEXLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Green, gui="bold" }},
+        {"UNKLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+        -- git - lang
+        {"LangGit" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Blue, gui="bold" }},
+        -- git - center
+        {"GitCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+        -- lang - center
+        {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+        -- for truncated use
+        {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+        {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+        {"VILName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+        {"VIBName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+        {"SELName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+        {"INSName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+        {"REPName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+        {"COMName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+        {"EEXName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+        {"UNKName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+
+        {"NORFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+        {"VISFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+        {"VILFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+        {"VIBFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+        {"SELFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+        {"INSFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+        {"REPFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+        {"COMFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+        {"EEXFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+        {"UNKFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+
+        {"WarningFormat", { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"ErrorFormat"  , { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"ErrorWarning" , { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Error, gui="bold" }},
+        {"HintFormat"   , { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"ErrorHint"	, { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Hint, gui="bold" }},
+        {"CenterWrning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning, gui="bold" }},
+        {"CenterError"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
+    }
 end
+
+local color_table = gen_color_table()
+local overlap = gen_overlap()
+
+define_highlights = function()
+    cpal = vim.api.nvim_get_var('colors_name')
+    if ColorPalette[cpal] == nil then 
+        cpal = 'dark'
+    end
+    highlights = gen_highlights()
+	for _, highlight in ipairs(highlights) do
+		set_hl(highlight[1], highlight[2])
+	end
+    color_table = gen_color_table()
+	for _, highlight in ipairs(color_table) do
+		set_hl_inv(highlight[1], highlight[2])
+	end
+    overlap = gen_overlap()
+	for _, highlight in ipairs(overlap) do
+		set_hl(highlight[1], highlight[2])
+	end
+end
+define_highlights()
 
 M.get_current_mode = function(self)
   local current_mode = api.nvim_get_mode().mode
@@ -587,6 +620,7 @@ Statusline = setmetatable(M, {
 api.nvim_exec([[
   augroup Statusline
   au!
+  au ColorScheme * lua if define_highlights then define_highlights() end
   au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
   augroup END
@@ -603,6 +637,7 @@ custom_highlight("cBug",'\'\\(BUG \\|Bug \\)\'',ColorPalette[cpal].Red)
 custom_highlight("cHack",'\'\\(HACK \\|Hack \\)\'',ColorPalette[cpal].Violet)
 custom_highlight("cWarn",'\'\\(WARN \\|Warn \\)\'',ColorPalette[cpal].Orange)
 custom_highlight("cNote",'\'\\(NOTE \\|Note \\)\'',ColorPalette[cpal].Blue)
+
 require("todo-comments").setup{
   signs = false,
   keywords = {
@@ -614,5 +649,3 @@ require("todo-comments").setup{
     NOTE = { icon = " ", color = ColorPalette[cpal].Green, alt = { "INFO" } },
   },
 }
-
-

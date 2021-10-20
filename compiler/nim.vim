@@ -1,6 +1,6 @@
-if polyglot#init#is_disabled(expand('<sfile>:p'), 'nim', 'compiler/nim.vim')
-  finish
-endif
+"if polyglot#init#is_disabled(expand('<sfile>:p'), 'nim', 'compiler/nim.vim')
+"  finish
+"endif
 
 if exists('current_compiler')
   finish
