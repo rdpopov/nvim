@@ -17,8 +17,9 @@ endfunction
 nnoremap <leader>g :call Grep(input('Search for: '))<CR>
 nnoremap <leader>G :call Grep(expand("<cword>"))<CR>
 " netrw config
-source $HOME/.config/nvim/configs/netrw.vim
-source $HOME/.config/nvim/default_plugins/vinegar.vim
+"source $HOME/.config/nvim/configs/netrw.vim
+source $HOME/.config/nvim/configs/f_tree.vim
+"source $HOME/.config/nvim/default_plugins/vinegar.vim
 " Fzf and grep
 " hop.nvim
 

@@ -13,6 +13,7 @@ M.separators = {
   rounded = { '', '' },
   blank = { '', '' },
   triangle = {'' ,''},
+  ang = {'⧽' ,'⧼'},
   slice = {'' ,''},
 }
 
@@ -24,9 +25,10 @@ local LspDiagn  = function(diagn)
 end
 local usr = "/home/"..vim.fn.expand("$USER")
 
-local active_sep = 'arrow'
+local active_sep = 'ang'
 local space  = {" "," "}  -- space for the hints 
 status_style = "fancy"
+inverted_colors = true
 local tver = vim.env.TMUX_VER or ""
 
 cpal = vim.api.nvim_get_var('colors_name')
@@ -191,28 +193,53 @@ M.colors = {
 -- you can of course pick whatever colour you want, I picked these colours
 -- because I use Gruvbox and I like them
 local gen_highlights = function()
-    return  {
-        {'StatusLine',               { fg = ColorPalette[cpal].Background, bg = ColorPalette[cpal].Name }},
-        {'StatusLineNC',             { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
-        {'StatusLineSimpleError',    { fg = ColorPalette[cpal].Error, bg = ColorPalette[cpal].Background }},
-        {'StatusLineSimpleWarning',  { fg = ColorPalette[cpal].Warning, bg = ColorPalette[cpal].Background }},
-        {'StatusLineSimpleHint',     { fg = ColorPalette[cpal].Hint, bg = ColorPalette[cpal].Background }},
-        {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
-        {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
-        {'Git',                      { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
-        {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
-        {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
-        {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
-        {'GitAlt',                   { bg = '#3C3836', fg = '#504945' }},
-        {'LineColAlt',               { bg = '#504945', fg = '#928374' }},
-        {'FiletypeAlt',              { bg = '#3C3836', fg = '#504945' }},
-        {'LineCol',                  { bg = '#3C3836', fg = '#504945' }},
-        {'LineColAlt',               { bg = '#3C3836', fg = '#504945' }},
-        {'LspErr',                   { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background }},
-        {'LspWarn',                  { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background }},
-        {'LspHint',                  { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Background }},
-        {'InssLang',                 { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
-    }
+    if inverted_colors then
+        return  {
+            {'StatusLine',               { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
+            {'StatusLineNC',             { fg = ColorPalette[cpal].Background, bg = ColorPalette[cpal].Background }},
+            {'StatusLineSimpleError',    { fg = ColorPalette[cpal].Error, bg = ColorPalette[cpal].Background }},
+            {'StatusLineSimpleWarning',  { fg = ColorPalette[cpal].Warning, bg = ColorPalette[cpal].Background }},
+            {'StatusLineSimpleHint',     { fg = ColorPalette[cpal].Hint, bg = ColorPalette[cpal].Background }},
+            {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
+            {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
+            {'Git',                      { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Yellow }},
+            {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
+            {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
+            {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
+            {'GitAlt',                   { bg = '#3C3836', fg = '#504945' }},
+            {'LineColAlt',               { bg = '#504945', fg = '#928374' }},
+            {'FiletypeAlt',              { bg = '#3C3836', fg = '#504945' }},
+            {'LineCol',                  { bg = '#3C3836', fg = '#504945' }},
+            {'LineColAlt',               { bg = '#3C3836', fg = '#504945' }},
+            {'LspErr',                   { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error   }},
+            {'LspWarn',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning }},
+            {'LspHint',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Hint    }},
+            {'InssLang',                 { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Blue, }},
+        }
+    else
+        return  {
+            {'StatusLine',               { fg = ColorPalette[cpal].Background, bg = ColorPalette[cpal].Name }},
+            {'StatusLineNC',             { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
+            {'StatusLineSimpleError',    { fg = ColorPalette[cpal].Error, bg = ColorPalette[cpal].Background }},
+            {'StatusLineSimpleWarning',  { fg = ColorPalette[cpal].Warning, bg = ColorPalette[cpal].Background }},
+            {'StatusLineSimpleHint',     { fg = ColorPalette[cpal].Hint, bg = ColorPalette[cpal].Background }},
+            {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
+            {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
+            {'Git',                      { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
+            {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
+            {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
+            {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
+            {'GitAlt',                   { bg = '#3C3836', fg = '#504945' }},
+            {'LineColAlt',               { bg = '#504945', fg = '#928374' }},
+            {'FiletypeAlt',              { bg = '#3C3836', fg = '#504945' }},
+            {'LineCol',                  { bg = '#3C3836', fg = '#504945' }},
+            {'LineColAlt',               { bg = '#3C3836', fg = '#504945' }},
+            {'LspErr',                   { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background }},
+            {'LspWarn',                  { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background }},
+            {'LspHint',                  { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Background }},
+            {'InssLang',                 { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
+        }
+    end
 end
 
 local highlights = gen_highlights()
@@ -221,13 +248,15 @@ local set_hl = function(group, options)
   local bg = options.bg == nil and '' or 'guibg=' .. options.bg
   local fg = options.fg == nil and '' or 'guifg=' .. options.fg
   local gui = options.gui == nil and '' or 'gui=' .. options.gui
+
   vim.cmd(string.format('hi %s %s %s %s', group, bg, fg, gui))
 end
 
 local set_hl_inv = function (group,options)
-  local bg = options.bg == nil and '' or 'guibg=' .. options.bg
-  local fg = options.fg == nil and '' or 'guifg=' .. options.fg
+  local bg = options.bg == nil and '' or 'guifg=' .. options.bg
+  local fg = options.fg == nil and '' or 'guibg=' .. options.fg
   local gui = options.gui == nil and '' or 'gui=' .. options.gui
+
   vim.cmd(string.format('hi %s %s %s %s', group, bg, fg, gui))
 end
 -- ============================================================================
@@ -310,69 +339,121 @@ local to_hl_group = function(str)
 end
 local gen_color_table = function()
     return {
-        {"NOR" ,{ bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"VIS" ,{ bg = ColorPalette[cpal].Orange, fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"VIL" ,{ bg = ColorPalette[cpal].Orange, fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"VIB" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"SEL" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"INS" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"REP" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"COM" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"EEX" ,{ bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"UNK" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"NOR" ,{ bg = ColorPalette[cpal].Green  , fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"VIS" ,{ bg = ColorPalette[cpal].Orange , fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"VIL" ,{ bg = ColorPalette[cpal].Orange , fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"VIB" ,{ bg = ColorPalette[cpal].Yellow , fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"SEL" ,{ bg = ColorPalette[cpal].Yellow , fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"INS" ,{ bg = ColorPalette[cpal].Blue   , fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"REP" ,{ bg = ColorPalette[cpal].Blue   , fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"COM" ,{ bg = ColorPalette[cpal].Yellow , fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"EEX" ,{ bg = ColorPalette[cpal].Green  , fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"UNK" ,{ bg = ColorPalette[cpal].Yellow , fg = ColorPalette[cpal].Background, gui="bold" }},
     }
 end
 
 local gen_overlap =function()
-    return {
-        -- mode - language overlap
-        {"NORLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Green, gui="bold" }},
-        {"VISLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Orange, gui="bold" }},
-        {"VILLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Orange, gui="bold" }},
-        {"VIBLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-        {"SELLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-        {"INSLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Blue, gui="bold" }},
-        {"REPLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Blue, gui="bold" }},
-        {"COMLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-        {"EEXLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Green, gui="bold" }},
-        {"UNKLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-        -- git - lang
-        {"LangGit" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Blue, gui="bold" }},
-        -- git - center
-        {"GitCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-        -- lang - center
-        {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
-        -- for truncated use
-        {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
-        {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
-        {"VILName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
-        {"VIBName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-        {"SELName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-        {"INSName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
-        {"REPName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
-        {"COMName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-        {"EEXName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
-        {"UNKName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+    if inverted_colors then 
+        return {
+            -- mode - language overlap
+            {"NORLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green , gui="bold" }},
+            {"VISLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VILLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VIBLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"SELLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"INSLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue  , gui="bold" }},
+            {"REPLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue  , gui="bold" }},
+            {"COMLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"EEXLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green , gui="bold" }},
+            {"UNKLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            -- git - lang
+            {"LangGit" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            -- git - center
+            {"GitCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            -- lang - center
+            {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            -- for truncated use
+            {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+            {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VILName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VIBName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"SELName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"INSName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"REPName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"COMName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"EEXName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+            {"UNKName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
 
-        {"NORFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
-        {"VISFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
-        {"VILFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
-        {"VIBFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-        {"SELFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-        {"INSFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
-        {"REPFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
-        {"COMFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-        {"EEXFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
-        {"UNKFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"NORFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+            {"VISFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VILFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VIBFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"SELFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"INSFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"REPFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"COMFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"EEXFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+            {"UNKFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
 
-        {"WarningFormat", { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"ErrorFormat"  , { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"ErrorWarning" , { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Error, gui="bold" }},
-        {"HintFormat"   , { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"ErrorHint"	, { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Hint, gui="bold" }},
-        {"CenterWrning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning, gui="bold" }},
-        {"CenterError"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
-    }
+            {"WarningFormat", { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background, gui="bold" }},
+            {"ErrorFormat"  , { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background, gui="bold" }},
+            {"ErrorWarning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
+            {"HintFormat"   , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name, gui="bold" }},
+            {"ErrorHint"	, { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Hint, gui="bold" }},
+            {"CenterWrning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning, gui="bold" }},
+            {"CenterError"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
+        }
+    else 
+        return {
+            -- mode - language overlap
+            {"NORLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Green, gui="bold" }},
+            {"VISLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VILLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VIBLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"SELLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"INSLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"REPLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"COMLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"EEXLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Green, gui="bold" }},
+            {"UNKLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            -- git - lang
+            {"LangGit" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            -- git - center
+            {"GitCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            -- lang - center
+            {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            -- for truncated use
+            {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+            {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VILName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VIBName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"SELName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"INSName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"REPName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"COMName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"EEXName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+            {"UNKName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+
+            {"NORFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+            {"VISFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VILFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VIBFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"SELFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"INSFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"REPFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"COMFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"EEXFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
+            {"UNKFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+
+            {"WarningFormat", { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background, gui="bold" }},
+            {"ErrorFormat"  , { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background, gui="bold" }},
+            {"ErrorWarning" , { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Error, gui="bold" }},
+            {"HintFormat"   , { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Background, gui="bold" }},
+            {"ErrorHint"	, { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Hint, gui="bold" }},
+            {"CenterWrning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning, gui="bold" }},
+            {"CenterError"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
+        }
+    end
 end
 
 local color_table = gen_color_table()
@@ -388,9 +469,15 @@ define_highlights = function()
 		set_hl(highlight[1], highlight[2])
 	end
     color_table = gen_color_table()
-	for _, highlight in ipairs(color_table) do
-		set_hl_inv(highlight[1], highlight[2])
-	end
+    if inverted_colors then
+        for _, highlight in ipairs(color_table) do
+            set_hl_inv(highlight[1], highlight[2])
+        end
+    else
+        for _, highlight in ipairs(color_table) do
+            set_hl(highlight[1], highlight[2])
+        end
+    end
     overlap = gen_overlap()
 	for _, highlight in ipairs(overlap) do
 		set_hl(highlight[1], highlight[2])
@@ -422,7 +509,7 @@ M.get_git_status = function(self)
 end
 
 local is_explorer = function()
-  return vim.bo.filetype == 'netrw' or vim.bo.filetype == 'nerdtree' or vim.bo.filetype == 'nvimtree'
+  return vim.bo.filetype == 'netrw' or vim.bo.filetype == 'nerdtree' or string.lower(vim.bo.filetype) == 'nvimtree'
 end
 
 local win_fname_and_dir = function()
@@ -435,15 +522,15 @@ M.get_filename = function(self)
   local dir = string.gsub(win_inf[1],usr,"~")
   if win_inf[2] == "NetrwTreeListing" then 
     if string.len(dir) > self.trunc_width.explorer then 
-      return " %<" .. vim.fn.pathshorten(dir)
+      return "%<" .. vim.fn.pathshorten(dir)
     else
-      return " %<" .. dir
+      return "%<" .. dir
     end
   end
   if self:is_truncated(self.trunc_width.filename) then 
-    return " %<"..vim.fn.pathshorten(win_inf[2]) .. '%{&modified?" [+]":""}' 
+    return "%<"..vim.fn.pathshorten(win_inf[2]) .. '%{&modified?" [+]":""}' 
   else
-    return ' %< %f%{&modified?" [+]":""}'
+    return '%< %f%{&modified?" [+]":""}'
   end
 end
 
@@ -474,7 +561,7 @@ M.get_lang_git_name = function(self)
   if git == '' then
     return  lang ..  to_hl_group('LangCenter') .. self.separators[active_sep][1] .. colors.filetype .. self:get_filename()
   end
-    return  lang ..  to_hl_group('LangGit') .. self.separators[active_sep][1] .. colors.git .. git.. space[1] .. to_hl_group('GitCenter') .. self.separators[active_sep][1].. colors.filetype.." ".. self:get_filename()
+    return  lang ..  to_hl_group('LangGit') .. self.separators[active_sep][1] .. colors.git .. git.. space[1] .. to_hl_group('GitCenter') .. self.separators[active_sep][1].. colors.filetype .. self:get_filename()
 end
 
 M.get_format_lsp_diagn = function(self,nof)
@@ -490,7 +577,11 @@ M.get_format_lsp_diagn = function(self,nof)
   end 
 
   if errs == -1 and  warn == -1 then
-    return colors.filetype .. space[1] .. ft .. space[2]
+      if ft == "" or inverted_colors==false then
+          return colors.filetype .. space[1] .. ft .. space[2]
+      else 
+          return colors.filetype .. self.separators[active_sep][2] .. space[1] .. ft .. space[2]
+      end
   end
 
 	return	to_hl_group('CenterWrning') .. self.separators[active_sep][2] ..
@@ -519,7 +610,7 @@ end
 M.fancy_line = function(self )
   local colors = self.colors
   --mode
-  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. '['..self:get_current_mode()..']'
+  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. '['..self:get_current_mode()..'] '
   --filename 
   local filename = colors.filetype .. self:get_filename()
   local filetype_alt = colors.filetype_alt .. self.separators[active_sep][1]
@@ -561,6 +652,10 @@ M.simple_line  = function(self)
   local line_col = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. self:get_line_col()
   local line_col_alt = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat') .. self.separators[active_sep][2]
   local ft = ""
+  local colll = colors.active
+  if inverted_colors then 
+      colll = colors.inactive
+  end
   if not is_explorer()  then
     ft = '%y '
   end
@@ -580,7 +675,7 @@ M.simple_line  = function(self)
         filename,
         self:simple_lsp(),
         "%=",
-        colors.active,
+        colll,
         ft,
         line_col,
       })

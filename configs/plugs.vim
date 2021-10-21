@@ -2,7 +2,7 @@ call plug#begin()
 	" -- Language features
 	Plug 'alaviss/nim.nvim'                             "   Nim language support
 	Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
-	" -- Languge helpers
+	" -- More general languge helpers
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " tree-sitter for neovim tree-sitter for neovim
 	Plug 'neovim/nvim-lspconfig'                        "   lsp configuration api for native lsp lsp configuration api for native lsp
 	Plug 'ray-x/lsp_signature.nvim'                     "   signatire preview via lsp signatire preview via lsp
@@ -35,4 +35,7 @@ call plug#begin()
   " -- Writing, i do write as well might as well use the best biggest gun for it
   Plug 'smithbm2316/centerpad.nvim'
 	Plug 'henriquehbr/nvim-startup.lua'
+	" -- File browser
+	Plug 'kyazdani42/nvim-web-devicons'
+	Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
