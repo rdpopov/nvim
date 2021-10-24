@@ -75,6 +75,7 @@ let s:none   = "NONE"
 let s:underline = 'bold'
 let s:undercurl = 'undercurl'
 let s:bold = 'bold'
+let s:italic = 'italic'
 let s:inverse = 'inverse'
 let s:reverse = 'reverse'
 
@@ -242,6 +243,10 @@ call s:HL('GitSignsChange', s:blue, s:none, s:none)
 " ----------------------------------------------------------------------------
 " Terminal Syntax:
 " ----------------------------------------------------------------------------
+call s:HL('LspDiagnosticsDefaultError', s:red, s:none, s:bold)
+call s:HL('LspDiagnosticsDefaultWarning', s:yellow, s:none, s:italic)
+call s:HL('LspDiagnosticsDefaultInformation', s:orange,s:none,s:none)
+call s:HL('LspDiagnosticsDefaultHint', s:none,s:none,s:none)
 
 call s:HL('Terminal', s:accent_6, s:accent_1, s:none)
 

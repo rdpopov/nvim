@@ -170,6 +170,11 @@ call <sid>hi('VisualNOS', s:cdNone, s:cdSelection, 'none', {})
 call <sid>hi('WarningMsg', s:cdOrange, s:cdBack, 'none', {})
 call <sid>hi('WildMenu', s:cdNone, s:cdSelection, 'none', {})
 
+call <sid>hi('LspDiagnosticsDefaultError', s:cdRed, s:cdNone, 'none', {})
+call <sid>hi('LspDiagnosticsDefaultWarning', s:cdYellowOrange, s:cdNone, 'none', {})
+call <sid>hi('LspDiagnosticsDefaultInformation', s:cdPink, s:cdNone, 'none', {})
+call <sid>hi('LspDiagnosticsDefaultHint', s:cdYellow, s:cdNone, 'none', {})
+
 " Legacy groups for official git.vim and diff.vim syntax
 hi! link diffAdded DiffAdd
 hi! link diffChanged DiffChange

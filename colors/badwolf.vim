@@ -97,19 +97,19 @@ let s:bwc.saltwatertaffy = ['8cffba', 121]
 "
 " * The cursor
 " * A REPL prompt
-let s:bwc.tardis = ['0a9dff', 39]
+let s:bwc.tardis = ['#0a9dff', 39]
 
 " This one's from Mustang, not Florida!
-let s:bwc.orange = ['ffa724', 214]
+let s:bwc.orange = ['#ffa724', 214]
 
 " A limier green from Getafe.
-let s:bwc.lime = ['aeee00', 154]
+let s:bwc.lime = ['#aeee00', 154]
 
 " Rose's dress in The Idiot's Lantern.
-let s:bwc.dress = ['ff9eb8', 211]
+let s:bwc.dress = ['#ff9eb8', 211]
 
 " Another play on the brown from Clouds Midnight.  I love that color.
-let s:bwc.toffee = ['b88853', 137]
+let s:bwc.toffee = ['#b88853', 137]
 
 " Also based on that Clouds Midnight brown.
 let s:bwc.coffee    = ['c7915b', 173]
@@ -226,6 +226,12 @@ call s:HL('MoreMsg',    'dalespale',   '',   'bold')
 call s:HL('ModeMsg',    'dirtyblonde', '',   'bold')
 call s:HL('Question',   'dirtyblonde', '',   'bold')
 call s:HL('WarningMsg', 'dress',       '',   'bold')
+
+
+call s:HL('LspDiagnosticsDefaultError', 'taffy', '', 'bold')
+call s:HL('LspDiagnosticsDefaultWarning', 'orange', '', 'italic')
+call s:HL('LspDiagnosticsDefaultInformation', 'snow', '', '')
+call s:HL('LspDiagnosticsDefaultHint', 'snow', '', '')
 
 " This is a ctags tag, not an HTML one.  'Something you can use c-] on'.
 call s:HL('Tag', '', '', 'bold')

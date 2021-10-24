@@ -131,7 +131,11 @@ exe "hi! Title"         .s:fg_keyword     .s:bg_none        .s:fmt_none
 exe "hi! Visual"        .s:fg_none        .s:bg_selection   .s:fmt_none
 "   VisualNos"
 exe "hi! WarningMsg"    .s:fg_error       .s:bg_none        .s:fmt_none
-
+"   Lsp
+exe "hi! LspDiagnosticsDefaultError"        .s:fg_error  .s:bg_none .s:fmt_bold
+exe "hi! LspDiagnosticsDefaultWarning"      .s:fg_accent .s:bg_none .s:fmt_ital
+exe "hi! LspDiagnosticsDefaultInformation"  .s:fg_fg     .s:bg_none .s:fmt_none
+exe "hi! LspDiagnosticsDefaultHint"         .s:fg_fg     .s:bg_none .s:fmt_none
 " TODO LongLineWarning to use variables instead of hardcoding
 hi LongLineWarning  guifg=NONE        guibg=#371F1C     gui=underline ctermfg=NONE        ctermbg=NONE        cterm=underline
 "   WildMenu"

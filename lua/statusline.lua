@@ -8,6 +8,17 @@ local M = {}
 
 -- possible values are 'arrow' | 'rounded' | 'blank'
 -- change them if you want to different separator
+local LspDiagn  = function(diagn)
+  if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then 
+      return vim.lsp.diagnostic.get_count(0, diagn)
+  end
+      return -1
+end
+local usr = "/home/"..vim.fn.expand("$USER")
+
+
+use_preset = "alt_max"
+
 M.separators = {
   arrow = { '', '' },
   rounded = { '', '' },
@@ -17,18 +28,60 @@ M.separators = {
   slice = {'' ,''},
 }
 
-local LspDiagn  = function(diagn)
-  if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then 
-      return vim.lsp.diagnostic.get_count(0, diagn)
-  end
-      return -1
-end
-local usr = "/home/"..vim.fn.expand("$USER")
+active_sep = 'arrow'
+space  = {" "," "}  -- space for the hints 
+status_style = "simple"
+inverted_colors = false
+clean_status = false
 
-local active_sep = 'ang'
-local space  = {" "," "}  -- space for the hints 
-status_style = "fancy"
-inverted_colors = true
+
+presets = {
+    max = {
+        sep = 'arrow',
+        space = {' ',''},
+        style = 'fancy',
+        inverted = false,
+        clean = true
+    },
+    airlineish = {
+        sep = 'arrow',
+        space = {' ',' '},
+        style = 'fancy',
+        inverted = false,
+        clean = false
+    },
+    sleek = {
+        sep = 'ang',
+        space = {' ',' '},
+        style = 'fancy',
+        inverted = true,
+        clean = false
+    },
+    alt_max = {
+        sep = 'ang',
+        space = {' ',' '},
+        style = 'fancy',
+        inverted = true,
+        clean = true,
+    },
+    simple = {
+        sep = 'blank',
+        space = {' ',' '},
+        style = 'simple',
+        inverted = false,
+        clean = false 
+    },
+}
+
+if use_preset then
+    active_sep = presets[use_preset].sep 
+    space  = presets[use_preset].space
+    status_style = presets[use_preset].style 
+    inverted_colors = presets[use_preset].inverted
+    clean_status = presets[use_preset].clean
+end
+
+
 local tver = vim.env.TMUX_VER or ""
 
 cpal = vim.api.nvim_get_var('colors_name')
@@ -123,7 +176,7 @@ ColorPalette = {
       ['Orange']  = '#F2B482',
       ['Green']  = '#62d196',
       ['Violet']  = '#d4bfff',
-      ['Gray']  = '#F48FB1',
+      ['Gray']  = '#F49FB1',
       ['Black']  = '#14191F',
       ['Name']  = '#65b2ff',
       ['Background']  = '#2D2B40',
@@ -178,6 +231,7 @@ M.colors = {
   mode          = '%#Mode#',
   mode_alt      = '%#ModeAlt#',
   git           = '%#Git#',
+  scope         = '%#Scope#',
   git_alt       = '%#GitAlt#',
   filetype      = '%#Filetype#',
   filetype_alt  = '%#FiletypeAlt#',
@@ -203,6 +257,7 @@ local gen_highlights = function()
             {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
             {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
             {'Git',                      { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Yellow }},
+            {'Scope',                    { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Red }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
             {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
@@ -218,14 +273,15 @@ local gen_highlights = function()
         }
     else
         return  {
-            {'StatusLine',               { fg = ColorPalette[cpal].Background, bg = ColorPalette[cpal].Name }},
-            {'StatusLineNC',             { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
+            {'StatusLine',               { fg = ColorPalette[cpal].Name, bg = ColorPalette[cpal].Background }},
+            {'StatusLineNC',             { fg = ColorPalette[cpal].Background, bg = ColorPalette[cpal].Background }},
             {'StatusLineSimpleError',    { fg = ColorPalette[cpal].Error, bg = ColorPalette[cpal].Background }},
             {'StatusLineSimpleWarning',  { fg = ColorPalette[cpal].Warning, bg = ColorPalette[cpal].Background }},
             {'StatusLineSimpleHint',     { fg = ColorPalette[cpal].Hint, bg = ColorPalette[cpal].Background }},
             {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
             {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
             {'Git',                      { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
+            {'Scope',                    { bg = ColorPalette[cpal].Red, fg = ColorPalette[cpal].Background }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
             {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
@@ -248,7 +304,6 @@ local set_hl = function(group, options)
   local bg = options.bg == nil and '' or 'guibg=' .. options.bg
   local fg = options.fg == nil and '' or 'guifg=' .. options.fg
   local gui = options.gui == nil and '' or 'gui=' .. options.gui
-
   vim.cmd(string.format('hi %s %s %s %s', group, bg, fg, gui))
 end
 
@@ -256,7 +311,6 @@ local set_hl_inv = function (group,options)
   local bg = options.bg == nil and '' or 'guifg=' .. options.bg
   local fg = options.fg == nil and '' or 'guibg=' .. options.fg
   local gui = options.gui == nil and '' or 'gui=' .. options.gui
-
   vim.cmd(string.format('hi %s %s %s %s', group, bg, fg, gui))
 end
 -- ============================================================================
@@ -340,7 +394,7 @@ end
 local gen_color_table = function()
     return {
         {"NOR" ,{ bg = ColorPalette[cpal].Green  , fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"VIS" ,{ bg = ColorPalette[cpal].Orange , fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"VIS" ,{ bg = ColorPalette[cpal].Red , fg = ColorPalette[cpal].Background, gui="bold" }},
         {"VIL" ,{ bg = ColorPalette[cpal].Orange , fg = ColorPalette[cpal].Background, gui="bold" }},
         {"VIB" ,{ bg = ColorPalette[cpal].Yellow , fg = ColorPalette[cpal].Background, gui="bold" }},
         {"SEL" ,{ bg = ColorPalette[cpal].Yellow , fg = ColorPalette[cpal].Background, gui="bold" }},
@@ -357,7 +411,7 @@ local gen_overlap =function()
         return {
             -- mode - language overlap
             {"NORLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green , gui="bold" }},
-            {"VISLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VISLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
             {"VILLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
             {"VIBLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
             {"SELLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
@@ -372,9 +426,13 @@ local gen_overlap =function()
             {"GitCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
             -- lang - center
             {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"GitScope" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+
+            {"LangScope" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
             -- for truncated use
             {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
-            {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
             {"VILName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
             {"VIBName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
             {"SELName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
@@ -385,7 +443,7 @@ local gen_overlap =function()
             {"UNKName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
 
             {"NORFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
-            {"VISFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VISFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
             {"VILFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
             {"VIBFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
             {"SELFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
@@ -395,19 +453,23 @@ local gen_overlap =function()
             {"EEXFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
             {"UNKFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
 
-            {"WarningFormat", { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background, gui="bold" }},
-            {"ErrorFormat"  , { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background, gui="bold" }},
-            {"ErrorWarning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
-            {"HintFormat"   , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name, gui="bold" }},
+            {"WarningError" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
+            {"HintWarning"	, { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Hint, gui="bold" }},
             {"ErrorHint"	, { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Hint, gui="bold" }},
-            {"CenterWrning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning, gui="bold" }},
+
+            {"CenterWarning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning, gui="bold" }},
             {"CenterError"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
+            {"CenterHint"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
+
+            {"WarningFormat", { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name, gui="bold" }},
+            {"ErrorFormat"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name, gui="bold" }},
+            {"HintFormat"   , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name, gui="bold" }},
         }
     else 
         return {
             -- mode - language overlap
             {"NORLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Green, gui="bold" }},
-            {"VISLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VISLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Red, gui="bold" }},
             {"VILLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Orange, gui="bold" }},
             {"VIBLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
             {"SELLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
@@ -422,9 +484,13 @@ local gen_overlap =function()
             {"GitCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
             -- lang - center
             {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+
+            {"GitScope" ,{ bg = ColorPalette[cpal].Red, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"LangScope" ,{ bg = ColorPalette[cpal].Red, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
             -- for truncated use
             {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
-            {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
             {"VILName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
             {"VIBName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
             {"SELName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
@@ -435,7 +501,7 @@ local gen_overlap =function()
             {"UNKName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
 
             {"NORFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
-            {"VISFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VISFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
             {"VILFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
             {"VIBFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
             {"SELFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
@@ -445,13 +511,17 @@ local gen_overlap =function()
             {"EEXFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
             {"UNKFFormat" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
 
+            {"WarningError" , { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Error, gui="bold" }},
+            {"HintWarning"  , { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Warning, gui="bold" }},
+            {"ErrorHint"    , { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Hint, gui="bold" }},
+
             {"WarningFormat", { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background, gui="bold" }},
             {"ErrorFormat"  , { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background, gui="bold" }},
-            {"ErrorWarning" , { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Error, gui="bold" }},
             {"HintFormat"   , { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Background, gui="bold" }},
-            {"ErrorHint"	, { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Hint, gui="bold" }},
-            {"CenterWrning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning, gui="bold" }},
+
+            {"CenterWarning", { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning, gui="bold" }},
             {"CenterError"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
+            {"CenterHint"   , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Hint, gui="bold" }},
         }
     end
 end
@@ -498,10 +568,10 @@ M.get_git_status = function(self)
   local stat = vim.b.gitsigns_status
   local head = vim.b.gitsigns_head
   if stat and string.len(stat) > 0 then
-    return " "..stat
+    return stat
   else
     if head and string.len(head) >0 then
-      return " ".. head
+      return head
     else
       return ""
     end
@@ -528,9 +598,10 @@ M.get_filename = function(self)
     end
   end
   if self:is_truncated(self.trunc_width.filename) then 
-    return "%<"..vim.fn.pathshorten(win_inf[2]) .. '%{&modified?" [+]":""}' 
+    return "%<"..vim.fn.pathshorten(win_inf[2]) .. '%{&modified?"[+]":""}' 
   else
-    return '%< %f%{&modified?" [+]":""}'
+    local name = vim.fn.expand("%{f:n}")
+    return '%< '.. name ..'%{&modified?"[+]":""}' 
   end
 end
 
@@ -543,55 +614,146 @@ M.get_filetype = function()
 end
 
 M.get_line_col = function(self)
-  if self:is_truncated(self.trunc_width.line_col) then return ' %l:%c ' end
-  return ' %l:%c '
+  if self:is_truncated(self.trunc_width.line_col) then return space[2] ..'%l:%c ' end
+  return space[2] .. '%l:%c '
 end
 M.get_Input_language = function()
-  return " "..fn['GetInputLang']()
+  return fn['GetInputLang']()
 end
 
 
 M.get_lang_git_name = function(self)
-  local git = self:get_git_status()
   local colors = self.colors
+  local spc = " " 
+  local has_lang = true
+  if clean_status  then 
+  	spc = ""
+	end
+	
+	local git = self:get_git_status()
+	local crnt_item = ""
+	local next_item = ""
+	local tmp_item  = ""
+
   if self:is_truncated(self.trunc_width.mode) then
-    return to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'Name') .. self.separators[active_sep][1] .. colors.filetype .. self:get_filename()
+  	crnt_item = mode_color_group[api.nvim_get_mode().mode]
+  	next_item = 'Name'
+    return to_hl_group(crnt_item .. next_item) .. self.separators[active_sep][1] .. colors.filetype .. self:get_filename() .. colors.active
   end 
-  local lang = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'Lang').. self.separators[active_sep][1] .. colors.ins_language .. self:get_Input_language() .. space[1]
-  if git == '' then
-    return  lang ..  to_hl_group('LangCenter') .. self.separators[active_sep][1] .. colors.filetype .. self:get_filename()
-  end
-    return  lang ..  to_hl_group('LangGit') .. self.separators[active_sep][1] .. colors.git .. git.. space[1] .. to_hl_group('GitCenter') .. self.separators[active_sep][1].. colors.filetype .. self:get_filename()
+
+	-- Mode
+  crnt_item = mode_color_group[api.nvim_get_mode().mode]
+  next_item = 'Lang'
+	
+	
+  -- Lang
+  local Lang = ""
+
+	-- if clean_status then 
+	-- 	Lang = to_hl_group(crnt_item..next_item) .. self.separators[active_sep][1] .. colors.ins_language
+	-- end
+	Lang = to_hl_group(crnt_item..next_item) .. self.separators[active_sep][1] .. colors.ins_language .. space[1] .. self:get_Input_language() .. space[2]
+
+	tmp_item = 'Lang'
+	crnt_item = tmp_item
+	next_item = 'Git'
+	
+	-- Git
+  local Git_st = ""
+  if clean_status then 
+		Git_st = to_hl_group(crnt_item..next_item) .. self.separators[active_sep][1] .. colors.git
+		tmp_item = 'Git'
+	end
+	if git ~= "" then 
+		Git_st = to_hl_group(crnt_item..next_item).. self.separators[active_sep][1] .. colors.git .. space[1] .. git .. space[2]
+		tmp_item = 'Git'
+	end
+
+	crnt_item = tmp_item
+	next_item = 'Scope'
+
+	-- Scope
+	local Scope = ""
+	local scp = fn["Scope"]()
+  if clean_status then 
+		Scope = to_hl_group(crnt_item..next_item) .. self.separators[active_sep][1] .. colors.scope
+		tmp_item = 'Scope'
+	end
+	if scp ~= "" then 
+		Scope = to_hl_group(crnt_item..next_item).. self.separators[active_sep][1] .. colors.scope .. space [1] .. space [2] .. scp
+		tmp_item = 'Scope'
+	end
+
+	crnt_item = tmp_item
+	next_item = 'Center'
+
+	return  Lang .. Git_st .. Scope .. to_hl_group(crnt_item..next_item) ..  self.separators[active_sep][1] .. colors.filetype .. self:get_filename().. colors.active
 end
 
 M.get_format_lsp_diagn = function(self,nof)
-  local errs = LspDiagn([[Error]])
-  local warn = LspDiagn([[Warning]])
-  local hint = LspDiagn([[Hint]])
-  local colors = self.colors
-  local ft = self:get_filetype()
-  ft = self:get_filetype()
+    local errs = LspDiagn([[Error]])
+    local warn = LspDiagn([[Warning]])
+    local hint = LspDiagn([[Hint]])
+    local ft = self:get_filetype()
+    local colors = self.colors
+    local ft = self:get_filetype()
+    local crnt_item = "Center"
+    local next_item = "Warning"
+    local tmp_item = "Center"
+    local sep_offset = space[1]
 
-  if self:is_truncated(self.trunc_width.mode)then 
-    return colors.filetype .. ft 
-  end 
+    if errs == -1 and  warn == -1 then
+        if ft == "" or inverted_colors==false then
+            return colors.filetype .. " " .. ft .. " "
+        else 
+            return colors.filetype .. self.separators[active_sep][2] .. ft .. " "
+        end
+    end
 
-  if errs == -1 and  warn == -1 then
-      if ft == "" or inverted_colors==false then
-          return colors.filetype .. space[1] .. ft .. space[2]
-      else 
-          return colors.filetype .. self.separators[active_sep][2] .. space[1] .. ft .. space[2]
-      end
-  end
+    local Warn = ""
+    if clean_status then 
+        Warn = to_hl_group(crnt_item..next_item).. self.separators[active_sep][2] .. colors.lsp_warn
+        tmp_item = 'Warning'
+    end
+    if warn ~= 0 then 
+        Warn = to_hl_group(crnt_item..next_item).. self.separators[active_sep][2] .. colors.lsp_warn .. space[2] .."W:".. warn  .. space[1]
+        tmp_item = 'Warning'
+    end
+    crnt_item = tmp_item
+    next_item = 'Error'
 
-	return	to_hl_group('CenterWrning') .. self.separators[active_sep][2] ..
-					colors.lsp_warn .. space[1] .. "W:" ..  warn .. space [2]..
-					to_hl_group('ErrorWarning').. self.separators[active_sep][2] ..
-					colors.lsp_error .. space[1] .. "E:" .. errs .. space[2]..
-					to_hl_group('ErrorHint')..  self.separators[active_sep][2] ..
-					colors.lsp_hint .. space[1] .."H:" .. hint .. space[2] ..
-					to_hl_group('HintFormat')..  self.separators[active_sep][2] ..
-					colors.filetype .. space[1].. ft .. space[2]
+    local Error = ""
+    if clean_status then 
+        Error = to_hl_group(crnt_item..next_item).. self.separators[active_sep][2] .. colors.lsp_error
+        tmp_item = 'Error'
+    end
+    if errs ~= 0 then 
+        Error = to_hl_group(crnt_item..next_item).. self.separators[active_sep][2] .. colors.lsp_error .. space[2] .. "E:" .. errs .. space[1]
+        tmp_item = 'Error'
+    end
+    crnt_item = tmp_item
+    next_item = 'Hint'
+
+    local Hint = ""
+    if clean_status then 
+        Hint = to_hl_group(crnt_item..next_item).. self.separators[active_sep][2] .. colors.lsp_hint
+        tmp_item = 'Hint'
+
+    end
+    if hint ~= 0 then 
+        Hint = to_hl_group(crnt_item..next_item).. self.separators[active_sep][2] .. colors.lsp_hint .. space[2] .. "H:".. hint .. space[1]
+
+        tmp_item = 'Hint'
+    end
+    crnt_item = tmp_item
+    next_item = 'Format'
+    -- HintFormat
+
+    local Format = to_hl_group(crnt_item..next_item).. self.separators[active_sep][2] ..  colors.filetype .. space[2] .. " ".. ft .. space[1]
+    if crnt_item == 'Center' then 
+        Format =  colors.filetype .. space[2]  .. ft .. space[1]
+    end
+    return " ".. Warn .. Error ..  Hint .. Format
 end
 
 M.simple_lsp = function(self)
@@ -610,7 +772,7 @@ end
 M.fancy_line = function(self )
   local colors = self.colors
   --mode
-  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. '['..self:get_current_mode()..'] '
+  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. '['..self:get_current_mode()..']' .. space[2]
   --filename 
   local filename = colors.filetype .. self:get_filename()
   local filetype_alt = colors.filetype_alt .. self.separators[active_sep][1]
@@ -625,7 +787,7 @@ M.fancy_line = function(self )
     		colors.active,
         "%=",
         filename,
-        "%=",
+        colors.active
       })
   else
     return table.concat({
@@ -633,6 +795,7 @@ M.fancy_line = function(self )
         mode,
         self:get_lang_git_name(), 
         "%=",
+        colors.active,
         self:get_format_lsp_diagn(),
         line_col_alt,
         line_col
@@ -643,7 +806,7 @@ end
 M.simple_line  = function(self)
   local colors = self.colors
   --mode
-  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. '['..self:get_current_mode()..']'
+  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. '['..self:get_current_mode()..']' .. space[2]
   --filename 
   local filename = colors.filetype .. self:get_filename()
   local filetype_alt = colors.filetype_alt .. self.separators[active_sep][1]
@@ -661,10 +824,11 @@ M.simple_line  = function(self)
   end
   if is_explorer()then
     return table.concat({
-    		colors.active,
+        colors.active,
         "%=",
         filename,
         "%=",
+        colors.active
       })
   else
     return table.concat({
@@ -675,6 +839,7 @@ M.simple_line  = function(self)
         filename,
         self:simple_lsp(),
         "%=",
+        colors.active,
         colll,
         ft,
         line_col,
@@ -692,7 +857,7 @@ M.set_active = function(self)
 end
 
 M.set_inactive = function(self)
-  return self.colors.inactive .. '%= %{expand("%:p:h")[:len("/home/".$USER)] == "/home/".$USER."/" ? "~"..expand("%:p:h")[len("/home/".$USER):]:expand("%:p:h")}%{&ft!="netrw"?"/".expand("%:t"):""} %{&modified? "[+]":""}'.. ' %='
+  return self.colors.filetype .. '%= %{expand("%:p:h")[:len("/home/".$USER)] == "/home/".$USER."/" ? "~"..expand("%:p:h")[len("/home/".$USER):]:expand("%:p:h")}%{&ft!="netrw"?"/".expand("%:t"):""} %{&modified? "[+]":""}'.. ' %=' .. self.colors.active
 end
 
 M.set_explorer = function(self)

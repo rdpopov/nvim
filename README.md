@@ -28,6 +28,10 @@ Just kidding. Actually I don't like it and I edit it constantly.
    It is made mainly for neovim since it uses lua for some things. But, neovim\ 
    has built in lsp support, so one less bulky dependancy to have.
 
+## Some performance stats
+- Starts up in 0.100 ~ 0.130 seconds
+- Memory footprint is low
+
 ## Main goal
 The main goal for this configuration was to be able to have a neovim config\
 for writing in [nim-lang] or any other language but nim in particular.\
@@ -52,7 +56,7 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 - Per project config
 - Toggle spellcheck for current input language. Also gets you autocomplete.
 - Undo tree(like a small per file git also can branch)
-- File management - netrw is surprisingly robust
+- File management - netrw is surprisingly robust or nvim-tree
 - and what else do you need?
 
 ## Initial setup

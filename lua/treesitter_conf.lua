@@ -5,3 +5,4 @@ ensure_installed = { "c","cpp","python","javascript","rust","bash","go","vim","j
     disable = { "nim" },  -- list of language that will be disabled
   },
 }
+ts_utils = require 'nvim-treesitter.ts_utils'

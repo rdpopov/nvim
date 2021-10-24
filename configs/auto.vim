@@ -27,3 +27,10 @@ if has('autocmd')
  autocmd filetype nim set expandtab
  "`autocmd BufNewFile,BufRead *.nim set filetype=nim
 endif
+
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
