@@ -38,6 +38,7 @@ nnoremap <silent>  <leader>k :Telescope keymaps <CR>
 nnoremap <silent>  <leader>f :Telescope current_buffer_fuzzy_find theme=get_ivy<CR>
 "nnoremap <silent>  <leader>s :Telescope git_status theme=get_ivy<CR>
 nnoremap <silent>  <leader>r :Telescope grep_string theme=get_ivy<CR>
+vnoremap <silent>  <leader>r "zy:Telescope live_grep theme=get_ivy default_text=<C-r>z<cr>
 nnoremap <silent>  <leader>R :Telescope live_grep theme=get_ivy<CR>
 
 lua require('hop_conf')

@@ -43,6 +43,13 @@ presets = {
         inverted = false,
         clean = true
     },
+    barebones = {
+        sep = 'blank',
+        space = {' ',' '},
+        style = 'minimal',
+        inverted = true,
+        clean = false
+    },
     airlineish = {
         sep = 'arrow',
         space = {' ',' '},
@@ -600,7 +607,7 @@ M.get_filename = function(self)
   if self:is_truncated(self.trunc_width.filename) then 
     return "%<"..vim.fn.pathshorten(win_inf[2]) .. '%{&modified?"[+]":""}' 
   else
-    local name = vim.fn.expand("%{f:n}")
+    local name = vim.fn.expand("%:t")
     return '%< '.. name ..'%{&modified?"[+]":""}' 
   end
 end
@@ -680,7 +687,7 @@ M.get_lang_git_name = function(self)
 		tmp_item = 'Scope'
 	end
 	if scp ~= "" then 
-		Scope = to_hl_group(crnt_item..next_item).. self.separators[active_sep][1] .. colors.scope .. space [1] .. space [2] .. scp
+		Scope = to_hl_group(crnt_item..next_item).. self.separators[active_sep][1] .. colors.scope .. space [1] .. scp .. space [2] 
 		tmp_item = 'Scope'
 	end
 
@@ -706,7 +713,7 @@ M.get_format_lsp_diagn = function(self,nof)
         if ft == "" or inverted_colors==false then
             return colors.filetype .. " " .. ft .. " "
         else 
-            return colors.filetype .. self.separators[active_sep][2] .. ft .. " "
+            return colors.filetype .. self.separators[active_sep][2] .. space [2] .. ft .. space [1]
         end
     end
 
@@ -749,7 +756,7 @@ M.get_format_lsp_diagn = function(self,nof)
     next_item = 'Format'
     -- HintFormat
 
-    local Format = to_hl_group(crnt_item..next_item).. self.separators[active_sep][2] ..  colors.filetype .. space[2] .. " ".. ft .. space[1]
+    local Format = to_hl_group(crnt_item..next_item).. self.separators[active_sep][2] ..  colors.filetype .. space[2] .. ft .. space[1]
     if crnt_item == 'Center' then 
         Format =  colors.filetype .. space[2]  .. ft .. space[1]
     end
