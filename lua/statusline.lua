@@ -17,7 +17,8 @@ end
 local usr = "/home/"..vim.fn.expand("$USER")
 
 
-use_preset = "alt_max"
+use_preset = "sleek"
+
 
 M.separators = {
   arrow = { '', '' },
@@ -74,8 +75,15 @@ presets = {
     simple = {
         sep = 'blank',
         space = {' ',' '},
-        style = 'simple',
+        style = 'minimal',
         inverted = false,
+        clean = false 
+    },
+    ghost = {
+        sep = 'blank',
+        space = {'',''},
+        style = 'minimal',
+        inverted = true,
         clean = false 
     },
 }
@@ -140,7 +148,7 @@ ColorPalette = {
       ['Black']  = '#14191F',
       ['Background']  = '#1e1c31',
       ['Name']  = '#87DFEB',
-      ['Warning'] = '#F2B482',
+      ['Warning'] = '#ffe6b3',
       ['Error'] = '#F02E6E',
       ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
@@ -264,7 +272,7 @@ local gen_highlights = function()
             {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
             {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
             {'Git',                      { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Yellow }},
-            {'Scope',                    { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Red }},
+            {'Scope',                    { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Violet }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
             {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
@@ -288,7 +296,7 @@ local gen_highlights = function()
             {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
             {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
             {'Git',                      { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
-            {'Scope',                    { bg = ColorPalette[cpal].Red, fg = ColorPalette[cpal].Background }},
+            {'Scope',                    { bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Background }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
             {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
@@ -436,7 +444,7 @@ local gen_overlap =function()
             {"GitScope" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
 
             {"LangScope" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
-            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
+            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Violet, gui="bold" }},
             -- for truncated use
             {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
             {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
@@ -492,9 +500,9 @@ local gen_overlap =function()
             -- lang - center
             {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
 
-            {"GitScope" ,{ bg = ColorPalette[cpal].Red, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-            {"LangScope" ,{ bg = ColorPalette[cpal].Red, fg = ColorPalette[cpal].Blue, gui="bold" }},
-            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
+            {"GitScope" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"LangScope" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Violet, gui="bold" }},
             -- for truncated use
             {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
             {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
