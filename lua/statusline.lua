@@ -474,7 +474,7 @@ local gen_overlap =function()
 
             {"CenterWarning" , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning, gui="bold" }},
             {"CenterError"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
-            {"CenterHint"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error, gui="bold" }},
+            {"CenterHint"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Hint, gui="bold" }},
 
             {"WarningFormat", { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name, gui="bold" }},
             {"ErrorFormat"  , { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name, gui="bold" }},
