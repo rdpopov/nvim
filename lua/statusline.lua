@@ -17,7 +17,7 @@ end
 local usr = "/home/"..vim.fn.expand("$USER")
 
 
-use_preset = "sleek"
+use_preset = "max"
 
 
 M.separators = {
@@ -39,7 +39,7 @@ clean_status = false
 presets = {
     max = {
         sep = 'arrow',
-        space = {' ',''},
+        space = {' ',' '},
         style = 'fancy',
         inverted = false,
         clean = true
@@ -63,6 +63,13 @@ presets = {
         space = {' ',' '},
         style = 'fancy',
         inverted = true,
+        clean = false
+    },
+    basic_luxe = {
+        sep = 'blank',
+        space = {' ',' '},
+        style = 'fancy',
+        inverted = false,
         clean = false
     },
     alt_max = {
@@ -214,6 +221,54 @@ ColorPalette = {
       ['Warning'] = '#ffa724',
       ['Error'] = '#ff2c4b',
       ['Hint'] = '#FFFFFF',
+    }, { __index = function() return '#FFFFFF' end }),
+    ['nightfox'] = 
+    setmetatable({
+      ['Blue']  = '#84cee4',
+      ['Red']  = '#d6616b',
+      ['Yellow']  = '#ffe37e',
+      ['Orange']  = '#f4a261',
+      ['Green']  = '#58cd8b',
+      ['Violet']  = '#b8a1e3',
+      ['Gray']  = '#9ccfd8',
+      ['Black']  = '#393b44',
+      ['Name']  = '#63cdcf',
+      ['Background']  = '#333047',
+      ['Warning'] = '#f6a878',
+      ['Error'] = '#c94f6d',
+      ['Hint'] = '#dfdfe0',
+    }, { __index = function() return '#FFFFFF' end }),
+    ['duskfox'] = 
+    setmetatable({
+      ['Blue']  = '#5FABC7',
+      ['Red']  = '#EF7C9D',
+      ['Yellow']  = '#F8C886',
+      ['Orange']  = '#EDA19E',
+      ['Green']  = '#AECB93',
+      ['Violet']  = '#C8AEEB',
+      ['Gray']  = '#A3D6DF',
+      ['Black']  = '#393552',
+      ['Name']  = '#A3D6DF',
+      ['Background']  = '#393552',
+      ['Warning'] = '#EDA19E',
+      ['Error'] = '#EF7C9D',
+      ['Hint'] = '#E1DFF6',
+    }, { __index = function() return '#FFFFFF' end }),
+    ['dayfox'] = 
+    setmetatable({
+      ['Blue']  = '#2D81A3',
+      ['Red']  = '#C26D85',
+      ['Yellow']  = '#EEA846',
+      ['Orange']  = '#DE8C88',
+      ['Green']  = '#618774',
+      ['Violet']  = '#5F5695',
+      ['Gray']  = '#5CA7B4',
+      ['Black']  = '#393552',
+      ['Name']  = '#5CA7B4',
+      ['Background']  = '#CFD6DD',
+      ['Warning'] = '#DE8C88',
+      ['Error'] = '#C26D85',
+      ['Hint'] = '#9A80B9',
     }, { __index = function() return '#FFFFFF' end }),
     ['dark'] = 
     setmetatable({

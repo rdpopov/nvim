@@ -35,4 +35,5 @@ call plug#begin()
   " -- Writing, i do write as well might as well use the best biggest gun for it
   Plug 'smithbm2316/centerpad.nvim'
 	Plug 'henriquehbr/nvim-startup.lua'
+	Plug 'EdenEast/nightfox.nvim'
 call plug#end()
