@@ -17,7 +17,7 @@ end
 local usr = "/home/"..vim.fn.expand("$USER")
 
 
-use_preset = "max"
+use_preset = "compact"
 
 
 M.separators = {
@@ -27,6 +27,7 @@ M.separators = {
   triangle = {'' ,''},
   ang = {'⧽' ,'⧼'},
   slice = {'' ,''},
+  half_box = {'▌' ,'▐'},
 }
 
 active_sep = 'arrow'
@@ -43,6 +44,13 @@ presets = {
         style = 'fancy',
         inverted = false,
         clean = true
+    },
+    compact = {
+        sep = 'half_box',
+        space = {'',''},
+        style = 'fancy',
+        inverted = false,
+        clean = false
     },
     barebones = {
         sep = 'blank',
