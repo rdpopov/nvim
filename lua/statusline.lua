@@ -17,16 +17,16 @@ end
 local usr = "/home/"..vim.fn.expand("$USER")
 
 
-use_preset = "compact"
+use_preset = "samurai"
 
 
 M.separators = {
   arrow = { '', '' },
   rounded = { '', '' },
   blank = { '', '' },
-  triangle = {'' ,''},
+  triangle = {'◣' ,'◢'},
+  slice = {'◣' ,'◥'},
   ang = {'⧽' ,'⧼'},
-  slice = {'' ,''},
   half_box = {'▌' ,'▐'},
 }
 
@@ -65,6 +65,20 @@ presets = {
         style = 'fancy',
         inverted = false,
         clean = false
+    },
+    slantlineish = {
+        sep = 'triangle',
+        space = {' ',' '},
+        style = 'fancy',
+        inverted = false,
+        clean = true
+    },
+    samurai = {
+        sep = 'slice',
+        space = {' ',' '},
+        style = 'fancy',
+        inverted = false,
+        clean = true
     },
     sleek = {
         sep = 'ang',
@@ -637,9 +651,9 @@ M.get_current_mode = function(self)
   local current_mode = api.nvim_get_mode().mode
 
   if self:is_truncated(self.trunc_width.mode) then
-    return string.format(' %s ', self.modes[current_mode][2]):upper()
+    return string.format(' %s', self.modes[current_mode][2]):upper()
   end
-  return string.format(' %s ', self.modes[current_mode][1]):upper()
+  return string.format(' %s', self.modes[current_mode][1]):upper()
 end
 
 M.get_git_status = function(self)
@@ -676,7 +690,7 @@ M.get_filename = function(self)
     end
   end
   if self:is_truncated(self.trunc_width.filename) then 
-    return "%<"..vim.fn.pathshorten(win_inf[2]) .. '%{&modified?"[+]":""}' 
+    return "%< "..vim.fn.pathshorten(win_inf[2]) .. '%{&modified?"[+]":""}' 
   else
     local name = vim.fn.expand("%:t")
     return '%< '.. name ..'%{&modified?"[+]":""}' 
@@ -850,7 +864,7 @@ end
 M.fancy_line = function(self )
   local colors = self.colors
   --mode
-  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. '['..self:get_current_mode()..']' .. space[2]
+  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) ..self:get_current_mode() .. space[2]
   --filename 
   local filename = colors.filetype .. self:get_filename()
   local filetype_alt = colors.filetype_alt .. self.separators[active_sep][1]
@@ -884,7 +898,7 @@ end
 M.simple_line  = function(self)
   local colors = self.colors
   --mode
-  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. '['..self:get_current_mode()..']' .. space[2]
+  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) ..self:get_current_mode().. space[2]
   --filename 
   local filename = colors.filetype .. self:get_filename()
   local filetype_alt = colors.filetype_alt .. self.separators[active_sep][1]
