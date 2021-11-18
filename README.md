@@ -31,6 +31,8 @@ Just kidding. Actually I don't like it and I edit it constantly.
 ## Some performance stats
 - Starts up in 0.100 ~ 0.130 seconds
 - Memory footprint is low
+- Doesn't hog more ram than chrome (**cough** **cough** Vscode)
+- Doesn't choke and die  when i try to search something(**cough** **cough** Vscode)
 
 ## Main goal
 The main goal for this configuration was to be able to have a neovim config\
@@ -49,20 +51,21 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 
 
 ## Features
-- Git git gutter
+- Git git gutter and visual git client
 - Visual git client (some things are faster than console)
 - Build from within neovim(setup keybinds for that)
 - Lsp support (also buffer, tag and dictionary based completion)
 - Per project config
 - Toggle spellcheck for current input language. Also gets you autocomplete.
-- Undo tree(like a small per file git also can branch)
+- Undo tree(like a small per file git that can branch as well)
 - File management - netrw is surprisingly robust or nvim-tree
+- Snippets
 - and what else do you need?
 
 ## Initial setup
 - [Neovim]
-- or with a setup.sh (NYI but will do...at some point, maybe with compiling neovim-nightly)
-- might add a version of this as a debian docker container, already configured and ready to go
+- or with a setup.sh (limited implementation for now, but does the job)
+- might add a version of this as a debian docker container, already configured and ready to go - exists buti odnt like it, docker is iffy
 
 ### Needed external programs 
 - **ripgrep** as telescope needs it. Easiest to install with rusts's cargo
@@ -103,7 +106,7 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 ## My homebrew utils
 I have had some difficulties with finding some things that I want as plugins.\
 So I wrote my own. They are not anything grand or groundbreaking,\
-but they are useful which is more important for any code.\
+but they are useful which is most important for any code.\
 Easily find them here [Code-Fragments/vimscript]
 
 [Code-Fragments/vimscript]: https://github.com/rdpopov/Code-Fragments/tree/main/vimscript
