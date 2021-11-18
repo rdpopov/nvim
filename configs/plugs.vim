@@ -7,6 +7,8 @@ call plug#begin()
 	Plug 'neovim/nvim-lspconfig'                        "   lsp configuration api for native lsp lsp configuration api for native lsp
 	Plug 'ray-x/lsp_signature.nvim'                     "   signatire preview via lsp signatire preview via lsp
 	Plug 'liuchengxu/vista.vim'                         "   tag and ouline preview it supports tags which are useful tag and ouline preview it supports tags which are useful
+	Plug 'rafamadriz/friendly-snippets'
+	Plug 'L3MON4D3/LuaSnip'
 	"  -- Completion ... those three should be 1 plugin so it keeps lines at a minimum ... 
 	Plug 'hrsh7th/nvim-cmp'                             "    better than compe i guess
 	Plug 'hrsh7th/cmp-nvim-lsp'                         "    lsp completion
@@ -14,6 +16,7 @@ call plug#begin()
 	Plug 'hrsh7th/cmp-nvim-lua'                         "    vim lua api completion
 	Plug 'hrsh7th/cmp-path'                             "    path completion
 	Plug 'f3fora/cmp-spell'                             "    spelling completion
+	Plug 'saadparwaiz1/cmp_luasnip'
 	" -- Better Navigaion and vim as a whole
 	Plug 'nvim-telescope/telescope.nvim'                " telescope
 	" -- Debugger
