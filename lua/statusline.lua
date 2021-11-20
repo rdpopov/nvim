@@ -8,7 +8,7 @@ local M = {}
 
 -- possible values are 'arrow' | 'rounded' | 'blank'
 -- change them if you want to different separator
-local LspDiagn  = function(diagn)
+LspDiagn  = function(diagn)
   if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then 
       return vim.lsp.diagnostic.get_count(0, diagn)
   end
@@ -18,7 +18,7 @@ local usr = "/home/"..vim.fn.expand("$USER")
 
 
 use_preset = "samurai"
-
+term_sep = ':'
 
 M.separators = {
   arrow = { '', '' },
@@ -446,7 +446,8 @@ M.modes = setmetatable({
   ['rm'] = {'More', 'M'};
   ['r?'] = {'Confirm', 'C'};
   ['!']  = {'Shell', 'S'};
-  ['t']  = {'Terminal', 'T'};
+  ['t']  = {'Term', 'T'};
+  ['nt']  = {'N-Term', 'N-T'};
 }, {
   __index = function()
       return {'Unknown', 'U'} -- handle edge cases
@@ -474,6 +475,7 @@ local mode_color_group = setmetatable({
   ['r?'] = "EEX";
   ['!']  = "COM";
   ['t']  = "COM";
+  ['nt'] = "NOR";
 }, {
   __index = function()
       return "UNK" 
@@ -486,7 +488,7 @@ end
 local gen_color_table = function()
     return {
         {"NOR" ,{ bg = ColorPalette[cpal].Green  , fg = ColorPalette[cpal].Background, gui="bold" }},
-        {"VIS" ,{ bg = ColorPalette[cpal].Red , fg = ColorPalette[cpal].Background, gui="bold" }},
+        {"VIS" ,{ bg = ColorPalette[cpal].Red    , fg = ColorPalette[cpal].Background, gui="bold" }},
         {"VIL" ,{ bg = ColorPalette[cpal].Orange , fg = ColorPalette[cpal].Background, gui="bold" }},
         {"VIB" ,{ bg = ColorPalette[cpal].Yellow , fg = ColorPalette[cpal].Background, gui="bold" }},
         {"SEL" ,{ bg = ColorPalette[cpal].Yellow , fg = ColorPalette[cpal].Background, gui="bold" }},
@@ -674,6 +676,19 @@ local is_explorer = function()
   return vim.bo.filetype == 'netrw' or vim.bo.filetype == 'nerdtree' or string.lower(vim.bo.filetype) == 'nvimtree'
 end
 
+is_term = function()
+  return string.find(vim.api.nvim_buf_get_name(0),"term://",0)
+end
+
+term_root_val = function()
+    local tmp = vim.b.term_title
+    local ind ,_ = string.find(tmp,term_sep,0)
+    if ind then
+        return string.sub(tmp,ind+1)
+    end
+    return ""
+end
+
 local win_fname_and_dir = function()
   local win__nr = vim.fn.winbufnr(vim.fn.winnr())
   return {vim.fn.getcwd(vim.fn.bufwinnr(win__nr)), vim.fn.bufname(win__nr)}
@@ -853,12 +868,21 @@ M.simple_lsp = function(self)
   local warn = LspDiagn([[Warning]])
   local hint = LspDiagn([[Hint]])
   local colors = self.colors
+  local res = ""
 
-  if errs == -1 and  warn == -1 then
-    return ""
-  else
-    return colors.simple_error.." E:" .. errs .. colors.simple_warn .. " W:"..warn .. colors.simple_hint .. " H:"..hint .." " --.. colors.filename
-  end
+   if errs > 0 then
+     res = res .. colors.simple_error.." E:" .. errs
+   end
+
+   if warn > 0 then
+     res = res .. colors.simple_warn .." W:" .. warn
+   end
+
+   if hint > 0 then
+     res = res .. colors.simple_hint .." H:" .. hint
+   end
+
+   return res
 end
 
 M.fancy_line = function(self )
@@ -874,25 +898,39 @@ M.fancy_line = function(self )
   local line_col_alt = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat') .. self.separators[active_sep][2]
   local res = ""
 
-  if is_explorer()then
+  if is_explorer() then
     return table.concat({
-    		colors.active,
+        colors.active,
         "%=",
         filename,
         colors.active
       })
-  else
+  end
+  if is_term() then
+    local pid = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. ' ' .. vim.b.terminal_job_pid .. ' '
     return table.concat({
         colors.active, 
         mode,
-        self:get_lang_git_name(), 
+        self.separators[active_sep][2],
+        colors.filetype,
+        "%=",
+        term_root_val(),
         "%=",
         colors.active,
-        self:get_format_lsp_diagn(),
         line_col_alt,
-        line_col
+        pid
       })
   end
+  return table.concat({
+      colors.active, 
+      mode,
+      self:get_lang_git_name(), 
+      "%=",
+      colors.active,
+      self:get_format_lsp_diagn(),
+      line_col_alt,
+      line_col
+    })
 end
 
 M.simple_line  = function(self)
@@ -908,13 +946,16 @@ M.simple_line  = function(self)
   local line_col_alt = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat') .. self.separators[active_sep][2]
   local ft = ""
   local colll = colors.active
+
   if inverted_colors then 
       colll = colors.inactive
   end
-  if not is_explorer()  then
+
+  if not is_explorer() then
     ft = '%y '
   end
-  if is_explorer()then
+
+  if is_explorer() then
     return table.concat({
         colors.active,
         "%=",
@@ -922,21 +963,35 @@ M.simple_line  = function(self)
         "%=",
         colors.active
       })
-  else
+  end
+
+  if is_term() then
     return table.concat({
-        colors.active,
+        colors.active, 
         mode,
         colors.filetype,
         "%=",
-        filename,
-        self:simple_lsp(),
+        term_root_val(),
         "%=",
         colors.active,
-        colll,
-        ft,
-        line_col,
+        line_col_alt,
+        vim.b.terminal_job_pid
       })
   end
+  ft = self:get_filetype() .. " "
+  return table.concat({
+      colors.active,
+      mode,
+      colors.filetype,
+      "%=",
+      filename,
+      self:simple_lsp(),
+      "%=",
+      colors.active,
+      colll,
+      ft,
+      line_col,
+    })
 end
 
 local style_callback  = setmetatable({
@@ -949,7 +1004,7 @@ M.set_active = function(self)
 end
 
 M.set_inactive = function(self)
-  return self.colors.filetype .. '%= %{expand("%:p:h")[:len("/home/".$USER)] == "/home/".$USER."/" ? "~"..expand("%:p:h")[len("/home/".$USER):]:expand("%:p:h")}%{&ft!="netrw"?"/".expand("%:t"):""} %{&modified? "[+]":""}'.. ' %=' .. self.colors.active
+    return self.colors.filetype .. '%= %{expand("%:p:h")[:len("/home/".$USER)] == "/home/".$USER."/" ? "~"..expand("%:p:h")[len("/home/".$USER):]:expand("%:p:h")}%{&ft!="netrw"?"/".expand("%:t"):""} %{&modified? "[+]":""}'.. ' %=' .. self.colors.active
 end
 
 M.set_explorer = function(self)
@@ -974,6 +1029,7 @@ api.nvim_exec([[
   au!
   au ColorScheme * lua if define_highlights then define_highlights() end
   au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
+  au TermEnter * setlocal filetype=terminal 
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
   augroup END
 ]], false)
