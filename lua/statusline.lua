@@ -18,7 +18,6 @@ local usr = "/home/"..vim.fn.expand("$USER")
 
 
 use_preset = "samurai"
-term_sep = ':'
 
 M.separators = {
   arrow = { '', '' },
@@ -681,10 +680,14 @@ is_term = function()
 end
 
 term_root_val = function()
+    local seps = {'~','/home/','/'}
     local tmp = vim.b.term_title
-    local ind ,_ = string.find(tmp,term_sep,0)
-    if ind then
-        return string.sub(tmp,ind+1)
+    for _,sep in ipairs(seps) do
+      local ind ,_ = string.find(tmp,sep,0)
+      print(tmp,ind)
+      if ind then
+          return string.sub(tmp,ind)
+      end
     end
     return ""
 end
@@ -1004,7 +1007,7 @@ M.set_active = function(self)
 end
 
 M.set_inactive = function(self)
-    return self.colors.filetype .. '%= %{expand("%:p:h")[:len("/home/".$USER)] == "/home/".$USER."/" ? "~"..expand("%:p:h")[len("/home/".$USER):]:expand("%:p:h")}%{&ft!="netrw"?"/".expand("%:t"):""} %{&modified? "[+]":""}'.. ' %=' .. self.colors.active
+    return self.colors.filetype .. '%= %{expand("%:h:t")[:len("/home/".$USER)] == "/home/".$USER."/" ? "~"..expand("%:h:t")[len("/home/".$USER):]:expand("%:h:t")}%{&ft!="netrw"?"/".expand("%:t"):""} %{&modified? "[+]":""}'.. ' %=' .. self.colors.active
 end
 
 M.set_explorer = function(self)

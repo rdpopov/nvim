@@ -65,7 +65,7 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 ## Initial setup
 - [Neovim]
 - or with a setup.sh (limited implementation for now, but does the job)
-- might add a version of this as a debian docker container, already configured and ready to go - exists buti odnt like it, docker is iffy
+- might add a version of this as a debian docker container, already configured and ready to go - exists but I don't like it, docker is iffy
 
 ### Needed external programs 
 - **ripgrep** as telescope needs it. Easiest to install with rusts's cargo
@@ -76,10 +76,9 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 - **basic.vim** - Basic plugin settings, here i put plugins that need at most 2-3 lines of config.
 - **cmd.vim** - Some mappings that I have.
 - **colors.vim** - Things about colors
-- **fzf.vim** - Fzf config stolen from the original repo, and modified slightly
 - **netrw.vim** - Config for netrw file browser. Surprisingly useful
 - **nvim-lsp.vim** - neovim native lsp configuration
-- **navigation.vim** - neovim native lsp configuration
+- **navigation.vim** - neovim telecope config mainly
 - **plugs.vim** - Here are all the plugin currently in use, 
 - **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.
 - **lua/statusline.lua** - fancy Statusline in lua 
@@ -90,7 +89,6 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 ## My vimscript implementation for some somewhat basic things
 - **functions/open_utils.vim** - Some functions to open and execute text in visual selection from vim
 - **functions/lang.vim** - Language switching controls, switch up and down a list of predetermined languages in init.vim <sup>(1)</sup>
-- **functions/wm.vim** - rudamentary window management, will probably become first plugin
 - **functions/around.vim** - a try of making a sensible implementation of placing characters around things , not yet fully ready <sup>(2)</sup>
 - **functions/terminal_manager.vim** - a set of functions to manage terminal splits
 - **configs/colors.vim** - implementation of lightline, not mine, source is in file
