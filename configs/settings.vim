@@ -53,6 +53,7 @@ set cursorline
 set relativenumber
 set signcolumn=yes
 set lazyredraw
+set mouse=a
 
 set list
 set listchars=tab:\|.,trail:.,extends:#,nbsp:.
