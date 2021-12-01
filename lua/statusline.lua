@@ -684,7 +684,6 @@ term_root_val = function()
     local tmp = vim.b.term_title
     for _,sep in ipairs(seps) do
       local ind ,_ = string.find(tmp,sep,0)
-      print(tmp,ind)
       if ind then
           return string.sub(tmp,ind)
       end
