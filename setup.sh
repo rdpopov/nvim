@@ -12,8 +12,8 @@ setup_deps(){
 
 setup_nvim(){
     wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output-document nvim
-    chmod +x nvim && sudo chown root:root nvim && sudo mv nvim /usr/bin
-    pip3 install --user neovim
+    chmod +x nvim && sudo chown root:root nvim && sudo mv nvim /usr/local/bin
+    #pip3 install --user neovim
     [ -d "$HOME/.undodir" ]  || mkdir $HOME"/.undodir"
 }
 

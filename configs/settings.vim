@@ -48,7 +48,6 @@ set noerrorbells         " don't beep
 set nobackup " hate these swaps and backups
 set noswapfile
 set nofoldenable
-set cursorcolumn
 set cursorline
 set relativenumber
 set signcolumn=yes
