@@ -1,0 +1,225 @@
+source $HOME/.config/nvim/configs/settings.vim
+source $HOME/.config/nvim/functions/incl.vim
+source $HOME/.config/nvim/configs/netrw.vim
+source $HOME/.config/nvim/configs/auto.vim
+source $HOME/.config/nvim/functions/incl.vim
+source $HOME/.config/nvim/configs/cmd.vim
+""" colors.vim
+if (has("termguicolors"))
+  set termguicolors
+endif
+colorscheme aurora
+set laststatus=2
+set noshowmode
+""" colors
+""" navigation.vim
+
+function! g:Grep(var)
+	execute "grep -srnw --binary-files=without-match --exclude-dir=.git --exclude-dir=.ccls-cache . -e " . a:var
+	copen
+endfunction
+
+" Function to clone my current session and spawn an ewa terminal for it 
+" cos tmux dont play nice with mice and scroll
+"
+nnoremap <leader>g :call Grep(input('Search for: '))<CR>
+nnoremap <leader>G :call Grep(expand("<cword>"))<CR>
+source $HOME/.config/nvim/configs/netrw.vim
+source $HOME/.config/nvim/default_plugins/vinegar.vim
+"""
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+
+call plug#begin('~/.config/nvim/vim-plugins')
+	Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
+	Plug 'tpope/vim-commentary'
+	Plug 'liuchengxu/vista.vim'                         "   tag and ouline preview it supports tags which are useful tag and ouline preview it supports tags which are useful
+	Plug 'tpope/vim-abolish'                            "   better find and replace, tpope stuff is blessed better find and replace, tpope stuff is blessed
+	Plug 'mbbill/undotree'                              "   Undotree Undotree
+	Plug 'tpope/vim-fugitive'                           "   git client git client
+	Plug 'thinca/vim-quickrun'                          "   quickrun code files, useful for nothing but c/c++ quickrun code files, useful for nothing but c/c++
+	Plug 'itchyny/lightline.vim'
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'junegunn/fzf.vim'
+	Plug 'airblade/vim-gitgutter'
+	Plug 'lifepillar/vim-mucomplete'
+call plug#end()
+
+""" mucomplete
+function! LoadMucomplete()
+		let g:mucomplete#user_mappings = {
+					\'mini': "\<C-r>=MUcompleteMinisnip#complete()\<CR>",
+					\ }
+		set completeopt+=menuone
+
+		" Tab complete dont accept until told to
+		set completeopt+=noselect
+		let g:mucomplete#enable_auto_at_startup = 1
+		"----------- completion chains
+		set complete-=i
+		set complete-=t
+		" remove beeps during completion
+		set belloff=all
+
+		" let g:mucomplete#minimum_prefix_length = 1
+		let g:mucomplete#wordlist = {
+					\       '': ['gavinfreeborn@gmail.com', 'Gavin', 'Jaeger-Freeborn'],
+					\ }
+
+		let g:mucomplete#chains = {}
+		let g:mucomplete#chains['default']   =  {
+					\              'default': [ 'list',  'omni',  'path',  'c-n',   'uspl'],
+					\              '.*string.*': ['uspl'],
+					\              '.*comment.*': ['uspl']
+					\            }
+		let g:mucomplete#chains['html']      =  [  'omni',  'path',  'c-n',   'uspl']
+		let g:mucomplete#chains['vim']       =  [  'list',  'cmd',   'path',  'keyp']
+		let g:mucomplete#chains['tex']       =  [  'path',  'omni',  'uspl',  'dict',  'c-n']
+		let g:mucomplete#chains['sh']        =  [  'file',  'dict',  'keyp']
+		let g:mucomplete#chains['zsh']       =  [  'file',  'dict',  'keyp']
+		let g:mucomplete#chains['java']      =  [  'keyn',  'c-n',   'omni']
+		let g:mucomplete#chains['javascript']=  [  'tags',  'omni',  'c-n']
+		let g:mucomplete#chains['c']         =  [  'list',  'omni',  'omni', 'c-n']
+		let g:mucomplete#chains['go']        =  [  'list',  'omni',  'c-n']
+		let g:mucomplete#chains['troff']     =  [  'omni',  'keyn',   'uspl',  'dict']
+		let g:mucomplete#chains['nroff']     =  g:mucomplete#chains['troff']
+		let g:mucomplete#chains['markdown']  =  [  'path',  'c-n',   'uspl',  'dict']
+		let g:mucomplete#chains['dotoo']     =  g:mucomplete#chains['markdown']
+		let g:mucomplete#chains['mail']      =  g:mucomplete#chains['markdown']
+		let g:mucomplete#chains['gitcommit'] =  g:mucomplete#chains['markdown']
+
+		if !exists('g:mucomplete#can_complete')
+			let s:c_cond = { t -> t =~# '\%(->\|\.\)$' }
+			let s:latex_cond= { t -> t =~# '\%(\\\)$' }
+			let g:mucomplete#can_complete = {}
+			let g:mucomplete#can_complete['c']         =  {  'omni':  s:c_cond              }
+			let g:mucomplete#can_complete['go']        =  {  'omni':  s:c_cond              }
+			let g:mucomplete#can_complete['python']    =  {  'omni':  s:c_cond              }
+			let g:mucomplete#can_complete['java']      =  {  'omni':  s:c_cond              }
+			" let g:mucomplete#can_complete['javascript']=  {  'omni': {t->t=~#'\%(->\|\.\|(\))$' }}
+			let g:mucomplete#can_complete['javascript']=  {  'omni':  s:c_cond }
+			let g:mucomplete#can_complete['markdown']  =  {  'dict':  s:latex_cond          }
+			let g:mucomplete#can_complete['org']       =  {  'dict':  s:latex_cond,
+						\ 'tag': {t->t=~#'\%(:\)$' }}
+			let g:mucomplete#can_complete['tex']       =  {  'omni':  s:latex_cond          }
+			let g:mucomplete#can_complete['troff']     =  {  'omni': { t -> t =~# '\%(\\\[\)$' }}
+			let g:mucomplete#can_complete['troff']     =  {  'omni': { t -> t =~# '^.' }}
+			let g:mucomplete#can_complete['html']      =  {  'omni':  {t->t=~#'\%(<\/\)$'}  }
+			let g:mucomplete#can_complete['vim']       =  {  'cmd':   {t->t=~#'\S$'}        }
+		endif
+		let g:mucomplete#no_popup_mappings = 1
+		"spelling
+		let g:mucomplete#spel#good_words = 1
+	endfunction
+
+call LoadMucomplete()
+"""
+""" lightline
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'lang','readonly', 'filename','git', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'lang': 'GetInputLang',
+      \   'git': 'GitStatus'
+      \ },
+      \ }
+"""
+
+""" fzf
+let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
+
+" Enable per-command history.
+" CTRL-N and CTRL-P will be automatically bound to next-history and
+" previous-history instead of down and up. If you don't like the change,
+" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+
+function! g:Grep(var)
+	execute "grep -srnw --binary-files=without-match --exclude-dir=.git . -e " . a:var
+	copen
+endfunction
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+
+let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline  --preview-window border-vertical --bind ctrl-h:preview-up,ctrl-l:preview-down --no-unicode'
+nnoremap <leader>g :call Grep(input('Search for: '))<CR>
+nnoremap <leader>G :call Grep(expand("<cword>"))<CR>
+
+let $FZF_DEFAULT_COMMAND='if ([ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1); then { git ls-files & git ls-files --others --exclude-standard; }; else find 2>/dev/null; fi'
+
+";FZF files in current directory
+"nnoremap <leader>g :Rg 
+";FZF files in current directory
+"nnoremap <leader>G :Rg<CR>
+nnoremap <leader>t :Tags<CR>
+nnoremap <leader>m :Marks<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>O :History<CR>
+nnoremap <leader>o :Files<CR>
+nnoremap <leader>c :BCommits<CR>
+nnoremap <leader>s :GFiles?<CR>
+
+nnoremap <leader>r :exe ':RG ' . expand('<cword>')<CR>
+nnoremap <leader>R :RG<CR>
+
+
+
+nnoremap <F8> :execute ":Rg @TODO :"<CR>
+
+let g:fzf_tags_command = 'ctags -R'
+" Border color
+let g:fzf_layout = {'down':'35%'  }
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+      \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
+
+"Get Files
+command! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+
+
+" Get text in files with Rg
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+      \   fzf#vim#with_preview(), <bang>0)
+
+" Ripgrep advanced
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+" Git grep
+command! -bang -nargs=* GGrep
+      \ call fzf#vim#grep(
+      \   'git grep --line-number '.shellescape(<q-args>), 0,
+      \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
+
+

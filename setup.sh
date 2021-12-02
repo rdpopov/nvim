@@ -17,6 +17,12 @@ setup_nvim(){
     [ -d "$HOME/.undodir" ]  || mkdir $HOME"/.undodir"
 }
 
+setup_vim(){
+  [[ -e "~/.vimrc" ]] && mv ~/.vimrc ~/.vimrc.bak
+  ln -s ~/.config/nvim/.vimrc ~/.vimrc
+  [[ -d "~/.vim" ]] && mv ~/.vim ~/.vim.bak
+  ln -s ~/.config/nvim ~/.vim
+}
 
 update_plug(){
   if command -v curl; then
@@ -70,6 +76,9 @@ else
         ;;
       "--nvim" | "-n" )
         setup_nvim
+        ;;
+      "--vim" | "-v" )
+        setup_vim
         ;;
       "--deps" | "-d" )
         setup_deps

@@ -3,6 +3,7 @@
 set nocompatible
 
 syntax enable
+syntax on
 filetype plugin on
 
 " input languages

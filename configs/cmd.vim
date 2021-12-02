@@ -35,15 +35,10 @@ noremap <Leader>p "*p
 noremap <Leader>Y "+y
 noremap <Leader>P "+p
 "  -- Window managment might remove them. I Should make my own managment thingy
-nnoremap <C-h> :call ResizeWith('h')<CR>
-nnoremap <C-j> :call ResizeWith('j')<CR>
-nnoremap <C-k> :call ResizeWith('k')<CR>
-nnoremap <C-l> :call ResizeWith('l')<CR>
-
-nnoremap <M-h> :wincmd h<CR>
-nnoremap <M-j> :wincmd j<CR>
-nnoremap <M-k> :wincmd k<CR>
-nnoremap <M-l> :wincmd l<CR>
+nnoremap <M-h> :call ResizeWith('h')<CR>
+nnoremap <M-j> :call ResizeWith('j')<CR>
+nnoremap <M-k> :call ResizeWith('k')<CR>
+nnoremap <M-l> :call ResizeWith('l')<CR>
 nnoremap <M-;> :tabNext <CR>
 "  -- For make integration
 noremap <leader><ESC> :cclose<CR>
@@ -81,20 +76,22 @@ nnoremap <leader>w :source Session.vim<CR>
 nnoremap <silent><F9> :Erc<CR>
 nnoremap <F12> :source $MYVIMRC<CR>
 " -- Git commands
-nnoremap <leader>] :GitGutterNextHunk<CR>
-nnoremap <leader>[ :GitGutterPrevHunk<CR>
-nnoremap <leader>A :GitGutterPreviewHunk<CR>
-nnoremap <leader>D :GitGutterQuickFix<CR>
-" -- writing
-nnoremap <F8> :Centerpad 50 <CR>
-nnoremap <silent> qq vip:s/ \+/ /ge<CR>vip:s/ , /, /ge<CR>vip:s/ \. /. /ge<CR>:nohlsearch<CR>vipgq<Esc>
-vnoremap <silent> qq <Esc>gvs/ \+/ /ge<CR>gv:s/ , /, /ge<CR>gv:s/ \. /. /ge<CR>:nohlsearch<CR>gvgq<Esc>
-" -- nvim-dap
-nnoremap <silent> <leader><F5> :lua require'dap'.continue()<CR>
-nnoremap <silent> <leader><F10> :lua require'dap'.step_over()<CR>
-nnoremap <silent> <leader><F11> :lua require'dap'.step_into()<CR>
-nnoremap <silent> <leader><F12> :lua require'dap'.step_out()<CR>
-nnoremap <silent> <leader><F4> :lua require'dap'.toggle_breakpoint()<CR>
-" telescope + nvim dap
-nnoremap <silent> <leader>S :Telescope dap frames<CR>
-nnoremap <silent> <leader>B :Telescope dap list_brakpoints<CR>
+if has("nvim")
+	nnoremap <leader>] :GitGutterNextHunk<CR>
+	nnoremap <leader>[ :GitGutterPrevHunk<CR>
+	nnoremap <leader>A :GitGutterPreviewHunk<CR>
+	nnoremap <leader>D :GitGutterQuickFix<CR>
+	" -- writing
+	nnoremap <F8> :Centerpad 50 <CR>
+	nnoremap <silent> qq vip:s/ \+/ /ge<CR>vip:s/ , /, /ge<CR>vip:s/ \. /. /ge<CR>:nohlsearch<CR>vipgq<Esc>
+	vnoremap <silent> qq <Esc>gvs/ \+/ /ge<CR>gv:s/ , /, /ge<CR>gv:s/ \. /. /ge<CR>:nohlsearch<CR>gvgq<Esc>
+	" -- nvim-dap
+	nnoremap <silent> <leader><F5> :lua require'dap'.continue()<CR>
+	nnoremap <silent> <leader><F10> :lua require'dap'.step_over()<CR>
+	nnoremap <silent> <leader><F11> :lua require'dap'.step_into()<CR>
+	nnoremap <silent> <leader><F12> :lua require'dap'.step_out()<CR>
+	nnoremap <silent> <leader><F4> :lua require'dap'.toggle_breakpoint()<CR>
+	" telescope + nvim dap
+	nnoremap <silent> <leader>S :Telescope dap frames<CR>
+	nnoremap <silent> <leader>B :Telescope dap list_brakpoints<CR>
+endif

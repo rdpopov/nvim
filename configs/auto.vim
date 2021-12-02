@@ -3,8 +3,10 @@
 
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))  | PlugInstall --sync | q| PlugClean! | q| endif
 au BufRead * try | execute "compiler ".&filetype | catch /./ | endtry
-au WinEnter,BufEnter markdown,gitcommit,tex let g:compe.source.spell = v:true
-au WinLeave,BufLeave markdown,gitcommit,tex let g:compe.source.spell = v:false
+if has("nvim")
+	au WinEnter,BufEnter markdown,gitcommit,tex let g:compe.source.spell = v:true
+	au WinLeave,BufLeave markdown,gitcommit,tex let g:compe.source.spell = v:false
+endif
 
 if filereadable("$HOME/.config/nvim/machinerc.vim")
     source $HOME/.config/nvim/machinerc.vim
