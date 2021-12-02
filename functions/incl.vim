@@ -8,3 +8,5 @@ source $HOME/.config/nvim/functions/around.vim
 source $HOME/.config/nvim/functions/open_utils.vim
 " Terminala managment functions
 source $HOME/.config/nvim/functions/terminal_manager.vim
+" include search helper
+source $HOME/.config/nvim/functions/ref.vim

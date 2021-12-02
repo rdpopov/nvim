@@ -53,6 +53,8 @@ set relativenumber
 set signcolumn=yes
 set lazyredraw
 set mouse=a
+set cpt=.,w,d,i,b,u
+set omnifunc=syntaxcomplete#Complete
 
 set list
 set listchars=tab:\|.,trail:.,extends:#,nbsp:.
