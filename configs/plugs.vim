@@ -37,6 +37,9 @@ call plug#begin()
 	Plug 'thinca/vim-quickrun'                          "   quickrun code files, useful for nothing but c/c++ quickrun code files, useful for nothing but c/c++
 	Plug 'norcalli/nvim-colorizer.lua'                  "   colorizer for colors in css and anywhere really
   " -- Writing, i do write as well might as well use the best biggest gun for it
+  " -- 
+  Plug 'cdelledonne/vim-cmake'
+  Plug 'dhruvasagar/vim-table-mode'
   Plug 'smithbm2316/centerpad.nvim'
 	Plug 'henriquehbr/nvim-startup.lua'
 	Plug 'EdenEast/nightfox.nvim'

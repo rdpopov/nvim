@@ -18,11 +18,11 @@ if filereadable("localrc.vim")
     source ./localrc.vim
 endif
 
-if exists("g:auto_session")
-    if g:auto_session && filereadable("Session.vim")
-        source ./Session.vim
-    endif
-endif
+" if exists("g:auto_session")
+"     if g:auto_session && filereadable("Session.vim")
+"         source ./Session.vim
+"     endif
+" endif
 
 if has('autocmd')
  autocmd filetype python set expandtab
@@ -35,4 +35,3 @@ function! NearestMethodOrFunction() abort
 endfunction
 
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-
