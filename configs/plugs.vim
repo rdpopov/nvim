@@ -42,5 +42,7 @@ call plug#begin()
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'smithbm2316/centerpad.nvim'
 	Plug 'henriquehbr/nvim-startup.lua'
+	" -- colorschemes
+	Plug 'rose-pine/neovim'
 	Plug 'EdenEast/nightfox.nvim'
 call plug#end()
