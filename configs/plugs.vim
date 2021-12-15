@@ -45,4 +45,5 @@ call plug#begin()
 	" -- colorschemes
 	Plug 'rose-pine/neovim'
 	Plug 'EdenEast/nightfox.nvim'
+	Plug 'tpope/vim-dispatch'
 call plug#end()

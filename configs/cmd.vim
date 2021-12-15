@@ -42,7 +42,7 @@ nnoremap <M-l> :call ResizeWith('l')<CR>
 nnoremap <M-;> :tabNext <CR>
 "  -- For make integration
 noremap <leader><ESC> :cclose<CR>
-nnoremap <leader>x :make <cr>
+nnoremap <leader>x :Make <cr>
 function! g:QfToggle()
  for winnr in range(1, winnr('$'))
   if getwinvar(winnr, '&syntax') == 'qf'
