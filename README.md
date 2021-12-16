@@ -31,8 +31,8 @@ Just kidding. Actually I don't like it and I edit it constantly.
 ## Some performance stats
 - Starts up in 0.100 ~ 0.130 seconds
 - Memory footprint is low
-- Doesn't hog more ram than chrome (**cough** **cough** Vscode)
-- Doesn't choke and die  when i try to search something(**cough** **cough** Vscode)
+- Doesn't hog more ram than chrome (**cough** Vscode **cough** 16 gigs **cough**)
+- Doesn't choke and die when I try to search something(**cough** Vscode builtin search **cough**)
 
 ## Main goal
 The main goal for this configuration was to be able to have a neovim config\
@@ -63,7 +63,7 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 - and what else do you need?
 
 ## Initial setup
-- [Neovim]
+- [Neovim], vimplug not needed it's put in the local autolaod directory, instead of the global system directory.
 - or with a setup.sh (limited implementation for now, but does the job)
 - might add a version of this as a debian docker container, already configured and ready to go - exists but I don't like it, docker is iffy
 
