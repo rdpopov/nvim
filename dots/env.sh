@@ -29,6 +29,8 @@ export TMUX_VER=$(tmux -V|cut -f2 -d" ") # need this to automatically pick clors
 export GOPATH=$(go env GOPATH) 
 export PATH=$PATH:$(go env GOPATH)/bin
 
+alias recharge='tlp fullcharge'
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [[ -z $(command -v fzf) ]] && fzf_install # auto install fzf if fzf does not exist
 
@@ -45,3 +47,4 @@ bind 'set show-mode-in-prompt on'
 bind 'set vi-ins-mode-string \1\e[34;1m\2(INSERT)\1\e[0m\2'
 bind 'set vi-cmd-mode-string \1\e[33;1m\2(COMAND)\1\e[0m\2'
 PS1='[\[\033[01;32m\]\u \[\033[01;34m\]\W\[\033[00m\]]\$ '
+

@@ -10,7 +10,7 @@ local M = {}
 -- change them if you want to different separator
 LspDiagn  = function(diagn)
   if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then 
-      return vim.lsp.diagnostic.get_count(0, diagn)
+      return #vim.diagnostic.get(0,{severity = vim.diagnostic.severity[diagn]})
   end
       return -1
 end
@@ -293,18 +293,18 @@ ColorPalette = {
     }, { __index = function() return '#FFFFFF' end }),
     ['dark'] = 
     setmetatable({
-      ['Blue']  = '#83a598',
-      ['Red']  = '#ff757f',
-      ['Yellow']  = '#fabd2f',
-      ['Orange']  = '#fe8019',
-      ['Green']  = '#b8bb26',
-      ['Violet']  = '#d3869b',
-      ['Gray']  = '#665c54',
+      ['Blue']  = '#268bd2',
+      ['Red']  = '#ff0000',
+      ['Yellow']  = '#ffaf00',
+      ['Orange']  = '#ff5f00',
+      ['Green']  = '#afdf00',
+      ['Violet']  = '#5f00af',
+      ['Gray']  = '#14191F',
       ['Black']  = '#14191F',
-      ['Name']  = '#fbf1c7',
-      ['Background']  = '#3c3836',
-      ['Warning'] = '#fe8019',
-      ['Error'] = '#fb4934',
+      ['Name']  = '#FFFFFF',
+      ['Background']  = '#35322d',
+      ['Warning'] = '#ffa724',
+      ['Error'] = '#ff0000',
       ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
     ['rose-pine'] = 
@@ -364,7 +364,7 @@ local gen_highlights = function()
             {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
             {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
             {'Git',                      { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Yellow }},
-            {'Scope',                    { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Violet }},
+            {'Scope',                    { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Blue }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
             {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
@@ -388,7 +388,7 @@ local gen_highlights = function()
             {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
             {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
             {'Git',                      { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
-            {'Scope',                    { bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Background }},
+            {'Scope',                    { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
             {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
@@ -400,7 +400,7 @@ local gen_highlights = function()
             {'LspErr',                   { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background }},
             {'LspWarn',                  { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background }},
             {'LspHint',                  { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Background }},
-            {'InssLang',                 { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
+            {'InssLang',                 { bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Background }},
         }
     end
 end
@@ -577,26 +577,26 @@ local gen_overlap =function()
     else 
         return {
             -- mode - language overlap
-            {"NORLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Green, gui="bold" }},
-            {"VISLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Red, gui="bold" }},
-            {"VILLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Orange, gui="bold" }},
-            {"VIBLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-            {"SELLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-            {"INSLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Blue, gui="bold" }},
-            {"REPLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Blue, gui="bold" }},
-            {"COMLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-            {"EEXLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Green, gui="bold" }},
-            {"UNKLang" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"NORLang" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Green, gui="bold" }},
+            {"VISLang" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Red, gui="bold" }},
+            {"VILLang" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Orange, gui="bold" }},
+            {"VIBLang" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"SELLang" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"INSLang" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"REPLang" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"COMLang" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"EEXLang" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Green, gui="bold" }},
+            {"UNKLang" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Yellow, gui="bold" }},
             -- git - lang
-            {"LangGit" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"LangGit" ,{ bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Violet, gui="bold" }},
             -- git - center
             {"GitCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
             -- lang - center
-            {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Violet, gui="bold" }},
 
-            {"GitScope" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-            {"LangScope" ,{ bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Blue, gui="bold" }},
-            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Violet, gui="bold" }},
+            {"GitScope" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"LangScope" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Violet, gui="bold" }},
+            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
             -- for truncated use
             {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
             {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
@@ -816,9 +816,9 @@ M.get_lang_git_name = function(self)
 end
 
 M.get_format_lsp_diagn = function(self,nof)
-    local errs = LspDiagn([[Error]])
-    local warn = LspDiagn([[Warning]])
-    local hint = LspDiagn([[Hint]])
+    local errs = LspDiagn("ERROR")
+    local warn = LspDiagn("WARNING")
+    local hint = LspDiagn("HINT")
     local ft = self:get_filetype()
     local colors = self.colors
     local ft = self:get_filetype()
@@ -882,9 +882,9 @@ M.get_format_lsp_diagn = function(self,nof)
 end
 
 M.simple_lsp = function(self)
-  local errs = LspDiagn([[Error]])
-  local warn = LspDiagn([[Warning]])
-  local hint = LspDiagn([[Hint]])
+  local errs = LspDiagn("ERROR")
+  local warn = LspDiagn("WARNING")
+  local hint = LspDiagn("HINT")
   local colors = self.colors
   local res = ""
 

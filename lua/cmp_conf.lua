@@ -69,7 +69,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 -- The following example advertise capabilities to `clangd`.
 require'lspconfig'.ccls.setup { capabilities = capabilities, }
 require'lspconfig'.nimls.setup { capabilities = capabilities, }
-require'lspconfig'.pylsp.setup { capabilities = capabilities, }
+require'lspconfig'.jedi_language_server.setup { capabilities = capabilities, }
 require'lspconfig'.tsserver.setup { capabilities = capabilities, }
 require'lspconfig'.html.setup { capabilities = capabilities, }
 require'lspconfig'.gopls.setup { capabilities = capabilities, }
