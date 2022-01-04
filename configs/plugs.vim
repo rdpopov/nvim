@@ -2,6 +2,7 @@ call plug#begin()
 	" -- Language features
 	Plug 'alaviss/nim.nvim'                             "   Nim language support
 	Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
+	Plug 'michaelb/sniprun', {'do': './install.sh'}     "   Better repl thing
 	" -- More general languge helpers
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " tree-sitter for neovim tree-sitter for neovim
 	Plug 'neovim/nvim-lspconfig'                        "   lsp configuration api for native lsp lsp configuration api for native lsp

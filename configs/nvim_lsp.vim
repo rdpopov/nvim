@@ -33,6 +33,7 @@ nnoremap ]d <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 source $HOME/.config/nvim/configs/vista.vim
 lua require('cmp_conf')
 lua require('treesitter_conf')
+lua require('sniprun_conf')
 
 function! g:Scope() 
 	let res = nvim_treesitter#statusline({'indicator_size':100, 'separator':"|"})

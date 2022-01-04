@@ -38,13 +38,17 @@ alias recharge='tlp fullcharge'
 [[ -x "$(command -v pacman)" ]] && alias pac="facman"
 [[ -x "$(command -v yay)" ]] && alias pac="fay"
 
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
 set keymap vi-command "diw": "bde"
 set keymap vi-command "ciw": "bdei"
 set keymap vi-command "dw": "de"
 set keymap vi-command "cw": "dei"
 set -o vi
+
 bind 'set show-mode-in-prompt on'
 bind 'set vi-ins-mode-string \1\e[34;1m\2(INSERT)\1\e[0m\2'
 bind 'set vi-cmd-mode-string \1\e[33;1m\2(COMAND)\1\e[0m\2'
-PS1='[\[\033[01;32m\]\u \[\033[01;34m\]\W\[\033[00m\]]\$ '
-
+PS1='[\[\033[01;32m\]\u \[\033[01;34m\]\W\[\033[00m\]]\[\e[93m\]$(parse_git_branch)\[\e[00m\] \$ '
