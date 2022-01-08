@@ -17,7 +17,7 @@ end
 local usr = "/home/"..vim.fn.expand("$USER")
 
 
-use_preset = "samurai"
+use_preset = "budget_samurai"
 
 M.separators = {
   arrow = { '', '' },
@@ -25,6 +25,7 @@ M.separators = {
   blank = { '', '' },
   triangle = {'◣' ,'◢'},
   slice = {'◣' ,'◥'},
+  simple_slice = {'\\' ,'\\'},
   ang = {'⧽' ,'⧼'},
   half_box = {'▌' ,'▐'},
 }
@@ -77,6 +78,13 @@ presets = {
         space = {' ',' '},
         style = 'fancy',
         inverted = false,
+        clean = true
+    },
+    budget_samurai = {
+        sep = 'simple_slice',
+        space = {' ',' '},
+        style = 'fancy',
+        inverted = true,
         clean = true
     },
     sleek = {
@@ -364,7 +372,7 @@ local gen_highlights = function()
             {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
             {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
             {'Git',                      { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Yellow }},
-            {'Scope',                    { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Blue }},
+            {'Scope',                    { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Red }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
             {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
@@ -376,7 +384,7 @@ local gen_highlights = function()
             {'LspErr',                   { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error   }},
             {'LspWarn',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning }},
             {'LspHint',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Hint    }},
-            {'InssLang',                 { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Blue, }},
+            {'InssLang',                 { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Violet, }},
         }
     else
         return  {
@@ -388,7 +396,7 @@ local gen_highlights = function()
             {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
             {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
             {'Git',                      { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
-            {'Scope',                    { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
+            {'Scope',                    { bg = ColorPalette[cpal].Red, fg = ColorPalette[cpal].Background }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
             {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
@@ -530,15 +538,15 @@ local gen_overlap =function()
             {"EEXLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green , gui="bold" }},
             {"UNKLang" ,{ bg =ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
             -- git - lang
-            {"LangGit" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"LangGit" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Violet, gui="bold" }},
             -- git - center
             {"GitCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
             -- lang - center
-            {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Violet, gui="bold" }},
             {"GitScope" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
 
-            {"LangScope" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
-            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Violet, gui="bold" }},
+            {"LangScope" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Violet, gui="bold" }},
+            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
             -- for truncated use
             {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
             {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
@@ -594,9 +602,9 @@ local gen_overlap =function()
             -- lang - center
             {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Violet, gui="bold" }},
 
-            {"GitScope" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-            {"LangScope" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Violet, gui="bold" }},
-            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"GitScope" ,{ bg = ColorPalette[cpal].Red, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"LangScope" ,{ bg = ColorPalette[cpal].Red, fg = ColorPalette[cpal].Violet, gui="bold" }},
+            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
             -- for truncated use
             {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
             {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
@@ -799,7 +807,7 @@ M.get_lang_git_name = function(self)
 
 	-- Scope
 	local Scope = ""
-	local scp = fn["Scope"]()
+	local scp = fn["Scope"]() or ""
   if clean_status then 
 		Scope = to_hl_group(crnt_item..next_item) .. self.separators[active_sep][1] .. colors.scope
 		tmp_item = 'Scope'

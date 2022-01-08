@@ -67,13 +67,13 @@ cmp.setup({
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 -- The following example advertise capabilities to `clangd`.
-require'lspconfig'.ccls.setup { capabilities = capabilities, }
-require'lspconfig'.nimls.setup { capabilities = capabilities, }
-require'lspconfig'.jedi_language_server.setup { capabilities = capabilities, }
-require'lspconfig'.tsserver.setup { capabilities = capabilities, }
-require'lspconfig'.html.setup { capabilities = capabilities, }
-require'lspconfig'.gopls.setup { capabilities = capabilities, }
-require'lspconfig'.vimls.setup { capabilities = capabilities, }
-require'lspconfig'.rust_analyzer.setup { capabilities = capabilities, }
-require'lspconfig'.hls.setup { capabilities = capabilities, }
-require'lspconfig'.racket_langserver.setup { capabilities = capabilities, }
+require'lspconfig'.ccls.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
+require'lspconfig'.nimls.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
+require'lspconfig'.jedi_language_server.setup { on_attach = require("aerial").on_attach,capabilities = capabilities, }
+require'lspconfig'.tsserver.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
+require'lspconfig'.html.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
+require'lspconfig'.gopls.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
+require'lspconfig'.vimls.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
+require'lspconfig'.rust_analyzer.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
+require'lspconfig'.hls.setup {  on_attach = require("aerial").on_attach, capabilities = capabilities, }
+require'lspconfig'.racket_langserver.setup {  on_attach = require("aerial").on_attach, capabilities = capabilities, }

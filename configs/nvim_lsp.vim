@@ -30,22 +30,26 @@ nnoremap gr :Telescope lsp_references theme=get_ivy<CR>
 nnoremap \\e :Telescope lsp_document_diagnostics<CR> 
 nnoremap [d <cmd>lua vim.lsp.diagnostic.goto_prev()<CR> 
 nnoremap ]d <cmd>lua vim.lsp.diagnostic.goto_next()<CR> 
-source $HOME/.config/nvim/configs/vista.vim
 lua require('cmp_conf')
 lua require('treesitter_conf')
 lua require('sniprun_conf')
+lua require('aerial_conf')
 
 function! g:Scope() 
-	let res = nvim_treesitter#statusline({'indicator_size':100, 'separator':"|"})
+	let res =  nvim_treesitter#statusline({'indicator_size':100, 'separator':"|"})
 	if res == v:null
-		return NearestMethodOrFunction()
+		return ""
 	else
-	  let res = split(nvim_treesitter#statusline({'indicator_size':100, 'separator':"|"}),'|')
-		if len(res) > 0
-			return NearestMethodOrFunction()
-		else
+		try
+			let res = split(split(nvim_treesitter#statusline({'indicator_size':100, 'separator':"|"}),'(')[0],' ')[1]
+			if len(res) > 0
+				return res
+			else
+				return ''
+			endif
+		catch
 			return ''
-		endif
+		endtry
 	endif
 	return ''
 endfunction

@@ -1,14 +1,16 @@
 call plug#begin()
 	" -- Language features
 	Plug 'alaviss/nim.nvim'                             "   Nim language support
+	Plug 'rust-lang/rust.vim'                           "		Rust editor support
 	Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
 	Plug 'michaelb/sniprun', {'do': './install.sh'}     "   Better repl thing
 	" -- More general languge helpers
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " tree-sitter for neovim tree-sitter for neovim
+	Plug 'nvim-treesitter/playground'                   "   ii'd like to make my own treesitter things
 	Plug 'neovim/nvim-lspconfig'                        "   lsp configuration api for native lsp lsp configuration api for native lsp
 	Plug 'ray-x/lsp_signature.nvim'                     "   signatire preview via lsp signatire preview via lsp
 	Plug 'tpope/vim-commentary'
-	Plug 'liuchengxu/vista.vim'                         "   tag and ouline preview it supports tags which are useful tag and ouline preview it supports tags which are useful
+	Plug 'stevearc/aerial.nvim'                         "   tag and ouline preview it supports tags which are useful tag and ouline preview it supports tags which are useful
 	Plug 'rafamadriz/friendly-snippets'
 	Plug 'L3MON4D3/LuaSnip'
 	"  -- Completion ... those three should be 1 plugin so it keeps lines at a minimum ... 
