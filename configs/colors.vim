@@ -8,7 +8,7 @@ colorscheme aurora
 lua << EOF
 local nightfox = require('nightfox')
 nightfox.setup({
-fox = "nightfox",
+fox = "duskfox",
   alt_nc = true,
   terminal_colors = true,
 styles = {
@@ -27,7 +27,7 @@ hlgroups = {
 	GitSignsDelete = {style = "bold" },
 	},
 })
- nightfox.load()
+nightfox.load()
 
 vim.g.rose_pine_variant = 'moon'
 vim.g.rose_pine_bold_vertical_split_line = false

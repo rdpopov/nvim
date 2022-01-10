@@ -17,7 +17,7 @@ end
 local usr = "/home/"..vim.fn.expand("$USER")
 
 
-use_preset = "budget_samurai"
+use_preset = "samurai"
 
 M.separators = {
   arrow = { '', '' },
@@ -914,7 +914,7 @@ end
 M.fancy_line = function(self )
   local colors = self.colors
   --mode
-  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) ..self:get_current_mode() .. space[2]
+  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) ..self:get_current_mode() .. space[1]
   --filename 
   local filename = colors.filetype .. self:get_filename()
   local filetype_alt = colors.filetype_alt .. self.separators[active_sep][1]
@@ -935,9 +935,10 @@ M.fancy_line = function(self )
   if is_term() then
     local pid = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. ' ' .. vim.b.terminal_job_pid .. ' '
     return table.concat({
-        colors.active, 
+        colors.active,
         mode,
-        self.separators[active_sep][2],
+        to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat'),
+        self.separators[active_sep][1],
         colors.filetype,
         "%=",
         term_root_val(),
@@ -948,7 +949,7 @@ M.fancy_line = function(self )
       })
   end
   return table.concat({
-      colors.active, 
+      colors.active,
       mode,
       self:get_lang_git_name(), 
       "%=",
@@ -993,9 +994,9 @@ M.simple_line  = function(self)
 
   if is_term() then
     return table.concat({
-        colors.active, 
+        colors.active,
         mode,
-        colors.filetype,
+        "%#NOR#",
         "%=",
         term_root_val(),
         "%=",
