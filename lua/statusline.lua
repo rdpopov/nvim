@@ -38,90 +38,18 @@ clean_status = false
 
 
 presets = {
-    max = {
-        sep = 'arrow',
-        space = {' ',' '},
-        style = 'fancy',
-        inverted = false,
-        clean = true
-    },
-    compact = {
-        sep = 'half_box',
-        space = {'',''},
-        style = 'fancy',
-        inverted = false,
-        clean = false
-    },
-    barebones = {
-        sep = 'blank',
-        space = {' ',' '},
-        style = 'minimal',
-        inverted = true,
-        clean = false
-    },
-    airlineish = {
-        sep = 'arrow',
-        space = {' ',' '},
-        style = 'fancy',
-        inverted = false,
-        clean = false
-    },
-    slantlineish = {
-        sep = 'triangle',
-        space = {' ',' '},
-        style = 'fancy',
-        inverted = false,
-        clean = true
-    },
-    samurai = {
-        sep = 'slice',
-        space = {' ',' '},
-        style = 'fancy',
-        inverted = false,
-        clean = true
-    },
-    budget_samurai = {
-        sep = 'simple_slice',
-        space = {' ',' '},
-        style = 'fancy',
-        inverted = true,
-        clean = true
-    },
-    sleek = {
-        sep = 'ang',
-        space = {' ',' '},
-        style = 'fancy',
-        inverted = true,
-        clean = false
-    },
-    basic_luxe = {
-        sep = 'blank',
-        space = {' ',' '},
-        style = 'fancy',
-        inverted = false,
-        clean = false
-    },
-    alt_max = {
-        sep = 'ang',
-        space = {' ',' '},
-        style = 'fancy',
-        inverted = true,
-        clean = true,
-    },
-    simple = {
-        sep = 'blank',
-        space = {' ',' '},
-        style = 'minimal',
-        inverted = false,
-        clean = false 
-    },
-    ghost = {
-        sep = 'blank',
-        space = {'',''},
-        style = 'minimal',
-        inverted = true,
-        clean = false 
-    },
+    max = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = true },
+    compact = { sep = 'half_box', space = {'',''}, style = 'fancy', inverted = false, clean = false },
+    barebones = { sep = 'blank', space = {' ',' '}, style = 'minimal', inverted = true, clean = false },
+    airlineish = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = false },
+    slantlineish = { sep = 'triangle', space = {' ',' '}, style = 'fancy', inverted = false, clean = true },
+    samurai = { sep = 'slice', space = {' ',' '}, style = 'fancy', inverted = false, clean = true },
+    budget_samurai = { sep = 'simple_slice', space = {' ',' '}, style = 'fancy', inverted = true, clean = true },
+    sleek = { sep = 'ang', space = {' ',' '}, style = 'fancy', inverted = true, clean = false },
+    basic_luxe = { sep = 'blank', space = {' ',' '}, style = 'fancy', inverted = false, clean = false },
+    alt_max = { sep = 'ang', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, },
+    simple = { sep = 'blank', space = {' ',' '}, style = 'minimal', inverted = false, clean = false },
+    ghost = { sep = 'blank', space = {'',''}, style = 'minimal', inverted = true, clean = false },
 }
 
 if use_preset then
@@ -158,6 +86,24 @@ ColorPalette = {
       ['Error'] = '#FF3333',
       ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
+		['catppuccin'] = 
+    setmetatable({
+      ['Blue']  = '#96CDFB',
+      ['Red']  = '#F28FAD',
+      ['Yellow']  = '#FAE3B0',
+      ['Orange']  = '#F8BD96',
+      ['Green']  = '#ABE9B3',
+      ['Violet']  = '#C9CBFF',
+      ['Gray']  = '#14191F',
+      ['Black']  = '#14191F',
+      ['Name']  = '#96CDFB',
+      ['Background']  = '#302D41',
+      ['Warning'] = '#F8BD96',
+      ['Error'] = '#F28FAD',
+      ['Hint'] = '#D9E0EE',
+    }, { __index = function() return '#FFFFFF' end }),
+
+
    ['PaperColor'] = setmetatable({
       ['Blue']  = '#5fafd7',
       ['Red']  = '#df0000',

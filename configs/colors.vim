@@ -2,10 +2,9 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-colorscheme aurora
-"
 
 lua << EOF
+-- nightfox
 local nightfox = require('nightfox')
 nightfox.setup({
 fox = "duskfox",
@@ -29,6 +28,7 @@ hlgroups = {
 })
 nightfox.load()
 
+-- rose-pine
 vim.g.rose_pine_variant = 'moon'
 vim.g.rose_pine_bold_vertical_split_line = false
 vim.g.rose_pine_inactive_background = true
@@ -55,12 +55,40 @@ vim.g.rose_pine_colors = {
 		h6 = p.foam,
 	},
 }
+-- catpuccino
+local catppuccin = require("catppuccin")
+
+-- configure it
+catppuccin.setup({
+transparent_background = false,
+term_colors = false,
+styles = {
+	comments = "italic",
+	functions = "italic",
+	keywords = "italic",
+	strings = "NONE",
+	variables = "italic",
+},
+integrations = {
+	treesitter = true,
+	native_lsp = {
+		enabled = true,
+		virtual_text = {
+			errors = "italic",
+			hints = "italic",
+			warnings = "italic",
+			information = "italic",
+		},
+	},
+	cmp = true,
+	gitsigns = true,
+	telescope = true,
+	markdown = true,
+	hop = false,
+	}})
 EOF
 
-
-
-
-
+colorscheme catppuccin
 
 set laststatus=2
 set noshowmode

@@ -47,6 +47,7 @@ call plug#begin()
 	Plug 'henriquehbr/nvim-startup.lua'
 	" -- colorschemes
 	Plug 'rose-pine/neovim'
+	Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 	Plug 'EdenEast/nightfox.nvim'
 	Plug 'tpope/vim-dispatch'
 call plug#end()
