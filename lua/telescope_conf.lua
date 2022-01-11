@@ -4,11 +4,11 @@ require('telescope').load_extension('aerial')
 require('telescope').setup{
 	defaults = {
 		file_ignore_patterns = { "target/.*" },
-		path_display = 
-		{
-			smart = 1,
-			truncate  = 1
-		}
+		-- path_display = 
+		-- {
+		-- 	smart = 1,
+		-- 	truncate  = 1
+		-- }
 	},
 	extensions = {
 		fzf = {
