@@ -203,6 +203,22 @@ ColorPalette = {
       ['Error'] = '#FB0101',
       ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
+		['uwu'] = setmetatable({
+			['Blue']		= '#6CBAD1',
+			['Red']			= '#ff6565',
+			['Yellow']  = '#e59e67',
+			['Orange']  = '#c26f6f',
+			['Green']		= '#8dc776',
+			['Violet']  = '#bb8fe5',
+			['Gray']		= '#131A1C',
+			['Black']		= '#131A1C',
+			['Background']  = '#2f3638',
+			['Name']		= '#6CBAD1',
+			['Warning']	= '#e59e67',
+			['Error']		= '#ff6565',
+			['Hint']		= '#CCCCCC',
+ }, { __index = function() return '#FFFFFF' end }),
+
     ['base16-gruvbox-dark-hard'] = 
     setmetatable({
       ['Blue']  = '#83a598',
