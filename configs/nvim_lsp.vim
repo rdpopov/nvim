@@ -5,7 +5,7 @@ function! g:ToggleDiagn()
     if get(getloclist(0, {'winid':0}), 'winid', 0)
         lclose
     else
-        lua vim.lsp.diagnostic.set_loclist()
+		lua vim.diagnostic.setloclist()
     endif
 endfunction
 

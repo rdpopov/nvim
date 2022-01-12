@@ -7,6 +7,7 @@ call plug#begin()
 	" -- More general languge helpers
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " tree-sitter for neovim tree-sitter for neovim
 	Plug 'nvim-treesitter/playground'                   "   ii'd like to make my own treesitter things
+	Plug 'danymat/neogen'                               "   have a thing for generating documentation based on treesitter
 	Plug 'neovim/nvim-lspconfig'                        "   lsp configuration api for native lsp lsp configuration api for native lsp
 	Plug 'ray-x/lsp_signature.nvim'                     "   signatire preview via lsp signatire preview via lsp
 	Plug 'tpope/vim-commentary'

@@ -7,19 +7,15 @@ setlocal includeexpr=PyInclude(v:fname)
 
 function! PyInclude(fname)
 	let parts = split(a:fname, ' import ')
-	echo parts
 	let l = parts[0]
 	if len(parts) > 1
 		let r = parts[1]
-		echo r
-		let joined = join([l, r]. '.')
-		echo joined
+		let joined = join([l, r], '.')
 		let fp = substitute(joined, '\.', '/', 'g') . '.py'
-		echo fp
 		let found = glob(fp, 1)
-		echo "" found
 		if len(found)
 			return found
 		endif
 	endif
+	return substitute(l, '\.', '/', 'g') . '.py'
 endfunction
