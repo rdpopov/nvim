@@ -35,6 +35,15 @@ lua require('treesitter_conf')
 lua require('sniprun_conf')
 lua require('aerial_conf')
 
+
+lua << EOF
+require('neogen').setup {
+        enabled = true,
+        input_after_comment = true,
+    }
+EOF
+
+
 function! g:Scope() 
 	let res =  nvim_treesitter#statusline({'indicator_size':100, 'separator':"|"})
 	if res == v:null
