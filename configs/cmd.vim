@@ -77,10 +77,10 @@ nnoremap <silent><F9> :Erc<CR>
 nnoremap <F12> :source $MYVIMRC<CR>
 " -- Git commands
 if has("nvim")
-	nnoremap <leader>] :GitGutterNextHunk<CR>
-	nnoremap <leader>[ :GitGutterPrevHunk<CR>
-	nnoremap <leader>A :GitGutterPreviewHunk<CR>
-	nnoremap <leader>D :GitGutterQuickFix<CR>
+	nnoremap <leader>] :Gitsigns next_hunk<CR>
+	nnoremap <leader>[ :Gitsigns prev_hunk<CR>
+	nnoremap <leader>A :Gitsigns preview_hunk<CR>
+	nnoremap <leader>D :Gitsigns setqflist<CR>
 	" -- writing
 	nnoremap <F8> :Centerpad 50 <CR>
 	nnoremap <silent> qq vip:s/ \+/ /ge<CR>vip:s/ , /, /ge<CR>vip:s/ \. /. /ge<CR>:nohlsearch<CR>vipgq<Esc>
