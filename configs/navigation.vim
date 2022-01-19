@@ -42,4 +42,3 @@ nnoremap <silent>  <leader>R :Telescope live_grep theme=get_ivy<CR>
 lua require('hop_conf')
 lua require('telescope_conf')
 lua require('gitsigns_conf')
-lua require('nvim-startup').setup()

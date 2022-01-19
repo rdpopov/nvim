@@ -17,7 +17,7 @@ end
 local usr = "/home/"..vim.fn.expand("$USER")
 
 
-use_preset = "samurai"
+use_preset = "budget_samurai"
 
 M.separators = {
   arrow = { '', '' },
@@ -277,21 +277,21 @@ ColorPalette = {
       ['Error'] = '#ff0000',
       ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
-    ['rose-pine'] = 
+    ['srcery'] = 
     setmetatable({
-      ['Blue']  = '#3e8fb0',
-      ['Red']  = '#eb6f92',
-      ['Yellow']  = '#ebbcba',
-      ['Orange']  = '#f6c177',
-      ['Green']  = '#9ccfd8',
-      ['Violet']  = '#c4a7e7',
-      ['Gray']  = '#1f1d2e',
-      ['Black']  = '#1f1d2e',
-      ['Name']  = '#e0def4',
-      ['Background']  = '#1f1d2e',
-      ['Warning'] = '#f6c177',
-      ['Error'] = '#eb6f92',
-      ['Hint'] = '#e0def4',
+      ['Blue']  = '#68A8E4',
+      ['Red']  = '#F75341',
+      ['Yellow']  = '#FED06E',
+      ['Orange']  = '#FF8700',
+      ['Green']  = '#98BC37',
+      ['Violet']  = '#FF5C8F',
+      ['Gray']  = '#303030',
+      ['Black']  = '#303030',
+      ['Name']  = '#68A8E4',
+      ['Background']  = '#303030',
+      ['Warning'] = '#FED06E',
+      ['Error'] = '#F75341',
+      ['Hint'] = '#FCE8C3',
     }, { __index = function() return '#FFFFFF' end }),
 }
 

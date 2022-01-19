@@ -25,9 +25,10 @@ tnoremap <Esc> <C-\><C-n>
 inoremap <C-w> <Esc><C-w>
 tmap <C-w> <Esc><C-w>
 "  -- Terminal managment commands
+nnoremap gT :tabclose <CR>
 nnoremap <leader>ns :call OpenTerm(v:true)<cr>
 nnoremap <silent><C-s> :call OpenTerm(v:false)<cr>
-nnoremap <silent><M-s> :call CycleTerminal(1)<cr>
+nnoremap <leader><C-s> :call CycleTerminal(1)<cr>
 "  -- Connect system clipboard with vim's registers , without cloberring my own
 "  yank register
 noremap <Leader>y "*y
@@ -64,6 +65,7 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
 nnoremap <silent> <C-t> :AerialToggle<CR>
 nnoremap <silent> <leader>s :call ToggleLocalSpelling()<CR>
+nnoremap <leader>= 1z=
 "    -- Obsolete actially
 vnoremap <M-b> :call OpenInBrowser()<cr>
 vnoremap <M-t> :call ExecInTerminal()<cr>
