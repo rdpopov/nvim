@@ -60,6 +60,8 @@ set omnifunc=syntaxcomplete#Complete()
 set list
 set listchars=tab:\|.,trail:.,extends:#,nbsp:.
 
+set guioptions-=e
+set sessionoptions+=tabpages,globals
 
 if has("persistent_undo")
     call system("[ -d \"$HOME/.undodir\" ] || mkdir $HOME/.undodir")

@@ -17,7 +17,7 @@ end
 local usr = "/home/"..vim.fn.expand("$USER")
 
 
-use_preset = "budget_samurai"
+use_preset = "max"
 
 M.separators = {
   arrow = { '', '' },
@@ -35,21 +35,22 @@ space  = {" "," "}  -- space for the hints
 status_style = "simple"
 inverted_colors = false
 clean_status = false
-
+tab_sel = M.separators.arrow
+tab_nosel = M.separators.ang
 
 presets = {
-    max = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = true },
-    compact = { sep = 'half_box', space = {'',''}, style = 'fancy', inverted = false, clean = false },
-    barebones = { sep = 'blank', space = {' ',' '}, style = 'minimal', inverted = true, clean = false },
-    airlineish = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = false },
-    slantlineish = { sep = 'triangle', space = {' ',' '}, style = 'fancy', inverted = false, clean = true },
-    samurai = { sep = 'slice', space = {' ',' '}, style = 'fancy', inverted = false, clean = true },
-    budget_samurai = { sep = 'simple_slice', space = {' ',' '}, style = 'fancy', inverted = true, clean = true },
-    sleek = { sep = 'ang', space = {' ',' '}, style = 'fancy', inverted = true, clean = false },
-    basic_luxe = { sep = 'blank', space = {' ',' '}, style = 'fancy', inverted = false, clean = false },
-    alt_max = { sep = 'ang', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, },
-    simple = { sep = 'blank', space = {' ',' '}, style = 'minimal', inverted = false, clean = false },
-    ghost = { sep = 'blank', space = {'',''}, style = 'minimal', inverted = true, clean = false },
+    max = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = true , tab_sel = M.separators.arrow, tab_nosel = M.separators.ang },
+    compact = { sep = 'half_box', space = {'',''}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.half_box, tab_nosel = M.separators.half_box },
+    barebones = { sep = 'blank', space = {' ',' '}, style = 'minimal', inverted = true, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
+    airlineish = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.arrow, tab_nosel = M.separators.ang },
+    slantlineish = { sep = 'triangle', space = {' ',' '}, style = 'fancy', inverted = false, clean = true, tab_sel = M.separators.triangle, tab_nosel = M.separators.triangle_slice },
+    samurai = { sep = 'slice', space = {' ',' '}, style = 'fancy', inverted = false, clean = true, tab_sel = M.separators.slice, tab_nosel = M.separators.simple_slice},
+    budget_samurai = { sep = 'simple_slice', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.simple_slice, tab_nosel = M.separators.simple_slice },
+    sleek = { sep = 'ang', space = {' ',' '}, style = 'fancy', inverted = true, clean = false, tab_sel = M.separators.ang, tab_nosel = M.separators.ang },
+    basic_luxe = { sep = 'blank', space = {' ',' '}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
+    alt_max = { sep = 'ang', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.ang, tab_nosel = M.separators.ang },
+    simple = { sep = 'blank', space = {' ',' '}, style = 'minimal', inverted = false, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
+    ghost = { sep = 'blank', space = {'',''}, style = 'minimal', inverted = true, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
 }
 
 if use_preset then
@@ -58,6 +59,8 @@ if use_preset then
     status_style = presets[use_preset].style 
     inverted_colors = presets[use_preset].inverted
     clean_status = presets[use_preset].clean
+    tab_sel = presets[use_preset].tab_sel
+    tab_nosel = presets[use_preset].tab_nosel
 end
 
 
@@ -70,228 +73,185 @@ if tver < '2.3' and tver ~= "" then
 end
 
 ColorPalette = {
-    ['ayu'] = 
-    setmetatable({
-      ['Blue']  = '#39BAE6',
-      ['Red']  = '#FF3333',
-      ['Yellow']  = '#E7C547',
-      ['Orange']  = '#FF7733',
-      ['Green']  = '#2BBB4F',
-      ['Violet']  = '#A37ACC',
-      ['Gray']  = '#14191F',
-      ['Black']  = '#14191F',
-      ['Name']  = '#0087af',
-      ['Background']  = '#14191F',
-      ['Warning'] = '#F29718',
-      ['Error'] = '#FF3333',
-      ['Hint'] = '#FFFFFF',
+    ['ayu'] = setmetatable({
+        ['Blue']  = '#39BAE6',
+        ['Red']  = '#FF3333',
+        ['Yellow']  = '#E7C547',
+        ['Orange']  = '#FF7733',
+        ['Green']  = '#2BBB4F',
+        ['Violet']  = '#A37ACC',
+        ['Gray']  = '#3E4B59',
+        ['Black']  = '#0F1419',
+        ['Name']  = '#0087af',
+        ['Background']  = '#14191F',
+        ['Warning'] = '#F29718',
+        ['Error'] = '#FF3333',
+        ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
-		['catppuccin'] = 
-    setmetatable({
-      ['Blue']  = '#96CDFB',
-      ['Red']  = '#F28FAD',
-      ['Yellow']  = '#FAE3B0',
-      ['Orange']  = '#F8BD96',
-      ['Green']  = '#ABE9B3',
-      ['Violet']  = '#C9CBFF',
-      ['Gray']  = '#14191F',
-      ['Black']  = '#14191F',
-      ['Name']  = '#96CDFB',
-      ['Background']  = '#302D41',
-      ['Warning'] = '#F8BD96',
-      ['Error'] = '#F28FAD',
-      ['Hint'] = '#D9E0EE',
+    ['catppuccin'] = setmetatable({
+        ['Blue']  = '#96CDFB',
+        ['Red']  = '#F28FAD',
+        ['Yellow']  = '#FAE3B0',
+        ['Orange']  = '#F8BD96',
+        ['Green']  = '#ABE9B3',
+        ['Violet']  = '#C9CBFF',
+        ['Gray']  = '#575268',
+        ['Black']  = '#1E1E2E',
+        ['Name']  = '#96CDFB',
+        ['Background']  = '#302D41',
+        ['Warning'] = '#F8BD96',
+        ['Error'] = '#F28FAD',
+        ['Hint'] = '#D9E0EE',
     }, { __index = function() return '#FFFFFF' end }),
-
-
-   ['PaperColor'] = setmetatable({
-      ['Blue']  = '#5fafd7',
-      ['Red']  = '#df0000',
-      ['Yellow']  = '#ffff00',
-      ['Orange']  = '#FF7733',
-      ['Green']  = '#2BBB4F',
-      ['Violet']  = '#af87d7',
-      ['Gray']  = '#14191F',
-      ['Black']  = '#14191F',
-      ['Background']  = '#1f1f1f',
-      ['Name']  = '#00afaf',
-      ['Warning'] = '#d75f00',
-      ['Error'] = '#d70000',
-      ['Hint'] = '#FFFFFF',
+    ['aurora'] = setmetatable({
+        ['Blue']  = '#65b2ff',
+        ['Red']  = '#F02E6E',
+        ['Yellow']  = '#ffe6b3',
+        ['Orange']  = '#FF7733',
+        ['Green']  = '#62d196',
+        ['Violet']  = '#d4bfff',
+        ['Gray']  = '#3a3a47',
+        ['Black']  = '#1b1b24',
+        ['Background']  = '#1e1c31',
+        ['Name']  = '#87DFEB',
+        ['Warning'] = '#ffe6b3',
+        ['Error'] = '#F02E6E',
+        ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
-   ['aurora'] = setmetatable({
-      ['Blue']  = '#65b2ff',
-      ['Red']  = '#F02E6E',
-      ['Yellow']  = '#ffe6b3',
-      ['Orange']  = '#FF7733',
-      ['Green']  = '#62d196',
-      ['Violet']  = '#d4bfff',
-      ['Gray']  = '#14191F',
-      ['Black']  = '#14191F',
-      ['Background']  = '#1e1c31',
-      ['Name']  = '#87DFEB',
-      ['Warning'] = '#ffe6b3',
-      ['Error'] = '#F02E6E',
-      ['Hint'] = '#FFFFFF',
+    ['codedark'] = setmetatable({
+        ['Blue']  = '#0A7ACA',
+        ['Red']  = '#F44747',
+        ['Yellow']  = '#FFAF00',
+        ['Orange']  = '#CE9178',
+        ['Green']  = '#4EC9B0',
+        ['Violet']  = '#d4bfff',
+        ['Gray']  = '#444444',
+        ['Black']  = '#1E1E1E',
+        ['Background']  = '#262626',
+        ['Name']  = '#5CB6F8',
+        ['Warning'] = '#FFAF00',
+        ['Error'] = '#FB0101',
+        ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
-   ['codedark'] = setmetatable({
-      ['Blue']  = '#0A7ACA',
-      ['Red']  = '#F44747',
-      ['Yellow']  = '#FFAF00',
-      ['Orange']  = '#CE9178',
-      ['Green']  = '#4EC9B0',
-      ['Violet']  = '#d4bfff',
-      ['Gray']  = '#14191F',
-      ['Black']  = '#14191F',
-      ['Background']  = '#262626',
-      ['Name']  = '#5CB6F8',
-      ['Warning'] = '#FFAF00',
-      ['Error'] = '#FB0101',
-      ['Hint'] = '#FFFFFF',
+    ['uwu'] = setmetatable({
+        ['Blue']		= '#6CBAD1',
+        ['Red']			= '#ff6565',
+        ['Yellow']  = '#e59e67',
+        ['Orange']  = '#c26f6f',
+        ['Green']		= '#8dc776',
+        ['Violet']  = '#bb8fe5',
+        ['Gray']		= '#444444',
+        ['Black']		= '#131A1C',
+        ['Background']  = '#2f3638',
+        ['Name']		= '#6CBAD1',
+        ['Warning']	= '#e59e67',
+        ['Error']		= '#ff6565',
+        ['Hint']		= '#CCCCCC',
     }, { __index = function() return '#FFFFFF' end }),
-		['uwu'] = setmetatable({
-			['Blue']		= '#6CBAD1',
-			['Red']			= '#ff6565',
-			['Yellow']  = '#e59e67',
-			['Orange']  = '#c26f6f',
-			['Green']		= '#8dc776',
-			['Violet']  = '#bb8fe5',
-			['Gray']		= '#131A1C',
-			['Black']		= '#131A1C',
-			['Background']  = '#2f3638',
-			['Name']		= '#6CBAD1',
-			['Warning']	= '#e59e67',
-			['Error']		= '#ff6565',
-			['Hint']		= '#CCCCCC',
- }, { __index = function() return '#FFFFFF' end }),
-
-    ['base16-gruvbox-dark-hard'] = 
-    setmetatable({
-      ['Blue']  = '#83a598',
-      ['Red']  = '#ff757f',
-      ['Yellow']  = '#fabd2f',
-      ['Orange']  = '#fe8019',
-      ['Green']  = '#b8bb26',
-      ['Violet']  = '#d3869b',
-      ['Gray']  = '#665c54',
-      ['Black']  = '#14191F',
-      ['Name']  = '#fbf1c7',
-      ['Background']  = '#3c3836',
-      ['Warning'] = '#fe8019',
-      ['Error'] = '#fb4934',
-      ['Hint'] = '#FFFFFF',
+    ['base16-gruvbox-dark-hard'] = setmetatable({
+        ['Blue']  = '#83a598',
+        ['Red']  = '#ff757f',
+        ['Yellow']  = '#fabd2f',
+        ['Orange']  = '#fe8019',
+        ['Green']  = '#b8bb26',
+        ['Violet']  = '#d3869b',
+        ['Gray']  = '#504945',
+        ['Black']  = '#1d2021',
+        ['Name']  = '#fbf1c7',
+        ['Background']  = '#3c3836',
+        ['Warning'] = '#fe8019',
+        ['Error'] = '#fb4934',
+        ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
-    ['embark'] = 
-    setmetatable({
-      ['Blue']  = '#91ddff',
-      ['Red']  = '#F02E6E',
-      ['Yellow']  = '#ffe6b3',
-      ['Orange']  = '#F2B482',
-      ['Green']  = '#62d196',
-      ['Violet']  = '#d4bfff',
-      ['Gray']  = '#F49FB1',
-      ['Black']  = '#14191F',
-      ['Name']  = '#65b2ff',
-      ['Background']  = '#2D2B40',
-      ['Warning'] = '#F2B482',
-      ['Error'] = '#F02E6E',
-      ['Hint'] = '#FFFFFF',
+    ['embark'] = setmetatable({
+        ['Blue']  = '#91ddff',
+        ['Red']  = '#F02E6E',
+        ['Yellow']  = '#ffe6b3',
+        ['Orange']  = '#F2B482',
+        ['Green']  = '#62d196',
+        ['Violet']  = '#d4bfff',
+        ['Gray']  = '#3E3859',
+        ['Black']  = '#1e1c31',
+        ['Name']  = '#65b2ff',
+        ['Background']  = '#2D2B40',
+        ['Warning'] = '#F2B482',
+        ['Error'] = '#F02E6E',
+        ['Hint'] = '#FFFFFF',
     }, { __index = function() return '#FFFFFF' end }),
-    ['badwolf'] = 
-    setmetatable({
-      ['Blue']  = '#0a9dff',
-      ['Red']  = '#ff2c4b',
-      ['Yellow']  = '#f4cf86',
-      ['Orange']  = '#ffa724',
-      ['Green']  = '#8cffba',
-      ['Violet']  = '#ff9eb8',
-      ['Gray']  = '#14191F',
-      ['Black']  = '#14191F',
-      ['Name']  = '#0a9dff',
-      ['Background']  = '#35322d',
-      ['Warning'] = '#ffa724',
-      ['Error'] = '#ff2c4b',
-      ['Hint'] = '#FFFFFF',
+    ['nightfox'] = setmetatable({
+        ['Blue']  = '#84cee4',
+        ['Red']  = '#d6616b',
+        ['Yellow']  = '#ffe37e',
+        ['Orange']  = '#f4a261',
+        ['Green']  = '#58cd8b',
+        ['Violet']  = '#b8a1e3',
+        ['Gray']  = '#3b4261',
+        ['Black']  = '#192330',
+        ['Name']  = '#63cdcf',
+        ['Background']  = '#333047',
+        ['Warning'] = '#f6a878',
+        ['Error'] = '#c94f6d',
+        ['Hint'] = '#dfdfe0',
     }, { __index = function() return '#FFFFFF' end }),
-    ['nightfox'] = 
-    setmetatable({
-      ['Blue']  = '#84cee4',
-      ['Red']  = '#d6616b',
-      ['Yellow']  = '#ffe37e',
-      ['Orange']  = '#f4a261',
-      ['Green']  = '#58cd8b',
-      ['Violet']  = '#b8a1e3',
-      ['Gray']  = '#9ccfd8',
-      ['Black']  = '#393b44',
-      ['Name']  = '#63cdcf',
-      ['Background']  = '#333047',
-      ['Warning'] = '#f6a878',
-      ['Error'] = '#c94f6d',
-      ['Hint'] = '#dfdfe0',
+    ['duskfox'] = setmetatable({
+        ['Blue']  = '#5FABC7',
+        ['Red']  = '#EF7C9D',
+        ['Yellow']  = '#F8C886',
+        ['Orange']  = '#EDA19E',
+        ['Green']  = '#AECB93',
+        ['Violet']  = '#C8AEEB',
+        ['Gray']  = '#555169',
+        ['Black']  = '#232136',
+        ['Name']  = '#A3D6DF',
+        ['Background']  = '#393552',
+        ['Warning'] = '#EDA19E',
+        ['Error'] = '#EF7C9D',
+        ['Hint'] = '#E1DFF6',
     }, { __index = function() return '#FFFFFF' end }),
-    ['duskfox'] = 
-    setmetatable({
-      ['Blue']  = '#5FABC7',
-      ['Red']  = '#EF7C9D',
-      ['Yellow']  = '#F8C886',
-      ['Orange']  = '#EDA19E',
-      ['Green']  = '#AECB93',
-      ['Violet']  = '#C8AEEB',
-      ['Gray']  = '#A3D6DF',
-      ['Black']  = '#393552',
-      ['Name']  = '#A3D6DF',
-      ['Background']  = '#393552',
-      ['Warning'] = '#EDA19E',
-      ['Error'] = '#EF7C9D',
-      ['Hint'] = '#E1DFF6',
+    ['dayfox'] = setmetatable({
+        ['Blue']  = '#2D81A3',
+        ['Red']  = '#C26D85',
+        ['Yellow']  = '#EEA846',
+        ['Orange']  = '#DE8C88',
+        ['Green']  = '#618774',
+        ['Violet']  = '#5F5695',
+        ['Gray']  = '#1D344F',
+        ['Black']  = '#EAEAEA',
+        ['Name']  = '#5CA7B4',
+        ['Background']  = '#CFD6DD',
+        ['Warning'] = '#DE8C88',
+        ['Error'] = '#C26D85',
+        ['Hint'] = '#9A80B9',
     }, { __index = function() return '#FFFFFF' end }),
-    ['dayfox'] = 
-    setmetatable({
-      ['Blue']  = '#2D81A3',
-      ['Red']  = '#C26D85',
-      ['Yellow']  = '#EEA846',
-      ['Orange']  = '#DE8C88',
-      ['Green']  = '#618774',
-      ['Violet']  = '#5F5695',
-      ['Gray']  = '#5CA7B4',
-      ['Black']  = '#393552',
-      ['Name']  = '#5CA7B4',
-      ['Background']  = '#CFD6DD',
-      ['Warning'] = '#DE8C88',
-      ['Error'] = '#C26D85',
-      ['Hint'] = '#9A80B9',
+    ['dark'] = setmetatable({
+        ['Blue']  = 'SlateBlue',
+        ['Red']  = 'Red',
+        ['Yellow']  = 'Yellow',
+        ['Orange']  = 'Orange',
+        ['Green']  = 'LightGreen',
+        ['Violet']  = 'LightMagenta',
+        ['Gray']  = 'DarkGrey',
+        ['Black']  = 'Black',
+        ['Name']  = 'LightBlue',
+        ['Background']  = 'Black',
+        ['Warning'] = 'Orange',
+        ['Error'] = 'Red',
+        ['Hint'] = 'LightYellow',
     }, { __index = function() return '#FFFFFF' end }),
-    ['dark'] = 
-    setmetatable({
-      ['Blue']  = '#268bd2',
-      ['Red']  = '#ff0000',
-      ['Yellow']  = '#ffaf00',
-      ['Orange']  = '#ff5f00',
-      ['Green']  = '#afdf00',
-      ['Violet']  = '#5f00af',
-      ['Gray']  = '#14191F',
-      ['Black']  = '#14191F',
-      ['Name']  = '#FFFFFF',
-      ['Background']  = '#35322d',
-      ['Warning'] = '#ffa724',
-      ['Error'] = '#ff0000',
-      ['Hint'] = '#FFFFFF',
-    }, { __index = function() return '#FFFFFF' end }),
-    ['srcery'] = 
-    setmetatable({
-      ['Blue']  = '#68A8E4',
-      ['Red']  = '#F75341',
-      ['Yellow']  = '#FED06E',
-      ['Orange']  = '#FF8700',
-      ['Green']  = '#98BC37',
-      ['Violet']  = '#FF5C8F',
-      ['Gray']  = '#303030',
-      ['Black']  = '#303030',
-      ['Name']  = '#68A8E4',
-      ['Background']  = '#303030',
-      ['Warning'] = '#FED06E',
-      ['Error'] = '#F75341',
-      ['Hint'] = '#FCE8C3',
+    ['srcery'] = setmetatable({
+        ['Blue']  = '#68A8E4',
+        ['Red']  = '#F75341',
+        ['Yellow']  = '#FED06E',
+        ['Orange']  = '#FF8700',
+        ['Green']  = '#98BC37',
+        ['Violet']  = '#FF5C8F',
+        ['Gray']  = '#3A3A3A',
+        ['Black']  = '#1C1B19',
+        ['Name']  = '#68A8E4',
+        ['Background']  = '#303030',
+        ['Warning'] = '#FED06E',
+        ['Error'] = '#F75341',
+        ['Hint'] = '#FCE8C3',
     }, { __index = function() return '#FFFFFF' end }),
 }
 
@@ -314,10 +274,14 @@ M.colors = {
   filetype_alt  = '%#FiletypeAlt#',
   line_col      = '%#LineCol#',
   line_col_alt  = '%#LineColAlt#',
-  lsp_error    =  '%#LspErr#',
-  lsp_hint    =  '%#LspHint#',
-  lsp_warn    =  '%#LspWarn#',
-  ins_language  =  '%#InssLang#',
+  lsp_error     = '%#LspErr#',
+  lsp_hint      = '%#LspHint#',
+  lsp_warn      = '%#LspWarn#',
+  ins_language  = '%#InssLang#',
+  tab_bg        = '%#TabLineFill#',
+  tab_selected  = '%#TabLineSel#',
+  tab_selected_inv  = '%#TabLineSelInv#',
+  tab_noselect  = '%#TabLine#',
 }
 
 
@@ -347,6 +311,11 @@ local gen_highlights = function()
             {'LspWarn',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Warning }},
             {'LspHint',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Hint    }},
             {'InssLang',                 { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Violet, }},
+
+            {'TabLineFill',              { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Black, }},
+            {'TabLineSel',               { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Name, }},
+            {'TabLineSelInv',               { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Name, }},
+            {'Tabline',                  { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Gray, }},
         }
     else
         return  {
@@ -371,6 +340,11 @@ local gen_highlights = function()
             {'LspWarn',                  { bg = ColorPalette[cpal].Warning, fg = ColorPalette[cpal].Background }},
             {'LspHint',                  { bg = ColorPalette[cpal].Hint, fg = ColorPalette[cpal].Background }},
             {'InssLang',                 { bg = ColorPalette[cpal].Violet, fg = ColorPalette[cpal].Background }},
+
+            {'TabLineFill',              { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Black, }},
+            {'TabLineSelInv',            { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Name, }},
+            {'TabLineSel',               { bg = ColorPalette[cpal].Name,fg = ColorPalette[cpal].Black, }},
+            {'Tabline',                  { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Gray, }},
         }
     end
 end
@@ -1011,17 +985,6 @@ Statusline = setmetatable(M, {
   end
 })
 
--- set statusline
--- TODO: replace this once we can define autocmd using lua
-api.nvim_exec([[
-  augroup Statusline
-  au!
-  au ColorScheme * lua if define_highlights then define_highlights() end
-  au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
-  au TermEnter * setlocal filetype=terminal 
-  au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
-  augroup END
-]], false)
 
 --Special_Highlights
 local custom_highlight = function(group_name,syntax_regex,color )
@@ -1046,3 +1009,108 @@ require("todo-comments").setup{
     NOTE = { icon = " ", color = ColorPalette[cpal].Green, alt = { "INFO" } },
   },
 }
+
+
+
+M.fancy_tab_line = function(self )
+  local colors = self.colors
+  --mode
+  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) ..self:get_current_mode() .. space[1]
+  --filename
+  local filename = colors.filetype .. self:get_filename()
+  local filetype_alt = colors.filetype_alt .. self.separators[active_sep][1]
+  --filename
+  local filetype = colors.filetype .. self:get_filetype()
+  local line_col = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. self:get_line_col()
+  local line_col_alt = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat') .. self.separators[active_sep][2]
+  local res = ""
+  local s = ""
+  local add_sep = false
+  for index = 1, fn.tabpagenr('$') do
+      local winnr = fn.tabpagewinnr(index)
+      local buflist = fn.tabpagebuflist(index)
+      local bufnr = buflist[winnr]
+      local bufname = fn.bufname(bufnr)
+      local bufmodified = fn.getbufvar(bufnr, '&mod')
+
+      s = s .. '%' .. index .. 'T'
+      if index == fn.tabpagenr() then
+          add_sep = false
+          if index ~= 1 then
+              if inverted_colors then
+                  s =  s.. colors.tab_selected  .. tab_sel[1]
+              else
+                  s = s .. colors.tab_selected .. tab_sel[1]
+              end
+          end
+          s = s .. '%#TabLineSel#'
+      else
+          if inverted_colors then
+              if add_sep then
+                  s = s .. colors.tab_selected .. tab_nosel[1]
+                  add_sep = false
+              end
+          else 
+              if add_sep then
+                  s = s .. colors.tab_selected_inv .. tab_nosel[1]
+                  add_sep = false
+              end
+          end
+          s = s .. '%#TabLine#'
+      end
+      -- tab index
+      s = s .. ' '
+
+      if bufname ~= '' then
+          s = s .. fn.fnamemodify(bufname, ':t').. ' '
+      else
+          s = s  .. '[No Name]'.. ' '
+      end
+      -- modify indicator
+      if bufmodified == 1 then
+          s = s .. '+' .. ' '
+      end
+
+      if index == fn.tabpagenr() then
+          if inverted_colors == false then
+              s = s .. colors.tab_selected_inv ..tab_sel[1]
+          else
+              s = s .. colors.tab_selected ..tab_sel[1]
+          end
+      else 
+          add_sep = true
+      end
+  end
+
+  if inverted_colors then
+      if add_sep then
+          s = s .. colors.tab_selected .. tab_nosel[1]
+          add_sep = false
+      end
+  else 
+      if add_sep then
+          s = s .. colors.tab_selected_inv .. tab_nosel[1]
+          add_sep = false
+      end
+  end
+
+    s = s .. '%#TabLineFill#'
+    return s
+end
+
+Tabline = function()
+    return M:fancy_tab_line()
+end
+
+
+api.nvim_exec([[
+  augroup Statusline
+  au!
+  au ColorScheme * lua if define_highlights then define_highlights() end
+  au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
+  au TermEnter * setlocal filetype=terminal
+  au VimEnter  * setlocal tabline=%!v:lua.Tabline('fancy')
+  au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
+  augroup END
+]], false)
+
