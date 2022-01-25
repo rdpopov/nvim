@@ -66,6 +66,9 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 - [Neovim], vimplug not needed it's put in the local autolaod directory, instead of the global system directory.
 - or with a setup.sh (limited implementation for now, but does the job)
 - might add a version of this as a debian docker container, already configured and ready to go - exists but I don't like it, docker is iffy
+- Currently there is a something of a setup script based on [Nix] for some packages. Refer to [rdpopov/env] for that script
+
+
 
 ### Needed external programs 
 - **ripgrep** as telescope needs it. Easiest to install with rusts's cargo
@@ -119,4 +122,5 @@ Quickstart for [Neovim].
 [Vim way]: https://www.youtube.com/watch?v=DogKdiRx7ls
 [vim can do]: https://www.youtube.com/watch?v=XA2WjJbmmoM
 [ms-jpq/chadtree]:https://github.com/ms-jpq/chadtree 
-
+[Nix]: https://nixos.org/download.html
+[rdpopov/env]: https://github.com/rdpopov/env
