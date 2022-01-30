@@ -34,6 +34,7 @@ call plug#begin()
 	Plug 'phaazon/hop.nvim'                             "   alternative to sneak more like easymotion alternative to sneak more like easymotion
 	Plug 'mbbill/undotree'                              "   Undotree Undotree
 	Plug 'antoinemadec/FixCursorHold.nvim'              "    ?  ?
+	Plug 'elihunter173/dirbuf.nvim'
 	" -- Git
 	Plug 'tpope/vim-fugitive'                           "   git client git client
 	Plug 'TimUntersberger/neogit'
@@ -45,7 +46,6 @@ call plug#begin()
   " -- Writing, i do write as well might as well use the best biggest gun for it
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'smithbm2316/centerpad.nvim'
-	Plug 'alvarosevilla95/luatab.nvim'
 	" -- colorschemes
 	Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 	Plug 'EdenEast/nightfox.nvim'

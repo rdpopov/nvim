@@ -74,7 +74,8 @@ vnoremap <M-T> :call SudoExecInTerminal()<cr>
 command! Erc :e $MYVIMRC | lcd %:p:h
 nnoremap <F6> :mksession!<CR>
 nnoremap <F7> :!echo -e "let g:auto_session= v:true\nlet g:use_ripgrep = v:true" > localrc.vim <CR><CR>
-nnoremap <leader>w :source Session.vim<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>W :w
 nnoremap <silent><F9> :Erc<CR>
 nnoremap <F12> :source $MYVIMRC<CR>
 " -- Git commands
