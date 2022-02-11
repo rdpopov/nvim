@@ -667,9 +667,9 @@ M.get_filename = function(self)
     end
   end
   if self:is_truncated(self.trunc_width.filename) then 
-    return "%< "..vim.fn.pathshorten(win_inf[2]) .. '%{&modified?"[+]":""}' 
+    return "%< "..vim.fn.pathshorten(vim.fn.expand("%p:t")) .. '%{&modified?"[+]":""}' 
   else
-    local name = vim.fn.expand("%:t")
+    local name = vim.fn.expand("%p:t")
     return '%< '.. name ..'%{&modified?"[+]":""}' 
   end
 end

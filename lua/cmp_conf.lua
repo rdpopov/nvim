@@ -69,7 +69,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 -- The following example advertise capabilities to `clangd`.
 require'lspconfig'.ccls.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
 require'lspconfig'.nimls.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
-require'lspconfig'.jedi_language_server.setup { on_attach = require("aerial").on_attach,capabilities = capabilities, }
+require'lspconfig'.pylsp.setup { on_attach = require("aerial").on_attach,capabilities = capabilities, }
 require'lspconfig'.tsserver.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
 require'lspconfig'.html.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
 require'lspconfig'.gopls.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
