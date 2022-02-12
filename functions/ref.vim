@@ -6,7 +6,7 @@ function g:ExecToList(exc,arg)
 	silent exe a:exc
 	redir END
 	if len(srch) > 1
-		call setqflist([], a:arg, {'title': 'Search'})
+		call setloclist(0,[], a:arg, {'title': 'Search'})
 		let tmp = split(srch,"\n")
 		let crnt_file = ""
 		for ln in tmp
@@ -17,11 +17,12 @@ function g:ExecToList(exc,arg)
 				let line = matchstr(ln,'^ \{1,}\d\{1,}: \{1,}\d\{1,}')
 				let ln_n = substitute(matchstr(line,':.*')[1:],' ','','g')
 				let ent = {'filename':crnt_file,'lnum':ln_n,'text':ln[len(line):]}
+				" debug print
 				"echo ent
-				call setqflist([ent],'a')
+				call setloclist(0,[ent],'a')
 			endif
 		endfor
-		copen
+		lopen
 	endif
 endfunction
 
