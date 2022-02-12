@@ -5,6 +5,8 @@ setlocal include=^\\s*\\(from\\\|import\\)\\s*\\zs\\(\\S\\+\\s\\{-}\\)*\\ze\\($\
 setlocal define=^\\s*\\\(def\\\|class\\\)\\>
 setlocal includeexpr=PyInclude(v:fname)
 
+compiler python
+
 function! PyInclude(fname)
 	let parts = split(a:fname, ' import ')
 	let l = parts[0]

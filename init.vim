@@ -3,6 +3,9 @@ set background=dark
 let g:prefered_browser = "brave-browser"
 let g:lang = ['english','bulgarian-phonetic']
 
+let g:rustc_makeprg_no_percent = 0
+let g:cargo_makeprg_params = 'run'
+
 " Basic editor settings
 source $HOME/.config/nvim/configs/settings.vim
 " My homeprew functions separated in files

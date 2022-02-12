@@ -61,7 +61,7 @@ integrations = {
 	}})
 EOF
 
-colorscheme catppuccin
+colorscheme duskfox
 
 set laststatus=2
 set noshowmode

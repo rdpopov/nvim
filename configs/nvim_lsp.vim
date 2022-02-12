@@ -32,9 +32,9 @@ nnoremap [d <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap ]d <cmd>lua vim.lsp.diagnostic.goto_next()<CR> 
 lua require('cmp_conf')
 lua require('treesitter_conf')
-lua require('sniprun_conf')
 lua require('aerial_conf')
 
+let g:slime_target = "neovim"
 
 lua << EOF
 require('neogen').setup {

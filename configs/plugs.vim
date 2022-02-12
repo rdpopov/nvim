@@ -3,8 +3,6 @@ call plug#begin()
 	Plug 'alaviss/nim.nvim'                             "   Nim language support
 	Plug 'rust-lang/rust.vim'                           "		Rust editor support
 	Plug 'plasticboy/vim-markdown'                      "   coloring for markdown
-	Plug 'michaelb/sniprun', {'do': './install.sh'}     "   Better repl thing
-	Plug 'thinca/vim-quickrun'                          "   quickrun code files, useful for nothing but c/c++ quickrun code files, useful for nothing but c/c++
 	" -- More general languge helpers
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " tree-sitter for neovim tree-sitter for neovim
 	Plug 'nvim-treesitter/playground'                   "   ii'd like to make my own treesitter things
@@ -43,6 +41,7 @@ call plug#begin()
 	" -- I dunno ¯\_(ツ)_/¯
 	Plug 'tpope/vim-dispatch'
 	Plug 'norcalli/nvim-colorizer.lua'                  "   colorizer for colors in css and anywhere really
+	Plug 'jpalardy/vim-slime'
   " -- Writing, i do write as well might as well use the best biggest gun for it
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'smithbm2316/centerpad.nvim'

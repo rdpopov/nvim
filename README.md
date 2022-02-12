@@ -44,33 +44,28 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 
 [nim-lang]:https://nim-lang.org/
 
+## Screenshots
+
+- In-line diagnostics provided by lsp, can also preview, built in terminal.
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/basic.png"  title="This is what peak performance looks like">
-In-line diagnostics provided by lsp, can also preview, built in terminal.
 
+List and jump to diagnostics, async build system integration, code outline. Vim also has its own hook into with the mkprg variable.
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/diagnostics.png"  title="Get all diagnostics">
-List and jump to diagnostics, async build system integration, code outline.
-Vim also has its own hook into with the mkprg variable.
 
+- If vim knows haw to interpret "include" statements and it can search all the files in a tree. And then search for that token.
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/inc_search.png"  title="Basic vim is useful">
-If vim knows haw to interpret "include" statements and it can search all the
-files in a tree. And then search for that token.
 
+- Preview description/documentation. Works with completion menu as well. Might do comments too and text files.
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/descr.png"  title="Hover definition">
-Preview description/documentation.
-Works with completion menu as well.
-Might do comments too and text files.
 
+- Fuzzy search language server tings.
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/preview.png"  title="Preview definition with telescope">
-Fuzzy search language server tings.
 
+- Tree based undo that persists between sessions. Spell completion and spellcheck.
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/tree_spell.png"  title="Tree undo is best undo">
-Tree based undo that persists between sessions.
-Spell completion and spellcheck.
 
+- Custom tmux status bar script. Shows time, ram, cpu load, free disk space, and battery percent and how long until full charge or empty.
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/pc_status.jpg"  title="Tmux status bar">
-Custom tmux status bar script. Shows time, ram, cpu load, free disk space, and
-battery percent and how long until full charge or empty.
-
 
 ## Other features not shown
 - Git client(s)

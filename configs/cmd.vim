@@ -8,19 +8,19 @@
 " -- Leader Key
 map  <Space> <Leader>
 " -- Procedure to make ctags
-command! -bang -nargs=* MakeTags !ctags -R --exclude=.git --exclude=.ccls-cache --exclude=test
-"  -- Commands  that are sometimes uesd 
+" command! -bang -nargs=* MakeTags !ctags -R --exclude=.git --exclude=.ccls-cache --exclude=test
+
 noremap <F2> :QuickRun<CR>
 noremap <F3> :Autoformat<CR>:retab<CR>
 nnoremap <F4> :call Clone()<CR><CR>
 nnoremap <F5> :HowIn
-"  -- Language Switch
+
 inoremap <Leader>l <Esc>:call CycleLanguagesUp()<CR>a
 nnoremap <Leader>l :call CycleLanguagesUp()<CR>
-"  -- Search Remaps
+
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 nmap <silent> ,/ :nohlsearch<CR>
-"  -- Terminal Remaps
+
 tnoremap <Esc> <C-\><C-n>
 inoremap <C-w> <Esc><C-w>
 tmap <C-w> <Esc><C-w>
@@ -28,7 +28,7 @@ tmap <C-w> <Esc><C-w>
 nnoremap gT :tabclose <CR>
 nnoremap <leader>ns :call OpenTerm(v:true)<cr>
 nnoremap <silent><C-s> :call OpenTerm(v:false)<cr>
-nnoremap <leader><C-s> :call CycleTerminal(1)<cr>
+nnoremap <leader><C-s> :call CycleTerminal(1)<cr> 
 "  -- Connect system clipboard with vim's registers , without cloberring my own
 "  yank register
 noremap <Leader>y "*y
@@ -42,8 +42,12 @@ nnoremap <M-k> :call ResizeWith('k')<CR>
 nnoremap <M-l> :call ResizeWith('l')<CR>
 nnoremap <M-;> :tabNext <CR>
 "  -- For make integration
-noremap <leader><ESC> :cclose<CR>
-nnoremap <leader>x :Make <cr>
+" noremap <leader><ESC> :cclose<CR>
+nnoremap <silent> <leader>x :Make <cr>
+
+vnoremap <silent> <leader>x :SlimeSend<CR>
+nnoremap <silent> <leader>X vip:SlimeSend<CR>
+
 function! g:QfToggle()
  for winnr in range(1, winnr('$'))
   if getwinvar(winnr, '&syntax') == 'qf'
@@ -52,6 +56,7 @@ function! g:QfToggle()
   endif
  endfor
  copen
+ return
 endfunction
 nnoremap <leader>c :call QfToggle()<cr>
 "nnoremap <C-d> :execute ":%s/".expand('<cword>')."/".input('replace <'.expand('<cword>').'> with: ')."/gc"<CR>
@@ -71,7 +76,7 @@ vnoremap <M-b> :call OpenInBrowser()<cr>
 vnoremap <M-t> :call ExecInTerminal()<cr>
 vnoremap <M-T> :call SudoExecInTerminal()<cr>
 "    -- Session managment and managment in general
-command! Erc :e $MYVIMRC | lcd %:p:h
+" command! Erc :e $MYVIMRC | lcd %:p:h
 nnoremap <F6> :mksession!<CR>
 nnoremap <F7> :!echo -e "let g:auto_session= v:true\nlet g:use_ripgrep = v:true" > localrc.vim <CR><CR>
 nnoremap <leader>w :w<CR>
