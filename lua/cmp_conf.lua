@@ -73,7 +73,7 @@ require'lspconfig'.pylsp.setup { on_attach = require("aerial").on_attach,capabil
 require'lspconfig'.tsserver.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
 require'lspconfig'.html.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
 require'lspconfig'.gopls.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
-require'lspconfig'.vimls.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
+-- require'lspconfig'.vimls.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
 require'lspconfig'.rust_analyzer.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
 require'lspconfig'.hls.setup {  on_attach = require("aerial").on_attach, capabilities = capabilities, }
 require'lspconfig'.racket_langserver.setup {  on_attach = require("aerial").on_attach, capabilities = capabilities, }

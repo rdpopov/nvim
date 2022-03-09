@@ -13,7 +13,8 @@ source $HOME/.config/nvim/functions/incl.vim
 " Auto commnds
 source $HOME/.config/nvim/configs/auto.vim
 " Plgins
-source $HOME/.config/nvim/configs/plugs.vim
+" source $HOME/.config/nvim/configs/plugs.vim
+lua require('pacs')
 " Git client config
 source $HOME/.config/nvim/configs/git.vim
 " Navigation utils

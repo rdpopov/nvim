@@ -40,6 +40,7 @@ nnoremap <silent>  <leader>R :Telescope live_grep theme=get_ivy<CR>
 lua require('hop_conf')
 lua require('telescope_conf')
 lua require('gitsigns_conf')
+lua require('rgxplainer')
 
 source $HOME/.config/nvim/configs/netrw.vim
 source $HOME/.config/nvim/default_plugins/vinegar.vim

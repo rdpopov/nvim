@@ -15,6 +15,3 @@ function! g:VimIncludeExpr(fname) abort
     return a:fname
   endif
 endfunction
-
-
-

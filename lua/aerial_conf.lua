@@ -44,11 +44,14 @@ require("aerial").setup({
   close_on_select = false,
   float = {
     border = "rounded",
-    row = 1,
-    col = 0,
     max_height = 100,
     min_height = 4,
   },
+  override = function(conf)
+      conf.row = 1
+      conf.col = 0
+      return conf
+  end,
   lsp = {
     diagnostics_trigger_update = true,
     update_when_errors = true,
