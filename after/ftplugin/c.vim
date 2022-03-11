@@ -30,6 +30,6 @@ endif
 setlocal include=^\\s*#\\s*include\\s*[\"<]\\@=
 setlocal includeexpr&
 setlocal define&
-compiler c
+compiler gcc
 
 call apathy#Undo()

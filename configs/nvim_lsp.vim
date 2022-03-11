@@ -36,13 +36,6 @@ lua require('aerial_conf')
 
 let g:slime_target = "neovim"
 
-lua << EOF
-require('neogen').setup {
-        enabled = true,
-        input_after_comment = true,
-    }
-EOF
-
 
 function! g:Scope() 
 	let res =  nvim_treesitter#statusline({'indicator_size':100, 'separator':"|"})

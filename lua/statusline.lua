@@ -17,7 +17,7 @@ end
 local usr = "/home/"..vim.fn.expand("$USER")
 
 
-use_preset = "max"
+use_preset = "samurai"
 
 M.separators = {
   arrow = { '', '' },

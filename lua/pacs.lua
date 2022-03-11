@@ -4,21 +4,21 @@ local packages = {
     "rust-lang/rust.vim";
     "plasticboy/vim-markdown";
     {"nvim-treesitter/nvim-treesitter", run=function() vim.api.nvim_command("TSUpdate") end };
-    "nvim-treesitter/playground";
-    "danymat/neogen";
     "tpope/vim-commentary";
-    "rafamadriz/friendly-snippets";
     "neovim/nvim-lspconfig";
     "ray-x/lsp_signature.nvim";
     "stevearc/aerial.nvim";
-    "L3MON4D3/LuaSnip";
     "hrsh7th/nvim-cmp";
     "hrsh7th/cmp-nvim-lsp";
     "hrsh7th/cmp-buffer";
     "hrsh7th/cmp-nvim-lua";
     "hrsh7th/cmp-path";
     "f3fora/cmp-spell";
-    "saadparwaiz1/cmp_luasnip";
+    "jubnzv/virtual-types.nvim";
+    -- Snippets:
+    -- "L3MON4D3/LuaSnip";
+    -- "rafamadriz/friendly-snippets";
+    -- "saadparwaiz1/cmp_luasnip";
     "nvim-telescope/telescope.nvim";
     "nvim-lua/plenary.nvim";
     "folke/todo-comments.nvim";
@@ -28,19 +28,16 @@ local packages = {
     "phaazon/hop.nvim";
     "mbbill/undotree";
     "antoinemadec/FixCursorHold.nvim";
-    "elihunter173/dirbuf.nvim";
+    -- "elihunter173/dirbuf.nvim";
     "tpope/vim-fugitive";
-    "TimUntersberger/neogit";
-    "sindrets/diffview.nvim";
     "lewis6991/gitsigns.nvim";
     "tpope/vim-dispatch";
     "norcalli/nvim-colorizer.lua";
     "jpalardy/vim-slime";
     "dhruvasagar/vim-table-mode";
     "smithbm2316/centerpad.nvim";
-    {"catppuccin/nvim", as="catppuccin"};
     "EdenEast/nightfox.nvim";
-    "MunifTanjim/nui.nvim";
-    "bennypowers/nvim-regexplainer";
+    "tweekmonster/startuptime.vim";
+    -- "liuchengxu/vista.vim";
 }
 require "paq_bootstrap".bootstrap(packages)
