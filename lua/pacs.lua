@@ -38,6 +38,7 @@ local packages = {
     "smithbm2316/centerpad.nvim";
     "EdenEast/nightfox.nvim";
     "tweekmonster/startuptime.vim";
-    -- "liuchengxu/vista.vim";
+    "liuchengxu/vista.vim";
+    "ludovicchabant/vim-gutentags";
 }
 require "paq_bootstrap".bootstrap(packages)

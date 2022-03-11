@@ -17,7 +17,7 @@ end
 local usr = "/home/"..vim.fn.expand("$USER")
 
 
-use_preset = "samurai"
+use_preset = "max"
 
 M.separators = {
   arrow = { '', '' },
@@ -40,6 +40,7 @@ tab_nosel = M.separators.ang
 
 presets = {
     max = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = true , tab_sel = M.separators.arrow, tab_nosel = M.separators.ang },
+    ball = { sep = 'rounded', space = {' ',' '}, style = 'fancy', inverted = false, clean = true , tab_sel = M.separators.rounded, tab_nosel = M.separators.blank },
     compact = { sep = 'half_box', space = {'',''}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.half_box, tab_nosel = M.separators.half_box },
     barebones = { sep = 'blank', space = {' ',' '}, style = 'minimal', inverted = true, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
     airlineish = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.arrow, tab_nosel = M.separators.ang },
@@ -666,10 +667,10 @@ M.get_filename = function(self)
       return "%<" .. dir
     end
   end
-  if self:is_truncated(self.trunc_width.filename) then 
-    return "%< "..vim.fn.pathshorten(vim.fn.expand("%p:t")) .. '%{&modified?"[+]":""}' 
+  local name = vim.fn.expand("%p:t")
+  if #name > 20 then
+    return "%< "..vim.fn.pathshorten(name) .. '%{&modified?"[+]":""}' 
   else
-    local name = vim.fn.expand("%p:t")
     return '%< '.. name ..'%{&modified?"[+]":""}' 
   end
 end
@@ -967,7 +968,18 @@ M.set_active = function(self)
 end
 
 M.set_inactive = function(self)
-    return self.colors.filetype .. '%= %{expand("%:h:t")[:len("/home/".$USER)] == "/home/".$USER."/" ? "~"..expand("%:h:t")[len("/home/".$USER):]:expand("%:h:t")}%{&ft!="netrw"?"/".expand("%:t"):""} %{&modified? "[+]":""}'.. ' %=' .. self.colors.active
+    local inct_name = '%{expand("%:h:t")[:len("/home/".$USER)] == "/home/".$USER."/" ? "~"..expand("%:h:t")[len("/home/".$USER):]:expand("%:h:t")}%{&ft!="netrw"?"/".expand("%:t"):""} %{&modified? "[+]":""}'
+    if inverted_colors then
+        return self.colors.filetype .. inct_name .. self.colors.active
+    else
+        -- local before = self.colors.filetype .. ' %=' .. to_hl_group('INSName') .. self.separators[active_sep][2] .. to_hl_group('INS').. ' '
+        -- local after = to_hl_group('INSName') .. self.separators[active_sep][1] .. '%=' .. self.colors.active
+
+        local before =  to_hl_group('INSName') ..  self.separators[active_sep][1] .. self.colors.filetype .. "%="
+        local after =   '%=' ..  self.separators[active_sep][2]
+
+        return before .. inct_name .. after 
+    end
 end
 
 M.set_explorer = function(self)
