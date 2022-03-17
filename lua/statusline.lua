@@ -976,7 +976,7 @@ M.set_inactive = function(self)
         -- local after = to_hl_group('INSName') .. self.separators[active_sep][1] .. '%=' .. self.colors.active
 
         local before =  to_hl_group('INSName') ..  self.separators[active_sep][1] .. self.colors.filetype .. "%="
-        local after =   '%=' ..  self.separators[active_sep][2]
+        local after =   '%=' ..to_hl_group('INSName')..  self.separators[active_sep][2]
 
         return before .. inct_name .. after 
     end

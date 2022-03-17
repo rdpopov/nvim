@@ -4,30 +4,6 @@ endif
 
 
 lua << EOF
--- nightfox
-local nightfox = require('nightfox')
-nightfox.setup({
-fox = "duskfox",
-  alt_nc = true,
-  terminal_colors = true,
-styles = {
-	comments = "italic",
-	keywords = "bold",
-	functions = "bold"
-	},
-inverse = {
-	match_paren = true,
-	visual = true,
-	search = true
-	},
-hlgroups = {
-	GitSignsAdd = {style = "bold" },
-	GitSignsChange = {style = "bold" },
-	GitSignsDelete = {style = "bold" },
-	},
-})
-nightfox.load()
-
 -- catpuccino
 -- local catppuccin = require("catppuccin")
 -- 

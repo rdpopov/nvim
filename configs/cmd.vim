@@ -8,7 +8,7 @@
 " -- Leader Key
 map  <Space> <Leader>
 " -- Procedure to make ctags
-" command! -bang -nargs=* MakeTags !ctags -R --exclude=.git --exclude=.ccls-cache --exclude=test
+command! -bang -nargs=* MakeTags !ctags-exuberant -R --exclude=.git --exclude=.ccls-cache --exclude=test
 
 noremap <F2> :QuickRun<CR>
 noremap <F3> :Autoformat<CR>:retab<CR>

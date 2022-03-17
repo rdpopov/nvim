@@ -13,12 +13,10 @@ local packages = {
     "hrsh7th/cmp-buffer";
     "hrsh7th/cmp-nvim-lua";
     "hrsh7th/cmp-path";
+    "hrsh7th/cmp-vsnip";
+    "hrsh7th/vim-vsnip";
     "f3fora/cmp-spell";
     "jubnzv/virtual-types.nvim";
-    -- Snippets:
-    -- "L3MON4D3/LuaSnip";
-    -- "rafamadriz/friendly-snippets";
-    -- "saadparwaiz1/cmp_luasnip";
     "nvim-telescope/telescope.nvim";
     "nvim-lua/plenary.nvim";
     "folke/todo-comments.nvim";
@@ -28,17 +26,11 @@ local packages = {
     "phaazon/hop.nvim";
     "mbbill/undotree";
     "antoinemadec/FixCursorHold.nvim";
-    -- "elihunter173/dirbuf.nvim";
     "tpope/vim-fugitive";
     "lewis6991/gitsigns.nvim";
     "tpope/vim-dispatch";
     "norcalli/nvim-colorizer.lua";
     "jpalardy/vim-slime";
-    "dhruvasagar/vim-table-mode";
     "smithbm2316/centerpad.nvim";
-    "EdenEast/nightfox.nvim";
-    "tweekmonster/startuptime.vim";
-    "liuchengxu/vista.vim";
-    "ludovicchabant/vim-gutentags";
 }
 require "paq_bootstrap".bootstrap(packages)
