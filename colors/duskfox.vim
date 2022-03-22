@@ -1,7 +1,11 @@
+" A static version of the duskfox preset of nightfox colorscheme
+" based on https://github.com/EdenEast/nightfox.nvim v1.0 brach (before the rewrite)
+
 set background=dark
 set termguicolors
 
 let g:colors_name = "duskfox"
+
 highlight WarningMsg gui=NONE guifg=#f6c177 guibg=NONE  cterm=NONE
 highlight TSConstant gui=NONE guifg=#ea9a97 guibg=NONE  cterm=NONE
 highlight TSField gui=NONE guifg=#569FBA guibg=NONE  cterm=NONE
