@@ -12,6 +12,7 @@ local packages = {
     "hrsh7th/vim-vsnip";
     "jpalardy/vim-slime";
     "jubnzv/virtual-types.nvim";
+    "Pocco81/TrueZen.nvim";
     "lewis6991/gitsigns.nvim";
     "mbbill/undotree";
     "neovim/nvim-lspconfig";
@@ -19,12 +20,10 @@ local packages = {
     "nvim-lua/plenary.nvim";
     "nvim-telescope/telescope-symbols.nvim";
     "nvim-telescope/telescope.nvim";
-    "phaazon/hop.nvim";
     "plasticboy/vim-markdown";
     "ray-x/lsp_signature.nvim";
     "rdpopov/paq-nvim";
     "rust-lang/rust.vim";
-    "smithbm2316/centerpad.nvim";
     "stevearc/aerial.nvim";
     "tpope/vim-abolish";
     "tpope/vim-commentary";

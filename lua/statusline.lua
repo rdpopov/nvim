@@ -6,6 +6,7 @@ local api = vim.api
 
 local M = {}
 
+vim.g["ataraxis_on"] = 0
 -- possible values are 'arrow' | 'rounded' | 'blank'
 -- change them if you want to different separator
 LspDiagn  = function(diagn)
@@ -17,7 +18,8 @@ end
 local usr = "/home/"..vim.fn.expand("$USER")
 
 
-use_preset = "max"
+blend_in = true
+use_preset = "ghost"
 
 M.separators = {
   arrow = { '', '' },
@@ -256,6 +258,7 @@ ColorPalette = {
     }, { __index = function() return '#FFFFFF' end }),
 }
 
+old_background = nil
 --==============================================================================
 --Highlights for basic stuff
 --==============================================================================
@@ -587,6 +590,9 @@ define_highlights = function()
     cpal = vim.api.nvim_get_var('colors_name')
     if ColorPalette[cpal] == nil then 
         cpal = 'dark'
+    end
+    if blend_in then
+        ColorPalette[cpal].Background = "NONE"
     end
     highlights = gen_highlights()
 	for _, highlight in ipairs(highlights) do
@@ -968,6 +974,10 @@ M.set_active = function(self)
 end
 
 M.set_inactive = function(self)
+    if vim.g["ataraxis_on"] == 1 then 
+        return to_hl_group('Normal')
+    end
+
     local inct_name = '%{expand("%:h:t")[:len("/home/".$USER)] == "/home/".$USER."/" ? "~"..expand("%:h:t")[len("/home/".$USER):]:expand("%:h:t")}%{&ft!="netrw"?"/".expand("%:t"):""} %{&modified? "[+]":""}'
     if inverted_colors then
         return self.colors.filetype .. inct_name .. self.colors.active
@@ -1114,7 +1124,7 @@ Tabline = function()
     return M:fancy_tab_line()
 end
 
-
+function set_statusline()
 api.nvim_exec([[
   augroup Statusline
   au!
@@ -1124,5 +1134,11 @@ api.nvim_exec([[
   au VimEnter  * setlocal tabline=%!v:lua.Tabline('fancy')
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
   augroup END
+  setlocal statusline=%!v:lua.Statusline('active')
 ]], false)
+end
 
+
+return {
+    set_statusline = set_statusline;
+}

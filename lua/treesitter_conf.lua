@@ -6,3 +6,4 @@ ensure_installed = { "c","cpp","python","javascript","rust","bash","go","vim","j
   },
 }
 ts_utils = require 'nvim-treesitter.ts_utils'
+

@@ -41,6 +41,8 @@ nnoremap <M-j> :call ResizeWith('j')<CR>
 nnoremap <M-k> :call ResizeWith('k')<CR>
 nnoremap <M-l> :call ResizeWith('l')<CR>
 nnoremap <M-;> :tabNext <CR>
+nnoremap <silent> <leader>z :TZFocus <CR>
+nnoremap <silent> <C-w>z :TZAtaraxis <CR>
 "  -- For make integration
 " noremap <leader><ESC> :cclose<CR>
 nnoremap <silent> <leader>x :Make <cr>

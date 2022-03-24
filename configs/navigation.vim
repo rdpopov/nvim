@@ -37,7 +37,8 @@ nnoremap <silent>  <leader>r :Telescope grep_string theme=get_ivy<CR>
 vnoremap <silent>  <leader>r "zy:lua require'telescope.builtin'.live_grep{theme='get_ivy', default_text=vim.fn.getreg('z')}<CR>
 nnoremap <silent>  <leader>R :Telescope live_grep theme=get_ivy<CR>
 
-lua require('hop_conf')
+" lua require('hop_conf')
+lua require('zen')
 lua require('telescope_conf')
 lua require('gitsigns_conf')
 
