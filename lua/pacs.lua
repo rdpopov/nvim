@@ -22,6 +22,7 @@ local packages = {
     "nvim-telescope/telescope.nvim";
     "plasticboy/vim-markdown";
     "ray-x/lsp_signature.nvim";
+    "rlane/pounce.nvim";
     "rdpopov/paq-nvim";
     "rust-lang/rust.vim";
     "stevearc/aerial.nvim";

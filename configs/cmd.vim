@@ -49,6 +49,9 @@ nnoremap <silent> <leader>x :Make <cr>
 
 vnoremap <silent> <leader>x :SlimeSend<CR>
 nnoremap <silent> <leader>X vip:SlimeSend<CR>
+nmap s <cmd>Pounce<CR>
+nmap S <cmd>PounceRepeat<CR>
+vmap s <cmd>Pounce<CR>
 
 function! g:QfToggle()
  for winnr in range(1, winnr('$'))

@@ -18,8 +18,8 @@ end
 local usr = "/home/"..vim.fn.expand("$USER")
 
 
-blend_in = true
-use_preset = "ghost"
+blend_in = false
+use_preset = "samurai"
 
 M.separators = {
   arrow = { '', '' },
