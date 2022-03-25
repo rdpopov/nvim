@@ -2,7 +2,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-colorscheme cat
+colorscheme duskfox
 
 set laststatus=2
 set noshowmode

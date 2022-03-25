@@ -336,7 +336,7 @@ highlight diffChanged gui=NONE guifg=#a58155 guibg=NONE  cterm=NONE
 highlight DiffChange gui=NONE guifg=NONE guibg=#2B344A  cterm=NONE
 highlight GitGutterDelete gui=NONE guifg=#b2555b guibg=NONE  cterm=NONE
 highlight PreProc gui=NONE guifg=#EB98C3 guibg=NONE  cterm=NONE
-highlight ColorColumn gui=NONE guifg=NONE guibg=#433C59  cterm=NONE
+highlight ColorColumn gui=NONE guifg=NONE guibg=#35334f  cterm=NONE
 highlight diffRemoved gui=NONE guifg=#904a6a guibg=NONE  cterm=NONE
 highlight DiffDelete gui=NONE guifg=NONE guibg=#412D44  cterm=NONE
 highlight TelescopeMatching gui=NONE guifg=#569FBA guibg=NONE  cterm=NONE
