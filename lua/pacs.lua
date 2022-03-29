@@ -1,8 +1,10 @@
 local packages = {
+    "Pocco81/TrueZen.nvim";
     "alaviss/nim.nvim";
     "antoinemadec/FixCursorHold.nvim";
     "f3fora/cmp-spell";
     "folke/todo-comments.nvim";
+    "folke/twilight.nvim";
     "hrsh7th/cmp-buffer";
     "hrsh7th/cmp-nvim-lsp";
     "hrsh7th/cmp-nvim-lua";
@@ -12,7 +14,6 @@ local packages = {
     "hrsh7th/vim-vsnip";
     "jpalardy/vim-slime";
     "jubnzv/virtual-types.nvim";
-    "Pocco81/TrueZen.nvim";
     "lewis6991/gitsigns.nvim";
     "mbbill/undotree";
     "neovim/nvim-lspconfig";
@@ -22,8 +23,8 @@ local packages = {
     "nvim-telescope/telescope.nvim";
     "plasticboy/vim-markdown";
     "ray-x/lsp_signature.nvim";
+    "savq/paq-nvim";
     "rlane/pounce.nvim";
-    "rdpopov/paq-nvim";
     "rust-lang/rust.vim";
     "stevearc/aerial.nvim";
     "tpope/vim-abolish";
