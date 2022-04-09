@@ -34,5 +34,6 @@ local packages = {
     "tweekmonster/startuptime.vim";
     {"nvim-telescope/telescope-fzf-native.nvim", run="make" };
     {"nvim-treesitter/nvim-treesitter", run=function() vim.api.nvim_command("TSUpdate") end };
+    "nvim-treesitter/playground";
 }
 require "paq_bootstrap".bootstrap(packages)

@@ -38,6 +38,7 @@ let g:slime_target = "neovim"
 
 
 function! g:Scope() 
+	return 'kur'
 	let res =  nvim_treesitter#statusline({'indicator_size':100, 'separator':"|"})
 	if res == v:null
 		return ""
