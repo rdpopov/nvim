@@ -11,8 +11,11 @@ local packages = {
     "hrsh7th/cmp-path";
     "hrsh7th/cmp-vsnip";
     "hrsh7th/nvim-cmp";
-    "hrsh7th/vim-vsnip";
+    -- "hrsh7th/vim-vsnip";
+    "saadparwaiz1/cmp_luasnip";
     "jpalardy/vim-slime";
+    "L3MON4D3/LuaSnip";
+    "rafamadriz/friendly-snippets";
     "jubnzv/virtual-types.nvim";
     "lewis6991/gitsigns.nvim";
     "mbbill/undotree";
@@ -26,6 +29,7 @@ local packages = {
     "savq/paq-nvim";
     "rlane/pounce.nvim";
     "rust-lang/rust.vim";
+    "simrat39/rust-tools.nvim";
     "stevearc/aerial.nvim";
     "tpope/vim-abolish";
     "tpope/vim-commentary";

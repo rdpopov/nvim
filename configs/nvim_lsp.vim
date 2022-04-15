@@ -38,9 +38,12 @@ let g:slime_target = "neovim"
 
 
 function! g:Scope() 
-	let res =  nvim_treesitter#statusline({'indicator_size':100, 'separator':"|"})
+	if &ft == "nim"
+		return ''
+	endif
+	let res = nvim_treesitter#statusline({'indicator_size':100, 'separator':"|"})
 	if res == v:null
-		return ""
+		return ''
 	else
 		try
 			let res = split(split(nvim_treesitter#statusline({'indicator_size':100, 'separator':"|"}),'(')[0],' ')[1]
