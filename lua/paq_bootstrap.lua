@@ -5,7 +5,7 @@ local function clone_paq()
 			'git',
 			'clone',
 			'--depth=1',
-			'https://github.com/rdpopov/paq-nvim.git',
+			'https://github.com/savq/paq-nvim.git',
 			path
 		}
 	end
