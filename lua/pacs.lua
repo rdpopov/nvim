@@ -32,10 +32,12 @@ local packages = {
     "simrat39/rust-tools.nvim";
     "stevearc/aerial.nvim";
     "tpope/vim-abolish";
-    "tpope/vim-commentary";
+    -- "tpope/vim-commentary";
     "tpope/vim-dispatch";
-    "tpope/vim-fugitive";
+    -- "tpope/vim-fugitive";
     "tweekmonster/startuptime.vim";
+    "JoosepAlviste/nvim-ts-context-commentstring";
+    "terrortylor/nvim-comment";
     {"nvim-telescope/telescope-fzf-native.nvim", run="make" };
     {"nvim-treesitter/nvim-treesitter", run=function() vim.api.nvim_command("TSUpdate") end };
 }
