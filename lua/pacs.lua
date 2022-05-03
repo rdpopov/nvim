@@ -11,6 +11,7 @@ local packages = {
     "hrsh7th/cmp-path";
     "hrsh7th/cmp-vsnip";
     "hrsh7th/nvim-cmp";
+    "hrsh7th/cmp-nvim-lsp-signature-help";
     -- "hrsh7th/vim-vsnip";
     "saadparwaiz1/cmp_luasnip";
     "jpalardy/vim-slime";
@@ -25,16 +26,14 @@ local packages = {
     "nvim-telescope/telescope-symbols.nvim";
     "nvim-telescope/telescope.nvim";
     "plasticboy/vim-markdown";
-    "ray-x/lsp_signature.nvim";
     "savq/paq-nvim";
     "rlane/pounce.nvim";
     "rust-lang/rust.vim";
     "simrat39/rust-tools.nvim";
     "stevearc/aerial.nvim";
     "tpope/vim-abolish";
-    -- "tpope/vim-commentary";
     "tpope/vim-dispatch";
-    -- "tpope/vim-fugitive";
+    "tpope/vim-fugitive";
     "tweekmonster/startuptime.vim";
     "JoosepAlviste/nvim-ts-context-commentstring";
     "terrortylor/nvim-comment";

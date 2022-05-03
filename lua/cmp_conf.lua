@@ -1,12 +1,3 @@
-require "lsp_signature".setup({
-    bind = true, 
-    doc_lines = 0,
-    hint_enable = false,
-    floating_window_above_cur_line=true,
-    handler_opts = {
-      border = "none"
-    },
-  })
 -- luasnip
 ls = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -30,9 +21,6 @@ cmp.setup({
         end,
     },
 
-    window = {
-        documentation = cmp.config.window.bordered(),
-    },
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -70,6 +58,7 @@ cmp.setup({
         { name = 'path' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
+        { name = 'nvim_lsp_signature_help' },
         { name = 'buffer' , keyword_length = 3},
         { name = 'spell',keyword_length = 3, max_item_count = 10 },
         { name = 'luasnip', option = { use_show_condition = false } },
