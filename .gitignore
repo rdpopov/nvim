@@ -5,3 +5,4 @@ vim-plugins
 Session.vim
 localrc.vim
 machinerc.vim
+.undodir

@@ -1,7 +1,7 @@
-inoremap <leader><leader> <Esc>/<++><Enter>"_c4l
-";Insert mode go to next checkpoint <++>
-nnoremap <leader><leader> <Esc>/<++><Enter>"_c4l
-";Normal mode go to next checkpoint <++>
+" inoremap <leader><leader> <Esc>/<++><Enter>"_c4l
+" ";Insert mode go to next checkpoint <++>
+" nnoremap <leader><leader> <Esc>/<++><Enter>"_c4l
+" ";Normal mode go to next checkpoint <++>
 
 nnoremap ,ma :execute ":-1read $HOME/.config/nvim/snippets/".&filetype."/main"<CR>
 ";Language specific snippet for main
