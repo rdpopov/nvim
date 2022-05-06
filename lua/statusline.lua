@@ -871,7 +871,9 @@ M.fancy_line = function(self )
     return table.concat({
         colors.active,
         "%=",
-        filename,
+        to_hl_group(mode_color_group[api.nvim_get_mode().mode]),
+        self.separators[active_sep][1],
+        self:get_filename()," ",
         colors.active
       })
   end
