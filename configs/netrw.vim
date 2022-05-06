@@ -27,7 +27,7 @@ fun! Lexplore(dir, right)
     " open netrw explorer window in the dir of current file
     " (even on remote files)
     let path = substitute(exists("b:netrw_curdir")? b:netrw_curdir : expand("%:p"), '^\(.*[/\\]\)[^/\\]*$','\1','e')
-    exe (a:right? "botright" : "topleft")." vertical ". 15 . " new"
+    exe (a:right? "botright" : "topleft")." vertical ". 40 . " new"
     if a:dir != ""
       exe "Explore ".a:dir
     else
