@@ -5,11 +5,6 @@ function! g:Grep(var)
 	copen()
 endfunction
 
-function! g:Clone()
-	execute 'mksession! ~/.sesh.vim'
-	execute '!xfce4-terminal -e 'nvim -S ~/.sesh.vim' --maximize --title=NVIM-tmp'
-endfunction
-
 function! g:ManPagesArg()
 	let p = ""
 	try
@@ -21,14 +16,6 @@ function! g:ManPagesArg()
 	execute ':Telescope man_pages '.p
 endfunction
 
-" -- lsp
-function! g:ToggleDiagn()
-    if get(getloclist(0, {'winid':0}), 'winid', 0)
-        lclose
-    else
-		lua vim.diagnostic.setloclist()
-    endif
-endfunction
 
 function! g:OpenLspConfHelp()
  execute ":vsplit "."$HOME/.config/nvim/plugged/nvim-lspconfig/CONFIG.md"

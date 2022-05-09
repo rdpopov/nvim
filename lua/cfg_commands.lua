@@ -1,6 +1,7 @@
 local opts = {noremap = true, silent = true}
 local term_opts = {silent = true}
 
+local cfg_utils = require("cfg_utils")
 local keymap = vim.api.nvim_set_keymap
 -- Map leader key to Space
 -- keymap('','<Space>','<Nop>',opts)
@@ -31,14 +32,14 @@ keymap('n','<Leader>z', ':TZFocus<CR>',opts)
 keymap('n','<C-w>z', ':TZAtaraxis<CR>',opts)
 --Slime
 keymap('n','<Leader>x', ':Make<cr>',opts)
-keymap('n','<Leader>x', ':SlimeSend<CR>',opts)
+keymap('v','<Leader>x', ':SlimeSend<CR>',opts)
 keymap('n','<Leader>X', 'vip:SlimeSend<CR>',opts)
 -- Pounce
 keymap('n','s', ':Pounce<CR>',opts)
 keymap('n','S', ':PounceRepeat<CR>',opts)
 keymap('v','s', ':Pounce<CR>',opts)
 -- TODO: Rewrite this in lua
-keymap('n','<Leader>c', ':call QfToggle()<cr>',opts)
+keymap('n','<Leader>c', '',{callback= cfg_utils.qf_toggle, noremap = true, silent = true})
 -- Other useful stuff i dunno when i used last time
 keymap('n','==', 'vi{=<Esc>',opts)
 keymap('n','Y', 'y$',opts)

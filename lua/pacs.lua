@@ -34,6 +34,7 @@ local packages = {
     "tpope/vim-abolish";
     "tpope/vim-dispatch";
     "tpope/vim-fugitive";
+    "lewis6991/impatient.nvim";
     "tweekmonster/startuptime.vim";
     "JoosepAlviste/nvim-ts-context-commentstring";
     "terrortylor/nvim-comment";

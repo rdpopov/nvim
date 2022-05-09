@@ -6,10 +6,11 @@ vim.cmd "hi link LspDiagnosticsDefaultInformation Normal"
 vim.cmd "hi link LspDiagnosticsDefaultHint Normal"
 
 local opts = {noremap = true, silent = true}
+local cfg_utils = require("cfg_utils")
 local keymap = vim.api.nvim_set_keymap
 vim.g.mapleader = ' '
 
-keymap('n','<leader>d', ':call ToggleDiagn()<CR>',opts)
+keymap('n','<leader>d', '',{callback= cfg_utils.diagn_toggle, noremap = true, silent = true})
 keymap('n','gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>',opts)
 keymap('n','gd', '<Cmd>lua vim.lsp.buf.definition()<CR>',opts)
 keymap('n','K', '<Cmd>lua vim.lsp.buf.hover()<CR>',opts)

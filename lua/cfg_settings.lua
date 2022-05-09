@@ -50,7 +50,7 @@ local options = {
  list                 = true,
  -- listchars            = "tab:|.,trail:.,extends:#,nbsp:.",
  listchars            = "tab:| ,trail:.",
- undodir              = '.undodir',
+ undodir              = os.getenv('HOME').. '/.config/nvim/.undodir',
  undofile             = true,
 }
 
