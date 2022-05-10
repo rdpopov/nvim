@@ -89,18 +89,39 @@ rust_settings = {
         },
     }
 }
+local lsp_install_path = vim.fn.stdpath("data") .. "/lsp_servers"
+local servers = {
+    "ccls",
+    "sumneko_lua",
+    "nimls",
+    "pylsp",
+    "tsserver",
+    "html",
+    "gopls",
+    "vimls",
+    "hls",
+    "racket_langserver"
+}
 
+require("nvim-lsp-installer").setup({
+    ensure_installed = table.concat(servers,'rust_analyzer'),
+    automatic_installation = false,
+    install_root_dir =  lsp_install_path ,
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
+    }
+})
+vim.o.runtimepath =vim.o.runtimepath .. "," .. lsp_install_path 
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require'lspconfig'.ccls.setup { on_attach = require("aerial").on_attach and require'virtualtypes'.on_attach , capabilities = capabilities, }
-require'lspconfig'.nimls.setup { on_attach = require("aerial").on_attach and require'virtualtypes'.on_attach, capabilities = capabilities, }
-require'lspconfig'.pylsp.setup { on_attach = require("aerial").on_attach and require'virtualtypes'.on_attach,capabilities = capabilities, }
-require'lspconfig'.tsserver.setup { on_attach = require("aerial").on_attach and require'virtualtypes'.on_attach, capabilities = capabilities, }
-require'lspconfig'.html.setup { on_attach = require("aerial").on_attach and require'virtualtypes'.on_attach, capabilities = capabilities, }
-require'lspconfig'.gopls.setup { on_attach = require("aerial").on_attach and require'virtualtypes'.on_attach, capabilities = capabilities, }
-require'lspconfig'.vimls.setup { on_attach = require("aerial").on_attach and require'virtualtypes'.on_attach, capabilities = capabilities, }
+for i, srv in pairs(servers) do
+    require'lspconfig'[srv].setup { on_attach = require("aerial").on_attach and require'virtualtypes'.on_attach , capabilities = capabilities, }
+end
+
 require'lspconfig'.rust_analyzer.setup { on_attach = require("aerial").on_attach, capabilities = capabilities, }
-require'lspconfig'.hls.setup {  on_attach = require("aerial").on_attach and require'virtualtypes'.on_attach, capabilities = capabilities, }
-require'lspconfig'.racket_langserver.setup {  on_attach = require("aerial").on_attach and require'virtualtypes'.on_attach, capabilities = capabilities, }
 require('rust-tools').setup({})
 require('rust-tools.inlay_hints').set_inlay_hints()

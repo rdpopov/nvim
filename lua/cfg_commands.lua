@@ -61,6 +61,7 @@ keymap('n','<Leader>]', ':Gitsigns next_hunk<CR>',opts)
 keymap('n','<Leader>[', ':Gitsigns prev_hunk<CR>',opts)
 keymap('n','<Leader>A', ':Gitsigns preview_hunk<CR>',opts)
 keymap('n','<Leader>D', ':Gitsigns setqflist<CR>',opts)
+keymap('v','//',"y/\\V<C-R>=escape(@\",\'/\')<CR><CR>",opts)
 
 -- formatting
 -- keymap('n','qq', 'vip:s/ \+/ /ge<CR>vip:s/ , /, /ge<CR>vip:s/ \. /. /ge<CR>:nohlsearch<CR>vipgq<Esc>',opts)
