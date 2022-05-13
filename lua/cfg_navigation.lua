@@ -21,9 +21,7 @@ keymap('n','<leader>r', ':Telescope grep_string theme=get_ivy<CR>',opts)
 keymap('n','<leader>r', '"zy:lua require\'telescope.builtin\'.live_grep{theme=\'get_ivy\', default_text=vim.fn.getreg(\'z\')}<CR>',opts)
 keymap('n','<leader>R', ':Telescope live_grep theme=get_ivy<CR>',opts)
 
-vim.cmd "source $HOME/.config/nvim/configs/netrw.vim"
-vim.cmd "source $HOME/.config/nvim/default_plugins/vinegar.vim"
-
+require('cfg_ftree')
 require('zen')
 require('telescope_conf')
 require('gitsigns_conf')
