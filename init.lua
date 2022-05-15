@@ -10,6 +10,7 @@ vim.cmd "source $HOME/.config/nvim/configs/port_to_lua.vim"
 require("cfg_autocmd")
 require("pacs")
 require("cfg_navigation")
+require("cfg_notes")
 require("cfg_commands")
 require("cfg_colors")
 require("cfg_nvimlsp")

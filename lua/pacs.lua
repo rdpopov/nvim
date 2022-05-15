@@ -28,6 +28,8 @@ local packages = {
     "nvim-telescope/telescope.nvim";
     "plasticboy/vim-markdown";
     "savq/paq-nvim";
+    "jbyuki/venn.nvim";
+    "renerocksai/telekasten.nvim";
     "rlane/pounce.nvim";
     "rust-lang/rust.vim";
     "simrat39/rust-tools.nvim";
