@@ -29,7 +29,7 @@ local packages = {
     "plasticboy/vim-markdown";
     "savq/paq-nvim";
     "jbyuki/venn.nvim";
-    "renerocksai/telekasten.nvim";
+    "vimwiki/vimwiki";
     "rlane/pounce.nvim";
     "rust-lang/rust.vim";
     "simrat39/rust-tools.nvim";
