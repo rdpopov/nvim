@@ -18,7 +18,7 @@ keymap('n','<leader>h', ':Telescope help_tags<CR>',opts)
 keymap('n','<leader>k', ':Telescope keymaps<CR>',opts)
 keymap('n','<leader>f', ':Telescope current_buffer_fuzzy_find theme=get_ivy<CR>',opts)
 keymap('n','<leader>r', ':Telescope grep_string theme=get_ivy<CR>',opts)
-keymap('n','<leader>r', '"zy:lua require\'telescope.builtin\'.live_grep{theme=\'get_ivy\', default_text=vim.fn.getreg(\'z\')}<CR>',opts)
+keymap('v','<leader>r', '"zy:lua require\'telescope.builtin\'.live_grep{theme=\'get_ivy\', default_text=vim.fn.getreg(\'z\')}<CR>',opts)
 keymap('n','<leader>R', ':Telescope live_grep theme=get_ivy<CR>',opts)
 
 require('cfg_ftree')
