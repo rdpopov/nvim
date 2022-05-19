@@ -5,6 +5,13 @@ local fn = vim.fn
 local api = vim.api
 
 local M = {}
+require("nvim-gps").setup({
+    disable_icons = true,
+    separator = ' > ',
+    depth = 2,
+    depth_limit_indicator = ".."
+})
+local gps = require("nvim-gps")
 
 vim.g["ataraxis_on"] = 0
 -- possible values are 'arrow' | 'rounded' | 'blank'
@@ -666,18 +673,27 @@ end
 M.get_filename = function(self)
   local win_inf = win_fname_and_dir()
   local dir = string.gsub(win_inf[1],usr,"~")
-  if win_inf[2] == "NetrwTreeListing" then 
+  if win_inf[2] == "NetrwTreeListing" or is_explorer() then 
     if string.len(dir) > self.trunc_width.explorer then 
       return "%<" .. vim.fn.pathshorten(dir)
     else
       return "%<" .. dir
     end
   end
-  local name = vim.fn.expand("%p:t")
+  local name = dir.. '/'  .. vim.fn.expand("%")
+  local is_global, len = string.find(vim.fn.expand("%"),"/home/")
+  if is_global == 1 then
+    return "%< " .. string.gsub(vim.fn.expand('%'),os.getenv("HOME"),"~") .. '%{&modified?"[+]":""}'
+  end
+  
   if #name > 20 then
-    return "%< "..vim.fn.pathshorten(name) .. '%{&modified?"[+]":""}' 
+    return "%< ".. vim.fn.pathshorten(dir) .. '/' .. vim.fn.expand("%") .. '%{&modified?"[+]":""}'
   else
-    return '%< '.. name ..'%{&modified?"[+]":""}' 
+    if #vim.fn.expand("%") == 0 then 
+        return '%< '.. '%{&modified?"[+]":""}'
+    else
+        return '%< '.. name ..'%{&modified?"[+]":""}' 
+    end
   end
 end
 
@@ -751,6 +767,9 @@ M.get_lang_git_name = function(self)
 	-- Scope
 	local Scope = ""
 	local scp = fn["Scope"]() or ""
+    if gps.is_available() then
+        scp = gps.get_location()
+    end
   if clean_status then 
 		Scope = to_hl_group(crnt_item..next_item) .. self.separators[active_sep][1] .. colors.scope
 		tmp_item = 'Scope'
@@ -975,12 +994,18 @@ M.set_active = function(self)
   return style_callback[status_style](self)
 end
 
+local gen_vim_sub = function (st,pat,rep,fl)
+    return string.format("substitute(%s,%s,%s,%s)",st,pat,rep,fl)
+end
+
 M.set_inactive = function(self)
     if vim.g["ataraxis_on"] == 1 then 
         return to_hl_group('Normal')
     end
-
-    local inct_name = '%{expand("%:h:t")[:len("/home/".$USER)] == "/home/".$USER."/" ? "~"..expand("%:h:t")[len("/home/".$USER):]:expand("%:h:t")}%{&ft!="netrw"?"/".expand("%:t"):""} %{&modified? "[+]":""}'
+    local tname = gen_vim_sub("expand('%:p')","'\\/home\\/'.$USER","'~'","''")
+    local rm_fexpl = gen_vim_sub(tname,"'NvimTree_\\d\\+'","''","''")
+    -- local inct_name = '%{expand("%:h:t")[:len("/home/".$USER)] == "/home/".$USER."/" ? "~"..expand("%:h:t")[len("/home/".$USER):]:expand("%:h:t")}%{&ft!="netrw" || &ft != "NvimTree"?"/".expand("%:t"):""} %{&modified? "[+]":""}'
+    local inct_name = '%{'.. rm_fexpl ..'}'
     if inverted_colors then
         return self.colors.filetype .. inct_name .. self.colors.active
     else

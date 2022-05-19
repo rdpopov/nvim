@@ -14,6 +14,7 @@ local packages = {
     "hrsh7th/cmp-nvim-lsp-signature-help";
     -- "hrsh7th/vim-vsnip";
     "saadparwaiz1/cmp_luasnip";
+    "SmiteshP/nvim-gps";
     "jpalardy/vim-slime";
     "L3MON4D3/LuaSnip";
     "rafamadriz/friendly-snippets";
@@ -30,7 +31,6 @@ local packages = {
     "savq/paq-nvim";
     "jbyuki/venn.nvim";
     "vimwiki/vimwiki";
-    "rlane/pounce.nvim";
     "rust-lang/rust.vim";
     "simrat39/rust-tools.nvim";
     "stevearc/aerial.nvim";

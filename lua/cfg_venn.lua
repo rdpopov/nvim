@@ -10,11 +10,13 @@ function _G.Toggle_venn()
         vim.api.nvim_buf_set_keymap(0, "n", "H", "<C-v>h:VBox<CR>", {noremap = true})
         -- draw a box by pressing "f" with visual selection
         vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<CR>", {noremap = true})
+        print("Venn enabled")
     else
         vim.cmd[[setlocal ve=]]
         vim.cmd[[mapclear <buffer>]]
         vim.b.venn_enabled = nil
+        print("Venn diabled")
     end
 end
 -- toggle keymappings for venn using <leader>v
-vim.api.nvim_set_keymap('n', '<leader>v', ":lua Toggle_venn()<CR>", { noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>v', ":lua Toggle_venn()<CR>", { noremap = true,silent = true})

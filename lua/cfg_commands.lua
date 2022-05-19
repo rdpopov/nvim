@@ -39,9 +39,9 @@ keymap('n','<Leader>x', ':Make<cr>',opts)
 keymap('v','<Leader>x', ':SlimeSend<CR>',opts)
 keymap('n','<Leader>X', 'vip:SlimeSend<CR>',opts)
 -- Pounce
-keymap('n','s', ':Pounce<CR>',opts)
-keymap('n','S', ':PounceRepeat<CR>',opts)
-keymap('v','s', ':Pounce<CR>',opts)
+-- keymap('n','s', ':Pounce<CR>',opts)
+-- keymap('n','S', ':PounceRepeat<CR>',opts)
+-- keymap('v','s', ':Pounce<CR>',opts)
 -- TODO: Rewrite this in lua
 keymap('n','<Leader>c', '',{callback= cfg_utils.qf_toggle, noremap = true, silent = true})
 -- Other useful stuff i dunno when i used last time
@@ -67,6 +67,7 @@ keymap('n','<Leader>A', ':Gitsigns preview_hunk<CR>',opts)
 keymap('n','<Leader>D', ':Gitsigns setqflist<CR>',opts)
 keymap('v','//',"y/\\V<C-R>=escape(@\",\'/\')<CR><CR>",opts)
 
+keymap('n', '<leader>s', "<cmd>lua require'hop'.hint_char1()<cr>", {})
 -- formatting
 -- keymap('n','qq', 'vip:s/ \+/ /ge<CR>vip:s/ , /, /ge<CR>vip:s/ \. /. /ge<CR>:nohlsearch<CR>vipgq<Esc>',opts)
 -- keymap('v','qq', '<Esc>gvs/ \+/ /ge<CR>gv:s/ , /, /ge<CR>gv:s/ \. /. /ge<CR>:nohlsearch<CR>gvgq<Esc>',opts)
