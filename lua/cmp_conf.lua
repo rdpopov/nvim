@@ -27,32 +27,32 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.complete(),
         -- ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<C-n>"] = cmp.mapping(function(fallback)
+        ["<TAB>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
             elseif has_words_before() then
                 cmp.complete()
             end
         end, { "i", "s" }),
-        ["<C-p>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            end
-        end, { "i", "s" }),
-        ["<C-e>"] = cmp.mapping(function(fallback)
+        -- ["<S-TAB>"] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_prev_item()
+        --     end
+        -- end, { "i", "s" }),
+        ["<S-TAB>"] = cmp.mapping(function(fallback)
             if ls.expand_or_jumpable() then
               ls.expand_or_jump()
             else
                 fallback()
             end
         end, { "i", "s" }),
-        ["<C-E>"] = cmp.mapping(function(fallback)
-            if ls.jumpable(-1) then
-                ls.jump(-1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
+        -- ["<leader><S-TAB>"] = cmp.mapping(function(fallback)
+        --     if ls.jumpable(-1) then
+        --         ls.jump(-1)
+        --     else
+        --         fallback()
+        --     end
+        -- end, { "i", "s" }),
     }),
     sources = cmp.config.sources({
         { name = 'path' },
@@ -60,7 +60,7 @@ cmp.setup({
         { name = 'nvim_lua' },
         { name = 'nvim_lsp_signature_help' },
         { name = 'buffer' , keyword_length = 3},
-        { name = 'spell',keyword_length = 3, max_item_count = 10 },
+        { name = 'spell',keyword_length = 2, max_item_count = 10 },
         { name = 'luasnip', option = { use_show_condition = false } },
     }),
     experimental = {

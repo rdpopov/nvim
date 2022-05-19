@@ -10,10 +10,10 @@ vim.g.mapleader = ' '
 
 -- keymap('n','',opts)
 
-keymap("n", "<Up>", "<Nop>",opts)
-keymap("n", "<Down>", "<Nop>",opts)
-keymap("n", "<Left>", "<Nop>",opts)
-keymap("n", "<Right>", "<Nop>",opts)
+-- keymap("n", "<Up>", "<Nop>",opts)
+-- keymap("n", "<Down>", "<Nop>",opts)
+-- keymap("n", "<Left>", "<Nop>",opts)
+-- keymap("n", "<Right>", "<Nop>",opts)
 
 keymap('n','<Leader>l',':call CycleLanguagesUp()<CR>',opts)
 keymap('n', ',/',':nohlsearch<CR>' ,opts)
