@@ -9,6 +9,12 @@ vim.g.mapleader = ' '
 -- vim.g.maplocalleader = '<Space>'
 
 -- keymap('n','',opts)
+
+keymap("n", "<Up>", "<Nop>",opts)
+keymap("n", "<Down>", "<Nop>",opts)
+keymap("n", "<Left>", "<Nop>",opts)
+keymap("n", "<Right>", "<Nop>",opts)
+
 keymap('n','<Leader>l',':call CycleLanguagesUp()<CR>',opts)
 keymap('n', ',/',':nohlsearch<CR>' ,opts)
 keymap('t','<Esc>', '<C-\\><C-n>',term_opts)
@@ -18,10 +24,8 @@ keymap('n','gT', ':tabclose<CR>',opts)
 keymap('n','<Leader>ns', ':call OpenTerm(v:true)<cr>',opts)
 keymap('n','<C-s>', ':call OpenTerm(v:false)<cr>',opts)
 keymap('n','<Leader><C-s>', ':call CycleTerminal(1)<cr> ',opts)
-keymap('n','<Leader>y', '"*y',opts)
-keymap('n','<Leader>p', '"*p',opts)
-keymap('n','<Leader>Y', '"+y',opts)
-keymap('n','<Leader>P', '"+p',opts)
+keymap('','<Leader>y', '"+y',opts)
+keymap('','<Leader>p', '"+p',opts)
 keymap('n','<M-h>', ':call ResizeWith("h")<CR>',opts)
 keymap('n','<M-j>', ':call ResizeWith("j")<CR>',opts)
 keymap('n','<M-k>', ':call ResizeWith("k")<CR>',opts)

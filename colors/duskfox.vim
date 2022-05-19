@@ -124,10 +124,10 @@ highlight QuickFixLine gui=bold guifg=NONE guibg=#433C59  cterm=NONE
 highlight Search gui=inverse guifg=NONE guibg=NONE  cterm=NONE
 highlight IncSearch gui=inverse guifg=NONE guibg=NONE  cterm=NONE
 highlight SpecialKey gui=NONE guifg=#817c9c guibg=NONE  cterm=NONE
-highlight SpellBad gui=undercurl guifg=NONE guibg=NONE guisp=#eb6f92 cterm=NONE
-highlight SpellCap gui=undercurl guifg=NONE guibg=NONE guisp=#f6c177 cterm=NONE
-highlight SpellLocal gui=undercurl guifg=NONE guibg=NONE guisp=#569FBA cterm=NONE
-highlight SpellRare gui=undercurl guifg=NONE guibg=NONE guisp=#9ccfd8 cterm=NONE
+highlight SpellBad gui=undercurl guifg=#d84f76 guibg=#661a1a guisp=#eb6f92 cterm=NONE
+highlight SpellCap gui=undercurl guifg=#f6c177 guibg=#665128 guisp=#f6c177 cterm=NONE
+highlight SpellLocal gui=undercurl guifg=#4a869c guibg=#144a66 guisp=#569FBA cterm=NONE
+highlight SpellRare gui=undercurl guifg=#7bb8c1 guibg=#0a665a guisp=#9ccfd8 cterm=NONE
 highlight StatusLine gui=NONE guifg=#BEBDCF guibg=#1F1D2E  cterm=NONE
 highlight StatusLineNC gui=NONE guifg=#555169 guibg=#1F1D2E  cterm=NONE
 highlight TabLine gui=NONE guifg=#BEBDCF guibg=#35334f  cterm=NONE
