@@ -12,7 +12,6 @@ local packages = {
     "hrsh7th/cmp-vsnip";
     "hrsh7th/nvim-cmp";
     "hrsh7th/cmp-nvim-lsp-signature-help";
-    -- "hrsh7th/vim-vsnip";
     "saadparwaiz1/cmp_luasnip";
     "SmiteshP/nvim-gps";
     "jpalardy/vim-slime";
@@ -21,6 +20,7 @@ local packages = {
     "kyazdani42/nvim-tree.lua";
     "jubnzv/virtual-types.nvim";
     "lewis6991/gitsigns.nvim";
+    "junegunn/vim-easy-align";
     "mbbill/undotree";
     "neovim/nvim-lspconfig";
     "norcalli/nvim-colorizer.lua";

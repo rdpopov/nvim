@@ -15,6 +15,9 @@ vim.g.mapleader = ' '
 -- keymap("n", "<Left>", "<Nop>",opts)
 -- keymap("n", "<Right>", "<Nop>",opts)
 
+keymap('x','ga', '<Plug>(EasyAlign)',{silent = true})
+keymap('n','ga', '<Plug>(EasyAlign)',{silent = true})
+
 keymap('n','<Leader>l',':call CycleLanguagesUp()<CR>',opts)
 keymap('n', ',/',':nohlsearch<CR>' ,opts)
 keymap('t','<Esc>', '<C-\\><C-n>',term_opts)
