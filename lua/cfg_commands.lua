@@ -45,8 +45,9 @@ keymap('n','<Leader>X', 'vip:SlimeSend<CR>',opts)
 -- keymap('n','s', ':Pounce<CR>',opts)
 -- keymap('n','S', ':PounceRepeat<CR>',opts)
 -- keymap('v','s', ':Pounce<CR>',opts)
--- TODO: Rewrite this in lua
 keymap('n','<Leader>c', '',{callback= cfg_utils.qf_toggle, noremap = true, silent = true})
+keymap('','Gr', '',{callback= function () cfg_utils.replace_in_selection(true) end, noremap = true, silent = true})
+keymap('','GR', '',{callback= function () cfg_utils.replace_in_selection(false) end, noremap = true, silent = true})
 -- Other useful stuff i dunno when i used last time
 keymap('n','==', 'vi{=<Esc>',opts)
 keymap('n','Y', 'y$',opts)
