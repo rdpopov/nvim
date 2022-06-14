@@ -71,6 +71,11 @@ keymap('n','<Leader>A', ':Gitsigns preview_hunk<CR>',opts)
 keymap('n','<Leader>D', ':Gitsigns setqflist<CR>',opts)
 keymap('v','//',"y/\\V<C-R>=escape(@\",\'/\')<CR><CR>",opts)
 
+keymap('n','<Leader>a',  ':Neogen func<CR>',opts)
+keymap('n','<Leader>af', ':Neogen file<CR>',opts)
+keymap('n','<Leader>ac', ':Neogen class<CR>',opts)
+keymap('n','<Leader>at', ':Neogen type<CR>',opts)
+
 keymap('n', '<leader>s', "<cmd>lua require'hop'.hint_char1()<cr>", {})
 -- formatting
 -- keymap('n','qq', 'vip:s/ \+/ /ge<CR>vip:s/ , /, /ge<CR>vip:s/ \. /. /ge<CR>:nohlsearch<CR>vipgq<Esc>',opts)

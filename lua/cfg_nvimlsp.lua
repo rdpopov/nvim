@@ -21,7 +21,7 @@ keymap('n','[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',opts)
 keymap('n',']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',opts)
 
 vim.g.slime_target = "neovim"
-
+require('neogen').setup {}
 require('cmp_conf')
 require('treesitter_conf')
 require('aerial_conf')

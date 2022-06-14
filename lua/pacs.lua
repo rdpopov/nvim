@@ -17,6 +17,7 @@ local packages = {
     "jpalardy/vim-slime";
     "L3MON4D3/LuaSnip";
     "rafamadriz/friendly-snippets";
+    "danymat/neogen";
     "kyazdani42/nvim-tree.lua";
     "jubnzv/virtual-types.nvim";
     "lewis6991/gitsigns.nvim";
