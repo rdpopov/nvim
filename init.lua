@@ -1,7 +1,8 @@
 vim.o.background="dark"
 vim.g.lang = {'english','bulgarian-phonetic'}
 vim.g.rustc_makeprg_no_percent = 0
-vim.g.cargo_makeprg_params = 'run'
+vim.g.cargo_makeprg_params = ''
+-- todo make a lua module to hold the makeprg
 
 require("cfg_performance")
 require("cfg_settings")
@@ -14,4 +15,3 @@ require("cfg_notes")
 require("cfg_commands")
 require("cfg_colors")
 require("cfg_nvimlsp")
-

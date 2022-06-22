@@ -3,20 +3,11 @@ local term_opts = {silent = true}
 
 local cfg_utils = require("cfg_utils")
 local keymap = vim.api.nvim_set_keymap
--- Map leader key to Space
--- keymap('','<Space>','<Nop>',opts)
 vim.g.mapleader = ' ' 
--- vim.g.maplocalleader = '<Space>'
-
--- keymap('n','',opts)
-
--- keymap("n", "<Up>", "<Nop>",opts)
--- keymap("n", "<Down>", "<Nop>",opts)
--- keymap("n", "<Left>", "<Nop>",opts)
--- keymap("n", "<Right>", "<Nop>",opts)
 
 keymap('x','ga', '<Plug>(EasyAlign)',{silent = true})
 keymap('n','ga', '<Plug>(EasyAlign)',{silent = true})
+keymap('n','gx', ':!firefox <c-r><c-a><CR><CR>',{silent = true})
 
 keymap('n','<Leader>l',':call CycleLanguagesUp()<CR>',opts)
 keymap('n', ',/',':nohlsearch<CR>' ,opts)

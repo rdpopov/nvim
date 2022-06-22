@@ -26,17 +26,18 @@ local usr = "/home/"..vim.fn.expand("$USER")
 
 
 blend_in = false
+pimp = true
 use_preset = "samurai"
 
 M.separators = {
-  arrow = { '', '' },
-  rounded = { '', '' },
-  blank = { '', '' },
-  triangle = {'◣' ,'◢'},
-  slice = {'◣' ,'◥'},
-  simple_slice = {'\\' ,'\\'},
-  ang = {'⧽' ,'⧼'},
-  half_box = {'▌' ,'▐'},
+  arrow = { '', '', '','' },
+  rounded = { '', '', '','' },
+  blank = { '', '','', ''},
+  triangle = {'◣' ,'◢','◢','◣' },
+  slice = {'◣' ,'◥','◢','◣' },
+  simple_slice = {'\\' ,'\\','\\' ,'\\'},
+  ang = {'⧽' ,'⧼','⧼','⧽' },
+  half_box = {'▌' ,'▐','▐','▌' },
 }
 
 active_sep = 'arrow'
@@ -53,7 +54,7 @@ presets = {
     compact = { sep = 'half_box', space = {'',''}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.half_box, tab_nosel = M.separators.half_box },
     barebones = { sep = 'blank', space = {' ',' '}, style = 'minimal', inverted = true, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
     airlineish = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.arrow, tab_nosel = M.separators.ang },
-    slantlineish = { sep = 'triangle', space = {' ',' '}, style = 'fancy', inverted = false, clean = true, tab_sel = {'◣' ,'◢'}, tab_nosel = M.separators.triangle_slice },
+    slantlineish = { sep = 'triangle', space = {' ',' '}, style = 'fancy', inverted = false, clean = true, tab_sel = M.separators.triangle, tab_nosel = M.separators.triangle_slice },
     samurai = { sep = 'slice', space = {' ',' '}, style = 'fancy', inverted = false, clean = true, tab_sel = M.separators.slice, tab_nosel = M.separators.simple_slice},
     budget_samurai = { sep = 'simple_slice', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.simple_slice, tab_nosel = M.separators.simple_slice },
     sleek = { sep = 'ang', space = {' ',' '}, style = 'fancy', inverted = true, clean = false, tab_sel = M.separators.ang, tab_nosel = M.separators.ang },
@@ -311,11 +312,10 @@ local gen_highlights = function()
             {'Git',                      { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Yellow }},
             {'Scope',                    { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Red }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
-            {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
+            {'FiletypeAlt',              { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
+            {'Filename',                 { bg = ColorPalette[cpal].Background, fg =ColorPalette[cpal].Name   }},
             {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
             {'GitAlt',                   { bg = '#3C3836', fg = '#504945' }},
-            {'LineColAlt',               { bg = '#504945', fg = '#928374' }},
-            {'FiletypeAlt',              { bg = '#3C3836', fg = '#504945' }},
             {'LineCol',                  { bg = '#3C3836', fg = '#504945' }},
             {'LineColAlt',               { bg = '#3C3836', fg = '#504945' }},
             {'LspErr',                   { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Error   }},
@@ -340,11 +340,11 @@ local gen_highlights = function()
             {'Git',                      { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
             {'Scope',                    { bg = ColorPalette[cpal].Red, fg = ColorPalette[cpal].Background }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
+            {'FiletypeAlt',              { bg = ColorPalette[cpal].Name, fg = ColorPalette[cpal].Background }},
             {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
             {'ModeAlt',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green }},
             {'GitAlt',                   { bg = '#3C3836', fg = '#504945' }},
             {'LineColAlt',               { bg = '#504945', fg = '#928374' }},
-            {'FiletypeAlt',              { bg = '#3C3836', fg = '#504945' }},
             {'LineCol',                  { bg = '#3C3836', fg = '#504945' }},
             {'LineColAlt',               { bg = '#3C3836', fg = '#504945' }},
             {'LspErr',                   { bg = ColorPalette[cpal].Error, fg = ColorPalette[cpal].Background }},
@@ -683,18 +683,32 @@ M.get_filename = function(self)
   local name = dir.. '/'  .. vim.fn.expand("%")
   local is_global, len = string.find(vim.fn.expand("%"),"/home/")
   if is_global == 1 then
-    return "%< " .. string.gsub(vim.fn.expand('%'),os.getenv("HOME"),"~") .. '%{&modified?"[+]":""}'
+    return "%< " .. string.gsub(vim.fn.expand('%'),os.getenv("HOME"),"~") .. '%{&modified?"[+]":""} '
   end
   
   if #name > 20 then
-    return "%< ".. vim.fn.pathshorten(dir) .. '/' .. vim.fn.expand("%") .. '%{&modified?"[+]":""}'
+    return "%< ".. vim.fn.pathshorten(dir) .. '/' .. vim.fn.expand("%") .. '%{&modified?"[+]":""} '
   else
     if #vim.fn.expand("%") == 0 then 
-        return '%< '.. '%{&modified?"[+]":""}'
+        return '%< '.. '%{&modified?"[+]":""} '
     else
-        return '%< '.. name ..'%{&modified?"[+]":""}' 
+        return '%< '.. name ..'%{&modified?"[+]":""} ' 
     end
   end
+end
+M.get_fancy_filename = function(self)
+    local colors = self.colors
+    if vim.fn.bufname(vim.fn.winbufnr(vim.fn.winnr())) == "" then 
+        return colors.filetype .. self:get_filename().. colors.active
+    end
+    return  " " .. colors.filetype .. 
+            self.separators[active_sep][3] ..
+            colors.filetype_alt .. 
+            self: get_filename()..
+            colors.filetype .. 
+            self.separators[active_sep][4] ..
+            colors.active
+
 end
 
 M.get_filetype = function()
@@ -717,6 +731,13 @@ end
 M.get_lang_git_name = function(self)
   local colors = self.colors
   local spc = " " 
+
+  local fname = colors.filetype .. self:get_filename().. colors.active
+
+  if pimp then
+    fname = self:get_fancy_filename()
+  end
+
   local has_lang = true
   if clean_status  then 
   	spc = ""
@@ -730,7 +751,7 @@ M.get_lang_git_name = function(self)
   if self:is_truncated(self.trunc_width.mode) then
   	crnt_item = mode_color_group[api.nvim_get_mode().mode]
   	next_item = 'Name'
-    return to_hl_group(crnt_item .. next_item) .. self.separators[active_sep][1] .. colors.filetype .. self:get_filename() .. colors.active
+    return to_hl_group(crnt_item .. next_item) .. self.separators[active_sep][1] .. fname
   end 
 
 	-- Mode
@@ -782,7 +803,7 @@ M.get_lang_git_name = function(self)
 	crnt_item = tmp_item
 	next_item = 'Center'
 
-	return  Lang .. Git_st .. Scope .. to_hl_group(crnt_item..next_item) ..  self.separators[active_sep][1] .. colors.filetype .. self:get_filename().. colors.active
+	return  Lang .. Git_st .. Scope .. to_hl_group(crnt_item..next_item) ..  self.separators[active_sep][1] .. fname
 end
 
 M.get_format_lsp_diagn = function(self,nof)
@@ -878,7 +899,7 @@ M.fancy_line = function(self )
   --mode
   local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) ..self:get_current_mode() .. space[1]
   --filename 
-  local filename = colors.filetype .. self:get_filename()
+  local filename = colors.filetype ..  self.separators[active_sep][1] .. self:get_filename().. self.separators[active_sep][2]
   local filetype_alt = colors.filetype_alt .. self.separators[active_sep][1]
   --filename 
   local filetype = colors.filetype .. self:get_filetype()
@@ -1004,17 +1025,12 @@ M.set_inactive = function(self)
     end
     local tname = gen_vim_sub("expand('%:p')","'\\/home\\/'.$USER","'~'","''")
     local rm_fexpl = gen_vim_sub(tname,"'NvimTree_\\d\\+'","''","''")
-    -- local inct_name = '%{expand("%:h:t")[:len("/home/".$USER)] == "/home/".$USER."/" ? "~"..expand("%:h:t")[len("/home/".$USER):]:expand("%:h:t")}%{&ft!="netrw" || &ft != "NvimTree"?"/".expand("%:t"):""} %{&modified? "[+]":""}'
     local inct_name = '%{'.. rm_fexpl ..'}'
     if inverted_colors then
         return self.colors.filetype .. inct_name .. self.colors.active
     else
-        -- local before = self.colors.filetype .. ' %=' .. to_hl_group('INSName') .. self.separators[active_sep][2] .. to_hl_group('INS').. ' '
-        -- local after = to_hl_group('INSName') .. self.separators[active_sep][1] .. '%=' .. self.colors.active
-
         local before =  to_hl_group('INSName') ..  self.separators[active_sep][1] .. self.colors.filetype .. "%="
         local after =   '%=' ..to_hl_group('INSName')..  self.separators[active_sep][2]
-
         return before .. inct_name .. after 
     end
 end
