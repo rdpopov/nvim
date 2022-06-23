@@ -29,6 +29,7 @@ local packages = {
     "nvim-telescope/telescope-symbols.nvim";
     "nvim-telescope/telescope.nvim";
     "plasticboy/vim-markdown";
+    "glepnir/dashboard-nvim";
     "savq/paq-nvim";
     "jbyuki/venn.nvim";
     "vimwiki/vimwiki";

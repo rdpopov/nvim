@@ -7,30 +7,6 @@ local keymap = vim.api.nvim_set_keymap
 keymap('n','<C-n>',':NvimTreeToggle<CR>',opts)
 keymap('n','-',':NvimTreeFindFile<CR>',opts)
 
-vim.g.nvim_tree_icons = {
-    default= "",
-    symlink= "->",
-    git= {
-        unstaged= "✗",
-        staged= "✓",
-        unmerged= "",
-        renamed= "➜",
-        untracked= "*",
-        deleted= "X",
-        ignored= "."
-    },
-    folder= {
-        arrow_open= "v",
-        arrow_closed= ">",
-        default= "\\",
-        open= "v",
-        empty= "-",
-        empty_open= "-",
-        symlink= "->",
-        symlink_open= ">>",
-    }
-}
-
 require'nvim-tree'.setup {
     auto_reload_on_write = true,
     disable_netrw = true,
@@ -108,6 +84,29 @@ require'nvim-tree'.setup {
         icons = {
             webdev_colors = false,
             git_placement = "before",
+            glyphs = {
+                default= "",
+                symlink= "->",
+                folder= {
+                    arrow_open= "v",
+                    arrow_closed= ">",
+                    default= "\\",
+                    open= "v",
+                    empty= "-",
+                    empty_open= "-",
+                    symlink= "->",
+                    symlink_open= ">>",
+                },
+                git= {
+                    unstaged= "✗",
+                    staged= "✓",
+                    unmerged= "",
+                    renamed= "➜",
+                    untracked= "*",
+                    deleted= "X",
+                    ignored= "."
+                },
+            }
         }
     },
     hijack_directories = {

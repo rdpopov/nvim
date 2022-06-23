@@ -46,23 +46,23 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 
 ## Screenshots
 
-- In-line diagnostics provided by lsp, can also preview, built in terminal.
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/basic.png"  title="This is what peak performance looks like">
+- Splash scren. Giga cursed ist't it.
+<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/init.png"  title="This is what peak performance looks like">
 
-List and jump to diagnostics, async build system integration, code outline. Vim also has its own hook into with the mkprg variable.
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/diagnostics.png"  title="Get all diagnostics">
+- Build integration and documentation preview. Can preview whole files.
+<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/build.png"  title="Hover definition">
+
+- Lsp with fuzzy search. Bet your electron ide cant do that.
+<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/lsp.png" title="Electron-based more like electron-cringe">
 
 - If vim knows haw to interpret "include" statements and it can search all the files in a tree. And then search for that token.
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/inc_search.png"  title="Basic vim is useful">
+<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/inc_search.png" title="Basic vim is useful.No lsp.">
 
-- Preview description/documentation. Works with completion menu as well. Might do comments too and text files.
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/descr.png"  title="Hover definition">
-
-- Fuzzy search language server tings.
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/preview.png"  title="Preview definition with telescope">
+- Startuptime on my x270 Thinkpad
+<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/startup.png" title="Sanic speed">
 
 - Tree based undo that persists between sessions. Spell completion and spellcheck.
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/tree_spell.png"  title="Tree undo is best undo">
+<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/prose.png"  title="Tree undo is best undo">
 
 - Custom tmux status bar script. Shows time, ram, cpu load, free disk space, and battery percent and how long until full charge or empty.
 <img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/pc_status.jpg"  title="Tmux status bar">
@@ -82,22 +82,21 @@ List and jump to diagnostics, async build system integration, code outline. Vim 
 - **ripgrep** as telescope needs it. Easiest to install with rusts's cargo or
     through [rdpopov/env]
 
-## Configuration is split into several files all(most) in configs
-- **auto.vim** - Auto commands, currently only one that install new plugins and clears old ones.
-- **around.vim** - A weak implementation for surround, have no visual mode
-- **basic.vim** - Basic plugin settings, here i put plugins that need at most 2-3 lines of config.
-- **cmd.vim** - Some mappings that I have.
-- **colors.vim** - Things about colors
-- **netrw.vim** - Config for netrw file browser. Surprisingly useful
-- **nvim-lsp.vim** - neovim native lsp configuration
-- **navigation.vim** - neovim telecope config mainly
-- **plugs.vim** - Here are all the plugin currently in use, 
-- **settings.vim** - Editor settings for vim, mostly stolen from other vimrcs.
-- **lua/statusline.lua** - fancy Statusline in lua and tabline with multiple
-    presets, using some of the basic colors of the current color scheme, add new
-    ones by had
+## Configuration is split into several files (call other files ofc)
+- cfg_autocmd.lua - Autocommands
+- cfg_colors.lua - Colorscheme and statusline 
+- cfg_commands.lua - Keymaps
+- cfg_dash.lua - Custom dashboard config (cursed)
+- cfg_ftree.lua - Nvimtree and other things files config
+- cfg_navigation.lua - Telescope and zen config
+- cfg_notes.lua - Vimwiki and Venn(diagrams) config
+- cfg_nvimlsp.lua - Lsp and nvim-cmp config
+- cfg_performance.lua - Segregated the plugin that optimizes lua into byte code
+- cfg_settings.lua - Basic editor settings for vim
+- cfg_utils.lua - Some basic utils I've made
+
 - **stashed/**  - past configs for plugins i might come back to on a later date
-- **patches/**  - sometimes you have to patch plugins yourself.
+- **patches/**  - sometimes you have to patch plugins yourself. (not used)
 
 ## My vimscript implementation for some somewhat basic things
 - **functions/open_utils.vim** - Some functions to open and execute text in visual selection from vim
@@ -117,13 +116,13 @@ List and jump to diagnostics, async build system integration, code outline. Vim 
 
 ## Useful links for more delving in
 Quickstart for [Neovim].
+Master the power of the dark [sed].
+[Vim way] configuration and what [vim can do], just like that. This is the way.
 
 [Neovim]: https://www.linode.com/docs/guides/how-to-install-neovim-and-plugins-with-vim-plug/
-
-[Vim way] configuration and what [vim can do], just like that. This is the way.\
-
 [Vim way]: https://www.youtube.com/watch?v=DogKdiRx7ls
 [vim can do]: https://www.youtube.com/watch?v=XA2WjJbmmoM
 [ms-jpq/chadtree]:https://github.com/ms-jpq/chadtree 
 [Nix]: https://nixos.org/download.html
 [rdpopov/env]: https://github.com/rdpopov/env
+[sed]: https://linuxhint.com/sed-capture-group-examples/
