@@ -67,7 +67,6 @@ keymap('n','<Leader>af', ':Neogen file<CR>',opts)
 keymap('n','<Leader>ac', ':Neogen class<CR>',opts)
 keymap('n','<Leader>at', ':Neogen type<CR>',opts)
 
-keymap('n', '<leader>s', "<cmd>lua require'hop'.hint_char1()<cr>", {})
 -- formatting
 -- keymap('n','qq', 'vip:s/ \+/ /ge<CR>vip:s/ , /, /ge<CR>vip:s/ \. /. /ge<CR>:nohlsearch<CR>vipgq<Esc>',opts)
 -- keymap('v','qq', '<Esc>gvs/ \+/ /ge<CR>gv:s/ , /, /ge<CR>gv:s/ \. /. /ge<CR>:nohlsearch<CR>gvgq<Esc>',opts)
