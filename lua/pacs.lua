@@ -1,5 +1,6 @@
 local packages = {
     "JoosepAlviste/nvim-ts-context-commentstring";                                             -- similar to vim comentarry but treesitter aware
+    "terrortylor/nvim-comment";                                                                -- A Comment plugin for nvim
     "L3MON4D3/LuaSnip";                                                                        -- Snippet manager
     "Pocco81/TrueZen.nvim";                                                                    -- Zen mode similar to goyo
     "SmiteshP/nvim-gps";                                                                       -- A little smarter way to show scope in a program via lsp or treesitter
@@ -29,7 +30,7 @@ local packages = {
     "nvim-lua/plenary.nvim";                                                                   -- A dependency plugin
     "nvim-telescope/telescope-symbols.nvim";                                                   -- Plugin for telescope to show Unicode glyphs
     "nvim-telescope/telescope.nvim";                                                           -- Fuzzy searcher framework plugin wa
-    "plasticboy/vim-markdown";                                                                 -- Support for markdown
+    "preservim/vim-markdown";                                                                 -- Support for markdown
     "rafamadriz/friendly-snippets";                                                            -- A bundle of snippets
     "rust-lang/rust.vim";                                                                      -- Rust support for vim
     "saadparwaiz1/cmp_luasnip";                                                                -- Cmp luasnip intgration plugin
@@ -40,7 +41,8 @@ local packages = {
     "tpope/vim-dispatch";                                                                      -- A tool to make :make ran in a separate process to vim
     "tpope/vim-fugitive";                                                                      -- A git integration plugin
     "tweekmonster/startuptime.vim";                                                            -- A bechhmarking plugin for nvim
-    "vimwiki/vimwiki";                                                                         -- A plugin to make a personal wiki/diary
+    "lervag/wiki.vim";                                                                         -- A plugin to make a personal wiki/diary
+		"lervag/lists.vim";
     "williamboman/nvim-lsp-installer";                                                         -- Plugin to automatically install and setup lsp-s
     {"nvim-telescope/telescope-fzf-native.nvim", run="make" };                                 -- Faster telescope
     {"nvim-treesitter/nvim-treesitter", run=function() vim.api.nvim_command("TSUpdate") end }; -- treesitter is a highlight plugin

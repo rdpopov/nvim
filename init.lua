@@ -7,6 +7,7 @@ vim.g.cargo_makeprg_params = ''
 require("cfg_performance")
 require("cfg_settings")
 vim.cmd "source $HOME/.config/nvim/functions/incl.vim"
+vim.cmd "source $HOME/.config/nvim/configs/wiki.vim"
 vim.cmd "source $HOME/.config/nvim/configs/port_to_lua.vim"
 require("cfg_autocmd")
 require("pacs")
