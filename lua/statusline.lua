@@ -27,7 +27,8 @@ local usr = "/home/"..vim.fn.expand("$USER")
 
 blend_in = false
 pimp = true
-use_preset = "samurai"
+clean = true
+use_preset = "barebones"
 
 M.separators = {
   arrow = { '', '', '','' },
@@ -52,7 +53,7 @@ presets = {
     max = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = true , tab_sel = M.separators.arrow, tab_nosel = M.separators.ang },
     ball = { sep = 'rounded', space = {' ',' '}, style = 'fancy', inverted = false, clean = true , tab_sel = M.separators.rounded, tab_nosel = M.separators.blank },
     compact = { sep = 'half_box', space = {'',''}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.half_box, tab_nosel = M.separators.half_box },
-    barebones = { sep = 'blank', space = {' ',' '}, style = 'minimal', inverted = true, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
+    barebones = { sep = 'blank', space = {' ',''}, style = 'minimal', inverted = true, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
     airlineish = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.arrow, tab_nosel = M.separators.ang },
     slantlineish = { sep = 'triangle', space = {' ',' '}, style = 'fancy', inverted = false, clean = true, tab_sel = M.separators.triangle, tab_nosel = M.separators.triangle_slice },
     samurai = { sep = 'slice', space = {' ',' '}, style = 'fancy', inverted = false, clean = true, tab_sel = M.separators.slice, tab_nosel = M.separators.simple_slice},
@@ -880,15 +881,27 @@ M.simple_lsp = function(self)
   local res = ""
 
    if errs > 0 then
-     res = res .. colors.simple_error.." E:" .. errs
+       if clean then 
+           res = res .. colors.simple_error .. errs .. " "
+       else
+           res = res .. colors.simple_error.." E:" .. errs
+       end
    end
 
    if warn > 0 then
-     res = res .. colors.simple_warn .." W:" .. warn
+     if clean then 
+         res = res .. colors.simple_warn .. warn .. " "
+     else
+         res = res .. colors.simple_warn .." W:" .. warn
+     end
    end
 
    if hint > 0 then
-     res = res .. colors.simple_hint .." H:" .. hint
+       if clean then 
+           res = res .. colors.simple_hint  .. hint .. " "
+       else
+           res = res .. colors.simple_hint .." H:" .. hint
+       end
    end
 
    return res
@@ -964,7 +977,7 @@ M.simple_line  = function(self)
   end
 
   if not is_explorer() then
-    ft = '%y '
+    ft = '%y'
   end
 
   if is_explorer() then
@@ -997,8 +1010,8 @@ M.simple_line  = function(self)
       colors.filetype,
       "%=",
       filename,
-      self:simple_lsp(),
       "%=",
+      self:simple_lsp(),
       colors.active,
       colll,
       ft,

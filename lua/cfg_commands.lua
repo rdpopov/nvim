@@ -8,6 +8,11 @@ vim.g.mapleader = ' '
 keymap('x','ga', '<Plug>(EasyAlign)',{silent = true})
 keymap('n','ga', '<Plug>(EasyAlign)',{silent = true})
 keymap('n','gx', ':!firefox <c-r><c-a><CR><CR>',{silent = true})
+keymap('n','ss', '<Plug>(EasyAlign)',{silent = true})
+keymap('v','ss','' ,{silent = true,callback = function ()
+    local inp = vim.fn.input("Split on: ")
+    vim.cmd('s/\\('.. inp ..  '\\)/\\1\\r/g')
+end})
 
 keymap('n','<Leader>l',':call CycleLanguagesUp()<CR>',opts)
 keymap('n', ',/',':nohlsearch<CR>' ,opts)
