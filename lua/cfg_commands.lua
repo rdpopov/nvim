@@ -14,7 +14,7 @@ keymap('v','ss','' ,{silent = true,callback = function ()
     vim.cmd('s/\\('.. inp ..  '\\)/\\1\\r/g')
 end})
 
-keymap('n','<Leader>l',':call CycleLanguagesUp()<CR>',opts)
+keymap('n','<Leader>L',':call CycleLanguagesUp()<CR>',opts)
 keymap('n', ',/',':nohlsearch<CR>' ,opts)
 keymap('t','<Esc>', '<C-\\><C-n>',term_opts)
 keymap('t','<C-w>', '<Esc><C-w>',term_opts)
