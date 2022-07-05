@@ -743,7 +743,7 @@ M.get_lang_git_name = function(self)
   if clean_status  then 
   	spc = ""
 	end
-	
+
 	local git = self:get_git_status()
 	local crnt_item = ""
 	local next_item = ""
@@ -879,6 +879,9 @@ M.simple_lsp = function(self)
   local hint = LspDiagn("HINT")
   local colors = self.colors
   local res = ""
+  if errs == 0 and warn == 0 and hint == 0 then
+      return colors.simple_warn.. "<lsp> "
+  end
 
    if errs > 0 then
        if clean then 
@@ -969,6 +972,7 @@ M.simple_line  = function(self)
   local filetype = colors.filetype .. self:get_filetype()
   local line_col = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. self:get_line_col()
   local line_col_alt = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat') .. self.separators[active_sep][2]
+  local git = " " .. colors.git .. self:get_git_status()
   local ft = ""
   local colll = colors.active
 
@@ -1008,6 +1012,7 @@ M.simple_line  = function(self)
       colors.active,
       mode,
       colors.filetype,
+        git,
       "%=",
       filename,
       "%=",
