@@ -2,6 +2,8 @@ local opts = {noremap = true, silent = true}
 local term_opts = {silent = true}
 
 local cfg_utils = require("cfg_utils")
+-- cfg_utils_test = require("cfg_utils")
+require("cfg_build_helper")
 local keymap = vim.api.nvim_set_keymap
 vim.g.mapleader = ' ' 
 
@@ -35,9 +37,9 @@ keymap('n','<M-;>', ':tabNext<CR>',opts)
 keymap('n','<Leader>z', ':TZFocus<CR>',opts)
 keymap('n','<C-w>z', ':TZAtaraxis<CR>',opts)
 --Slime
-keymap('n','<Leader>x', ':Make<cr>',opts)
+keymap('n','<Leader>x', '',{callback = function() build_helper.run() end ,noremap = true, silent = true})
+keymap('n','<Leader>X', '',{callback = function() build_helper.augment() end ,noremap = true, silent = true})
 keymap('v','<Leader>x', ':SlimeSend<CR>',opts)
-keymap('n','<Leader>X', 'vip:SlimeSend<CR>',opts)
 -- Pounce
 -- keymap('n','s', ':Pounce<CR>',opts)
 -- keymap('n','S', ':PounceRepeat<CR>',opts)

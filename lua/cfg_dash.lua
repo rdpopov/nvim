@@ -26,6 +26,8 @@ local db = require('dashboard')
 db.custom_header = vscode  -- type can be nil,table or function(must be return table in function)
 local custom_bottom_text = {
     "All hope abandon ye who enter here",
+    "To fuck around is human, to find out is divine",
+    "Memento Mori - Be mindful of death"
 }
 
 db.custom_footer = {"",custom_bottom_text[math.random(#custom_bottom_text)]}
