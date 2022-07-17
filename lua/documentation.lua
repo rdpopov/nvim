@@ -1,3 +1,6 @@
+local pth = vim.fn.stdpath('config')
+
+vim.cmd('source ' .. pth .. "/configs/wiki.vim")
 function _G.Toggle_venn()
     local venn_enabled = vim.inspect(vim.b.venn_enabled)
     if venn_enabled == "nil" then

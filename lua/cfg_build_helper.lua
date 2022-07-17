@@ -1,4 +1,4 @@
-build_helper = require("build_helper")
+build_helper = require("utils/build_helper")
 
 local data = {
     cmd = "Make",

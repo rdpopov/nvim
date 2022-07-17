@@ -11,6 +11,7 @@ setup_deps(){
 }
 
 setup_nvim(){
+#    wget --quiet https://github.com/neovim/neovim/releases/download/v0.7.2/nvim.appimage --output-document nvim
     wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage --output-document nvim
     chmod +x nvim && sudo chown root:root nvim && sudo mv nvim /usr/local/bin
     #pip3 install --user neovim

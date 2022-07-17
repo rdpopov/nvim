@@ -1,17 +1,9 @@
- 
 -- 'based'(stolen) from https://elianiva.my.id/post/neovim-lua-statusline
 
 local fn = vim.fn
 local api = vim.api
 
 local M = {}
-require("nvim-gps").setup({
-    disable_icons = true,
-    separator = ' > ',
-    depth = 2,
-    depth_limit_indicator = ".."
-})
-local gps = require("nvim-gps")
 
 vim.g["ataraxis_on"] = 0
 -- possible values are 'arrow' | 'rounded' | 'blank'
@@ -160,7 +152,7 @@ ColorPalette = {
         ['Error']		= '#ff6565',
         ['Hint']		= '#CCCCCC',
     }, { __index = function() return '#FFFFFF' end }),
-    ['base16-gruvbox-dark-hard'] = setmetatable({
+    ['gru'] = setmetatable({
         ['Blue']  = '#83a598',
         ['Red']  = '#ff757f',
         ['Yellow']  = '#fabd2f',
@@ -789,9 +781,6 @@ M.get_lang_git_name = function(self)
 	-- Scope
 	local Scope = ""
 	local scp = fn["Scope"]() or ""
-    if gps.is_available() then
-        scp = gps.get_location()
-    end
   if clean_status then 
 		Scope = to_hl_group(crnt_item..next_item) .. self.separators[active_sep][1] .. colors.scope
 		tmp_item = 'Scope'
@@ -974,11 +963,11 @@ M.simple_line  = function(self)
   local line_col_alt = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat') .. self.separators[active_sep][2]
   local git = " " .. colors.git .. self:get_git_status()
   local ft = ""
-  local colll = colors.active
+  local colll = colors.filetype
 
-  if inverted_colors then 
-      colll = colors.inactive
-  end
+  -- if inverted_colors then 
+  --     colll = colors.inactive
+  -- end
 
   if not is_explorer() then
     ft = '%y'
@@ -1017,7 +1006,6 @@ M.simple_line  = function(self)
       filename,
       "%=",
       self:simple_lsp(),
-      colors.active,
       colll,
       ft,
       line_col,
@@ -1080,19 +1068,6 @@ custom_highlight("cBug",'\'\\(BUG \\|Bug \\)\'',ColorPalette[cpal].Red)
 custom_highlight("cHack",'\'\\(HACK \\|Hack \\)\'',ColorPalette[cpal].Violet)
 custom_highlight("cWarn",'\'\\(WARN \\|Warn \\)\'',ColorPalette[cpal].Orange)
 custom_highlight("cNote",'\'\\(NOTE \\|Note \\)\'',ColorPalette[cpal].Blue)
-
-require("todo-comments").setup{
-  signs = false,
-  keywords = {
-    FIX = { icon = " ",  color = ColorPalette[cpal].Red, alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },},
-    TODO = { icon = " ", color = ColorPalette[cpal].Orange },
-    HACK = { icon = " ", color = ColorPalette[cpal].Violet },
-    WARN = { icon = " ", color = ColorPalette[cpal].Yellow, alt = { "WARNING", "XXX" } },
-    PERF = { icon = " ", color = ColorPalette[cpal].Blue, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-    NOTE = { icon = " ", color = ColorPalette[cpal].Green, alt = { "INFO" } },
-  },
-}
-
 
 
 M.fancy_tab_line = function(self )

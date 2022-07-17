@@ -3,6 +3,7 @@
 let g:netrw_winsize = 14
 let g:netrw_liststyle = 3
 let g:netrw_sizestyle= "h"
+let g:netrw_localrmdir= 'rm -rf'
 let g:netrw_banner=0
 " sort is affecting only: directories on the top, files below
 let g:netrw_sort_sequence = '[\/]$,*'
@@ -37,5 +38,5 @@ fun! Lexplore(dir, right)
     let t:netrw_lexbufnr = bufnr("%")
   endif
 endfun
-nnoremap <C-n> :Lexplore<CR>
+nnoremap <silent><C-n> :Lexplore \| vertical resize 30<CR>
 " absolute width of netrw window

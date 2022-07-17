@@ -1,19 +1,11 @@
 vim.o.background="dark"
 vim.g.lang = {'english','bulgarian-phonetic'}
-vim.g.rustc_makeprg_no_percent = 0
-vim.g.cargo_makeprg_params = ''
--- todo make a lua module to hold the makeprg
-
-require("cfg_performance")
-require("cfg_settings")
-vim.cmd "source $HOME/.config/nvim/functions/incl.vim"
-vim.cmd "source $HOME/.config/nvim/configs/wiki.vim"
-vim.cmd "source $HOME/.config/nvim/configs/port_to_lua.vim"
-require("cfg_autocmd")
+require("performance")
+require("settings")
+require("keymaps")
 require("pacs")
-require("cfg_navigation")
-require("cfg_notes")
-require("cfg_commands")
-require("cfg_colors")
-require("cfg_nvimlsp")
-require("cfg_dash")
+require("navigation")
+require("git")
+require("mcmp")
+require("colors")
+require("documentation")
