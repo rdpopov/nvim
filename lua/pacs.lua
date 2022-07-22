@@ -40,5 +40,6 @@ local packages = {
     "lewis6991/impatient.nvim";
     -- "dstein64/vim-startuptime";
     "jpalardy/vim-slime";
+    "williamboman/nvim-lsp-installer";
 }
 require "paq_bootstrap".bootstrap(packages)
