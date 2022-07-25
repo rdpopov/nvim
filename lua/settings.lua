@@ -22,6 +22,7 @@ local options   = {
  smartindent    = true,
  shiftround     = true,
  showmatch      = true,
+ scrollback     = 100000,
  ignorecase     = true,
  smartcase      = true,
  smarttab       = true,

@@ -43,6 +43,7 @@ keymap('n','<Leader>y', '"+y',opts)
 keymap('n','<Leader>p', '"+p',opts)
 keymap('v','<Leader>y', '"+y',opts)
 keymap('v','<Leader>p', '"+p',opts)
+keymap('v','<Leader>a', ':EasyAlign<cr>',{noremap = true})
 
 -- Plugin maps
 keymap('n','<Leader>u', ':UndotreeToggle<cr>',opts)
