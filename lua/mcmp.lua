@@ -1,4 +1,4 @@
-require("nvim-lsp-installer").setup {}
+require("nvim-lsp-installer").setup {automatic_installation = false}
 vim.o.pumheight=16
 
 vim.cmd "hi link LspDiagnosticsDefaultError Error"

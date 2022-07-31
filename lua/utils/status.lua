@@ -71,6 +71,9 @@ end
 local tver = vim.env.TMUX_VER or ""
 
 cpal = vim.api.nvim_get_var('colors_name')
+if cpal =="aurora_new" then 
+	cpal = "aurora"
+end
 
 if tver < '2.3' and tver ~= "" then 
   cpal = 'badwolf'
