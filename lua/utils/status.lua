@@ -1177,6 +1177,17 @@ api.nvim_exec([[
 ]], false)
 end
 
+require("todo-comments").setup{
+  signs = false,
+  keywords = {
+    FIX = { icon = " ",  color = ColorPalette[cpal].Red, alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },},
+    TODO = { icon = " ", color = ColorPalette[cpal].Orange },
+    HACK = { icon = " ", color = ColorPalette[cpal].Violet },
+    WARN = { icon = " ", color = ColorPalette[cpal].Yellow, alt = { "WARNING", "XXX" } },
+    PERF = { icon = " ", color = ColorPalette[cpal].Blue, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+    NOTE = { icon = " ", color = ColorPalette[cpal].Green, alt = { "INFO" } },
+  },
+}
 
 return {
     set_statusline = set_statusline;

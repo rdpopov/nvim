@@ -42,3 +42,6 @@ endfunction
 function g:DefFind()
 	call ExecToList('dsearch '.input("Look for: "),'f')
 endfunction
+
+
+command! MakeTags !ctags -R --exclude=.git --exclude=.ccls_cache --exclude=test

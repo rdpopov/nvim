@@ -42,7 +42,7 @@ local servers = {
 cmp.setup({
     snippet = {
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
+       vim.fn["vsnip#anonymous"](args.body)
       end,
     },
     mapping = cmp.mapping.preset.insert({
@@ -55,14 +55,6 @@ cmp.setup({
                 cmp.select_next_item()
             elseif has_words_before() then
                 cmp.complete()
-            end
-        end, { "i", "s" }),
-
-        ["<S-TAB>"] = cmp.mapping(function(fallback)
-            if ls.expand_or_jumpable() then
-              ls.expand_or_jump()
-            else
-                fallback()
             end
         end, { "i", "s" }),
     }),
