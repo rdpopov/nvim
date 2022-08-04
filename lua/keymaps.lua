@@ -33,8 +33,8 @@ keymap('n','<Leader>s', ':call ToggleLocalSpelling()<CR>',opts) -- fix this
 --
 keymap('n','<C-t>', '<cmd>AerialToggle<cr>',opts)
 keymap('n','<C-c>', ':ListsToggle<cr>',opts)
-keymap('n','<Leader>L',':call CycleLanguagesUp()<CR>',opts)
-keymap('n','<Leader>s', ':call ToggleLocalSpelling()<CR>',opts)
+keymap('n','<Leader>s',':call CycleLanguagesUp()<CR>',opts)
+keymap('n','<Leader>S', ':call ToggleLocalSpelling()<CR>',opts)
 keymap('n','<C-s>', ':call OpenTerm(v:false)<cr>',opts)
 
 keymap('n','<Leader>w', ':w<CR>',opts)

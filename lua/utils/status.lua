@@ -631,10 +631,10 @@ M.get_git_status = function(self)
   local stat = vim.b.gitsigns_status
   local head = vim.b.gitsigns_head
   if stat and string.len(stat) > 0 then
-    return stat
+    return ": "..stat
   else
     if head and string.len(head) >0 then
-      return head
+      return ": "..head
     else
       return ""
     end
@@ -865,6 +865,14 @@ M.get_format_lsp_diagn = function(self,nof)
     return " ".. Warn .. Error ..  Hint .. Format
 end
 
+M.simple_lang = function(self)
+  local is_spell = ""
+  if vim.o.spell then 
+      is_spell = ":s"
+  end
+    return  to_hl_group('InssLang') .." <" .. string.lower(fn['GetInputLang']()) .. is_spell..">"
+end
+
 M.simple_lsp = function(self)
   local errs = LspDiagn("ERROR")
   local warn = LspDiagn("WARNING")
@@ -944,7 +952,7 @@ M.fancy_line = function(self )
   return table.concat({
       colors.active,
       mode,
-      self:get_lang_git_name(), 
+      self:get_lang_git_name(),
       "%=",
       colors.active,
       self:get_format_lsp_diagn(),
@@ -964,7 +972,7 @@ M.simple_line  = function(self)
   local filetype = colors.filetype .. self:get_filetype()
   local line_col = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. self:get_line_col()
   local line_col_alt = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat') .. self.separators[active_sep][2]
-  local git = " " .. colors.git .. self:get_git_status()
+  local git = colors.git .. self:get_git_status()
   local ft = ""
   local colll = colors.filetype
 
@@ -1004,9 +1012,10 @@ M.simple_line  = function(self)
       colors.active,
       mode,
       colors.filetype,
-        git,
+      self:simple_lang(),
       "%=",
       filename,
+      git,
       "%=",
       self:simple_lsp(),
       colll,
@@ -1180,9 +1189,9 @@ end
 require("todo-comments").setup{
   signs = false,
   keywords = {
-    FIX = { icon = " ",  color = ColorPalette[cpal].Red, alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },},
+    FIX = { icon = " ",  color = ColorPalette[cpal].Red, alt = { "FIXME", "BUg", "FIXIT", "ISSUE" },},
     TODO = { icon = " ", color = ColorPalette[cpal].Orange },
-    HACK = { icon = " ", color = ColorPalette[cpal].Violet },
+    HACK = { icon = " ", color = ColorPalette[cpal].Violet ,alt = { "ROSKO"}},
     WARN = { icon = " ", color = ColorPalette[cpal].Yellow, alt = { "WARNING", "XXX" } },
     PERF = { icon = " ", color = ColorPalette[cpal].Blue, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
     NOTE = { icon = " ", color = ColorPalette[cpal].Green, alt = { "INFO" } },

@@ -25,7 +25,7 @@ function! GetLangLabl()
     let l:cut = split(g:lang[g:crnt_lang],'-')
     let l:res = []
     for part in l:cut
-        let l:res = l:res + [toupper(part[0:2])]
+        let l:res = l:res + [toupper(part[0:1])]
     endfor
     return join(l:res,'-')
 endfunction
