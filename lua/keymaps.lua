@@ -2,15 +2,14 @@ local opts = {noremap = true, silent = true}
 local term_opts = {silent = true}
 
 local utils = require("utils/utils")
+local emcs = require("utils.emcs")
 -- local spell = require("utils/spelling")
 require("cfg_build_helper")
 
 local keymap = vim.api.nvim_set_keymap
 vim.g.mapleader = ' ' 
 -- Homebrew mappings
-keymap('v','ss','' ,{silent = true,callback = function ()
-    local inp = vim.fn.input("Split on: ")
-    vim.cmd('s/\\('.. inp ..  '\\)/\\1\\r/g')
+keymap('v','ss','' ,{silent = true,callback = function () emcs.apply_to_lines()
 end})
 keymap('n', ',/',':nohlsearch<CR>' ,opts)
 keymap('t','<Esc>', '<C-\\><C-n>',opts)
@@ -19,14 +18,13 @@ keymap('n','gT', ':tabclose<CR>',opts)
 keymap('n','<Leader>x', '',{callback = function() build_helper.run() end ,noremap = true, silent = true})
 keymap('n','<Leader>X', '',{callback = function() build_helper.augment() end ,noremap = true, silent = true})
 keymap('n','<Leader>c', '',{callback= utils.qf_toggle, noremap = true, silent = true})
-keymap('','Gr', '',{callback= function () utils.replace_in_selection(true) end, noremap = true, silent = true})
-keymap('','GR', '',{callback= function () utils.replace_in_selection(false) end, noremap = true, silent = true})
-keymap('n','==', 'vi{=<Esc>',opts)
+keymap('','<leader>r', '',{callback= function () emcs.replace_in_selection(true) end, noremap = true, silent = true})
+keymap('','<leader>R', '',{callback= function () emcs.replace_in_selection(false) end, noremap = true, silent = true}) keymap('n','==', 'vi{=<Esc>',opts)
 keymap('n','<Leader>=', '1z=',opts)
 keymap('v','<Leader>s', ':SlimeSend<CR>',opts)
 keymap('v','//',"y/\\V<C-R>=escape(@\",\'/\')<CR><CR>",opts)
--- keymap("v","J", ":m '>+1<CR>gv=gv",opts)
--- keymap("v","K", ":m '<-2<CR>gv=gv",opts)
+keymap("v","J", ":m '>+1<CR>gv=gv",opts)
+keymap("v","K", ":m '<-2<CR>gv=gv",opts)
 keymap('n','<Leader>s', ':call ToggleLocalSpelling()<CR>',opts) -- fix this
 -- keymap(3'n','qq', 'vip:s/ \+/ /ge<CR>vip:s/ , /, /ge<CR>vip:s/ \. /. /ge<CR>:nohlsearch<CR>vipgq<Esc>',opts)
 -- keymap('v','qq', '<Esc>gvs/ \+/ /ge<CR>gv:s/ , /, /ge<CR>gv:s/ \. /. /ge<CR>:nohlsearch<CR>gvgq<Esc>',opts)
