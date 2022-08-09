@@ -19,13 +19,15 @@ keymap('n','<Leader>x', '',{callback = function() build_helper.run() end ,norema
 keymap('n','<Leader>X', '',{callback = function() build_helper.augment() end ,noremap = true, silent = true})
 keymap('n','<Leader>c', '',{callback= utils.qf_toggle, noremap = true, silent = true})
 keymap('','<leader>r', '',{callback= function () emcs.replace_in_selection(true) end, noremap = true, silent = true})
-keymap('','<leader>R', '',{callback= function () emcs.replace_in_selection(false) end, noremap = true, silent = true}) keymap('n','==', 'vi{=<Esc>',opts)
+keymap('','<leader>R', '',{callback= function () emcs.replace_in_selection(false) end, noremap = true, silent = true}) 
+keymap('n','==', 'vi{=<Esc>',opts)
 keymap('n','<Leader>=', '1z=',opts)
 keymap('v','<Leader>s', ':SlimeSend<CR>',opts)
 keymap('v','//',"y/\\V<C-R>=escape(@\",\'/\')<CR><CR>",opts)
 keymap("v","J", ":m '>+1<CR>gv=gv",opts)
 keymap("v","K", ":m '<-2<CR>gv=gv",opts)
 keymap('n','<Leader>s', ':call ToggleLocalSpelling()<CR>',opts) -- fix this
+keymap('n','<Leader>mc', '',{callback= function () emcs.leap_lines() end, noremap = true, silent = true}) -- fix this
 -- keymap(3'n','qq', 'vip:s/ \+/ /ge<CR>vip:s/ , /, /ge<CR>vip:s/ \. /. /ge<CR>:nohlsearch<CR>vipgq<Esc>',opts)
 -- keymap('v','qq', '<Esc>gvs/ \+/ /ge<CR>gv:s/ , /, /ge<CR>gv:s/ \. /. /ge<CR>:nohlsearch<CR>gvgq<Esc>',opts)
 --

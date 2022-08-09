@@ -13,17 +13,17 @@ local function augment_arg_dir()
     local wd = vim.fn.getcwd()
     local inp = nil
     local crr_cmd = ""
-		if data.args[wd] == nil then
-			for k,v in pairs(data.patterns) do
-				print(k," ",v," ",vim.fn.match(wd,k))
-				if vim.fn.match(wd,k) > 0 then
-					crr_cmd = v
-					break
-				end
-			end
-		else
-			crr_cmd = data.args[wd]
-		end
+    if data.args[wd] == nil then
+        for k,v in pairs(data.patterns) do
+            print(k," ",v," ",vim.fn.match(wd,k))
+            if vim.fn.match(wd,k) > 0 then
+                crr_cmd = v
+                break
+            end
+        end
+    else
+        crr_cmd = data.args[wd]
+    end
 
     local ok,res = pcall(vim.fn.input,"Build args for dir " .. wd .. ": ",crr_cmd)
     if ok then
@@ -64,9 +64,16 @@ local function exec_bld()
             bld_cmd = data.args[wd]
         end
     end
-        local cmd = data.cmd .. " " .. bld_cmd
-        print(cmd)
-        vim.cmd(cmd)
+    local cmd = ""
+    if string.char(bld_cmd:byte(1))== "!" then
+        -- override the current implementation to take advantage of running
+        -- tasks in tmux panes instead of splitting
+        cmd = data.cmd .. bld_cmd
+    else
+        cmd = data.cmd .. " " .. bld_cmd
+    end
+    print(cmd)
+    vim.cmd(cmd)
 end
 
 return {

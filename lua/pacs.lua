@@ -24,6 +24,7 @@ local packages = {
     'hrsh7th/vim-vsnip';
     -- -- -- Navigation
     -- "nvim-telescope/telescope-symbols.nvim";
+    "ggandor/leap.nvim";
     "nvim-telescope/telescope.nvim";
     "brookhong/cscope.vim";
     {"nvim-telescope/telescope-fzf-native.nvim", run="make" };
