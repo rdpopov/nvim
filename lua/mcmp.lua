@@ -26,7 +26,7 @@ local has_words_before = function()
 end
 local cmp = require'cmp'
 local servers = {
-    "ccls",
+    "clangd",
     "bashls",
     "sumneko_lua",
     "nimls",
