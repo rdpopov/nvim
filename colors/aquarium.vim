@@ -190,7 +190,7 @@ call s:hi("NormalNC", s:colors.gui05, s:colors.gui07, "NONE", "NONE", "", "")
 call s:hi("Error", s:colors.gui08, s:colors.gui01, "", "", "italic", "")
 call s:hi("Search", s:colors.gui0A, s:colors.gui02, "", "", "", "") " Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
 call s:hi("MatchParen", s:colors.gui0C, s:colors.gui02, "", "", "", "")
-call s:hi("NonText", s:colors.gui05, s:colors.gui02, "", "", "", "")
+call s:hi("NonText",s:colors.gui02, "NONE" , "", "", "", "")
 call s:hi("Special", s:colors.gui0A, "", "", "", "italic", "")
 call s:hi("SpecialKey", s:colors.gui02, "", "", "", "", "")
 call s:hi("Conceal", "", s:colors.gui03, "", "NONE", "", "") " placeholder characters substituted for concealed text (see 'conceallevel')
