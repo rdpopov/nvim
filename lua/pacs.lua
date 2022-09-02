@@ -11,6 +11,7 @@ local packages = {
     "simrat39/rust-tools.nvim";
     "rust-lang/rust.vim";
     {"nvim-treesitter/nvim-treesitter", run=function() vim.api.nvim_command("TSUpdate") end };
+    "nvim-treesitter/nvim-treesitter-context";
     -- -- -- Lsp
     "neovim/nvim-lspconfig";
     "hrsh7th/nvim-cmp";
@@ -33,6 +34,7 @@ local packages = {
     "lervag/wiki.vim";
     "lervag/lists.vim";
     -- -- -- Utilities
+    "KabbAmine/zeavim.vim";
     "tpope/vim-commentary";
     "tpope/vim-dispatch";
     "mbbill/undotree";
