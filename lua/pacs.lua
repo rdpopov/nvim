@@ -41,9 +41,15 @@ local packages = {
     "stevearc/aerial.nvim";
     "norcalli/nvim-colorizer.lua";
     "lewis6991/impatient.nvim";
-    -- "dstein64/vim-startuptime";
+    "dstein64/vim-startuptime";
     "jpalardy/vim-slime";
     "williamboman/nvim-lsp-installer";
     "folke/todo-comments.nvim";
 }
-require "paq_bootstrap".bootstrap(packages)
+
+local pq = require "paq_bootstrap"
+pq.bootstrap(packages)
+
+if vim.fn.executable("rg") <= 0 then
+    pq.get_ripgrep("13.0.0")
+end

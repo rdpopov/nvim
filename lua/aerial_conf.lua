@@ -1,6 +1,6 @@
 require("aerial").setup({
   backends = { "lsp", "treesitter", "markdown" },
-  close_behavior = "auto",
+  -- close_behavior = "auto",
   default_bindings = true,
   default_direction = "prefer_right",
   -- disable_max_lines = 10000,
