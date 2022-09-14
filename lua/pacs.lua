@@ -26,6 +26,7 @@ local packages = {
     -- -- -- Navigation
     -- "nvim-telescope/telescope-symbols.nvim";
     "ggandor/leap.nvim";
+    "ThePrimeagen/harpoon";
     "nvim-telescope/telescope.nvim";
     "brookhong/cscope.vim";
     {"nvim-telescope/telescope-fzf-native.nvim", run="make" };
