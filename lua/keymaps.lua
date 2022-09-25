@@ -39,10 +39,6 @@ keymap('n','<C-s>', ':call OpenTerm(v:false)<cr>',opts)
 
 keymap('n','<Leader>w', ':w<CR>',opts)
 keymap('n','<Leader>W', ':w',opts)
-keymap('n','<Leader>y', '"+y',opts)
-keymap('n','<Leader>p', '"+p',opts)
-keymap('v','<Leader>y', '"+y',opts)
-keymap('v','<Leader>p', '"+p',opts)
 keymap('v','<Leader>a', ':EasyAlign<cr>',{noremap = true})
 
 -- Plugin maps

@@ -21,8 +21,10 @@ local packages = {
     "hrsh7th/cmp-nvim-lua";
     "hrsh7th/cmp-path";
     "f3fora/cmp-spell";
-    'hrsh7th/cmp-vsnip';
-    'hrsh7th/vim-vsnip';
+    "rafamadriz/friendly-snippets";
+    "dstein64/vim-startuptime";
+    "L3MON4D3/LuaSnip";
+    "saadparwaiz1/cmp_luasnip";
     -- -- -- Navigation
     -- "nvim-telescope/telescope-symbols.nvim";
     "ggandor/leap.nvim";
@@ -42,7 +44,6 @@ local packages = {
     "stevearc/aerial.nvim";
     "norcalli/nvim-colorizer.lua";
     "lewis6991/impatient.nvim";
-    "dstein64/vim-startuptime";
     "jpalardy/vim-slime";
     "williamboman/nvim-lsp-installer";
     "folke/todo-comments.nvim";

@@ -10,6 +10,8 @@ local opts = {noremap = true, silent = true}
 local cfg_utils = require("utils/utils")
 local keymap = vim.api.nvim_set_keymap
 vim.g.mapleader = ' '
+local  luasnip =  require('luasnip')
+require("luasnip.loaders.from_vscode").lazy_load()
 
 keymap('n','<leader>d', '',{callback= cfg_utils.diagn_toggle, noremap = true, silent = true})
 keymap('n','gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>',opts)
@@ -21,8 +23,8 @@ keymap('n','gr', ':Telescope lsp_references theme=get_ivy<CR>',opts)
 keymap('n','[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',opts)
 keymap('n',']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',opts)
 local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 local cmp = require'cmp'
 local servers = {
@@ -41,9 +43,9 @@ local servers = {
 }
 cmp.setup({
     snippet = {
-      expand = function(args)
-       vim.fn["vsnip#anonymous"](args.body)
-      end,
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
     },
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -57,6 +59,27 @@ cmp.setup({
                 cmp.complete()
             end
         end, { "i", "s" }),
+        ["<S-TAB>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif has_words_before() then
+                cmp.complete()
+            end
+        end, { "i", "s" }),
+        ['<M-n>'] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(1) then
+                luasnip.jump(1)
+            else
+                fallback()
+            end
+        end ,{ "i", "n" }),
+        ['<M-b>'] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end ,{ "i", "n" }),
     }),
     sources = cmp.config.sources({
         { name = 'path' },
@@ -65,18 +88,18 @@ cmp.setup({
         { name = 'nvim_lsp_signature_help' },
         { name = 'buffer' , keyword_length = 3},
         
-{ name = 'buffer' , keyword_length = 3,
-    option = {
-        get_bufnrs = function()
-            local bufs = {}
-        for _, win in ipairs(vim.api.nvim_list_wins()) do
-            bufs[vim.api.nvim_win_get_buf(win)] = true
+        { name = 'buffer' , keyword_length = 3,
+        option = {
+            get_bufnrs = function()
+                local bufs = {}
+                for _, win in ipairs(vim.api.nvim_list_wins()) do
+                    bufs[vim.api.nvim_win_get_buf(win)] = true
                 end
                 return vim.tbl_keys(bufs)
-                end}
-},
-        { name = 'spell',keyword_length = 3, max_item_count = 10 },
-        { name = 'vsnip',},
+            end}
+        },
+        { name = 'spell',keyword_length = 2, max_item_count = 10 },
+        { name = 'luasnip',},
     }),
     experimental = {
         ghost_text = true
