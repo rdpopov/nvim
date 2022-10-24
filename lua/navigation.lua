@@ -140,5 +140,4 @@ vim.cmd('source ' .. pth .. "/".."configs/ref.vim")
 vim.cmd('source ' .. pth .. "/".."configs/terminal_manager.vim")
 vim.cmd('source ' .. pth .. "/".."configs/vinegar.vim")
 vim.cmd('source ' .. pth .. "/".."configs/wiki.vim")
-
 vim.cmd('source ' .. pth .. "/".."configs/utils.vim")

@@ -54,3 +54,6 @@ keymap('n','<leader>3', '',{callback= function () require("harpoon.ui").nav_file
 keymap('n','<leader>4', '',{callback= function () require("harpoon.ui").nav_file(4)  end, noremap = true, silent = true})
 keymap('n','<leader>H', '',{callback= function () require("harpoon.mark").add_file() end, noremap = true, silent = true}) 
 keymap('n','<leader>h', '',{callback= function () require("harpoon.ui").toggle_quick_menu() end, noremap = true, silent = true})
+-- DirDiff
+keymap('n','<leader>dn', '<cmd>DirDiffNext<CR>',opts)
+keymap('n','<leader>dp', '<cmd DirDiffPrev<CR>',opts)
