@@ -13,4 +13,10 @@ function! Redir(cmd)
   " put = '----'
 endfunction
 
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
 command! -nargs=1 Redir silent call Redir(<f-args>)
