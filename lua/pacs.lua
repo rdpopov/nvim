@@ -52,7 +52,3 @@ local packages = {
 
 local pq = require "paq_bootstrap"
 pq.bootstrap(packages)
-
-if vim.fn.executable("rg") <= 0 then
-    pq.get_ripgrep("13.0.0")
-end

@@ -37,8 +37,12 @@ keymap('n','<Leader>s',':call CycleLanguagesUp()<CR>',opts)
 keymap('n','<Leader>S', ':call ToggleLocalSpelling()<CR>',opts)
 keymap('n','<C-s>', ':call OpenTerm(v:false)<cr>',opts)
 
-keymap('n','<Leader>w', ':w<CR>',opts)
-keymap('n','<Leader>W', ':w',opts)
+keymap('n','<Leader>k', ':w<CR>',opts)
+keymap('n','<Leader><leader>', ':',opts)
+keymap('n','<Leader>q', ':q<cr>',opts)
+keymap('n','<Leader>Q', ':qa<cr>',opts)
+keymap('i','jk', '<Esc>',opts)
+keymap('i','kj', '<Esc>',opts)
 keymap('v','<Leader>a', ':EasyAlign<cr>',{noremap = true})
 
 -- Plugin maps
