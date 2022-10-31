@@ -17,10 +17,14 @@ function! g:Det_split()
 	if all_colmn == cur_win_colmn
 		return "vsplit"
 	else 
-		if all_lines == cur_win_lines
+		if all_lines == cur_win_lines && bufwinnr("NetrwTreeListing") == -1
 			return "split"
 		else
-			return (cur_win_lines/2 - 1)."split"
+			let res_lines = (cur_win_lines/4 - 1) 
+            if res_lines == 1
+                    res_lines = 4
+            endif
+            return res_lines."split"
 		endif
 	endif
 	return "vsplit"
