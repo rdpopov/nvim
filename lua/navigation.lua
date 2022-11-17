@@ -133,11 +133,12 @@ keymap('n','s','',{callback = function() leap.leap { target_windows = { vim.fn.w
 keymap('n','S','',{callback = function() leap.leap { target_windows = { vim.fn.win_getid() }, action = leap_paranormal, multiselect = true, } end ,noremap = true, silent = true}) -- bidirectional select targets
 keymap('n','<leader>mc', '',{callback = function() leap_lines() end ,noremap = true, silent = true}) -- bidirectional leap
 
-vim.cmd('source ' .. pth .. "/".."configs/apathy.vim")
-vim.cmd('source ' .. pth .. "/".."configs/lang.vim")
-vim.cmd('source ' .. pth .. "/".."configs/netrw.vim")
-vim.cmd('source ' .. pth .. "/".."configs/ref.vim")
-vim.cmd('source ' .. pth .. "/".."configs/terminal_manager.vim")
-vim.cmd('source ' .. pth .. "/".."configs/vinegar.vim")
-vim.cmd('source ' .. pth .. "/".."configs/wiki.vim")
-vim.cmd('source ' .. pth .. "/".."configs/utils.vim")
+vim.cmd('source ' .. pth .. "/configs/apathy.vim")
+vim.cmd('source ' .. pth .. "/configs/lang.vim")
+vim.cmd('source ' .. pth .. "/configs/netrw.vim")
+vim.cmd('source ' .. pth .. "/configs/ref.vim")
+vim.cmd('source ' .. pth .. "/configs/terminal_manager.vim")
+vim.cmd('source ' .. pth .. "/configs/vinegar.vim")
+vim.cmd('source ' .. pth .. "/configs/wiki.vim")
+vim.cmd('source ' .. pth .. "/configs/utils.vim")
+vim.cmd('source ' .. pth .. "/configs/scope.vim")

@@ -1,8 +1,6 @@
 require("aerial").setup({
   backends = { "lsp", "treesitter", "markdown" },
   -- close_behavior = "auto",
-  default_bindings = true,
-  default_direction = "prefer_right",
   -- disable_max_lines = 10000,
   filter_kind = {
       "Array",
@@ -34,12 +32,16 @@ require("aerial").setup({
   link_folds_to_tree = false,
   link_tree_to_folds = true,
   manage_folds = false,
-  max_width = 40,
-  min_width = 25,
+  layout = {
+      max_width = { 40, 0.2 },
+      default_bindings = true,
+      default_direction = "prefer_right",
+      placement_editor_edge = false,
+      min_width = 25,
+  },
   nerd_font = "auto",
   on_attach = nil,
   open_automatic = false,
-  placement_editor_edge = false,
   post_jump_cmd = "normal! zz",
   close_on_select = false,
   float = {

@@ -30,7 +30,7 @@ local packages = {
     "ggandor/leap.nvim";
     "ThePrimeagen/harpoon";
     "nvim-telescope/telescope.nvim";
-    "brookhong/cscope.vim";
+    "ronakg/quickr-cscope.vim";
     {"nvim-telescope/telescope-fzf-native.nvim", run="make" };
     -- -- -- Documentation creation
     "jbyuki/venn.nvim";
