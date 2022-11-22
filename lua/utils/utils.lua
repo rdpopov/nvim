@@ -1,6 +1,5 @@
 M = {}
 
-
 function M.qf_toggle()
 	local windows = vim.api.nvim_tabpage_list_wins(0)
 	for _, w in pairs(windows) do
