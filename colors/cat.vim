@@ -70,11 +70,11 @@ highlight Boolean gui=NONE guifg=#F8BD96 guibg=NONE
 highlight Search gui=bold guifg=#F5C2E7 guibg=#575268
 highlight IncSearch gui=NONE guifg=#575268 guibg=#F5C2E7
 highlight Constant gui=NONE guifg=#F8BD96 guibg=NONE
-highlight SpellBad gui=undercurl guifg=NONE guibg=NONE guisp=#F28FAD
+highlight SpellBad gui=undercurl guifg=#1E1E2E guibg=#F28FAD guisp=#F28FAD
 highlight PreProc gui=NONE guifg=#F5C2E7 guibg=NONE
-highlight SpellCap gui=undercurl guifg=NONE guibg=NONE guisp=#FAE3B0
-highlight SpellLocal gui=undercurl guifg=NONE guibg=NONE guisp=#96CDFB
-highlight SpellRare gui=undercurl guifg=NONE guibg=NONE guisp=#ABE9B3
+highlight SpellCap gui=undercurl guifg=#1E1E2E guibg=#FAE3B0 guisp=#FAE3B0
+highlight SpellLocal gui=undercurl guifg=#1E1E2E guibg=#96CDFB guisp=#96CDFB
+highlight SpellRare gui=undercurl guifg=#1E1E2E guibg=#ABE9B3 guisp=#ABE9B3
 highlight StatusLine gui=NONE guifg=#D9E0EE guibg=#1A1826
 highlight StatusLineNC gui=NONE guifg=#575268 guibg=#1A1826
 highlight TabLine gui=NONE guifg=#575268 guibg=#1A1826
