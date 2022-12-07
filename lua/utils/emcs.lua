@@ -23,7 +23,7 @@ E.replace_in_selection_fn = function (global)
     if #replacable == 0 then -- any arbitrary filter proc here, can replace empty string(more like bad idea)
         print(string.format("'%s' Is invalid string to replace",replacable))
     end
-    local replace_with = vim.fn.input("Replace with: ") or ""
+    local replace_with = vim.fn.input("Replace " .. replacable .. " with : ") or ""
     local cmd_s = string.format("%s s/%s/%s/%s",mode,replacable,replace_with,global and "g" or "")
     print(cmd_s)
     vim.fn.execute(cmd_s)

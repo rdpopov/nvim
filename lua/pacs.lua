@@ -48,7 +48,6 @@ local packages = {
     "williamboman/nvim-lsp-installer";
     "folke/todo-comments.nvim";
     "will133/vim-dirdiff";
-    "kevinhwang91/rnvimr";
 }
 
 local pq = require "paq_bootstrap"
