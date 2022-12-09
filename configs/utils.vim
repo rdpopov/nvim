@@ -19,4 +19,7 @@ function! ExecuteMacroOverVisualRange()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
+function! VBlockNorm()
+  execute ":'<,'>normal ". input("norm ")
+endfunction
 command! -nargs=1 Redir silent call Redir(<f-args>)

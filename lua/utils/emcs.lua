@@ -5,6 +5,7 @@
 
 local E = {}
 
+-- Splits lines on a character defined
 E.split_lines = function ()
 	local inp = vim.fn.input("split on: ")
 	vim.cmd('s/\\('.. inp ..  '\\)/\\1\\r/g')

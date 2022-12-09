@@ -7,10 +7,10 @@ local emcs = require("utils.emcs")
 require("cfg_build_helper")
 
 local keymap = vim.api.nvim_set_keymap
-vim.g.mapleader = ' ' 
+vim.g.mapleader = ' '
 -- Homebrew mappings
-keymap('v','ss','' ,{silent = true,callback = function () emcs.apply_to_lines()
-end})
+keymap('v','ss','' ,{silent = true,callback = function () emcs.split_lines() end})
+keymap('x','<leader><leader>',':<C-u>call VBlockNorm()<cr>' ,{silent = true,})
 keymap('n', ',/',':nohlsearch<CR>' ,opts)
 keymap('t','<Esc>', '<C-\\><C-n>',opts)
 keymap('t','<C-w>', '<Esc><C-w>',opts)
