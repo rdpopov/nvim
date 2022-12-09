@@ -2,10 +2,10 @@
 
 local fn = vim.fn
 local api = vim.api
+local aerial = require('aerial')
 
 local M = {}
 
-vim.g["ataraxis_on"] = 0
 -- possible values are 'arrow' | 'rounded' | 'blank'
 -- change them if you want to different separator
 LspDiagn  = function(diagn)
@@ -20,7 +20,7 @@ local usr = "/home/"..vim.fn.expand("$USER")
 blend_in = false
 pimp = true
 clean = true
-use_preset = "barebones"
+use_preset = "samurai"
 
 M.separators = {
   arrow = { '', '', '','' },
@@ -725,11 +725,11 @@ local is_explorer = function()
   return vim.bo.filetype == 'netrw' or vim.bo.filetype == 'nerdtree' or string.lower(vim.bo.filetype) == 'nvimtree'
 end
 
-is_term = function()
+local is_term = function()
   return string.find(vim.api.nvim_buf_get_name(0),"term://",0)
 end
 
-term_root_val = function()
+local term_root_val = function()
     local seps = {'~','/home/','/'}
     local tmp = vim.b.term_title
     for _,sep in ipairs(seps) do
@@ -761,7 +761,7 @@ M.get_filename = function(self)
   if is_global == 1 then
     return "%< " .. string.gsub(vim.fn.expand('%'),os.getenv("HOME"),"~") .. '%{&modified?"[+]":""} '
   end
-  
+
   if #name > 20 then
     return "%< ".. vim.fn.pathshorten(dir) .. '/' .. vim.fn.expand("%") .. '%{&modified?"[+]":""} '
   else
@@ -833,15 +833,12 @@ M.get_lang_git_name = function(self)
 	-- Mode
   crnt_item = mode_color_group[api.nvim_get_mode().mode]
   next_item = 'Lang'
-	
-	
   -- Lang
   local Lang = ""
-
-	-- if clean_status then 
+	-- If clean_status than 
 	-- 	Lang = to_hl_group(crnt_item..next_item) .. self.separators[active_sep][1] .. colors.ins_language
 	-- end
-	Lang = to_hl_group(crnt_item..next_item) .. self.separators[active_sep][1] .. colors.ins_language .. space[1] .. self:get_Input_language() .. space[2]
+	Lang = to_hl_group(crnt_item..next_item) .. self.separators[active_sep][1] .. colors.ins_language .. self:simple_lang() .. space[2]
 
 	tmp_item = 'Lang'
 	crnt_item = tmp_item
@@ -863,8 +860,17 @@ M.get_lang_git_name = function(self)
 
 	-- Scope
 	local Scope = ""
-	local scp = fn["Scope"]() or ""
-  if clean_status then 
+	local scp = aerial.get_location(true)
+	local scp_guess = aerial.get_location(false)
+	if #scp > 0 then
+	    scp = scp[1].name or ""
+    elseif #scp_guess > 0 then
+	    scp = scp_guess[1].name or ""
+	else
+	    scp = ""
+	end
+
+    if clean_status then 
 		Scope = to_hl_group(crnt_item..next_item) .. self.separators[active_sep][1] .. colors.scope
 		tmp_item = 'Scope'
 	end
@@ -889,7 +895,7 @@ M.get_format_lsp_diagn = function(self,nof)
     local crnt_item = "Center"
     local next_item = "Warning"
     local tmp_item = "Center"
-    local sep_offset = space[1]
+    local ep_offset = space[1]
 
     if errs == -1 and  warn == -1 then
         if ft == "" or inverted_colors==false then
@@ -950,7 +956,7 @@ M.simple_lang = function(self)
   if vim.o.spell then 
       is_spell = ":s"
   end
-    return  to_hl_group('InssLang') .." <" .. string.lower(fn['GetInputLang']()) .. is_spell..">"
+    return  to_hl_group('InssLang') .." " .. string.lower(fn['GetInputLang']()) .. is_spell..""
 end
 
 M.simple_lsp = function(self)

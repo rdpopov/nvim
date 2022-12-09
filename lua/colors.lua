@@ -13,3 +13,5 @@ ensure_installed = { "c","cpp","python","javascript","rust","bash","go","vim","j
       enable = true,
   },
 }
+-- dashboard
+require('dash.dash')

@@ -1,4 +1,5 @@
 local packages = {
+    "lewis6991/impatient.nvim";
     "nvim-lua/plenary.nvim";
     -- -- -- Missing features from emacs
     "junegunn/vim-easy-align";
@@ -21,10 +22,10 @@ local packages = {
     "hrsh7th/cmp-nvim-lua";
     "hrsh7th/cmp-path";
     "f3fora/cmp-spell";
-    "rafamadriz/friendly-snippets";
-    "dstein64/vim-startuptime";
     "L3MON4D3/LuaSnip";
     "saadparwaiz1/cmp_luasnip";
+    "rafamadriz/friendly-snippets";
+    "williamboman/nvim-lsp-installer";
     -- -- -- Navigation
     -- "nvim-telescope/telescope-symbols.nvim";
     "ggandor/leap.nvim";
@@ -43,11 +44,12 @@ local packages = {
     "mbbill/undotree";
     "stevearc/aerial.nvim";
     "norcalli/nvim-colorizer.lua";
-    "lewis6991/impatient.nvim";
     "jpalardy/vim-slime";
-    "williamboman/nvim-lsp-installer";
     "folke/todo-comments.nvim";
     "will133/vim-dirdiff";
+    -- "dstein64/vim-startuptime";
+    -- -- -- Pretty stuff, no reason i like it
+    "glepnir/dashboard-nvim";
 }
 
 local pq = require "paq_bootstrap"
