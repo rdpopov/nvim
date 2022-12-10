@@ -1,6 +1,6 @@
 local vscode = require('dash.vscode')
 local kaladin = require('dash.kaladin')
--- local br4 = require("dash.bridge")
+local br4 = require("dash.bridge")
 local choice = kaladin
 
 local home = os.getenv('HOME')

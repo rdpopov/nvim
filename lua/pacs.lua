@@ -3,6 +3,7 @@ local packages = {
     "nvim-lua/plenary.nvim";
     -- -- -- Missing features from emacs
     "junegunn/vim-easy-align";
+    "tpope/vim-surround";
     -- -- -- Git
     "lewis6991/gitsigns.nvim";
     "tpope/vim-fugitive";
@@ -46,6 +47,7 @@ local packages = {
     "norcalli/nvim-colorizer.lua";
     "jpalardy/vim-slime";
     "folke/todo-comments.nvim";
+    -- :ROSKO 
     "will133/vim-dirdiff";
     -- "dstein64/vim-startuptime";
     -- -- -- Pretty stuff, no reason i like it
