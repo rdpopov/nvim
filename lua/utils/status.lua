@@ -20,7 +20,7 @@ local usr = "/home/"..vim.fn.expand("$USER")
 blend_in = false
 pimp = true
 clean = true
-use_preset = "samurai"
+use_preset = "barebones"
 
 M.separators = {
   arrow = { '', '', '','' },
@@ -386,7 +386,7 @@ local gen_highlights = function()
             {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
             {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
             {'Git',                      { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Yellow }},
-            {'Scope',                    { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Red }},
+            {'Scope',                    { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Blue }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'FiletypeAlt',              { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'Filename',                 { bg = ColorPalette[cpal].Background, fg =ColorPalette[cpal].Name   }},
@@ -414,7 +414,7 @@ local gen_highlights = function()
             {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
             {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
             {'Git',                      { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
-            {'Scope',                    { bg = ColorPalette[cpal].Red, fg = ColorPalette[cpal].Background }},
+            {'Scope',                    { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'FiletypeAlt',              { bg = ColorPalette[cpal].Name, fg = ColorPalette[cpal].Background }},
             {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
@@ -569,7 +569,7 @@ local gen_overlap =function()
             {"GitScope" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
 
             {"LangScope" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Violet, gui="bold" }},
-            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
+            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
             -- for truncated use
             {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
             {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
@@ -625,9 +625,9 @@ local gen_overlap =function()
             -- lang - center
             {"LangCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Violet, gui="bold" }},
 
-            {"GitScope" ,{ bg = ColorPalette[cpal].Red, fg = ColorPalette[cpal].Yellow, gui="bold" }},
-            {"LangScope" ,{ bg = ColorPalette[cpal].Red, fg = ColorPalette[cpal].Violet, gui="bold" }},
-            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
+            {"GitScope" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
+            {"LangScope" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Violet, gui="bold" }},
+            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
             -- for truncated use
             {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
             {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
@@ -958,6 +958,18 @@ M.simple_lang = function(self)
   end
     return  to_hl_group('InssLang') .." " .. string.lower(fn['GetInputLang']()) .. is_spell..""
 end
+M.simple_scope  = function(self)
+	local scp = aerial.get_location(true)
+	local scp_guess = aerial.get_location(false)
+	if #scp > 0 then
+	    scp = scp[1].name or ""
+    elseif #scp_guess > 0 then
+	    scp = scp_guess[1].name or ""
+	else
+	    scp = ""
+	end
+	return scp
+end
 
 M.simple_lsp = function(self)
   local errs = LspDiagn("ERROR")
@@ -1099,6 +1111,8 @@ M.simple_line  = function(self)
       mode,
       colors.filetype,
       self:simple_lang(),
+      " "..colors.scope,
+      self:simple_scope(),
       "%=",
       filename,
       git,
