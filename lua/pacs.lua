@@ -38,10 +38,11 @@ local packages = {
     "jbyuki/venn.nvim";
     "lervag/wiki.vim";
     "lervag/lists.vim";
+    "danymat/neogen";
     -- -- -- Utilities
-    "KabbAmine/zeavim.vim";
-    "tpope/vim-commentary";
-    "tpope/vim-dispatch";
+    "KabbAmine/zeavim.vim"; -- Zeal intergation
+    "tpope/vim-commentary"; -- Make comments
+    "tpope/vim-dispatch";   -- Build tools
     "mbbill/undotree";
     "stevearc/aerial.nvim";
     "norcalli/nvim-colorizer.lua";
