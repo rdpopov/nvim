@@ -14,6 +14,7 @@ local packages = {
     "rust-lang/rust.vim";
     {"nvim-treesitter/nvim-treesitter", run=function() vim.api.nvim_command("TSUpdate") end };
     "nvim-treesitter/nvim-treesitter-context";
+    "RRethy/vim-illuminate";
     -- -- -- Lsp
     "neovim/nvim-lspconfig";
     "hrsh7th/nvim-cmp";

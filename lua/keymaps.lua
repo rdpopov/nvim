@@ -63,6 +63,8 @@ keymap('n','<leader>h', '',{callback= function () require("harpoon.ui").toggle_q
 keymap('n','<leader>dn', '<cmd>DirDiffNext<CR>',opts)
 keymap('n','<leader>dp', '<cmd DirDiffPrev<CR>',opts)
 -- Neogen
-vim.api.nvim_set_keymap("n", "<Leader>nc", ":lua require('neogen').generate({ type = 'class' })<CR>", opts)
-vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate({ type = 'func' })<CR>", opts)
-vim.api.nvim_set_keymap("n", "<Leader>nt", ":lua require('neogen').generate({ type = 'type' })<CR>", opts)
+keymap("n", "<Leader>nc", ":lua require('neogen').generate({ type = 'class' })<CR>", opts)
+keymap("n", "<Leader>nf", ":lua require('neogen').generate({ type = 'func' })<CR>", opts)
+keymap("n", "<Leader>nt", ":lua require('neogen').generate({ type = 'type' })<CR>", opts)
+-- iluminate
+keymap('n','<leader>i', '',{callback= function () require('illuminate').toggle() end, noremap = true, silent = true})

@@ -179,3 +179,25 @@ require'treesitter-context'.setup{
     mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
     separator = nil, -- Separator between context and content. Should be a single character string, like '-'.
 }
+require('illuminate').configure({
+    providers = {
+        'treesitter',
+        'lsp',
+        'regex',
+    },
+    delay = 300,
+    filetype_overrides = {},
+    filetypes_denylist = {
+        'dirvish',
+        'fugitive',
+    },
+    filetypes_allowlist = {},
+    modes_denylist = {},
+    modes_allowlist = {},
+    providers_regex_syntax_denylist = {},
+    providers_regex_syntax_allowlist = {},
+    under_cursor = true,
+    large_file_cutoff = nil,
+    large_file_overrides = nil,
+    min_count_to_highlight = 1,
+})
