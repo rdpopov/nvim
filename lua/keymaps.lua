@@ -18,6 +18,7 @@ keymap('n','gT', ':tabclose<CR>',opts)
 keymap('n','<Leader>x', '',{callback = function() build_helper.run() end ,noremap = true, silent = true})
 keymap('n','<Leader>X', '',{callback = function() build_helper.augment() end ,noremap = true, silent = true})
 keymap('n','<Leader>c', '',{callback= utils.qf_toggle, noremap = true, silent = true})
+keymap('n','<Leader>l', ':call g:LToggle()<cr>',{noremap = true, silent = true})
 keymap('','<leader>r', '',{callback= function () emcs.replace_in_selection(true) end, noremap = true, silent = true})
 keymap('','<leader>R', '',{callback= function () emcs.replace_in_selection(false) end, noremap = true, silent = true})
 keymap('n','==', 'vi{=<Esc>',opts)
@@ -27,6 +28,7 @@ keymap('v','//',"y/\\V<C-R>=escape(@\",\'/\')<CR><CR>",opts)
 keymap("v","<C-J>", ":m '>+1<CR>gv=gv",opts)
 keymap("v","<C-K>", ":m '<-2<CR>gv=gv",opts)
 keymap('n','<Leader>s', ':call ToggleLocalSpelling()<CR>',opts) -- fix this
+keymap('n','<Leader>]', ':exec "ltag " . expand("<cword>")| lopen<CR>',opts) -- fix this
 keymap('n','<Leader>mc', '',{callback= function () emcs.leap_lines() end, noremap = true, silent = true}) -- fix this
 -- keymap(3'n','qq', 'vip:s/ \+/ /ge<CR>vip:s/ , /, /ge<CR>vip:s/ \. /. /ge<CR>:nohlsearch<CR>vipgq<Esc>',opts)
 -- keymap('v','qq', '<Esc>gvs/ \+/ /ge<CR>gv:s/ , /, /ge<CR>gv:s/ \. /. /ge<CR>:nohlsearch<CR>gvgq<Esc>',opts)
@@ -48,8 +50,8 @@ keymap('v','<Leader>a', ':EasyAlign<cr>',{noremap = true})
 
 -- Plugin maps
 keymap('n','<Leader>u', ':UndotreeToggle<cr>',opts)
-keymap('n','<Leader>]', ':Gitsigns next_hunk<CR>',opts)
-keymap('n','<Leader>[', ':Gitsigns prev_hunk<CR>',opts)
+keymap('n','<Leader>n', ':Gitsigns next_hunk<CR>',opts)
+keymap('n','<Leader>p', ':Gitsigns prev_hunk<CR>',opts)
 keymap('n','<Leader>A', ':Gitsigns preview_hunk<CR>',opts)
 keymap('n','<Leader>D', ':Gitsigns setqflist<CR>',opts)
 -- Harpoon
