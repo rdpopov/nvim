@@ -14,7 +14,6 @@ local packages = {
     "rust-lang/rust.vim";
     {"nvim-treesitter/nvim-treesitter", run=function() vim.api.nvim_command("TSUpdate") end };
     "nvim-treesitter/nvim-treesitter-context";
-    "RRethy/vim-illuminate";
     -- -- -- Lsp
     "neovim/nvim-lspconfig";
     "hrsh7th/nvim-cmp";
@@ -49,6 +48,7 @@ local packages = {
     "norcalli/nvim-colorizer.lua";
     "jpalardy/vim-slime";
     "folke/todo-comments.nvim";
+    "sirtaj/vim-openscad";
     -- :ROSKO 
     "will133/vim-dirdiff";
     -- "dstein64/vim-startuptime";
