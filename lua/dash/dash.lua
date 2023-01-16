@@ -21,6 +21,8 @@ db.custom_center = {
     { desc = 'Personal Wiki                         ',
     action = 'WikiIndex',
     shortcut = '<Space>WW' },
-    { desc = 'Open Config Root                               ',
-    action = 'cd ' .. home ..'/.config/nvim', }
+    { desc = 'Open Config Root',
+    action = 'cd ' .. home ..'/.config/nvim', },
+    { desc = 'Update plugins',
+    action =  'PaqSync',}
 }

@@ -31,14 +31,14 @@ keymap('n','<leader>to', ':Telescope find_files<CR>',opts)
 keymap('n','<leader>tj', ':Telescope jumplist<CR>',opts)
 keymap('n','<leader>th', ':Telescope help_tags<CR>',opts)
 keymap('n','<leader>tk', ':Telescope keymaps<CR>',opts)
+keymap('n','<leader>tc', ':Telescope quickfix<CR>',opts)
+keymap('n','<leader>tC', ':Telescope loclist<CR>',opts)
 keymap('n','<leader>tF', ':Telescope current_buffer_fuzzy_find theme=get_ivy<CR>',opts)
 keymap('n','<leader>tr', ':Telescope grep_string theme=get_ivy<CR>',opts)
 keymap('v','<leader>tr', '"zy:lua require\'telescope.builtin\'.live_grep{theme=\'get_ivy\', default_text=vim.fn.getreg(\'z\')}<CR>',opts)
 keymap('v','<leader>tM', '"zy:lua require\'telescope.builtin\'.man_pages{sections={\'ALL\'}, default_text=vim.fn.getreg(\'z\')}<CR>',opts) 
 keymap('n','<leader>tR', ':Telescope live_grep theme=get_ivy<CR>',opts)
 
-keymap('n','<leader>f', ':call CscopeFindInteractive(expand(\'<cword>\'))<CR>',opts)
-keymap('n','<leader>l', ':call ToggleLocationList()<CR>',opts)
 
 local leap = require('leap')
 leap.setup {
