@@ -402,7 +402,7 @@ local gen_highlights = function()
             {'TabLineFill',              { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Black, }},
             {'TabLineSel',               { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Name, }},
             {'TabLineSelInv',               { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Name, }},
-            {'Tabline',                  { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Gray, }},
+            {'Tabline',                  { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Blue, }},
         }
     else
         return  {
