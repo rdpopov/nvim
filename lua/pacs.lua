@@ -29,7 +29,7 @@ local packages = {
     "williamboman/nvim-lsp-installer";
     -- -- -- Navigation
     -- "nvim-telescope/telescope-symbols.nvim";
-    "ggandor/leap.nvim";
+    -- "ggandor/leap.nvim";
     "ThePrimeagen/harpoon";
     "nvim-telescope/telescope.nvim";
     "ronakg/quickr-cscope.vim";
@@ -49,11 +49,10 @@ local packages = {
     "jpalardy/vim-slime";
     "folke/todo-comments.nvim";
     "sirtaj/vim-openscad";
-    -- :ROSKO 
     "will133/vim-dirdiff";
     -- "dstein64/vim-startuptime";
     -- -- -- Pretty stuff, no reason i like it
-    "glepnir/dashboard-nvim";
+    -- "glepnir/dashboard-nvim";
 }
 
 local pq = require "paq_bootstrap"

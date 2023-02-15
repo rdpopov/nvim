@@ -340,6 +340,21 @@ ColorPalette = {
         ['Error']      = '#914c54',
         ['Hint']       = '#3760bf',
     }, { __index = function() return '#FFFFFF' end }),
+    ['habamax']            = setmetatable({
+        ['Blue']       = '#87AFD7',
+        ['Red']        = '#D75F5F',
+        ['Yellow']     = '#D7D787',
+        ['Orange']     = '#FFAF5F',
+        ['Green']      = '#AFD7AF',
+        ['Violet']     = '#D7AFD7',
+        ['Gray']       = '#3a3a3a',
+        ['Black']      = '#000000',
+        ['Name']       = '#87AFAF',
+        ['Background'] = '#303030',
+        ['Warning']    = '#FFAF5F',
+        ['Error']      = '#D75F5F',
+        ['Hint']       = '#dadada',
+    }, { __index       = function() return '#FFFFFF' end }),
 }
 
 old_background = nil

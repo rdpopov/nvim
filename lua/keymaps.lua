@@ -30,7 +30,6 @@ keymap("v","<C-J>", ":m '>+1<CR>gv=gv",opts)
 keymap("v","<C-K>", ":m '<-2<CR>gv=gv",opts)
 keymap('n','<Leader>s', ':call ToggleLocalSpelling()<CR>',opts) -- fix this
 keymap('n','<Leader>]', ':exec "ltag " . expand("<cword>")',opts) -- fix this
-keymap('n','<Leader>mc', '',{callback= function () emcs.leap_lines() end, noremap = true, silent = true}) -- fix this
 -- keymap(3'n','qq', 'vip:s/ \+/ /ge<CR>vip:s/ , /, /ge<CR>vip:s/ \. /. /ge<CR>:nohlsearch<CR>vipgq<Esc>',opts)
 -- keymap('v','qq', '<Esc>gvs/ \+/ /ge<CR>gv:s/ , /, /ge<CR>gv:s/ \. /. /ge<CR>:nohlsearch<CR>gvgq<Esc>',opts)
 --

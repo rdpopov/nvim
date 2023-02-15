@@ -1,4 +1,5 @@
-vim.cmd "colorscheme tokyo-storm-mine"
+-- vim.cmd "colorscheme tokyo-storm-mine"
+vim.cmd "colorscheme habamax"
 vim.o.laststatus = 2
 vim.o.showmode = false
 require('utils/status').set_statusline()
@@ -14,4 +15,4 @@ ensure_installed = { "c","cpp","python","javascript","rust","bash","go","vim","j
   },
 }
 -- dashboard
-require('dash.dash')
+-- require('dash.dash')
