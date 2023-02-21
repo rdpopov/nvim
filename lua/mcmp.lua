@@ -179,3 +179,12 @@ require'treesitter-context'.setup{
     mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
     separator = nil, -- Separator between context and content. Should be a single character string, like '-'.
 }
+
+local rt = require("rust-tools")
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+    end,
+  },
+})
+rt.inlay_hints.enable()

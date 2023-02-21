@@ -11,6 +11,7 @@ local packages = {
     "alaviss/nim.nvim";
     "preservim/vim-markdown";
     "simrat39/rust-tools.nvim";
+    "sirtaj/vim-openscad";
     "rust-lang/rust.vim";
     {"nvim-treesitter/nvim-treesitter", run=function() vim.api.nvim_command("TSUpdate") end };
     "nvim-treesitter/nvim-treesitter-context";
@@ -29,7 +30,6 @@ local packages = {
     "williamboman/nvim-lsp-installer";
     -- -- -- Navigation
     -- "nvim-telescope/telescope-symbols.nvim";
-    -- "ggandor/leap.nvim";
     "ThePrimeagen/harpoon";
     "nvim-telescope/telescope.nvim";
     "ronakg/quickr-cscope.vim";
@@ -48,11 +48,7 @@ local packages = {
     "norcalli/nvim-colorizer.lua";
     "jpalardy/vim-slime";
     "folke/todo-comments.nvim";
-    "sirtaj/vim-openscad";
     "will133/vim-dirdiff";
-    -- "dstein64/vim-startuptime";
-    -- -- -- Pretty stuff, no reason i like it
-    -- "glepnir/dashboard-nvim";
 }
 
 local pq = require "paq_bootstrap"
