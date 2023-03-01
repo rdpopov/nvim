@@ -30,9 +30,9 @@ local packages = {
     "williamboman/nvim-lsp-installer";
     -- -- -- Navigation
     -- "nvim-telescope/telescope-symbols.nvim";
+
     "ThePrimeagen/harpoon";
     "nvim-telescope/telescope.nvim";
-    "ronakg/quickr-cscope.vim";
     {"nvim-telescope/telescope-fzf-native.nvim", run="make" };
     -- -- -- Documentation creation
     "jbyuki/venn.nvim";
