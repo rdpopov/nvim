@@ -35,15 +35,46 @@ function! g:LToggle() abort
         execute "silent! lopen 10 "
     endif
 endfunction
+function! RemoveQFItem()
+  let curqfidx = line('.') - 1
+  let qfall = getqflist()
+  call remove(qfall, curqfidx)
+  call setqflist(qfall, 'r')
+  execute curqfidx + 1 . "cfirst"
+  :copen
+endfunction
+:command! RemoveQFItem :call RemoveQFItem()
+" Use map <buffer> to only map dd in the quickfix window. Requires +localmap
+autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 
-nnoremap  <silent> ss "zyiw :set opfunc=ChangeInMotion<CR>g@
-function! CompletionForSearchAndReplace(ArgLead, CmdLine,...)
+if executable('rg') 
+	set grepprg=rg\ --vimgrep\ --hidden\ --glob\ '!.git/'
+endif
+nnoremap <silent> ss "zyiw :set opfunc=ChangeInMotion<CR>g@
+vnoremap <silent> ss <ESC>:call ChangeInMotion("","'<","'>")<CR>
+
+function! CompletionForSearchAndReplaceToken(ArgLead, CmdLine,...)
+	let empty_line = "^$"
 	let r = getreg('/')
 	if r == ""
 		return join([''],"\n")
 	else
 		let rstr = trim(r,"\\|\<|\>")
-		let res_list = uniq([r,rstr,a:ArgLead])
+		let res_list = uniq([r,rstr,empty_line,getreg("z"),a:ArgLead])
+		if len(res_list) == 2
+			let res_list += [""]
+		endif
+		return join(res_list,"\n")
+	endif
+endfunction
+
+function! CompletionForSearchAndReplaceTarget(ArgLead, CmdLine,...)
+	let r = getreg('/')
+	if r == ""
+		return join([''],"\n")
+	else
+		let rstr = trim(r,"\\|\<|\>")
+		let res_list = uniq([r,rstr,getreg("z"),a:ArgLead])
 		if len(res_list) == 2
 			let res_list += [""]
 		endif
@@ -52,32 +83,37 @@ function! CompletionForSearchAndReplace(ArgLead, CmdLine,...)
 endfunction
 
 function! ChangeInMotion(type, ...)
-	let l:t = getreg("z")
-	" if a:0  " Invoked from Visual mode, use '< and '> marks.
-	" 	let l:t = input('Replace (def: '. getreg('/') . ') :',"","custom,CompletionForSearchAndReplace") 
-	" 	if l:t == ""
-	" 		let l:t = etreg("/")
-	" 	endif
-	" 	let l:target = input('Replace '. l:t .' with: ')
-	" 	let l:cmd =  "normal! '<s/" . l:t ."/". l:target ."/g'>" . @
-	" 	let let
-	" else
-	" 1 get cword
-	" 2 if not exist prompt for input, otherwise get the search register
-	let let
-	if l:t == ""
-		let l:t = input('Replace (def: '. getreg('/') . ' ): ')
-	endif
-	" if l:t == ""
-	" 	let l:t = getreg("/")
-	" endif
-	let l:target = input('Replace '. l:t . ' with: ')
-	if a:type == 'line'
-		silent exe "normal! '[v']".@
-	elseif a:type == 'block'
-		silent exe "normal! '[\<C-V>']".@
+	let l:cmd = ""
+	if a:0  " Invoked from Visual mode, use '< and '> marks.
+		let l:t = input('Replace: ',"","custom,CompletionForSearchAndReplaceToken")
+		if l:t == ""
+			return
+		endif
+		let l:target = input('Replace '. l:t . ' with: ',"","custom,CompletionForSearchAndReplaceTarget")
+		if l:target == ""
+			return
+		endif
+		let l:cmd =  "'<,'>s/\\%V" . l:t ."/". l:target ."/g" . @
 	else
-		silent exe "normal! '[V']" .@
+		let l:t = trim(getreg("z"),"\t| ")
+		if l:t == ""
+			let l:t = input('Replace: ',"","custom,CompletionForSearchAndReplaceToken")
+		endif
+		if l:t == ""
+			return
+		endif
+		let l:target = input('Replace '. l:t . ' with: ',"","custom,CompletionForSearchAndReplace")
+		if l:target == ""
+			return
+		endif
+		" if a:type == 'line'
+		" 	silent exe "normal! '[v']".@
+		" elseif a:type == 'block'
+		" 	silent exe "normal! '[\<C-V>']".@
+		" else
+		" 	silent exe "normal! '[v']" .@
+		" endif
+		let l:cmd = "'[,']s/" . l:t ."/". l:target ."/g"
 	endif
-	silent exe "'<,'>s/\\%V" . l:t ."/". l:target ."/g"
+		exe l:cmd
 endfunction
