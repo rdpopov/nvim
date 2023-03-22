@@ -35,3 +35,49 @@ function! g:LToggle() abort
         execute "silent! lopen 10 "
     endif
 endfunction
+
+nnoremap  <silent> ss "zyiw :set opfunc=ChangeInMotion<CR>g@
+function! CompletionForSearchAndReplace(ArgLead, CmdLine,...)
+	let r = getreg('/')
+	if r == ""
+		return join([''],"\n")
+	else
+		let rstr = trim(r,"\\|\<|\>")
+		let res_list = uniq([r,rstr,a:ArgLead])
+		if len(res_list) == 2
+			let res_list += [""]
+		endif
+		return join(res_list,"\n")
+	endif
+endfunction
+
+function! ChangeInMotion(type, ...)
+	let l:t = getreg("z")
+	" if a:0  " Invoked from Visual mode, use '< and '> marks.
+	" 	let l:t = input('Replace (def: '. getreg('/') . ') :',"","custom,CompletionForSearchAndReplace") 
+	" 	if l:t == ""
+	" 		let l:t = etreg("/")
+	" 	endif
+	" 	let l:target = input('Replace '. l:t .' with: ')
+	" 	let l:cmd =  "normal! '<s/" . l:t ."/". l:target ."/g'>" . @
+	" 	let let
+	" else
+	" 1 get cword
+	" 2 if not exist prompt for input, otherwise get the search register
+	let let
+	if l:t == ""
+		let l:t = input('Replace (def: '. getreg('/') . ' ): ')
+	endif
+	" if l:t == ""
+	" 	let l:t = getreg("/")
+	" endif
+	let l:target = input('Replace '. l:t . ' with: ')
+	if a:type == 'line'
+		silent exe "normal! '[v']".@
+	elseif a:type == 'block'
+		silent exe "normal! '[\<C-V>']".@
+	else
+		silent exe "normal! '[V']" .@
+	endif
+	silent exe "'<,'>s/\\%V" . l:t ."/". l:target ."/g"
+endfunction
