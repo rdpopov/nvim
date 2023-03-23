@@ -50,8 +50,9 @@ autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 if executable('rg') 
 	set grepprg=rg\ --vimgrep\ --hidden\ --glob\ '!.git/'
 endif
-nnoremap <silent> ss "zyiw :set opfunc=ChangeInMotion<CR>g@
-vnoremap <silent> ss <ESC>:call ChangeInMotion("","'<","'>")<CR>
+
+nnoremap ss mz"zyiw :set opfunc=ChangeInMotion<CR>g@
+vnoremap ss mz<ESC>:call ChangeInMotion("","'<","'>")<CR>
 
 function! CompletionForSearchAndReplaceToken(ArgLead, CmdLine,...)
 	let empty_line = "^$"
@@ -60,7 +61,7 @@ function! CompletionForSearchAndReplaceToken(ArgLead, CmdLine,...)
 		return join([''],"\n")
 	else
 		let rstr = trim(r,"\\|\<|\>")
-		let res_list = uniq([r,rstr,empty_line,getreg("z"),a:ArgLead])
+		let res_list = uniq([trim(getreg("z"),"\t| "),"\\<".trim(getreg("z"),"\t| ")."\\>",r,rstr,empty_line,a:ArgLead])
 		if len(res_list) == 2
 			let res_list += [""]
 		endif
@@ -84,36 +85,39 @@ endfunction
 
 function! ChangeInMotion(type, ...)
 	let l:cmd = ""
-	if a:0  " Invoked from Visual mode, use '< and '> marks.
+	if a:0
 		let l:t = input('Replace: ',"","custom,CompletionForSearchAndReplaceToken")
 		if l:t == ""
 			return
 		endif
+		let w:h = matchadd('IncSearch', "\\%V" . l:t)
+		exe "redraw"
+		call matchdelete(w:h)
 		let l:target = input('Replace '. l:t . ' with: ',"","custom,CompletionForSearchAndReplaceTarget")
 		if l:target == ""
+			call feedkeys("'z")
 			return
 		endif
 		let l:cmd =  "'<,'>s/\\%V" . l:t ."/". l:target ."/g" . @
+		call matchdelete(w:h)
 	else
-		let l:t = trim(getreg("z"),"\t| ")
+		let l:t = input('Replace: ',"","custom,CompletionForSearchAndReplaceToken")
 		if l:t == ""
-			let l:t = input('Replace: ',"","custom,CompletionForSearchAndReplaceToken")
-		endif
-		if l:t == ""
+			call feedkeys("'z")
 			return
 		endif
-		let l:target = input('Replace '. l:t . ' with: ',"","custom,CompletionForSearchAndReplace")
+		let l:top = "\\%>" . line("'[") . "l"
+		let l:bot = "\\%<" . line("']") . "l"
+		let w:h = matchadd('IncSearch', l:top . l:t . l:bot)
+		exe "redraw"
+		call matchdelete(w:h)
+		let l:target = input('Replace '. l:t . ' with: ',"","custom,CompletionForSearchAndReplaceTarget")
 		if l:target == ""
+			call feedkeys("'z")
 			return
 		endif
-		" if a:type == 'line'
-		" 	silent exe "normal! '[v']".@
-		" elseif a:type == 'block'
-		" 	silent exe "normal! '[\<C-V>']".@
-		" else
-		" 	silent exe "normal! '[v']" .@
-		" endif
 		let l:cmd = "'[,']s/" . l:t ."/". l:target ."/g"
 	endif
+		call feedkeys("'z")
 		exe l:cmd
 endfunction
