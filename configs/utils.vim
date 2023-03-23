@@ -51,8 +51,8 @@ if executable('rg')
 	set grepprg=rg\ --vimgrep\ --hidden\ --glob\ '!.git/'
 endif
 
-nnoremap ss mz"zyiw :set opfunc=ChangeInMotion<CR>g@
-vnoremap ss mz<ESC>:call ChangeInMotion("","'<","'>")<CR>
+nnoremap <silent> ss mz"zyiw :set opfunc=ChangeInMotion<CR>g@
+vnoremap <silent> ss mz<ESC>:call ChangeInMotion("","'<","'>")<CR>
 
 function! CompletionForSearchAndReplaceToken(ArgLead, CmdLine,...)
 	let empty_line = "^$"
@@ -120,4 +120,31 @@ function! ChangeInMotion(type, ...)
 	endif
 		call feedkeys("'z")
 		exe l:cmd
+endfunction
+
+let mapleader = ' '
+
+nnoremap <silent> <leader>/ mz"zyiw :set opfunc=HighlightInMotion<CR>g@
+vnoremap <silent> <leader>/ mz<ESC>:call HighlightInMotion("","'<","'>")<CR>
+
+function! HighlightInMotion(type, ...)
+	if a:0
+		let l:t = input('Replace: ',"","custom,CompletionForSearchAndReplaceToken")
+		if l:t == ""
+			return
+		endif
+		call setreg("/", "/\\%V" . l:t)
+		exe "redraw| set hlsearch"
+	else
+		let l:t = input('Replace: ',"","custom,CompletionForSearchAndReplaceToken")
+		if l:t == ""
+			call feedkeys("'z")
+			return
+		endif
+		let l:top = "\\%>" . line("'[") . "l"
+		let l:bot = "\\%<" . line("']") . "l"
+		call setreg("/", l:top . l:t . l:bot)
+		exe "redraw| set hlsearch"
+	endif
+		call feedkeys("'z")
 endfunction
