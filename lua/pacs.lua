@@ -49,6 +49,8 @@ local packages = {
     "jpalardy/vim-slime";
     "folke/todo-comments.nvim";
     "will133/vim-dirdiff";
+    "rdpopov/CCTree";
+    "dhananjaylatkar/cscope_maps.nvim";
 }
 
 local pq = require "paq_bootstrap"

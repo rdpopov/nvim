@@ -45,6 +45,11 @@ keymap('i','jk', '<Esc>',opts)
 keymap('i','kj', '<Esc>',opts)
 keymap('v','<Leader>a', ':EasyAlign<cr>',{noremap = true})
 
+
+keymap('n','<C-h>','<C-w><',opts)
+keymap('n','<C-l>','<C-w>>',opts)
+keymap('n','<C-k>','<C-w>+',opts)
+keymap('n','<C-j>','<C-w>-',opts)
 -- Plugin maps
 keymap('n','<Leader>u', ':UndotreeToggle<cr>',opts)
 keymap('n','<Leader>n', ':Gitsigns next_hunk<CR>',opts)
