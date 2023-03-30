@@ -75,7 +75,7 @@ function! CompletionForSearchAndReplaceTarget(ArgLead, CmdLine,...)
 		return join([''],"\n")
 	else
 		let rstr = trim(r,"\\|\<|\>")
-		let res_list = uniq([r,rstr,getreg("z"),a:ArgLead])
+		let res_list = uniq([r,rstr,"<delete>",getreg("z"),a:ArgLead])
 		if len(res_list) == 2
 			let res_list += [""]
 		endif
@@ -116,6 +116,10 @@ function! ChangeInMotion(type, ...)
 			call feedkeys("'z")
 			return
 		endif
+		if l:target == "<delete>"
+			let l:target = ""
+		endif
+
 		let l:cmd = "'[,']s/" . l:t ."/". l:target ."/g"
 	endif
 		call feedkeys("'z")

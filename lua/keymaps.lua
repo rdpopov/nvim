@@ -45,6 +45,14 @@ keymap('i','jk', '<Esc>',opts)
 keymap('i','kj', '<Esc>',opts)
 keymap('v','<Leader>a', ':EasyAlign<cr>',{noremap = true})
 
+keymap('n','<leader>glo',':Git log --oneline<CR>',opts)
+
+keymap('n','[c',':cnext<CR>',opts)
+keymap('n',']c',':cprevious<CR>',opts)
+
+keymap('n','[l',':lnext<CR>',opts)
+keymap('n',']l',':lprevious<CR>',opts)
+
 
 keymap('n','<C-h>','<C-w><',opts)
 keymap('n','<C-l>','<C-w>>',opts)

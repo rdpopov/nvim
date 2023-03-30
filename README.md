@@ -1,48 +1,26 @@
 # Wellcome to the (n)vim side
 This is my neovim configuration.\
 Made as portable as I could, but still needs a lot of external programs.\
-Nix helps with that.
 Not the very best, but it's mine and i like it.\
 Just kidding. Actually I don't like it and I edit it constantly.
 
 *"No one ever accomplished anything by being content with who they were"* - Adolin Kholin
 
 ## Why vim?
- - **Speed** - It is way faster and lighter than any ide I have used.
-     Blows past anything in written with electron, and smokes heavier stuff, too.
-
- - **Power** - (n)vim's commands may seem strange at first. But they are more of
-    a language. than simple commands. And  you can always write your own
-
- - **Customizability** - Make (n)vim the editor you want. It takes time,
-    but so does learning any other tool. But with great power comes great customization time
-
- - **Extendability** - Vim is less bare bones than it looks. It is a clean slate
-    at the beginning. It has a lot of powerful functionality built into it. Like
-    searching all included files and finding definitins and uses in them or the
-    :make integration. It can do a lot on its own, but there are also plugins for
-    it from the vim community.
-
- - **Keymap** - The normal (vscode or the ISO standard that is present almost
-    everywhere) shortcuts are somewhat long or similar functions are at opposite
-    ends of the keyboard, or make no sense at all. Vim being modal, modes act as
-    modifiers to a command, and combinations are shorter on average. Also
-    commands behave more like verbs and can be chained for insane results. Basic
-    keymap uses mnemonics, and everything is remapable. Movement commands are
-    superb. There is more variety of movement commands and are more efficient at
-    little movements.
-
- - **Portable** - I keep my vim config in a git so its easy to set it up almost
-    anywhere. I have it running (mostly on my phone), On work and personal
-    machines, or a new machine can be up and ready in a few minutes and ready
-    for work.
+ - Light - Fast, responsive and light
+ - Extendable - either ad-hoc durring runnig with macros, or by a script file.
+ - Portable - most platforms have it.
+ - Keymap - makes more sense once you get used to it. Defining your own is very
+   easy
+ - Customizability - Has a larger breadth of plugins. And vim has a very strong
+   barebones toolset.
+ - Better than VS Code - Harder to get it to commit die while running
 
 ## Main goal
-The main goal for this configuration was to be able to have a neovim config\
-for writing in [nim-lang] or any other language but nim in particular.\
-And have completion like vscode has, but lighter, faster. Also more generic.
-
-[nim-lang]:https://nim-lang.org/
+I want an editor that I understand, it's intuitive to use, and i can script on
+my own. That way I'm not bound by what exists and what doesnt as a plugin, and
+can make my own fnctionality(given some amount of time). This config is includes
+specific tools for wrinting C, Nim and Rust.
 
 ## Screenshots
 
@@ -71,48 +49,49 @@ And have completion like vscode has, but lighter, faster. Also more generic.
 - Git client(s)
 - Quick jump to terminal (spawn,close current one with one binding)
 - File management - netrw is surprisingly robust or nvim-tree
-- Snippets
-- and what else do you need?
+- Snippets (through a plugin)
 
 ## Initial setup
-- [Neovim], vimplug not needed it's put in the local autolaod directory, instead of the global system directory.
-- Currently there is a something of a setup script based on [Nix] for some packages. Refer to [rdpopov/env] for that script
+Besides a working neovim and proper proxy setup, no other setup is needed.
+Neovim incliudes the lsp client, and the package manager bootstraps itself.
 
-### Needed external programs 
-- **ripgrep** as telescope needs it. Easiest to install with rusts's cargo or
-    through [rdpopov/env]
+### Needed external programs
+- **ripgrep** as telescope needs it. Easiest to install with rusts's cargo
 
 ## Configuration is split into several files (call other files ofc)
-- cfg_autocmd.lua - Autocommands
-- cfg_colors.lua - Colorscheme and statusline 
-- cfg_commands.lua - Keymaps
-- cfg_dash.lua - Custom dashboard config (cursed)
-- cfg_ftree.lua - Nvimtree and other things files config
-- cfg_navigation.lua - Telescope and zen config
-- cfg_notes.lua - Vimwiki and Venn(diagrams) config
-- cfg_nvimlsp.lua - Lsp and nvim-cmp config
-- cfg_performance.lua - Segregated the plugin that optimizes lua into byte code
-- cfg_settings.lua - Basic editor settings for vim
-- cfg_utils.lua - Some basic utils I've made
+- auto.lua - Autocommands
+- colors.lua - Colorscheme and statusline 
+- keymaps.lua - Keymaps
+- navigation.lua - Telescope and oter navigaion-type things
+- documentation.lua - Venn adn neogen setup
+- mcmp.lua - Lsp and and things that can be considered language tooling
+- performance.lua - Segregated the plugin that optimizes lua into byte code
+- settings.lua - Basic editor settings for vim
+- utils/ - Some utilities that I have made
 
-- **stashed/**  - past configs for plugins i might come back to on a later date
-- **patches/**  - sometimes you have to patch plugins yourself. (not used)
+## Bespoke functionality outside plugins
+- build_helper.lua - Build system helper 
+A util modifies/and remembers build commands for specific projects or classes of
+projects. A wrapper agound the builtin `:make` or `:Make` from [vim-dispatch]
+- terminal_manager.vim - A terminal managment helper
+A terminal managment helper to spawn/bring up a terminal, and just keep one
+open.
+- ref.vim - A set of functions around the `:include` feature
+- utils.vim - Some vimscipt funcions for quality of life
+    - Redir - redirect vim command output to curretn buffer
+    - ExecuteMacroOverVisualRange - Executes a macro over last visual reange
+    - VBlockNorm - executes a normal mode command sequence ver a block of visual
+      selection
+    - g:LToggle - toggles location list
+    - RemoveQFItem - remove item properly from qf list
+    - ChangeInMotion - change word under cursor in a region selected via vim
+      motion. Or word from search register in visual mode. Interactive select to
+      what to change.
+    - HighlightInMotion - searches for word under cursor in a region selected
+      with a vim motion
+- lang.vim - a helper to enable switching between a predefined list of languages 
+- status.lua - A custom statusline implementation
 
-## My vimscript implementation for some somewhat basic things
-- **functions/open_utils.vim** - Some functions to open and execute text in visual selection from vim
-- **functions/ref.vim** - integrate location lists with builtin include search
-- **functions/lang.vim** - Language switching controls, switch up and down a list of predetermined languages in init.vim <sup>(1)</sup>
-- **functions/around.vim** - a try of making a sensible implementation of placing characters around things , not yet fully ready <sup>(2)</sup>
-- **functions/terminal_manager.vim** - a set of functions to manage terminal splits
-- **configs/colors.vim** - implementation of lightline, not mine, source is in file
-
- <sup>(1) There are maybe better solutions for that, but this is using vim's builtin\
- keymaps feature, and changes input just for vim, and is independant of system\
- input language state (well, system has to be in english(as input) for vim to work)</sup>
-
- <sup>(2) I am aware that there is the vim surround by tpope, I would use it, BUT\
- I want to have something that is not dependant of plugins, as I consider it to be a\
- somewhat basic functionality</sup>
 
 ## Useful links for more delving in
 Quickstart for [Neovim].
@@ -126,3 +105,4 @@ Master the power of the dark [sed].
 [Nix]: https://nixos.org/download.html
 [rdpopov/env]: https://github.com/rdpopov/env
 [sed]: https://linuxhint.com/sed-capture-group-examples/
+[vim-dispatch]: https://github.com/tpope/vim-dispatch
