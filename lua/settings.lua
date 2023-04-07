@@ -7,6 +7,7 @@ vim.cmd "set guioptions-=e"
 vim.cmd "set sessionoptions+=tabpages,globals"
 
 local options   = {
+ showmode       = true,
  compatible     = false,
  wildmenu       = true,
  termguicolors  = true,

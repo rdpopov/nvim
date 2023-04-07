@@ -1,4 +1,5 @@
-vim.cmd "colorscheme duskfox"
+-- vim.cmd "colorscheme duskfox"
+vim.cmd "colorscheme everforest-mine"
 vim.o.laststatus = 2
 vim.o.showmode = false
 require('utils/status').set_statusline()
