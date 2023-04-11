@@ -20,9 +20,10 @@ keymap('n','K', '<Cmd>lua vim.lsp.buf.hover()<CR>',opts)
 keymap('n','rn', '<cmd>lua vim.lsp.buf.rename()<CR>',opts)
 keymap('n','gca', '<cmd>lua vim.lsp.buf.code_action()<CR>',opts)
 keymap('n','gr', ':Telescope lsp_references theme=get_ivy<CR>',opts)
-keymap('n','<leader>gl', '<cmd>lua vim.diagnostic.open_float()',opts)
+keymap('n','<leader>dl', '<cmd>lua vim.diagnostic.open_float()<CR>',opts)
 keymap('n','[d', '<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>',opts)
 keymap('n',']d', '<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>',opts)
+
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
