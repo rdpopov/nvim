@@ -98,7 +98,7 @@ function! ChangeInMotion(type, ...)
 			call feedkeys("'z")
 			return
 		endif
-		let l:cmd =  "'<,'>s/\\%V" . l:t ."/". l:target ."/g" . @
+		let l:cmd =  "'<,'>s/\\%V" . l:t ."/". l:target ."/g"
 		call matchdelete(w:h)
 	else
 		let l:t = input('Replace: ',"","custom,CompletionForSearchAndReplaceToken")
