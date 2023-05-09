@@ -133,22 +133,25 @@ vnoremap <silent> <leader>/ mz<ESC>:call HighlightInMotion("","'<","'>")<CR>
 
 function! HighlightInMotion(type, ...)
 	if a:0
-		let l:t = input('Replace: ',"","custom,CompletionForSearchAndReplaceToken")
+		let l:t = input('Pattern: ',"","custom,CompletionForSearchAndReplaceToken")
 		if l:t == ""
 			return
 		endif
-		call setreg("/", "/\\%V" . l:t)
-		exe "redraw| set hlsearch"
+		set hlsearch
+		call setreg("/", "\\%V" . l:t)
+		exe "redraw"
 	else
-		let l:t = input('Replace: ',"","custom,CompletionForSearchAndReplaceToken")
+		let l:t = input('Pattern: ',"","custom,CompletionForSearchAndReplaceToken")
 		if l:t == ""
 			call feedkeys("'z")
 			return
 		endif
 		let l:top = "\\%>" . line("'[") . "l"
 		let l:bot = "\\%<" . line("']") . "l"
+		set hlsearch
 		call setreg("/", l:top . l:t . l:bot)
-		exe "redraw| set hlsearch"
+		exe "redraw"
 	endif
 		call feedkeys("'z")
 endfunction
+" TODO: add a change next n occurances like in emacs - interactive

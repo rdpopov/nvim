@@ -32,7 +32,7 @@ local cmp = require'cmp'
 local servers = {
     -- "clangd",
     "bashls",
-    -- "sumneko_lua",
+    "lua_ls",
     "nimls",
     "pylsp",
     "tsserver",
