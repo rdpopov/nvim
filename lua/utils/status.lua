@@ -20,7 +20,7 @@ local usr = "/home/"..vim.fn.expand("$USER")
 blend_in = false
 pimp = true
 clean = true
-use_preset = "barebones"
+use_preset = "budget_samurai"
 
 M.separators = {
   arrow = { '', '', '','' },
@@ -29,6 +29,7 @@ M.separators = {
   triangle = {'◣' ,'◢','◢','◣' },
   slice = {'◣' ,'◥','◢','◣' },
   simple_slice = {'\\' ,'\\','\\' ,'\\'},
+  clean_slice = {'\\' ,'\\','' ,''},
   ang = {'⧽' ,'⧼','⧼','⧽' },
   half_box = {'▌' ,'▐','▐','▌' },
 }
@@ -49,12 +50,13 @@ presets = {
     airlineish = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.arrow, tab_nosel = M.separators.ang },
     slantlineish = { sep = 'triangle', space = {' ',' '}, style = 'fancy', inverted = false, clean = true, tab_sel = M.separators.triangle, tab_nosel = M.separators.triangle_slice },
     samurai = { sep = 'slice', space = {' ',' '}, style = 'fancy', inverted = false, clean = true, tab_sel = M.separators.slice, tab_nosel = M.separators.simple_slice},
-    budget_samurai = { sep = 'simple_slice', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.simple_slice, tab_nosel = M.separators.simple_slice },
+    budget_samurai = { sep = 'clean_slice', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.simple_slice, tab_nosel = M.separators.simple_slice },
     sleek = { sep = 'ang', space = {' ',' '}, style = 'fancy', inverted = true, clean = false, tab_sel = M.separators.ang, tab_nosel = M.separators.ang },
     basic_luxe = { sep = 'blank', space = {' ',' '}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
     alt_max = { sep = 'ang', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.ang, tab_nosel = M.separators.ang },
     simple = { sep = 'blank', space = {' ',' '}, style = 'minimal', inverted = false, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
     ghost = { sep = 'blank', space = {'',''}, style = 'minimal', inverted = true, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
+    debil = { sep = 'blank', space = {' ',' '}, style = 'debil', inverted = true, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
 }
 
 if use_preset then
@@ -415,8 +417,8 @@ local gen_highlights = function()
             {'StatusLineSimpleHint',     { fg = ColorPalette[cpal].Hint, bg = ColorPalette[cpal].Background }},
             {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
             {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
-            {'Git',                      { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Yellow }},
-            {'Scope',                    { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal].Blue }},
+            {'Git',                      { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal]['Yellow'] }},
+            {'Scope',                    { bg = ColorPalette[cpal].Background ,fg = ColorPalette[cpal]['Orange'] }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'FiletypeAlt',              { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'Filename',                 { bg = ColorPalette[cpal].Background, fg =ColorPalette[cpal].Name   }},
@@ -429,10 +431,10 @@ local gen_highlights = function()
             {'LspHint',                  { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Hint    }},
             {'InssLang',                 { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Violet, }},
 
-            {'TabLineFill',              { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Black, }},
-            {'TabLineSel',               { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Name, }},
-            {'TabLineSelInv',               { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Name, }},
-            {'Tabline',                  { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Blue, }},
+            {'TabLineFill',              { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Background, }},
+            {'TabLineSel',               { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Green, }},
+            {'TabLineSelInv',            { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Violet }},
+            {'Tabline',                  { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Blue, }},
         }
     else
         return  {
@@ -444,7 +446,7 @@ local gen_highlights = function()
             {'Mode',                     { bg = ColorPalette[cpal].Green, fg = ColorPalette[cpal].Background, gui="bold" }},
             {'LineCol',                  { bg = '#928374', fg = ColorPalette[cpal].Background, gui="bold" }},
             {'Git',                      { bg = ColorPalette[cpal].Yellow, fg = ColorPalette[cpal].Background }},
-            {'Scope',                    { bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Background }},
+            {'Scope',                    { bg = ColorPalette[cpal].Orange, fg = ColorPalette[cpal].Background }},
             {'Filetype',                 { bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Name }},
             {'FiletypeAlt',              { bg = ColorPalette[cpal].Name, fg = ColorPalette[cpal].Background }},
             {'Filename',                 { bg = ColorPalette[cpal].Background, fg = '#EBDBB2' }},
@@ -460,7 +462,7 @@ local gen_highlights = function()
 
             {'TabLineFill',              { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Black, }},
             {'TabLineSelInv',            { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Name, }},
-            {'TabLineSel',               { bg = ColorPalette[cpal].Name,fg = ColorPalette[cpal].Black, }},
+            {'TabLineSel',               { bg = ColorPalette[cpal].Green,fg = ColorPalette[cpal].Black, }},
             {'Tabline',                  { bg = ColorPalette[cpal].Black,fg = ColorPalette[cpal].Gray, }},
         }
     end
@@ -599,7 +601,7 @@ local gen_overlap =function()
             {"GitScope" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Yellow, gui="bold" }},
 
             {"LangScope" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Violet, gui="bold" }},
-            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
             -- for truncated use
             {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
             {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
@@ -657,7 +659,7 @@ local gen_overlap =function()
 
             {"GitScope" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Yellow, gui="bold" }},
             {"LangScope" ,{ bg = ColorPalette[cpal].Blue, fg = ColorPalette[cpal].Violet, gui="bold" }},
-            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Blue, gui="bold" }},
+            {"ScopeCenter" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Orange, gui="bold" }},
             -- for truncated use
             {"NORName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Green, gui="bold" }},
             {"VISName" ,{ bg = ColorPalette[cpal].Background, fg = ColorPalette[cpal].Red, gui="bold" }},
@@ -750,6 +752,19 @@ M.get_git_status = function(self)
     end
   end
 end
+M.debil_get_git = function(self)
+  local stat = vim.b.gitsigns_status
+  local head = vim.b.gitsigns_head
+  if stat and string.len(stat) > 0 then
+    return "git("..stat..")"
+  else
+    if head and string.len(head) >0 then
+      return "git("..head..")"
+    else
+      return ""
+    end
+  end
+end
 
 local is_explorer = function()
   return vim.bo.filetype == 'netrw' or vim.bo.filetype == 'nerdtree' or string.lower(vim.bo.filetype) == 'nvimtree'
@@ -789,16 +804,16 @@ M.get_filename = function(self)
   local name = dir.. '/'  .. vim.fn.expand("%")
   local is_global, len = string.find(vim.fn.expand("%"),"/home/")
   if is_global == 1 then
-    return "%< " .. string.gsub(vim.fn.expand('%'),os.getenv("HOME"),"~") .. '%{&modified?"[+]":""} '
+    return "%< " .. string.gsub(vim.fn.expand('%'),os.getenv("HOME"),"~") .. '%{&modified?"[+]":""}'
   end
 
   if #name > 20 then
-    return "%< ".. vim.fn.pathshorten(dir) .. '/' .. vim.fn.expand("%") .. '%{&modified?"[+]":""} '
+    return "%< ".. vim.fn.pathshorten(dir) .. '/' .. vim.fn.expand("%") .. '%{&modified?"[+]":""}'
   else
     if #vim.fn.expand("%") == 0 then 
-        return '%< '.. '%{&modified?"[+]":""} '
+        return '%< '.. '%{&modified?"[+]":""}'
     else
-        return '%< '.. name ..'%{&modified?"[+]":""} ' 
+        return '%< '.. name ..'%{&modified?"[+]":""}'
     end
   end
 end
@@ -988,6 +1003,14 @@ M.simple_lang = function(self)
   end
     return  to_hl_group('InssLang') .." " .. string.lower(fn['GetInputLang']()) .. is_spell..""
 end
+M.debil_lang = function(self)
+  local is_spell = ""
+  if vim.o.spell then 
+      is_spell = ":s"
+  end
+    return  "("..string.lower(fn['GetInputLang']()) .. is_spell .. ")"
+end
+
 M.simple_scope  = function(self)
 	local scp = aerial.get_location(true)
 	local scp_guess = aerial.get_location(false)
@@ -1000,6 +1023,23 @@ M.simple_scope  = function(self)
 	end
 	return scp
 end
+
+M.debil_scope  = function(self)
+	local scp = aerial.get_location(true)
+	local scp_guess = aerial.get_location(false)
+	if #scp > 0 then
+	    scp = scp[1].name or ""
+    elseif #scp_guess > 0 then
+	    scp = scp_guess[1].name or ""
+	else
+	    scp = ""
+	end
+    if #scp > 0 then 
+        scp = ": @(" .. scp .. ")"
+    end
+	return scp
+end
+
 
 M.simple_lsp = function(self)
   local errs = LspDiagn("ERROR")
@@ -1035,6 +1075,33 @@ M.simple_lsp = function(self)
        end
    end
 
+   return res
+end
+
+M.debil_lsp = function(self)
+  local errs = LspDiagn("ERROR")
+  local warn = LspDiagn("WARNING")
+  local hint = LspDiagn("HINT")
+  -- local colors = self.colors
+  local res = ""
+  if errs == 0 and warn == 0 and hint == 0 then
+      return "lsp(on)"
+  end
+
+   if errs > 0 then
+       res = "E:" .. errs
+   end
+
+   if warn > 0 then
+         res = res .. " W:" .. warn
+   end
+
+   if hint > 0 then
+           res = res .. " H:" .. hint
+   end
+   if #res > 0 then
+       res = "lsp (".. res .. ")"
+   end
    return res
 end
 
@@ -1088,6 +1155,71 @@ M.fancy_line = function(self )
       line_col
     })
 end
+
+
+M.debil  = function(self)
+  local colors = self.colors
+  --mode
+  local mode = self:get_current_mode() .. " "
+  --filename 
+  local filename = self:get_filename() .. " "
+  local deb_lang = self:debil_lang() .. " "
+  local deb_lsp = self:debil_lsp() .. " "
+  local deb_gps = self:debil_scope() .. " "
+  --filename 
+  local filetype = self:get_filetype() .. " "
+  local line_col = self:get_line_col() 
+  local line_col_alt = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat') .. self.separators[active_sep][2]
+  local git = self:debil_get_git() .. " "
+  local ft = ""
+  local colll = colors.filetype
+
+  -- if inverted_colors then 
+  --     colll = colors.inactive
+  -- end
+
+  if not is_explorer() then
+    ft = '%y'
+  end
+
+  if is_explorer() then
+    return table.concat({
+        "%=",
+        filename,
+        "%=",
+      })
+  end
+
+  if is_term() then
+    return table.concat({
+        colors.active,
+        mode,
+        "%=",
+        term_root_val(),
+        "%=",
+        vim.b.terminal_job_pid
+      })
+  end
+  ft = self:get_filetype() .. " "
+  return table.concat({
+      colors.mode,
+      mode,
+      deb_lang,
+      git,
+      deb_lsp,
+      "%=",
+      filename,
+      deb_gps,
+      "%=",
+      colll,
+      colors.mode,
+      ft,
+      line_col,
+    })
+end
+
+
+
 
 M.simple_line  = function(self)
   local colors = self.colors
@@ -1155,6 +1287,7 @@ M.simple_line  = function(self)
 end
 
 local style_callback  = setmetatable({
+    ['debil'] = M.debil,
     ['minimal'] = M.simple_line,
     ['fancy'] = M.fancy_line,
   },{ __index = M.simple_line})
@@ -1212,7 +1345,7 @@ custom_highlight("cWarn",'\'\\(WARN \\|Warn \\)\'',ColorPalette[cpal].Orange)
 custom_highlight("cNote",'\'\\(NOTE \\|Note \\)\'',ColorPalette[cpal].Blue)
 
 
-M.fancy_tab_line = function(self )
+M.fancy_tab_line = function(self)
   local colors = self.colors
   --mode
   local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) ..self:get_current_mode() .. space[1]
@@ -1238,7 +1371,7 @@ M.fancy_tab_line = function(self )
           add_sep = false
           if index ~= 1 then
               if inverted_colors then
-                  s =  s.. colors.tab_selected  .. tab_sel[1]
+                  s =  s.. colors.tab_selected_inv  .. tab_sel[1]
               else
                   s = s .. colors.tab_selected .. tab_sel[1]
               end
@@ -1308,8 +1441,8 @@ api.nvim_exec([[
   au!
   au ColorScheme * lua if define_highlights then define_highlights() end
   au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
-  au TermEnter * setlocal filetype=terminal
   au VimEnter  * setlocal tabline=%!v:lua.Tabline('fancy')
+  au TermEnter * setlocal filetype=terminal
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
   augroup END
   setlocal statusline=%!v:lua.Statusline('active')
