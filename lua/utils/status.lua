@@ -20,7 +20,7 @@ local usr = "/home/"..vim.fn.expand("$USER")
 blend_in = false
 pimp = true
 clean = true
-use_preset = "budget_samurai"
+use_preset = "fat_slice"
 
 M.separators = {
   arrow = { '', '', '','' },
@@ -30,6 +30,7 @@ M.separators = {
   slice = {'◣' ,'◥','◢','◣' },
   simple_slice = {'\\' ,'\\','\\' ,'\\'},
   clean_slice = {'\\' ,'\\','' ,''},
+  fat_slice = {'◥◣' ,'◥◣','' ,''},
   ang = {'⧽' ,'⧼','⧼','⧽' },
   half_box = {'▌' ,'▐','▐','▌' },
 }
@@ -50,7 +51,9 @@ presets = {
     airlineish = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.arrow, tab_nosel = M.separators.ang },
     slantlineish = { sep = 'triangle', space = {' ',' '}, style = 'fancy', inverted = false, clean = true, tab_sel = M.separators.triangle, tab_nosel = M.separators.triangle_slice },
     samurai = { sep = 'slice', space = {' ',' '}, style = 'fancy', inverted = false, clean = true, tab_sel = M.separators.slice, tab_nosel = M.separators.simple_slice},
-    budget_samurai = { sep = 'clean_slice', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.simple_slice, tab_nosel = M.separators.simple_slice },
+    budget_samurai = { sep = 'simple_slice', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.simple_slice, tab_nosel = M.separators.simple_slice },
+    clean_samurai = { sep = 'clean_slice', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.simple_slice, tab_nosel = M.separators.simple_slice },
+    fat_slice = { sep = 'fat_slice', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.fat_slice, tab_nosel = M.separators.fat_slice },
     sleek = { sep = 'ang', space = {' ',' '}, style = 'fancy', inverted = true, clean = false, tab_sel = M.separators.ang, tab_nosel = M.separators.ang },
     basic_luxe = { sep = 'blank', space = {' ',' '}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
     alt_max = { sep = 'ang', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.ang, tab_nosel = M.separators.ang },
@@ -1123,7 +1126,7 @@ M.fancy_line = function(self )
         colors.active,
         "%=",
         to_hl_group(mode_color_group[api.nvim_get_mode().mode]),
-        self.separators[active_sep][1],
+        self.separators[active_sep][3],
         self:get_filename()," ",
         colors.active
       })
