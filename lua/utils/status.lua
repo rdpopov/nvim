@@ -1,5 +1,4 @@
 -- 'based'(stolen) from https://elianiva.my.id/post/neovim-lua-statusline
-
 local fn = vim.fn
 local api = vim.api
 local aerial = require('aerial')
@@ -44,22 +43,22 @@ tab_sel = M.separators.arrow
 tab_nosel = M.separators.ang
 
 presets = {
-    max = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = true , tab_sel = M.separators.arrow, tab_nosel = M.separators.ang },
-    ball = { sep = 'rounded', space = {' ',' '}, style = 'fancy', inverted = false, clean = true , tab_sel = M.separators.rounded, tab_nosel = M.separators.blank },
-    compact = { sep = 'half_box', space = {'',''}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.half_box, tab_nosel = M.separators.half_box },
-    barebones = { sep = 'blank', space = {' ',''}, style = 'minimal', inverted = true, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
-    airlineish = { sep = 'arrow', space = {' ',' '}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.arrow, tab_nosel = M.separators.ang },
-    slantlineish = { sep = 'triangle', space = {' ',' '}, style = 'fancy', inverted = false, clean = true, tab_sel = M.separators.triangle, tab_nosel = M.separators.triangle_slice },
-    samurai = { sep = 'slice', space = {' ',' '}, style = 'fancy', inverted = false, clean = true, tab_sel = M.separators.slice, tab_nosel = M.separators.simple_slice},
-    budget_samurai = { sep = 'simple_slice', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.simple_slice, tab_nosel = M.separators.simple_slice },
-    clean_samurai = { sep = 'clean_slice', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.simple_slice, tab_nosel = M.separators.simple_slice },
-    fat_slice = { sep = 'fat_slice', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.fat_slice, tab_nosel = M.separators.fat_slice },
-    sleek = { sep = 'ang', space = {' ',' '}, style = 'fancy', inverted = true, clean = false, tab_sel = M.separators.ang, tab_nosel = M.separators.ang },
-    basic_luxe = { sep = 'blank', space = {' ',' '}, style = 'fancy', inverted = false, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
-    alt_max = { sep = 'ang', space = {' ',' '}, style = 'fancy', inverted = true, clean = true, tab_sel = M.separators.ang, tab_nosel = M.separators.ang },
-    simple = { sep = 'blank', space = {' ',' '}, style = 'minimal', inverted = false, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
-    ghost = { sep = 'blank', space = {'',''}, style = 'minimal', inverted = true, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
-    debil = { sep = 'blank', space = {' ',' '}, style = 'debil', inverted = true, clean = false, tab_sel = M.separators.blank, tab_nosel = M.separators.blank },
+    max            = { sep = 'arrow', space        = {' ',' '}, style = 'fancy', inverted   = false, clean = true , tab_sel = M.separators.arrow, tab_nosel        = M.separators.ang },
+    ball           = { sep = 'rounded', space      = {' ',' '}, style = 'fancy', inverted   = false, clean = true , tab_sel = M.separators.rounded, tab_nosel      = M.separators.blank },
+    compact        = { sep = 'half_box', space     = {'',''}, style   = 'fancy', inverted   = false, clean = false, tab_sel = M.separators.half_box, tab_nosel     = M.separators.half_box },
+    barebones      = { sep = 'blank', space        = {' ',''}, style  = 'minimal', inverted = true, clean  = false, tab_sel = M.separators.blank, tab_nosel        = M.separators.blank },
+    airlineish     = { sep = 'arrow', space        = {' ',' '}, style = 'fancy', inverted   = false, clean = false, tab_sel = M.separators.arrow, tab_nosel        = M.separators.ang },
+    slantlineish   = { sep = 'triangle', space     = {' ',' '}, style = 'fancy', inverted   = false, clean = true, tab_sel  = M.separators.triangle, tab_nosel     = M.separators.triangle_slice },
+    samurai        = { sep = 'slice', space        = {' ',' '}, style = 'fancy', inverted   = false, clean = true, tab_sel  = M.separators.slice, tab_nosel        = M.separators.simple_slice},
+    budget_samurai = { sep = 'simple_slice', space = {' ',' '}, style = 'fancy', inverted   = true, clean  = true, tab_sel  = M.separators.simple_slice, tab_nosel = M.separators.simple_slice },
+    clean_samurai  = { sep = 'clean_slice', space  = {' ',' '}, style = 'fancy', inverted   = true, clean  = true, tab_sel  = M.separators.simple_slice, tab_nosel = M.separators.simple_slice },
+    fat_slice      = { sep = 'fat_slice', space    = {' ',' '}, style = 'fancy', inverted   = true, clean  = true, tab_sel  = M.separators.fat_slice, tab_nosel    = M.separators.fat_slice },
+    sleek          = { sep = 'ang', space          = {' ',' '}, style = 'fancy', inverted   = true, clean  = false, tab_sel = M.separators.ang, tab_nosel          = M.separators.ang },
+    basic_luxe     = { sep = 'blank', space        = {' ',' '}, style = 'fancy', inverted   = false, clean = false, tab_sel = M.separators.blank, tab_nosel        = M.separators.blank },
+    alt_max        = { sep = 'ang', space          = {' ',' '}, style = 'fancy', inverted   = true, clean  = true, tab_sel  = M.separators.ang, tab_nosel          = M.separators.ang },
+    simple         = { sep = 'blank', space        = {' ',' '}, style = 'minimal', inverted = false, clean = false, tab_sel = M.separators.blank, tab_nosel        = M.separators.blank },
+    ghost          = { sep = 'blank', space        = {'',''}, style   = 'minimal', inverted = true, clean  = false, tab_sel = M.separators.blank, tab_nosel        = M.separators.blank },
+    debil          = { sep = 'blank', space        = {' ',' '}, style = 'debil', inverted   = true, clean  = false, tab_sel = M.separators.blank, tab_nosel        = M.separators.blank },
 }
 
 if use_preset then
@@ -84,298 +83,7 @@ if tver < '2.3' and tver ~= "" then
   cpal = 'badwolf'
 end
 
-ColorPalette = {
-    ['ayu']            = setmetatable({
-        ['Blue']       = '#39BAE6',
-        ['Red']        = '#FF3333',
-        ['Yellow']     = '#E7C547',
-        ['Orange']     = '#FF7733',
-        ['Green']      = '#2BBB4F',
-        ['Violet']     = '#A37ACC',
-        ['Gray']       = '#3E4B59',
-        ['Black']      = '#0F1419',
-        ['Name']       = '#0087af',
-        ['Background'] = '#14191F',
-        ['Warning']    = '#F29718',
-        ['Error']      = '#FF3333',
-        ['Hint']       = '#FFFFFF',
-    }, { __index       = function() return '#FFFFFF' end }),
-    ['everforest']     = setmetatable({
-        ['Blue']       = '#7fbbb3',
-        ['Red']        = '#e67e80',
-        ['Yellow']     = '#dbbc7f',
-        ['Orange']     = '#e69875',
-        ['Green']      = '#83c092',
-        ['Violet']     = '#d699b6',
-        ['Gray']       = '#374145',
-        ['Black']      = '#1E1E2E',
-        ['Name']       = '#7fbbb3',
-        ['Background'] = '#374145',
-        ['Warning']    = '#e69875',
-        ['Error']      = '#e67e80',
-        ['Hint']       = '#d3c6aa',
-    }, { __index       = function() return '#FFFFFF' end }),
-    ['cat']            = setmetatable({
-        ['Blue']       = '#96CDFB',
-        ['Red']        = '#F28FAD',
-        ['Yellow']     = '#FAE3B0',
-        ['Orange']     = '#F8BD96',
-        ['Green']      = '#ABE9B3',
-        ['Violet']     = '#C9CBFF',
-        ['Gray']       = '#575268',
-        ['Black']      = '#1E1E2E',
-        ['Name']       = '#96CDFB',
-        ['Background'] = '#302D41',
-        ['Warning']    = '#F8BD96',
-        ['Error']      = '#F28FAD',
-        ['Hint']       = '#D9E0EE',
-    }, { __index       = function() return '#FFFFFF' end }),
-    ['aurora']         = setmetatable({
-        ['Blue']       = '#65b2ff',
-        ['Red']        = '#F02E6E',
-        ['Yellow']     = '#ffe6b3',
-        ['Orange']     = '#FF7733',
-        ['Green']      = '#62d196',
-        ['Violet']     = '#d4bfff',
-        ['Gray']       = '#3a3a47',
-        ['Black']      = '#1b1b24',
-        ['Background'] = '#1e1c31',
-        ['Name']       = '#87DFEB',
-        ['Warning']    = '#ffe6b3',
-        ['Error']      = '#F02E6E',
-        ['Hint']       = '#FFFFFF',
-    }, { __index       = function() return '#FFFFFF' end }),
-    ['codedark']       = setmetatable({
-        ['Blue']       = '#0A7ACA',
-        ['Red']        = '#F44747',
-        ['Yellow']     = '#FFAF00',
-        ['Orange']     = '#CE9178',
-        ['Green']      = '#4EC9B0',
-        ['Violet']     = '#d4bfff',
-        ['Gray']       = '#444444',
-        ['Black']      = '#1E1E1E',
-        ['Background'] = '#262626',
-        ['Name']       = '#5CB6F8',
-        ['Warning']    = '#FFAF00',
-        ['Error']      = '#FB0101',
-        ['Hint']       = '#FFFFFF',
-    }, { __index       = function() return '#FFFFFF' end }),
-    ['uwu']            = setmetatable({
-        ['Blue']       = '#6CBAD1',
-        ['Red']        = '#ff6565',
-        ['Yellow']     = '#e59e67',
-        ['Orange']     = '#c26f6f',
-        ['Green']      = '#8dc776',
-        ['Violet']     = '#bb8fe5',
-        ['Gray']       = '#444444',
-        ['Black']      = '#131A1C',
-        ['Background'] = '#2f3638',
-        ['Name']       = '#6CBAD1',
-        ['Warning']    = '#e59e67',
-        ['Error']      = '#ff6565',
-        ['Hint']       = '#CCCCCC',
-    }, { __index       = function() return '#FFFFFF' end }),
-    ['gru']            = setmetatable({
-        ['Blue']       = '#83a598',
-        ['Red']        = '#ff757f',
-        ['Yellow']     = '#fabd2f',
-        ['Orange']     = '#fe8019',
-        ['Green']      = '#b8bb26',
-        ['Violet']     = '#d3869b',
-        ['Gray']       = '#504945',
-        ['Black']      = '#1d2021',
-        ['Name']       = '#fbf1c7',
-        ['Background'] = '#3c3836',
-        ['Warning']    = '#fe8019',
-        ['Error']      = '#fb4934',
-        ['Hint']       = '#FFFFFF',
-    }, { __index       = function() return '#FFFFFF' end }),
-    ['embark']         = setmetatable({
-        ['Blue']       = '#91ddff',
-        ['Red']        = '#F02E6E',
-        ['Yellow']     = '#ffe6b3',
-        ['Orange']     = '#F2B482',
-        ['Green']      = '#62d196',
-        ['Violet']     = '#d4bfff',
-        ['Gray']       = '#3E3859',
-        ['Black']      = '#1e1c31',
-        ['Name']       = '#65b2ff',
-        ['Background'] = '#2D2B40',
-        ['Warning']    = '#F2B482',
-        ['Error']      = '#F02E6E',
-        ['Hint']       = '#FFFFFF',
-    }, { __index       = function() return '#FFFFFF' end }),
-    ['nightfox']       = setmetatable({
-        ['Blue']       = '#84cee4',
-        ['Red']        = '#d6616b',
-        ['Yellow']     = '#ffe37e',
-        ['Orange']     = '#f4a261',
-        ['Green']      = '#58cd8b',
-        ['Violet']     = '#b8a1e3',
-        ['Gray']       = '#3b4261',
-        ['Black']      = '#192330',
-        ['Name']       = '#63cdcf',
-        ['Background'] = '#333047',
-        ['Warning']    = '#f6a878',
-        ['Error']      = '#c94f6d',
-        ['Hint']       = '#dfdfe0',
-    }, { __index       = function() return '#FFFFFF' end }),
-    ['duskfox']        = setmetatable({
-        ['Blue']       = '#5FABC7',
-        ['Red']        = '#EF7C9D',
-        ['Yellow']     = '#F8C886',
-        ['Orange']     = '#EDA19E',
-        ['Green']      = '#AECB93',
-        ['Violet']     = '#C8AEEB',
-        ['Gray']       = '#555169',
-        ['Black']      = '#232136',
-        ['Name']       = '#A3D6DF',
-        ['Background'] = '#393552',
-        ['Warning']    = '#EDA19E',
-        ['Error']      = '#EF7C9D',
-        ['Hint']       = '#E1DFF6',
-    }, { __index       = function() return '#FFFFFF' end }),
-    ['dayfox']         = setmetatable({
-        ['Blue']       = '#2D81A3',
-        ['Red']        = '#C26D85',
-        ['Yellow']     = '#EEA846',
-        ['Orange']     = '#DE8C88',
-        ['Green']      = '#618774',
-        ['Violet']     = '#5F5695',
-        ['Gray']       = '#1D344F',
-        ['Black']      = '#EAEAEA',
-        ['Name']       = '#5CA7B4',
-        ['Background'] = '#CFD6DD',
-        ['Warning']    = '#DE8C88',
-        ['Error']      = '#C26D85',
-        ['Hint']       = '#9A80B9',
-    }, { __index       = function() return '#FFFFFF' end }),
-    ['dark']           = setmetatable({
-        ['Blue']       = 'SlateBlue',
-        ['Red']        = 'Red',
-        ['Yellow']     = 'Yellow',
-        ['Orange']     = 'Orange',
-        ['Green']      = 'LightGreen',
-        ['Violet']     = 'LightMagenta',
-        ['Gray']       = 'DarkGrey',
-        ['Black']      = 'Black',
-        ['Name']       = 'LightBlue',
-        ['Background'] = 'Black',
-        ['Warning']    = 'Orange',
-        ['Error']      = 'Red',
-        ['Hint']       = 'LightYellow',
-    }, { __index       = function() return '#FFFFFF' end }),
-    ['srcery']         = setmetatable({
-        ['Blue']       = '#68A8E4',
-        ['Red']        = '#F75341',
-        ['Yellow']     = '#FED06E',
-        ['Orange']     = '#FF8700',
-        ['Green']      = '#98BC37',
-        ['Violet']     = '#FF5C8F',
-        ['Gray']       = '#3A3A3A',
-        ['Black']      = '#1C1B19',
-        ['Name']       = '#68A8E4',
-        ['Background'] = '#303030',
-        ['Warning']    = '#FED06E',
-        ['Error']      = '#F75341',
-        ['Hint']       = '#FCE8C3',
-    }, { __index       = function() return '#FFFFFF' end }),
-    ['aquarium']       = setmetatable({
-        ['Blue']       = '#B8DEEB',
-        ['Red']        = '#EBB9B9',
-        ['Yellow']     = '#E6DFB8',
-        ['Orange']     = '#E8CCA7',
-        ['Green']      = '#B1DBA4',
-        ['Violet']     = '#F6BBE7',
-        ['Gray']       = '#44495E',
-        ['Black']      = '#2C2E3E',
-        ['Name']       = '#B8DEEB',
-        ['Background'] = '#2C2E3E',
-        ['Warning']    = '#E6DFB8',
-        ['Error']      = '#EBB9B9',
-        ['Hint']       = '#C6D0E9',
-    }, { __index = function() return '#FFFFFF' end }),
-
-    ['tokyo-moon']       = setmetatable({
-        ['Blue']       = '#65bcff',
-        ['Red']        = '#c53b53',
-        ['Yellow']     = '#ffc777',
-        ['Orange']     = '#ff966c',
-        ['Green']      = '#4fd6be',
-        ['Violet']     = '#c099ff',
-        ['Gray']       = '#2f334d',
-        ['Black']      = '#1b1b2b',
-        ['Name']       = '#65bcff',
-        ['Background'] = '#2f334d',
-        ['Warning']    = '#ffc777',
-        ['Error']      = '#c53b53',
-        ['Hint']       = '#c8d3f5',
-    }, { __index = function() return '#FFFFFF' end }),
-
-    ['tokyo-night']       = setmetatable({
-        ['Blue']       = '#7aa2f7',
-        ['Red']        = '#db4b4b',
-        ['Yellow']     = '#e0af68',
-        ['Orange']     = '#ff9e64',
-        ['Green']      = '#73daca',
-        ['Violet']     = '#bb9af7',
-        ['Gray']       = '#292e42',
-        ['Black']      = '#1a1b26',
-        ['Name']       = '#1abc9c',
-        ['Background'] = '#292e42',
-        ['Warning']    = '#e0af68',
-        ['Error']      = '#db4b4b',
-        ['Hint']       = '#c0caf5',
-    }, { __index = function() return '#FFFFFF' end }),
-
-    ['tokyo-storm']       = setmetatable({
-        ['Blue']       = '#2ac3de',
-        ['Red']        = '#db4b4b',
-        ['Yellow']     = '#e0af68',
-        ['Orange']     = '#ff9e64',
-        ['Green']      = '#73daca',
-        ['Violet']     = '#bb9af7',
-        ['Gray']       = '#292e42',
-        ['Black']      = '#1a1b26',
-        ['Name']       = '#1abc9c',
-        ['Background'] = '#292e42',
-        ['Warning']    = '#e0af68',
-        ['Error']      = '#db4b4b',
-        ['Hint']       = '#c0caf5',
-    }, { __index = function() return '#FFFFFF' end }),
-
-
-    ['tokyo-day']       = setmetatable({
-        ['Blue']       = '#2e7de9',
-        ['Red']        = '#914c54',
-        ['Yellow']     = '#8c6c3e',
-        ['Orange']     = '#b15c00',
-        ['Green']      = '#118c74',
-        ['Violet']     = '#7847bd',
-        ['Gray']       = '#292e42',
-        ['Black']      = '#1a1b26',
-        ['Name']       = '#1abc9c',
-        ['Background'] = '#e9e9ec',
-        ['Warning']    = '#e0af68',
-        ['Error']      = '#914c54',
-        ['Hint']       = '#3760bf',
-    }, { __index = function() return '#FFFFFF' end }),
-    ['habamax']            = setmetatable({
-        ['Blue']       = '#87AFD7',
-        ['Red']        = '#D75F5F',
-        ['Yellow']     = '#D7D787',
-        ['Orange']     = '#FFAF5F',
-        ['Green']      = '#AFD7AF',
-        ['Violet']     = '#D7AFD7',
-        ['Gray']       = '#3a3a3a',
-        ['Black']      = '#000000',
-        ['Name']       = '#87AFAF',
-        ['Background'] = '#303030',
-        ['Warning']    = '#FFAF5F',
-        ['Error']      = '#D75F5F',
-        ['Hint']       = '#dadada',
-    }, { __index       = function() return '#FFFFFF' end }),
-}
+ColorPalette = require("utils/statusline_colors")
 
 old_background = nil
 --==============================================================================
@@ -436,7 +144,7 @@ local gen_highlights = function()
 
             {'TabLineFill',              { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Background, }},
             {'TabLineSel',               { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Green, }},
-            {'TabLineSelInv',            { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Violet }},
+            {'TabLineSelInv',            { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Blue, }},
             {'Tabline',                  { bg = ColorPalette[cpal].Background,fg = ColorPalette[cpal].Blue, }},
         }
     else
@@ -1177,10 +885,6 @@ M.debil  = function(self)
   local ft = ""
   local colll = colors.filetype
 
-  -- if inverted_colors then 
-  --     colll = colors.inactive
-  -- end
-
   if not is_explorer() then
     ft = '%y'
   end
@@ -1220,9 +924,6 @@ M.debil  = function(self)
       line_col,
     })
 end
-
-
-
 
 M.simple_line  = function(self)
   local colors = self.colors
@@ -1349,87 +1050,41 @@ custom_highlight("cNote",'\'\\(NOTE \\|Note \\)\'',ColorPalette[cpal].Blue)
 
 
 M.fancy_tab_line = function(self)
-  local colors = self.colors
-  --mode
-  local mode = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) ..self:get_current_mode() .. space[1]
-  --filename
-  local filename = colors.filetype .. self:get_filename()
-  local filetype_alt = colors.filetype_alt .. self.separators[active_sep][1]
-  --filename
-  local filetype = colors.filetype .. self:get_filetype()
-  local line_col = to_hl_group(mode_color_group[api.nvim_get_mode().mode]) .. self:get_line_col()
-  local line_col_alt = to_hl_group(mode_color_group[api.nvim_get_mode().mode]..'FFormat') .. self.separators[active_sep][2]
-  local res = ""
-  local s = ""
-  local add_sep = false
-  for index = 1, fn.tabpagenr('$') do
-      local winnr = fn.tabpagewinnr(index)
-      local buflist = fn.tabpagebuflist(index)
-      local bufnr = buflist[winnr]
-      local bufname = fn.bufname(bufnr)
-      local bufmodified = fn.getbufvar(bufnr, '&mod')
+    local colors = self.colors
+    local s = " "
+    local add_sep = false
+    for index = 1, fn.tabpagenr('$') do
+        local winnr = fn.tabpagewinnr(index)
+        local buflist = fn.tabpagebuflist(index)
+        local bufnr = buflist[winnr]
+        local bufname = fn.bufname(bufnr)
+        local bufmodified = fn.getbufvar(bufnr, '&mod')
+        local name = '' 
 
-      s = s .. '%' .. index .. 'T'
-      if index == fn.tabpagenr() then
-          add_sep = false
-          if index ~= 1 then
-              if inverted_colors then
-                  s =  s.. colors.tab_selected_inv  .. tab_sel[1]
-              else
-                  s = s .. colors.tab_selected .. tab_sel[1]
-              end
-          end
-          s = s .. '%#TabLineSel#'
-      else
-          if inverted_colors then
-              if add_sep then
-                  s = s .. colors.tab_selected .. tab_nosel[1]
-                  add_sep = false
-              end
-          else 
-              if add_sep then
-                  s = s .. colors.tab_selected_inv .. tab_nosel[1]
-                  add_sep = false
-              end
-          end
-          s = s .. '%#TabLine#'
-      end
-      -- tab index
-      s = s .. ' '
 
-      if bufname ~= '' then
-          s = s .. fn.fnamemodify(bufname, ':t').. ' '
-      else
-          s = s  .. '[No Name]'.. ' '
-      end
-      -- modify indicator
-      if bufmodified == 1 then
-          s = s .. '+' .. ' '
-      end
+        if bufname ~= '' then
+            name =  fn.fnamemodify(bufname, ':t').. ' '
+        else
+            name =  '[No Name]'.. ' '
+        end
 
-      if index == fn.tabpagenr() then
-          if inverted_colors == false then
-              s = s .. colors.tab_selected_inv ..tab_sel[1]
-          else
-              s = s .. colors.tab_selected ..tab_sel[1]
-          end
-      else 
-          add_sep = true
-      end
-  end
-
-  if inverted_colors then
-      if add_sep then
-          s = s .. colors.tab_selected .. tab_nosel[1]
-          add_sep = false
-      end
-  else 
-      if add_sep then
-          s = s .. colors.tab_selected_inv .. tab_nosel[1]
-          add_sep = false
-      end
-  end
-
+        s = s .. '%' .. index .. 'T'
+        if index == fn.tabpagenr() then
+            s = s .. '%#TabLineSel#'
+            if inverted_colors then
+                s =  s .. colors.tab_selected_inv .. name .. tab_sel[1] .. ' '
+            else
+                s = s .. colors.tab_selected .. name .. tab_sel[1] .. ' '
+            end
+        else
+            if inverted_colors then
+                s = s  ..colors.tab_selected .. name .. tab_nosel[1] .. ' '
+            else 
+                s = s .. colors.tab_selected_inv .. name .. tab_nosel[1] .. ' '
+            end
+            s = s .. '%#TabLine#'
+        end
+    end
     s = s .. '%#TabLineFill#'
     return s
 end
@@ -1453,15 +1108,15 @@ api.nvim_exec([[
 end
 
 require("todo-comments").setup{
-  signs = false,
-  keywords = {
-    FIX = { icon = " ",  color = ColorPalette[cpal].Red, alt = { "FIXME", "BUg", "FIXIT", "ISSUE" },},
-    TODO = { icon = " ", color = ColorPalette[cpal].Orange },
-    HACK = { icon = " ", color = ColorPalette[cpal].Violet ,alt = { "ROSKO"}},
-    WARN = { icon = " ", color = ColorPalette[cpal].Yellow, alt = { "WARNING", "XXX" } },
-    PERF = { icon = " ", color = ColorPalette[cpal].Blue, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-    NOTE = { icon = " ", color = ColorPalette[cpal].Green, alt = { "INFO" } },
-  },
+    signs = false,
+    keywords = {
+        FIX = { icon = " ",  color = ColorPalette[cpal].Red, alt = { "FIXME", "BUg", "FIXIT", "ISSUE" },},
+        TODO = { icon = " ", color = ColorPalette[cpal].Orange },
+        HACK = { icon = " ", color = ColorPalette[cpal].Violet ,alt = { "ROSKO"}},
+        WARN = { icon = " ", color = ColorPalette[cpal].Yellow, alt = { "WARNING", "XXX" } },
+        PERF = { icon = " ", color = ColorPalette[cpal].Blue, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+        NOTE = { icon = " ", color = ColorPalette[cpal].Green, alt = { "INFO" } },
+    },
 }
 
 return {
