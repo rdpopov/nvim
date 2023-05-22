@@ -23,6 +23,8 @@ function! VBlockNorm()
   execute ":'<,'>normal ". input("norm ")
 endfunction
 command! -nargs=1 Redir silent call Redir(<f-args>)
+command! BufOnly execute '%bdelete|edit #|normal `"'
+nnoremap <leader>yf :call system("xclip -i -selection clipboard", expand("%:p"))<CR>
 
 function! g:LToggle() abort
     let buffer_count_before = len(filter(range(1, bufnr('$')), 'bufwinnr(v:val) != -1'))
