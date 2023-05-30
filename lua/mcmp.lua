@@ -190,3 +190,4 @@ rt.setup({
   },
 })
 rt.inlay_hints.enable()
+require('cscope_maps').setup({})
