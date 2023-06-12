@@ -53,9 +53,6 @@ if executable('rg')
 	set grepprg=rg\ --vimgrep\ --hidden\ --glob\ '!.git/'
 endif
 
-nnoremap <silent> ss mz"zyiw :set opfunc=ChangeInMotion<CR>g@
-vnoremap <silent> ss mz<ESC>:call ChangeInMotion("","'<","'>")<CR>
-
 function! CompletionForSearchAndReplaceToken(ArgLead, CmdLine,...)
 	let empty_line = "^$"
 	let r = getreg('/')
@@ -85,57 +82,30 @@ function! CompletionForSearchAndReplaceTarget(ArgLead, CmdLine,...)
 	endif
 endfunction
 
-function! ChangeInMotion(type, ...)
-	let l:cmd = ""
-	if a:0
-		let l:t = input('Replace: ',"","custom,CompletionForSearchAndReplaceToken")
-		if l:t == ""
-			return
-		endif
-		let w:h = matchadd('IncSearch', "\\%V" . l:t)
+function! HighlightWhileTypingVisual(cmdline)
+		let w:h = matchadd('IncSearch', "\\%V" . a:cmdline)
 		exe "redraw"
-		call matchdelete(w:h)
-		let l:target = input('Replace '. l:t . ' with: ',"","custom,CompletionForSearchAndReplaceTarget")
-		if l:target == ""
-			call feedkeys("'z")
-			return
-		endif
-		let l:cmd =  "'<,'>s/\\%V" . l:t ."/". l:target ."/g"
-		call matchdelete(w:h)
-	else
-		let l:t = input('Replace: ',"","custom,CompletionForSearchAndReplaceToken")
-		if l:t == ""
-			call feedkeys("'z")
-			return
-		endif
-		let l:top = "\\%>" . line("'[") . "l"
-		let l:bot = "\\%<" . line("']") . "l"
-		let w:h = matchadd('IncSearch', l:top . l:t . l:bot)
-		exe "redraw"
-		call matchdelete(w:h)
-		let l:target = input('Replace '. l:t . ' with: ',"","custom,CompletionForSearchAndReplaceTarget")
-		if l:target == ""
-			call feedkeys("'z")
-			return
-		endif
-		if l:target == "<delete>"
-			let l:target = ""
-		endif
+			call matchdelete(w:h)
+		return []
+endfunction
 
-		let l:cmd = "'[,']s/" . l:t ."/". l:target ."/g"
-	endif
-		call feedkeys("'z")
-		exe l:cmd
+function! HighlightWhileTypingMotion(cmdline)
+		let l:top = "\\%>'z"
+		let l:bot = "\\%<']"
+		let w:h = matchadd('IncSearch', l:top . a:cmdline . l:bot)
+		exe "redraw"
+		call matchdelete(w:h)
+		return []
 endfunction
 
 let mapleader = ' '
 
-nnoremap <silent> <leader>/ mz"zyiw :set opfunc=HighlightInMotion<CR>g@
-vnoremap <silent> <leader>/ mz<ESC>:call HighlightInMotion("","'<","'>")<CR>
+nnoremap <silent> ss mz"zyiw :set opfunc=HighlightInMotion<CR>g@
+vnoremap <silent> ss mz<ESC>:call HighlightInMotion("","'<","'>")<CR>
 
 function! HighlightInMotion(type, ...)
 	if a:0
-		let l:t = input('Pattern: ',"","custom,CompletionForSearchAndReplaceToken")
+		let l:t = input({'prompt':'Pattern: ','default':'','completion':"custom,CompletionForSearchAndReplaceToken",'highlight':'HighlightWhileTypingVisual'})
 		if l:t == ""
 			return
 		endif
@@ -143,17 +113,45 @@ function! HighlightInMotion(type, ...)
 		call setreg("/", "\\%V" . l:t)
 		exe "redraw"
 	else
-		let l:t = input('Pattern: ',"","custom,CompletionForSearchAndReplaceToken")
+		let l:t = input({'prompt':'Pattern: ','default':'','completion':"custom,CompletionForSearchAndReplaceToken",'highlight':'HighlightWhileTypingMotion'})
 		if l:t == ""
 			call feedkeys("'z")
 			return
 		endif
-		let l:top = "\\%>" . line("'[") . "l"
-		let l:bot = "\\%<" . line("']") . "l"
+		let l:top = "\\%>'z"
+		let l:bot = "\\%<']"
 		set hlsearch
 		call setreg("/", l:top . l:t . l:bot)
 		exe "redraw"
 	endif
 		call feedkeys("'z")
+endfunction
+
+function! DoForCountsImpl(count)
+		" let l:count = a:count_fn()
+		" ifwe have a \\%<'] suffix we are in substite pattern, we will remove
+		" that as we dont knwo if the line count until the '] mark is changed,
+		" which might change what exactly is changed, therefore we will just keep
+		" the start and use number of matches to know when to stop.
+		" let l:pattern = getreg('/')
+		" 	let l:pattern = l:pattern[:-6]
+		" endif
+		" Also if input starts with a an '@' it would be treated as a kind of
+		" macro not as text for substitution
+		let l:get_command = input({'prompt':'Substitute search(start with @ for a command): ','default':'','completion':"custom,CompletionForSearchAndReplaceToken"})
+		if l:get_comman[0] == '@'
+			let l:get_command = l:get_command[1:]
+			let l:get_command = "norm gn" . l:get_command
+		else
+			let l:get_command = "norm cgn" . l:get_command
+		endif
+		call feedkeys("'z".a:count.l:get_command)
+endfunction
+function! DoForCounts()
+	if v:count == 0
+		call DoForCountsImpl(searchcount())
+	else
+		call DoForCountsImpl(v:count1)
+	endif
 endfunction
 " TODO: add a change next n occurances like in emacs - interactive
