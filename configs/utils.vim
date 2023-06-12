@@ -101,7 +101,7 @@ endfunction
 let mapleader = ' '
 
 nnoremap <silent> ss mz"zyiw :set opfunc=HighlightInMotion<CR>g@
-vnoremap <silent> ss mz<ESC>:call HighlightInMotion("","'<","'>")<CR>
+" vnoremap <silent> ss mz<ESC>:call HighlightInMotion("","'<","'>")<CR>
 
 function! HighlightInMotion(type, ...)
 	if a:0
@@ -128,30 +128,33 @@ function! HighlightInMotion(type, ...)
 endfunction
 
 function! DoForCountsImpl(count)
-		" let l:count = a:count_fn()
-		" ifwe have a \\%<'] suffix we are in substite pattern, we will remove
-		" that as we dont knwo if the line count until the '] mark is changed,
-		" which might change what exactly is changed, therefore we will just keep
-		" the start and use number of matches to know when to stop.
-		" let l:pattern = getreg('/')
-		" 	let l:pattern = l:pattern[:-6]
-		" endif
-		" Also if input starts with a an '@' it would be treated as a kind of
-		" macro not as text for substitution
-		let l:get_command = input({'prompt':'Substitute search(start with @ for a command): ','default':'','completion':"custom,CompletionForSearchAndReplaceToken"})
-		if l:get_comman[0] == '@'
-			let l:get_command = l:get_command[1:]
-			let l:get_command = "norm gn" . l:get_command
-		else
-			let l:get_command = "norm cgn" . l:get_command
+	echo a:count
+		let l:pattern = getreg('/')
+		let l:in_scope = ""
+		if l:pattern[-5:] == "\\%<']"
+			let l:pattern = l:pattern[:-6]
+			call setreg('/',l:pattern)
+			let l:in_scope = "'z"
 		endif
-		call feedkeys("'z".a:count.l:get_command)
+		let l:get_command = input({'prompt':'Substitute search(start with @ for a command): ','default':'','completion':"custom,CompletionForSearchAndReplaceToken"})
+		if l:get_command[0] == '@'
+			let l:get_command = l:get_command[1:]
+			let l:get_command = "gn" . l:get_command."\<Esc>"
+		else
+			let l:get_command = "cgn" . l:get_command."\<Esc>"
+		endif
+		call setreg('z',l:get_command)
+		call feedkeys(l:in_scope .a:count."@z")
 endfunction
+
 function! DoForCounts()
 	if v:count == 0
-		call DoForCountsImpl(searchcount())
+		call DoForCountsImpl(searchcount()['total'])
 	else
 		call DoForCountsImpl(v:count1)
 	endif
 endfunction
+
+command! -count=0 -nargs=0 DoForCounts silent call DoForCounts(<f-args>)
+nnoremap <silent> <leader>r <cmd>DoForCounts<CR>
 " TODO: add a change next n occurances like in emacs - interactive

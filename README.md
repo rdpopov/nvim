@@ -17,33 +17,28 @@ Just kidding. Actually I don't like it and I edit it constantly.
  - Better than VS Code - Harder to get it to commit die while running
 
 ## Main goal
-I want an editor that I understand, it's intuitive to use, and i can script on
+I want an editor that I understand, it's intuitive to use(yes,vim is intuitive), and i can script on
 my own. That way I'm not bound by what exists and what doesnt as a plugin, and
 can make my own fnctionality(given some amount of time). This config is includes
 specific tools for wrinting C, Nim and Rust.
 
 ## Screenshots
 
-- Splash scren. Giga cursed ist't it.
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/init.png"  title="This is what peak performance looks like">
 
 - Build integration and documentation preview. Can preview whole files.
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/build.png"  title="Hover definition">
+<img src=".img/build.png"  title="Hover definition">
 
-- Lsp with fuzzy search. Bet your electron ide cant do that.
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/lsp.png" title="Electron-based more like electron-cringe">
+- Lsp with fuzzy search. Can your VSCode do that
+<img src=".img/lsp.png" title="Electron-based more like electron-cringe">
 
 - If vim knows haw to interpret "include" statements and it can search all the files in a tree. And then search for that token.
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/inc_search.png" title="Basic vim is useful.No lsp.">
-
-- Startuptime on my x270 Thinkpad
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/startup.png" title="Sanic speed">
+<img src=".img/inc_search.png" title="Basic vim is useful.No lsp.">
 
 - Tree based undo that persists between sessions. Spell completion and spellcheck.
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/prose.png"  title="Tree undo is best undo">
+<img src=".img/prose.png"  title="Tree undo is best undo">
 
 - Custom tmux status bar script. Shows time, ram, cpu load, free disk space, and battery percent and how long until full charge or empty.
-<img src="https://github.com/Rosen-Popov/nvim/blob/master/.img/pc_status.jpg"  title="Tmux status bar">
+<img src=".img/pc_status.jpg"  title="Tmux status bar">
 
 ## Other features not shown
 - Git client(s)

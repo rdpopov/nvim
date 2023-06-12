@@ -19,8 +19,6 @@ keymap('n','<Leader>x', '',{callback = function() build_helper.run() end ,norema
 keymap('n','<Leader>X', '',{callback = function() build_helper.augment() end ,noremap = true, silent = true})
 keymap('n','<Leader>c', '',{callback= utils.qf_toggle, noremap = true, silent = true})
 keymap('n','<Leader>C', ':call g:LToggle()<cr>',{noremap = true, silent = true})
-keymap('','<leader>r', '',{callback= function () emcs.replace_in_selection(true) end, noremap = true, silent = true})
-keymap('','<leader>R', '',{callback= function () emcs.replace_in_selection(false) end, noremap = true, silent = true})
 keymap('n','==', 'vi{=<Esc>',opts)
 keymap('n','<Leader>=', '1z=',opts)
 keymap('v','<Leader>s', ':SlimeSend<CR>',opts)
