@@ -120,7 +120,9 @@ function! HighlightInMotion(type, ...)
 		endif
 		let l:top = "\\%>'z"
 		let l:bot = "\\%<']"
+
 		set hlsearch
+		call setreg ("z",l:t)
 		call setreg("/", l:top . l:t . l:bot)
 		exe "redraw"
 	endif
@@ -128,23 +130,24 @@ function! HighlightInMotion(type, ...)
 endfunction
 
 function! DoForCountsImpl(count)
-	echo a:count
+		echo a:count
 		let l:pattern = getreg('/')
-		let l:in_scope = ""
-		if l:pattern[-5:] == "\\%<']"
-			let l:pattern = l:pattern[:-6]
-			call setreg('/',l:pattern)
-			let l:in_scope = "'z"
+		let l:target = input('Replace: ',"","custom,CompletionForSearchAndReplaceTarget")
+		if l:target == ""
+			call feedkeys("'z")
+			return
 		endif
-		let l:get_command = input({'prompt':'Substitute search(start with @ for a command): ','default':'','completion':"custom,CompletionForSearchAndReplaceToken"})
-		if l:get_command[0] == '@'
-			let l:get_command = l:get_command[1:]
-			let l:get_command = "gn" . l:get_command."\<Esc>"
+		if l:target == "<delete>"
+			let l:target = ""
+		endif
+		let l:cmd = ""
+		if l:target[0] == '@'
+			let l:cmd = "'[,']g/" . getreg('z') . "/:norm " . l:target[1:]
 		else
-			let l:get_command = "cgn" . l:get_command."\<Esc>"
+			let l:cmd = "'[,']s/" . l:pattern ."/". l:target ."/g"
 		endif
-		call setreg('z',l:get_command)
-		call feedkeys(l:in_scope .a:count."@z")
+		call feedkeys("'z")
+		exe l:cmd
 endfunction
 
 function! DoForCounts()
