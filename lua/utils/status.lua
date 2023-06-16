@@ -1020,6 +1020,13 @@ M.set_inactive = function(self)
     end
 end
 
+M.set_winbar = function(self)
+    local tname = gen_vim_sub("expand('%:p')","'\\/home\\/'.$USER","'~'","''")
+    local rm_fexpl = gen_vim_sub(tname,"'NvimTree_\\d\\+'","''","''")
+    local inct_name = '%=%m %{'.. rm_fexpl ..'}'
+    return inct_name
+end
+
 M.set_explorer = function(self)
   local title = self.colors.mode .. '   '
   local title_alt = self.colors.mode_alt .. self.separators[active_sep][2]
@@ -1031,6 +1038,7 @@ Statusline = setmetatable(M, {
   __call = function(statusline, mode)
     if mode == "active" then return statusline:set_active() end
     if mode == "inactive" then return statusline:set_inactive() end
+    if mode == "winbar" then return statusline:set_winbar() end
     if mode == "explorer" then return statusline:set_explorer() end
   end
 })
@@ -1094,17 +1102,33 @@ Tabline = function()
 end
 
 function set_statusline()
-api.nvim_exec([[
-  augroup Statusline
-  au!
-  au ColorScheme * lua if define_highlights then define_highlights() end
-  au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
-  au VimEnter  * setlocal tabline=%!v:lua.Tabline('fancy')
-  au TermEnter * setlocal filetype=terminal
-  au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
-  augroup END
-  setlocal statusline=%!v:lua.Statusline('active')
-]], false)
+    if vim.o.laststatus ~= 3 then
+        api.nvim_exec([[
+        augroup Statusline
+        au!
+        au ColorScheme * lua if define_highlights then define_highlights() end
+        au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
+        au VimEnter  * setlocal tabline=%!v:lua.Tabline('fancy')
+        au TermEnter * setlocal filetype=terminal
+        au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
+        augroup END
+        setlocal statusline=%!v:lua.Statusline('active')
+        ]], false)
+    else
+        api.nvim_exec([[
+        augroup Statusline
+        au!
+        au ColorScheme * lua if define_highlights then define_highlights() end
+        au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
+        au WinNew * lua if vim.fn.tabpagewinnr(vim.fn.tabpagenr()) > 1 then vim.o.winbar="%=%m %f" end
+        au WinNew * if tabpagewinnr(tabpagenr(), '$') > 1 | set winbar=%!v:lua.Statusline('winbar') | endif
+        au VimEnter  * setlocal tabline=%!v:lua.Tabline('fancy')
+        au TermEnter * setlocal filetype=terminal
+        au WinClosed * if tabpagewinnr(tabpagenr(), '$') == 2 | exe"set winbar=" | endif
+        augroup END
+        setlocal statusline=%!v:lua.Statusline('active')
+        ]], false)
+    end
 end
 
 require("todo-comments").setup{
