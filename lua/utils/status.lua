@@ -1023,8 +1023,9 @@ end
 M.set_winbar = function(self)
     local tname = gen_vim_sub("expand('%:p')","'\\/home\\/'.$USER","'~'","''")
     local rm_fexpl = gen_vim_sub(tname,"'NvimTree_\\d\\+'","''","''")
-    local inct_name = '%=%m %{'.. rm_fexpl ..'}'
-    return inct_name
+    local rm_fexpl = gen_vim_sub(rm_fexpl,"'NetrwTreeListing'","''","''")
+    local shorter = 'pathshorten(' .. rm_fexpl..',3)'
+    return '%=%m %{'.. shorter ..'}'
 end
 
 M.set_explorer = function(self)
