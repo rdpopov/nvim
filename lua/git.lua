@@ -6,9 +6,6 @@ signs = {
     topdelete    = {hl = 'diffRemoved', text = '‾', numhl='', linehl=''},
     changedelete = {hl = 'diffChanged', text = '~', numhl='', linehl=''},
   },
-  keymaps = {
-    noremap = true,
-  },
   watch_gitdir = {
     interval = 3000,
     follow_files = true
