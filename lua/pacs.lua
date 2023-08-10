@@ -40,7 +40,7 @@ local packages = {
     "lervag/lists.vim";
     "danymat/neogen";
     -- -- -- Utilities
-    "KabbAmine/zeavim.vim"; -- Zeal intergation
+    "sunaku/vim-dasht";
     "tpope/vim-commentary"; -- Make comments
     "tpope/vim-dispatch";   -- Build tools
     "mbbill/undotree";
