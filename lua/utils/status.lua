@@ -210,7 +210,7 @@ M.trunc_width = setmetatable({
 
 M.is_truncated = function(_, width)
   local current_width = api.nvim_win_get_width(0)
-  return current_width < width
+  return vim.o.laststatus ~=3 and current_width < width
 end
 
 -- Code table for modes
