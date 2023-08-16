@@ -101,32 +101,26 @@ endfunction
 let mapleader = ' '
 
 nnoremap <silent> ss mz"zyiw :set opfunc=HighlightInMotion<CR>g@
-" vnoremap <silent> ss mz<ESC>:call HighlightInMotion("","'<","'>")<CR>
+vnoremap <silent> ss mz<ESC>:call HighlightInMotion("","'<","'>")<CR>
 
 function! HighlightInMotion(type, ...)
+	set nohlsearch
+	let l:t = ""
 	if a:0
 		let l:t = input({'prompt':'Pattern: ','default':'','completion':"custom,CompletionForSearchAndReplaceToken",'highlight':'HighlightWhileTypingVisual'})
-		if l:t == ""
-			return
-		endif
-		set hlsearch
-		call setreg("/", "\\%V" . l:t)
-		exe "redraw"
-	else
+	else 
 		let l:t = input({'prompt':'Pattern: ','default':'','completion':"custom,CompletionForSearchAndReplaceToken",'highlight':'HighlightWhileTypingMotion'})
-		if l:t == ""
-			call feedkeys("'z")
-			return
-		endif
-		let l:top = "\\%>'z"
-		let l:bot = "\\%<']"
-
-		set hlsearch
-		call setreg ("z",l:t)
-		call setreg("/", l:top . l:t . l:bot)
-		exe "redraw"
 	endif
-		call feedkeys("'z")
+	if l:t == ""
+		return
+	endif
+	set hlsearch
+	call setreg("/", "\\%V" . l:t)
+	if !a:0
+		call feedkeys("`zv`]\<esc>n")
+	endif
+	exe "redraw"
+	call feedkeys("'z")
 endfunction
 
 function! DoForCountsImpl(count)
@@ -140,13 +134,14 @@ function! DoForCountsImpl(count)
 		if l:target == "<delete>"
 			let l:target = ""
 		endif
-		let l:cmd = ""
+		" call feedkeys("'zv']")
+		let l:cmd == ""
 		if l:target[0] == '@'
-			let l:cmd = "'[,']g/" . getreg('z') . "/:norm " . l:target[1:]
+			let l:cmd = "'<,'>g/" . getreg('z') . "/:norm " . l:target[1:]
 		else
-			let l:cmd = "'[,']s/" . l:pattern ."/". l:target ."/g"
+			let l:cmd = "'<,'>s/" . l:pattern ."/". l:target ."/g"
 		endif
-		call feedkeys("'z")
+		call feedkeys("`z")
 		exe l:cmd
 endfunction
 
