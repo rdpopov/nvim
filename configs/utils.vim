@@ -91,7 +91,7 @@ endfunction
 
 function! HighlightWhileTypingMotion(cmdline)
 		let l:top = "\\%>'["
-		let l:bot = "\\%<'].."
+		let l:bot = "\\%<']"
 		let w:h = matchadd('IncSearch', l:top . a:cmdline . l:bot)
 		exe "redraw"
 		call matchdelete(w:h)
