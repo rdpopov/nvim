@@ -55,7 +55,7 @@ endif
 
 function! CompletionForSearchAndReplaceToken(ArgLead, CmdLine,...)
 	let empty_line = "^$"
-	let r = getreg('/')
+	let r = trim(getreg('/'),"\\%V")
 	if r == ""
 		return join([''],"\n")
 	else
@@ -69,7 +69,7 @@ function! CompletionForSearchAndReplaceToken(ArgLead, CmdLine,...)
 endfunction
 
 function! CompletionForSearchAndReplaceTarget(ArgLead, CmdLine,...)
-	let r = getreg('/')
+	let r = trim(getreg('/'),"\\%V")
 	if r == ""
 		return join([''],"\n")
 	else
@@ -85,13 +85,13 @@ endfunction
 function! HighlightWhileTypingVisual(cmdline)
 		let w:h = matchadd('IncSearch', "\\%V" . a:cmdline)
 		exe "redraw"
-			call matchdelete(w:h)
+		call matchdelete(w:h)
 		return []
 endfunction
 
 function! HighlightWhileTypingMotion(cmdline)
-		let l:top = "\\%>'z"
-		let l:bot = "\\%<']"
+		let l:top = "\\%>'["
+		let l:bot = "\\%<'].."
 		let w:h = matchadd('IncSearch', l:top . a:cmdline . l:bot)
 		exe "redraw"
 		call matchdelete(w:h)
@@ -101,10 +101,8 @@ endfunction
 let mapleader = ' '
 
 nnoremap <silent> ss mz"zyiw :set opfunc=HighlightInMotion<CR>g@
-vnoremap <silent> ss mz<ESC>:call HighlightInMotion("","'<","'>")<CR>
 
 function! HighlightInMotion(type, ...)
-	set nohlsearch
 	let l:t = ""
 	if a:0
 		let l:t = input({'prompt':'Pattern: ','default':'','completion':"custom,CompletionForSearchAndReplaceToken",'highlight':'HighlightWhileTypingVisual'})
@@ -115,26 +113,24 @@ function! HighlightInMotion(type, ...)
 		return
 	endif
 	set hlsearch
-	call setreg("/", "\\%V" . l:t)
 	if !a:0
-		call feedkeys("`zv`]\<esc>n")
+		call feedkeys("`[v`]\<esc>n")
 	endif
+	call setreg("/", "\\%V" . l:t)
 	exe "redraw"
-	call feedkeys("'z")
+	call feedkeys("`z")
 endfunction
 
-function! DoForCountsImpl(count)
-		echo a:count
-		let l:pattern = getreg('/')
+function! DoForCountsImpl()
+		let l:pattern = trim(getreg('/'),"\\%V")
 		let l:target = input('Replace: ',"","custom,CompletionForSearchAndReplaceTarget")
 		if l:target == ""
-			call feedkeys("'z")
+			call feedkeys("`z")
 			return
 		endif
 		if l:target == "<delete>"
 			let l:target = ""
 		endif
-		" call feedkeys("'zv']")
 		let l:cmd == ""
 		if l:target[0] == '@'
 			let l:cmd = "'<,'>g/" . getreg('z') . "/:norm " . l:target[1:]
@@ -152,7 +148,8 @@ function! DoForCounts()
 		call DoForCountsImpl(v:count1)
 	endif
 endfunction
+ " nnoremap <silent> <leader>r <cmd>DoForCounts<CR>
+nnoremap <silent> <leader>r call DoForCountsImpl()<CR>
 
-command! -count=0 -nargs=0 DoForCounts silent call DoForCounts(<f-args>)
-nnoremap <silent> <leader>r <cmd>DoForCounts<CR>
+" command! -count=0 -nargs=0 DoForCounts silent call DoForCounts(<f-args>)
 " TODO: add a change next n occurances like in emacs - interactive
