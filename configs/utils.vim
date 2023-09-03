@@ -59,8 +59,9 @@ function! CompletionForSearchAndReplaceToken(ArgLead, CmdLine,...)
 	if r == ""
 		return join([''],"\n")
 	else
-		let rstr = trim(r,"\\|\<|\>")
-		let res_list = uniq([trim(getreg("z"),"\t| "),"\\<".trim(getreg("z"),"\t| ")."\\>",r,rstr,empty_line,a:ArgLead])
+		let rstr = trim(r,"\<|\>")
+		" something's not right here 
+		let res_list = uniq([trim(getreg("z"),"\t| "),"\\<".trim(getreg("z"),"\t| ")."\\>",rstr,"\\<".rstr."\\>"])
 		if len(res_list) == 2
 			let res_list += [""]
 		endif
@@ -73,7 +74,7 @@ function! CompletionForSearchAndReplaceTarget(ArgLead, CmdLine,...)
 	if r == ""
 		return join([''],"\n")
 	else
-		let rstr = trim(r,"\\|\<|\>")
+		let rstr = trim(r,"\<|\>")
 		let res_list = uniq([r,rstr,"<delete>",getreg("z"),a:ArgLead])
 		if len(res_list) == 2
 			let res_list += [""]
@@ -149,7 +150,7 @@ function! DoForCounts()
 	endif
 endfunction
  " nnoremap <silent> <leader>r <cmd>DoForCounts<CR>
-nnoremap <silent> <leader>r call DoForCountsImpl()<CR>
+nnoremap <silent> <leader>r :call DoForCountsImpl()<CR>
 
 " command! -count=0 -nargs=0 DoForCounts silent call DoForCounts(<f-args>)
 " TODO: add a change next n occurances like in emacs - interactive
