@@ -1,11 +1,11 @@
-vim.cmd "colorscheme habamax"
+vim.cmd "colorscheme everforest-mine"
 vim.o.laststatus = 3
 require"string"
 
 local aerial = require('aerial')
 
 function get_git_status()
-  local stat = vim.b.gitsigns_status
+
   local head = vim.b.gitsigns_head
   if stat and string.len(stat) > 0 then
     return " "..stat .. " "
@@ -50,8 +50,8 @@ local function langlsp()
     if vim.o.spell then 
         is_spell = ":s"
     end 
-    local lang_crnt = "%#Keyword#" ..  string.lower(vim.fn['GetInputLang']()) .. is_spell .. "%#LineNr# "
-    return "(" .. lang_crnt .. lsp_info() .. ")"
+    local lang_crnt = "%#Keyword#" ..  string.lower(vim.fn['GetInputLang']()) .. is_spell .. "%#LineNr#"
+    return "(" .. lang_crnt..") (" .. lsp_info() .. ")"
 end
 
 function My_statusline()
