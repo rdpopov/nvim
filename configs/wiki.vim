@@ -14,3 +14,5 @@ let g:wiki_export = {
 			\ 'view' : v:false,
 			\ 'output': fnamemodify(tempname(), ':h'),
 			\}
+
+nnoremap <Leader>WW <Plug>(wiki-index)

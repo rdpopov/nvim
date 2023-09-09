@@ -25,6 +25,7 @@ end
 
 bootstrap_paq({
     -- need configuration
+    "lewis6991/impatient.nvim",
     "savq/paq-nvim",
     'nvim-telescope/telescope.nvim',
     'stevearc/aerial.nvim',
