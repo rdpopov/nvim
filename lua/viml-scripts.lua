@@ -1,0 +1,7 @@
+local pth = vim.fn.stdpath('config')
+vim.cmd('source ' .. pth .. '/configs/apathy.vim')
+vim.cmd('source ' .. pth .. '/configs/lang.vim')
+vim.cmd('source ' .. pth .. '/configs/netrw.vim')
+vim.cmd('source ' .. pth .. '/configs/terminal_manager.vim')
+vim.cmd('source ' .. pth .. '/configs/utils.vim')
+vim.cmd('source ' .. pth .. '/configs/wiki.vim')
