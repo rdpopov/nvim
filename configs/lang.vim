@@ -2,7 +2,7 @@
 " just for insert mode and searching and stuff using builtin keymap
 
 if !exists("g:lang")
-    let g:lang = ['english']
+    let g:lang = ['english','bulgarian-phonetic']
 endif
 
 let g:crnt_lang=0
