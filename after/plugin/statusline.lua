@@ -39,6 +39,9 @@ local function LspDiagn(diagn)
 end
 
 local function lsp_info()
+    if LspDiagn("ERROR") == -1 then                                                                                                                                                                                                                                     
+        return "no lsp"                                                                                                                                                                                                                                                 
+    end
     local lsp_err  = "%#DiagnosticSignError#E:" .. LspDiagn("ERROR")   .. "%#LineNr# "
     local lsp_warn = "%#DiagnosticSignWarn#W:"  .. LspDiagn("WARNING") .. "%#LineNr# "
     local lsp_hint = "%#DiagnosticSignHint#H:"  .. LspDiagn("HINT")    .. "%#LineNr#"
@@ -59,7 +62,7 @@ function My_statusline()
     local branch = get_git_status()
     local set_color_2 = "%#LineNr#"
     local file_name = " %f"
-    local modified = "%m"
+    local modified = "%#String#%m%#LineNr#" 
     local crnt_funtion = aerial_gps()
     local align_right = "%="
     local filetype = " %y"
