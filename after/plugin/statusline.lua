@@ -89,10 +89,8 @@ vim.api.nvim_create_autocmd({"WinEnter"}, {
   callback = function ()
       if #vim.api.nvim_tabpage_list_wins(0) == 1 then
           vim.opt.winbar=""
-          print("change winbar to nonexistent")
       else
           vim.opt.winbar="%#LineNr#%=%f"
-          -- print("change winbar to exist")
       end
   end
 })
