@@ -59,13 +59,12 @@ function! CompletionForSearchAndReplaceToken(ArgLead, CmdLine,...)
     if r == ""
         return join([''],"\n")
     else
-        let rstr = trim(r,"\<|\>")
-        " something's not right here 
-        let res_list = uniq([trim(getreg("z"),"\t| "),"\\<".trim(getreg("z"),"\t| ")."\\>",rstr,"\\<".rstr."\\>"])
+        let l:rstr = trim(r,"\<|\>")
+        let l:res_list = uniq([rstr,"\\<".rstr."\\>"])
         if len(res_list) == 2
-            let res_list += [""]
+            let l:res_list += [""]
         endif
-        return join(res_list,"\n")
+        return join(l:res_list,"\n")
     endif
 endfunction
 
@@ -74,12 +73,12 @@ function! CompletionForSearchAndReplaceTarget(ArgLead, CmdLine,...)
     if r == ""
         return join([''],"\n")
     else
-        let rstr = trim(r,"\<|\>")
-        let res_list = uniq([r,rstr,"<delete>",getreg("z"),a:ArgLead])
-        if len(res_list) == 2
-            let res_list += [""]
+        let l:rstr = r "trim(r,"\<|\>")
+        let l:res_list = uniq([r,rstr,"<delete>",a:ArgLead])
+        if len(l:res_list) == 2
+            let l:res_list += [""]
         endif
-        return join(res_list,"\n")
+        return join(l:res_list,"\n")
     endif
 endfunction
 
@@ -107,8 +106,8 @@ function! HighlightInMotion(type, ...)
     call feedkeys("`z")
 endfunction
 
-function! DoForCountsImpl()
-    let l:target = input('Replace: ',"","custom,CompletionForSearchAndReplaceTarget")
+function! DoForCountsImpl(prompt)
+    let l:target = input(a:prompt,"","custom,CompletionForSearchAndReplaceTarget")
     if l:target == ""
         call feedkeys("`z")
         return
@@ -120,16 +119,22 @@ function! DoForCountsImpl()
         exe "g/" . getreg('/')  . "/:norm " . l:target[1:]
         " done
     else
-        exe ':norm gv"zy'
-        let l:pattern = trim(getreg('/'),"\\%V")
-        let l:res = substitute(getreg('z'),l:pattern,l:target,'g')
-        call setreg('z',l:res)
-        exe ':norm gv"_d"zp'
+        if line("'<") == line("'>") " if marks are on the same line, the '> wont be adjusted so it wiull bew broken or lines change
+            exe ':norm gv"xy'
+            let l:pattern = trim(getreg('/'),"\%V")
+            let l:res = substitute(getreg('x'),l:pattern, l:target, 'g')
+            call setreg('x',l:res)
+            exe ':norm gv"_d"xp'
+        else
+            let l:pattern = trim(getreg('/'),"\%V")
+            exe "'<,'>s/" . l:pattern . "/".l:target. "/g"
+        endif
     endif
     call feedkeys("`z")
 endfunction
 
-nnoremap <silent> <leader>r :call DoForCountsImpl()<CR>
+function! SimpleReplace()
+    call DoForCountsImpl('Replace: ')
+endfunction
 
-" command! -count=0 -nargs=0 DoForCounts silent call DoForCounts(<f-args>)
-" TODO: add a change next n occurances like in emacs - interactive
+nnoremap <silent> <leader>r :call SimpleReplace()<CR>
