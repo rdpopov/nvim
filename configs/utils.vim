@@ -121,8 +121,11 @@ function! DoForCountsImpl(prompt)
     else
         if line("'<") == line("'>") " if marks are on the same line, the '> wont be adjusted so it wiull bew broken or lines change
             exe ':norm gv"xy'
-            let l:pattern = trim(getreg('/'),"\%V")
-            let l:res = substitute(getreg('x'),l:pattern, l:target, 'g')
+            let l:pattern = getreg('/')
+            if l:pattern[:2] == "\\%V"
+                let l:pattern = l:pattern[3:]
+            endif
+            let l:res = substitute(getreg('x') , l:pattern , l:target , 'g')
             call setreg('x',l:res)
             exe ':norm gv"_d"xp'
         else
