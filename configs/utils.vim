@@ -60,7 +60,7 @@ function! CompletionForSearchAndReplaceToken(ArgLead, CmdLine,...)
         return join([''],"\n")
     else
         let l:rstr = trim(r,"\<|\>")
-        let l:res_list = uniq([rstr,"\\<".rstr."\\>"])
+        let l:res_list = uniq([rstr,"\\<".rstr."\\>","\\w\\+","\\d\\+"])
         if len(res_list) == 2
             let l:res_list += [""]
         endif
@@ -95,7 +95,7 @@ nnoremap <silent> ss mz :set opfunc=HighlightInMotion<CR>g@
 
 function! HighlightInMotion(type, ...)
     let l:t = ""
-    execute "norm `[v`]\<esc>"
+    execute "norm `]v`[\<esc>"
     let l:t = input({'prompt':'Pattern: ','default':'','completion':"custom,CompletionForSearchAndReplaceToken",'highlight':'HighlightWhileTypingVisual'})
     if l:t == ""
         return
