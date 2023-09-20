@@ -91,7 +91,7 @@ endfunction
 
 let mapleader = ' '
 
-nnoremap <silent> ss mz :set opfunc=HighlightInMotion<CR>g@
+nnoremap <silent> ss mz:set opfunc=HighlightInMotion<CR>g@
 
 function! HighlightInMotion(type, ...)
     let l:t = ""
@@ -141,4 +141,4 @@ function! SimpleReplace()
     call DoForCountsImpl('Replace: ')
 endfunction
 
-nnoremap <silent> <leader>r mz :call SimpleReplace()<CR>
+nnoremap <silent> <leader>r mz:call SimpleReplace()<CR>

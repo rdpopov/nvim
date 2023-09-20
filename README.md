@@ -24,7 +24,7 @@ useful. Otherwise:
 ## Main goal
 I want an editor that I understand, it's intuitive to use(yes, vim is
 intuitive), and I can script on my own. That way I'm not bound by what exists
-and what doesnt as a plugin, and can make my own functionality(given some amount
+and what doesn't as a plugin, and can make my own functionality(given some amount
 of time). 
 
 ## Main features
@@ -48,17 +48,19 @@ Clone and install ripgrep
 - terminal_manager.vim - A terminal management helper
   A terminal management helper to spawn/bring up a terminal, and just keep one
 open.
-- utils.vim - Some vimscipt funcions for quality of life
-    - Redir - redirect vim command output to current buffer
-    - ExecuteMacroOverVisualRange - Executes a macro over last visual range
-    - VBlockNorm - executes a normal mode command sequence over a block of visual
-      selection
-    - RemoveQFItem - remove item properly from qf list
-    - HighlightInMotion - searches for word under cursor in a region selected
-      with a vim motion
-    - ChangeInMotion - change word under cursor in a region selected via vim
-      motion. Or word from search register in visual mode. Interactive select to
-      what to change.
+- utils.vim - Some vimscipt functions for quality of life
+    -  ExecuteMacroOverVisualRange
+       * executes a macro over all the line in visual selection
+    -  VBlockNorm
+       * executes a :norm command over all the lines of visual selection, kind of a shorthand
+    -  RemoveQFItem
+       * removes an item from qflist
+    -  HighlightInMotion
+       * invoke this and then a text object, ex : ssip - it will operate on the whole paragraph
+       it will then prompt for a pattern that it will highlight in the scope. Aimed to be used with SimpleReplace
+    -  SimpleReplace
+       * will replace whatever is in the search register over the last visual selection
+       * it can also split lines and uses sed under the hood so \0 can be used which makes it flexible
 - lang.vim - a helper to enable switching between a predefined list of languages 
 - status.lua - A custom statusline implementation
 
