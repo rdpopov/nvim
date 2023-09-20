@@ -98,18 +98,19 @@ function! HighlightInMotion(type, ...)
     execute "norm `]v`[\<esc>"
     let l:t = input({'prompt':'Pattern: ','default':'','completion':"custom,CompletionForSearchAndReplaceToken",'highlight':'HighlightWhileTypingVisual'})
     if l:t == ""
+        execute ":norm `z"
         return
     endif
     set hlsearch
     call setreg("/", "\\%V" . l:t)
     exe "redraw"
-    call feedkeys("`z")
+    execute ":norm `z"
 endfunction
 
 function! DoForCountsImpl(prompt)
     let l:target = input(a:prompt,"","custom,CompletionForSearchAndReplaceTarget")
     if l:target == ""
-        call feedkeys("`z")
+        execute ":norm `z"
         return
     endif
     if l:target == "<delete>"
@@ -133,11 +134,11 @@ function! DoForCountsImpl(prompt)
             exe "'<,'>s/" . l:pattern . "/".l:target. "/g"
         endif
     endif
-    call feedkeys("`z")
+    execute ":norm `z"
 endfunction
 
 function! SimpleReplace()
     call DoForCountsImpl('Replace: ')
 endfunction
 
-nnoremap <silent> <leader>r :call SimpleReplace()<CR>
+nnoremap <silent> <leader>r mz :call SimpleReplace()<CR>
