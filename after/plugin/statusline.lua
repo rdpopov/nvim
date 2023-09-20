@@ -35,12 +35,12 @@ local function LspDiagn(diagn)
   if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
       return #vim.diagnostic.get(0,{severity = vim.diagnostic.severity[diagn]})
   end
-      return 0
+      return -1
 end
 
 local function lsp_info()
-    if LspDiagn("ERROR") == -1 then                                                                                                                                                                                                                                     
-        return "no lsp"                                                                                                                                                                                                                                                 
+    if LspDiagn("ERROR") == -1 then
+        return "no lsp"
     end
     local lsp_err  = "%#DiagnosticSignError#E:" .. LspDiagn("ERROR")   .. "%#LineNr# "
     local lsp_warn = "%#DiagnosticSignWarn#W:"  .. LspDiagn("WARNING") .. "%#LineNr# "
