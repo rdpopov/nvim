@@ -51,10 +51,9 @@ bootstrap_paq({
     'tpope/vim-fugitive',
     'nvim-lua/plenary.nvim',
     'mbbill/undotree',
-     -- TODO: have to add aback in 
-     -- cscope maps,
-     -- wiki.vim + lists.vim
+    'lervag/lists.vim',
+    'lervag/wiki.vim',
+    'dhananjaylatkar/cscope_maps.nvim',
      -- venn
-     -- todo highlight
 }
 )
