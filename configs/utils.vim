@@ -90,15 +90,15 @@ function! HighlightWhileTypingVisual(cmdline)
 endfunction
 
 function! HighlightWhileReplace(cmdline)
-    if a:cmdline[0] != '@'
-        let l:pattern = trim(getreg('/'),"\%V")
-        exe "'<,'>s/" . l:pattern . "/".a:cmdline. "/g"
-        exe "redraw"
-        exe ":undo!"
-    endif
+    " if a:cmdline[0] != '@'
+    let l:pattern = trim(getreg('/'),"\%V")
+    " exe "'<,'>s/" . l:pattern . "/".a:cmdline. "/g"
+    call ComplexRepalce(a:cmdline)
+    exe "redraw"
+    exe ":undo!"
+    " endif
     return []
 endfunction
-
 
 let mapleader = ' '
 
@@ -118,18 +118,14 @@ function! HighlightInMotion(type, ...)
     execute ":norm `z"
 endfunction
 
-function! DoForCountsImpl(prompt)
-    let l:target = input({'prompt':a:prompt,'default':'','completion':"custom,CompletionForSearchAndReplaceTarget",'highlight':'HighlightWhileReplace'})
-    if l:target == ""
-        execute ":norm `z"
-        return
+function ComplexRepalce(target)
+    if a:target == "<delete>"
+        let a:target = ""
     endif
-    if l:target == "<delete>"
-        let l:target = ""
-    endif
-    if l:target[0] == '@'
-        exe "g/" . getreg('/')  . "/:norm " . l:target[1:]
-        " done
+    if a:target[0] == '@'
+        if len(a:target) > 2
+            exe "g/" . getreg('/')  . "/:norm " . a:target[1:]
+        endif
     else
         if line("'<") == line("'>") " if marks are on the same line, the '> wont be adjusted so it wiull bew broken or lines change
             exe ':norm gv"xy'
@@ -137,14 +133,23 @@ function! DoForCountsImpl(prompt)
             if l:pattern[:2] == "\\%V"
                 let l:pattern = l:pattern[3:]
             endif
-            let l:res = substitute(getreg('x') , l:pattern , l:target , 'g')
+            let l:res = substitute(getreg('x') , l:pattern , a:target , 'g')
             call setreg('x',l:res)
             exe ':norm gv"_d"xp'
         else
             let l:pattern = trim(getreg('/'),"\%V")
-            exe "'<,'>s/" . l:pattern . "/".l:target. "/g"
+            exe "'<,'>s/" . l:pattern . "/".a:target. "/g"
         endif
     endif
+endfunction
+
+function! DoForCountsImpl(prompt)
+    let l:target = input({'prompt':a:prompt,'default':'','completion':"custom,CompletionForSearchAndReplaceTarget",'highlight':'HighlightWhileReplace'})
+    if l:target == ""
+        execute ":norm `z"
+        return
+    endif
+    call ComplexRepalce(l:target)
     execute ":norm `z"
 endfunction
 
