@@ -89,9 +89,20 @@ function! HighlightWhileTypingVisual(cmdline)
     return []
 endfunction
 
+function! HighlightWhileReplace(cmdline)
+    if a:cmdline[0] != '@'
+        let l:pattern = trim(getreg('/'),"\%V")
+        exe "'<,'>s/" . l:pattern . "/".a:cmdline. "/g"
+        exe "redraw"
+        exe ":undo!"
+    endif
+    return []
+endfunction
+
+
 let mapleader = ' '
 
-nnoremap <silent> ss mz:set opfunc=HighlightInMotion<CR>g@
+nnoremap <silent> s mz:set opfunc=HighlightInMotion<CR>g@
 
 function! HighlightInMotion(type, ...)
     let l:t = ""
@@ -108,7 +119,7 @@ function! HighlightInMotion(type, ...)
 endfunction
 
 function! DoForCountsImpl(prompt)
-    let l:target = input(a:prompt,"","custom,CompletionForSearchAndReplaceTarget")
+    let l:target = input({'prompt':a:prompt,'default':'','completion':"custom,CompletionForSearchAndReplaceTarget",'highlight':'HighlightWhileReplace'})
     if l:target == ""
         execute ":norm `z"
         return
