@@ -49,6 +49,7 @@ bootstrap_paq({
     'junegunn/vim-easy-align',
     'tpope/vim-surround',
     'tpope/vim-fugitive',
+    'rdpopov/vim-select-mode',
     'nvim-lua/plenary.nvim',
     'mbbill/undotree',
     'lervag/lists.vim',

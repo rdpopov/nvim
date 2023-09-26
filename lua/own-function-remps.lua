@@ -11,7 +11,6 @@ local function qf_toggle()
 end
 
 
-
 local data = {
     cmd = "Make",
     args = {},
@@ -104,3 +103,5 @@ keymap('n','<Leader>C', ':call g:LToggle()<cr>',{noremap = true, silent = true, 
 keymap('n','<Leader>s',':call CycleLanguagesUp()<CR>',{noremap = true, silent = true, desc="Switch to next language"})
 keymap('n','<Leader>S', ':call ToggleLocalSpelling()<CR>',{noremap = true, silent = true, desc="Toggle spelling"})
 keymap('n','<C-s>', ':call OpenTerm(v:false)<cr>',{noremap = true, silent = true, desc="Open a terminal"})
+keymap('n','s', '<Plug>VsmHighlightInMotion',{noremap = true, silent = true, desc="Highlight in current selecetion"})
+keymap('n','<Leader>r', '<Plug>VsmInteractiveReplace',{noremap = true, silent = true, desc="Replace in visuial selection"})
