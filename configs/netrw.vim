@@ -38,5 +38,14 @@ fun! Lexplore(dir, right)
     let t:netrw_lexbufnr = bufnr("%")
   endif
 endfun
+
+" Open dir where file is in netrw
+fun! LexploreThis()
+    let w:fname = expand("%:p:h")
+    exe "Lexplore " .. w:fname
+endfun
+
+let g:mapleader = " "
 nnoremap <silent><C-n> :Lexplore \| vertical resize 30<CR>
+nnoremap <silent><Leader><C-n> :call LexploreThis() \| vertical resize 30<CR>
 " absolute width of netrw window
