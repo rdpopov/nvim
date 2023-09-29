@@ -30,7 +30,7 @@ of time).
 ## Main features
 - Lsp integration 
 - Spellcheck and spell completion
-- Meld-like Diff tool 
+- Meld-like Diff tool
 - Git client(s)
 - Quick jump to terminal - keep one shell on background
 - File management - netrw is surprisingly robust or nvim-tree
@@ -55,14 +55,10 @@ open.
        * executes a :norm command over all the lines of visual selection, kind of a shorthand
     -  RemoveQFItem
        * removes an item from qflist
-    -  HighlightInMotion
-       * invoke this and then a text object, ex : ssip - it will operate on the whole paragraph
-       it will then prompt for a pattern that it will highlight in the scope. Aimed to be used with SimpleReplace
-    -  SimpleReplace
-       * will replace whatever is in the search register over the last visual selection
-       * it can also split lines and uses sed under the hood so \0 can be used which makes it flexible
 - lang.vim - a helper to enable switching between a predefined list of languages 
 - status.lua - A custom statusline implementation
+- [rdpopov/vim-select-mode] - My own plugin. It's a shorthand for :s and :g commands. Useful for splitting lines and
+  more precise find and replace. Multicursor-ish but better
 
 ## Useful links for more delving in
 Quick start for [Neovim].
@@ -75,5 +71,6 @@ Master the power of the dark [sed].
 [ms-jpq/chadtree]:https://github.com/ms-jpq/chadtree 
 [Nix]: https://nixos.org/download.html
 [rdpopov/env]: https://github.com/rdpopov/env
+[rdpopov/vim-select-mode]: https://github.com/rdpopov/vim-select-mode
 [sed]: https://linuxhint.com/sed-capture-group-examples/
 [vim-dispatch]: https://github.com/tpope/vim-dispatch

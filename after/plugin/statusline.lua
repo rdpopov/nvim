@@ -28,7 +28,7 @@ local function aerial_gps()
 	else
         return ""
 	end
-    return " %#Function#" .. scp .. "%#LineNr#"
+    return "%#Function#" .. scp .. "%#LineNr#"
 end
 
 local function LspDiagn(diagn)
@@ -62,7 +62,7 @@ function My_statusline()
     local branch = get_git_status()
     local set_color_2 = "%#LineNr#"
     local file_name = " %f"
-    local modified = "%#String#%m%#LineNr#" 
+    local modified = "%#String# %m %#LineNr#"
     local crnt_funtion = aerial_gps()
     local align_right = "%="
     local filetype = " %y"
