@@ -1,3 +1,5 @@
+require("mason").setup()
+
 local lsp = require'lspconfig'
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -51,6 +53,7 @@ local servers = {
     -- "clangd",
     "bashls",
     "lua_ls",
+    "ocamllsp",
     -- "nimls",
     "pylsp",
     -- "tsserver",

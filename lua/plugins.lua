@@ -56,6 +56,6 @@ bootstrap_paq({
     'lervag/wiki.vim',
     'dhananjaylatkar/cscope_maps.nvim',
     'norcalli/nvim-colorizer.lua',
-    -- venn
+    'williamboman/mason.nvim',
 }
 )
