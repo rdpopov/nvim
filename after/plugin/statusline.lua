@@ -90,7 +90,7 @@ vim.api.nvim_create_autocmd({"WinEnter"}, {
       if #vim.api.nvim_tabpage_list_wins(0) == 1 then
           vim.opt.winbar=""
       else
-          vim.opt.winbar="%#LineNr#%=%f"
+          vim.opt.winbar=" %#LineNr#%=%#String#%m %#LineNr#%f"
       end
   end
 })
