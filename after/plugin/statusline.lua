@@ -1,4 +1,4 @@
-vim.cmd "colorscheme rose-pine"
+vim.cmd "colorscheme azenburn"
 vim.o.laststatus = 3
 require"string"
 

@@ -57,8 +57,6 @@ bootstrap_paq({
     'dhananjaylatkar/cscope_maps.nvim',
     'norcalli/nvim-colorizer.lua',
     'williamboman/mason.nvim',
-    'nvim-treesitter/playground',
-    'rktjmp/lush.nvim',
-    'rktjmp/shipwright.nvim'
+    'rdpopov/azenburn',
 }
 )
