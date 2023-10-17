@@ -84,10 +84,10 @@ function My_statusline()
 end
 
 vim.opt.statusline = "%!v:lua.My_statusline()"
-
+vim.g.oyo_mode_winbar = false
 vim.api.nvim_create_autocmd({"WinEnter"}, {
   callback = function ()
-      if #vim.api.nvim_tabpage_list_wins(0) == 1 then
+      if #vim.api.nvim_tabpage_list_wins(0) == 1 or vim.g.goyo_mode_winbar then
           vim.opt.winbar=""
       else
           vim.opt.winbar=" %#LineNr#%=%#String#%m %#LineNr#%f"

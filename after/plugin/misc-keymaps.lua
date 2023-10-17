@@ -8,3 +8,6 @@ keymap('v','<Leader>a', ':EasyAlign<cr>',{noremap = true})
 -- DirDiff
 keymap('n','<leader>dn', '<cmd>DirDiffNext<CR>',opts)
 keymap('n','<leader>dp', '<cmd DirDiffPrev<CR>',opts)
+-- Goyo
+keymap('n','<Leader>z', ':Goyo<cr>',opts)
+    

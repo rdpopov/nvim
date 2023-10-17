@@ -58,5 +58,6 @@ bootstrap_paq({
     'norcalli/nvim-colorizer.lua',
     'williamboman/mason.nvim',
     'rdpopov/azenburn',
+    'junegunn/goyo.vim'
 }
 )
