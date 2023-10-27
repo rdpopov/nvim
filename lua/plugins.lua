@@ -30,7 +30,7 @@ bootstrap_paq({
     'nvim-telescope/telescope.nvim',
     'stevearc/aerial.nvim',
     'lewis6991/gitsigns.nvim';
-    {'nvim-treesitter/nvim-treesitter', run=function() vim.api.nvim_command('TSUpdate') end },
+    {'nvim-treesitter/nvim-treesitter', build=function() vim.api.nvim_command('TSUpdate') end },
     'nvim-treesitter/nvim-treesitter-context',
     -- lsp
     'f3fora/cmp-spell',
@@ -58,6 +58,6 @@ bootstrap_paq({
     'norcalli/nvim-colorizer.lua',
     'williamboman/mason.nvim',
     'rdpopov/azenburn',
-    'junegunn/goyo.vim'
+    'junegunn/goyo.vim',
 }
 )

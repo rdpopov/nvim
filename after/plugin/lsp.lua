@@ -50,7 +50,7 @@ cmp.setup({
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local servers = {
-    -- "clangd",
+    "clangd",
     "bashls",
     "lua_ls",
     "ocamllsp",
