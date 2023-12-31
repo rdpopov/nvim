@@ -51,6 +51,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 
 local servers = {
     "clangd",
+    "jdtls",
     "bashls",
     "lua_ls",
     "ocamllsp",
@@ -59,6 +60,7 @@ local servers = {
     -- "tsserver",
     -- "html",
     "gopls",
+    "zls",
     -- "vimls",
     -- "hls",
     -- "racket_langserver",

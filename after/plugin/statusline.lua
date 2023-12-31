@@ -1,4 +1,4 @@
-vim.cmd "colorscheme azenburn"
+vim.cmd "colorscheme retrobox"
 vim.o.laststatus = 3
 require"string"
 
@@ -57,6 +57,21 @@ local function langlsp()
     return "(" .. lang_crnt..") (" .. lsp_info() .. ")"
 end
 
+local function arduino_status()
+  if vim.bo.filetype ~= "arduino" then
+    return ""
+  end
+  local port = vim.fn["arduino#GetPort"]()
+  local line = string.format("[%s]", vim.g.arduino_board)
+  if vim.g.arduino_programmer ~= "" then
+    line = line .. string.format(" [%s]", vim.g.arduino_programmer)
+  end
+  if port ~= 0 then
+    line = line .. string.format(" (%s:%s)", port, vim.g.arduino_serial_baud)
+  end
+  return line
+end
+
 function My_statusline()
     local set_color_1 = "%#PmenuSel#"
     local branch = get_git_status()
@@ -66,6 +81,7 @@ function My_statusline()
     local crnt_funtion = aerial_gps()
     local align_right = "%="
     local filetype = " %y"
+    local ard = arduino_status()
     local lang_and_lsp = langlsp()
     local linecol = " %l:%c"
 
@@ -77,6 +93,7 @@ function My_statusline()
         modified,
         crnt_funtion,
         align_right,
+        ard,
         lang_and_lsp,
         filetype,
         linecol}

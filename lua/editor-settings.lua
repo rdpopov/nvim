@@ -16,6 +16,7 @@ local options   = {
  expandtab      = true,
  backspace      = "indent,eol,start",
  autoindent     = true,
+ exrc           = true,
  splitbelow     = true,
  copyindent     = true,
  number         = true,

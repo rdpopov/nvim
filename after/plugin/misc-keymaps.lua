@@ -10,4 +10,11 @@ keymap('n','<leader>dn', '<cmd>DirDiffNext<CR>',opts)
 keymap('n','<leader>dp', '<cmd DirDiffPrev<CR>',opts)
 -- Goyo
 keymap('n','<Leader>z', ':Goyo<cr>',opts)
-    
+
+keymap("n", "<leader>AA" , "<cmd>ArduinoAttach<CR>",opts)
+keymap("n", "<leader>AV" , "<cmd>ArduinoVerify<CR>",opts)
+keymap("n", "<leader>AU" , "<cmd>ArduinoUpload<CR>",opts)
+keymap("n", "<leader>AUS", " <cmd>ArduinoUploadAndSerial<CR>",opts)
+keymap("n", "<leader>AS" , "<cmd>ArduinoSerial<CR>",opts)
+keymap("n", "<leader>AB" , "<cmd>ArduinoChooseBoard<CR>",opts)
+keymap("n", "<leader>AP" , "<cmd>ArduinoChooseProgrammer<CR>",opts)

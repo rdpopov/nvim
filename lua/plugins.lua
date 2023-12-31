@@ -59,5 +59,7 @@ bootstrap_paq({
     'williamboman/mason.nvim',
     'rdpopov/azenburn',
     'junegunn/goyo.vim',
+    'mfussenegger/nvim-jdtls',
+    'stevearc/vim-arduino',
 }
 )
