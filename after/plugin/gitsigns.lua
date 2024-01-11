@@ -7,11 +7,12 @@ keymap('n','<Leader>A', ':Gitsigns preview_hunk<CR>',opts)
 keymap('n','<Leader>D', ':Gitsigns setqflist<CR>',opts)
 require('gitsigns').setup{
 signs = {
-    add          = {hl = 'diffAdded'   , text = '▐', numhl='', linehl=''},
-    change       = {hl = 'diffLine', text = '▐', numhl='', linehl=''},
-    delete       = {hl = 'diffRemoved', text = '_', numhl='', linehl=''},
-    topdelete    = {hl = 'diffRemoved', text = '‾', numhl='', linehl=''},
-    changedelete = {hl = 'diffChanged', text = '~', numhl='', linehl=''},
+    add          = {hl = 'diffAdded'   , text = '▐', numhl = '', linehl = ''},
+    change       = {hl = 'diffLine', text     = '▐', numhl = '', linehl = ''},
+    delete       = {hl = 'diffRemoved', text  = '_', numhl = '', linehl = ''},
+    topdelete    = {hl = 'diffRemoved', text  = '‾', numhl = '', linehl = ''},
+    changedelete = {hl = 'diffChanged', text  = '~', numhl = '', linehl = ''},
+    untracked    = {hl = 'diffChanged', text  = '┆', numhl = '', linehl = ''},
   },
   watch_gitdir = {
     interval = 3000,

@@ -35,13 +35,15 @@ bootstrap_paq({
     -- lsp
     'f3fora/cmp-spell',
     'hrsh7th/cmp-path',
-    'L3MON4D3/LuaSnip',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-nvim-lsp-signature-help',
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/nvim-cmp',
     'neovim/nvim-lspconfig',
     'saadparwaiz1/cmp_luasnip',
+    'hrsh7th/cmp-vsnip',
+    'hrsh7th/vim-vsnip',
+    'rafamadriz/friendly-snippets',
     -- as is
     'tpope/vim-dispatch',
     'will133/vim-dirdiff',
@@ -61,5 +63,6 @@ bootstrap_paq({
     'junegunn/goyo.vim',
     'mfussenegger/nvim-jdtls',
     'stevearc/vim-arduino',
+    'danymat/neogen',
 }
 )

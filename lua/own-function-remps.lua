@@ -105,3 +105,5 @@ keymap('n','<Leader>S', ':call ToggleLocalSpelling()<CR>',{noremap = true, silen
 keymap('n','<C-s>', ':call OpenTerm(v:false)<cr>',{noremap = true, silent = true, desc="Open a terminal"})
 keymap('n','s', '<Plug>VsmHighlightInMotion',{noremap = true, silent = true, desc="Highlight in current selecetion"})
 keymap('n','<Leader>r', '<Plug>VsmInteractiveReplace',{noremap = true, silent = true, desc="Replace in visuial selection"})
+keymap('n','<Leader>f', '<Plug>VsmAccumulate',{noremap = true, silent = true, desc="Extract patterns out of visial selection and set the default register with result"})
+keymap('n','<Leader>F', '<Plug>VsmAccumulateAppend',{noremap = true, silent = true, desc="Extract patterns out of visial selection and append them to default register"})
