@@ -107,3 +107,4 @@ keymap('n','s', '<Plug>VsmHighlightInMotion',{noremap = true, silent = true, des
 keymap('n','<Leader>r', '<Plug>VsmInteractiveReplace',{noremap = true, silent = true, desc="Replace in visuial selection"})
 keymap('n','<Leader>f', '<Plug>VsmAccumulate',{noremap = true, silent = true, desc="Extract patterns out of visial selection and set the default register with result"})
 keymap('n','<Leader>F', '<Plug>VsmAccumulateAppend',{noremap = true, silent = true, desc="Extract patterns out of visial selection and append them to default register"})
+keymap('n','<Leader>c', '<Plug>VsmAcc',{noremap = true, desc="Accumilate strings matching the pattern in visal selection"})
