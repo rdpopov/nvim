@@ -25,7 +25,6 @@ end
 
 bootstrap_paq({
     -- need configuration
-    'lewis6991/impatient.nvim',
     'savq/paq-nvim',
     'nvim-telescope/telescope.nvim',
     'stevearc/aerial.nvim',
@@ -51,7 +50,7 @@ bootstrap_paq({
     'junegunn/vim-easy-align',
     'tpope/vim-surround',
     'tpope/vim-fugitive',
-    'rdpopov/vim-select-mode',
+    'rdpopov/nvim-sak',
     'nvim-lua/plenary.nvim',
     'mbbill/undotree',
     'lervag/lists.vim',

@@ -1,7 +1,4 @@
-local ok, _ = pcall(require, 'impatient')
-if not ok then
-	print('restart neovim after plugs are installed')
-end
+vim.loader.enable()
 require("plugins")
 require("editor-settings")
 require("viml-scripts")

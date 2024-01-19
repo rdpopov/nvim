@@ -8,7 +8,7 @@ function get_git_status()
 
   local head = vim.b.gitsigns_head
   if stat and string.len(stat) > 0 then
-    return " "..stat .. " "
+    return " @"..stat .. " "
   else
     if head and string.len(head) >0 then
       return " "..head .. " "
@@ -72,9 +72,11 @@ local function arduino_status()
   return line
 end
 
+
 function My_statusline()
     local set_color_1 = "%#PmenuSel#"
     local branch = get_git_status()
+    local mode = " "..vim.fn.mode() .. " "
     local set_color_2 = "%#LineNr#"
     local file_name = " %f"
     local modified = "%#String# %m %#LineNr#"
@@ -87,9 +89,10 @@ function My_statusline()
 
     return table.concat({
         set_color_1,
-        branch,
+        mode,
         set_color_2,
         file_name,
+        branch,
         modified,
         crnt_funtion,
         align_right,
