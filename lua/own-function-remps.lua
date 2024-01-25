@@ -90,8 +90,6 @@ local build_helper = {
     run = exec_bld
 }
 
-
-
 local opts = {noremap = true, silent = true}
 local keymap = vim.api.nvim_set_keymap
 vim.g.mapleader = ' '
@@ -100,9 +98,11 @@ keymap('n','<Leader>X', '',{callback = function() build_helper.augment() end ,no
 keymap('n','<Leader>c', '',{callback= qf_toggle, noremap = true, silent = true, desc="Toggle qf list"})
 keymap('x','<leader><leader>',':<C-u>call VBlockNorm()<cr>' ,{silent = true, desc="Executer normal mode command over visual selecetion"})
 keymap('n','<Leader>C', ':call g:LToggle()<cr>',{noremap = true, silent = true, desc="Toggle loc list"})
-keymap('n','<Leader>s',':call CycleLanguagesUp()<CR>',{noremap = true, silent = true, desc="Switch to next language"})
-keymap('n','<Leader>S', ':call ToggleLocalSpelling()<CR>',{noremap = true, silent = true, desc="Toggle spelling"})
+keymap('n','<Leader>l',':call CycleLanguagesUp()<CR>',{noremap = true, silent = true, desc="Switch to next language"})
+keymap('n','<Leader>h', ':call ToggleLocalSpelling()<CR>',{noremap = true, silent = true, desc="Toggle spelling"})
 keymap('n','<C-s>', ':call OpenTerm(v:false)<cr>',{noremap = true, silent = true, desc="Open a terminal"})
 keymap('n','s', '<Plug>VimSakHihglightInMotion',{noremap = true, silent = true, desc="Highlight in current selecetion"})
 keymap('n','<Leader>r', '<Plug>VimSakInteractiveReplace',{noremap = true, silent = true, desc="Replace in visuial selection"})
 keymap('n','<Leader>c', '<Plug>VimSakAccumulate',{noremap = true, desc="Accumilate strings matching the pattern in visal selection"})
+keymap('n','<Leader>s', '<Plug>VimSakRotate',{noremap = true, silent = true, desc="Replace in visuial selection"})
+keymap('n','<Leader>i', '<Plug>VimSakInterleave',{noremap = true, desc="Accumilate strings matching the pattern in visal selection"})
