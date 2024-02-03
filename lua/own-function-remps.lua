@@ -95,9 +95,8 @@ local keymap = vim.api.nvim_set_keymap
 vim.g.mapleader = ' '
 keymap('n','<Leader>x', '',{callback = function() build_helper.run() end ,noremap = true, silent = true, desc = "Run makeprg wrapper"})
 keymap('n','<Leader>X', '',{callback = function() build_helper.augment() end ,noremap = true, silent = true, desc = "Change current build command argumetns"})
-keymap('n','<Leader>c', '',{callback= qf_toggle, noremap = true, silent = true, desc="Toggle qf list"})
-keymap('x','<leader><leader>',':<C-u>call VBlockNorm()<cr>' ,{silent = true, desc="Executer normal mode command over visual selecetion"})
-keymap('n','<Leader>C', ':call g:LToggle()<cr>',{noremap = true, silent = true, desc="Toggle loc list"})
+keymap('n','<Leader>m', '',{callback= qf_toggle, noremap = true, silent = true, desc="Toggle qf list"})
+keymap('x','<leader><leader>',':normal ' ,{ desc="Executer normal mode command over visual selecetion"})
 keymap('n','<Leader>l',':call CycleLanguagesUp()<CR>',{noremap = true, silent = true, desc="Switch to next language"})
 keymap('n','<Leader>h', ':call ToggleLocalSpelling()<CR>',{noremap = true, silent = true, desc="Toggle spelling"})
 keymap('n','<C-s>', ':call OpenTerm(v:false)<cr>',{noremap = true, silent = true, desc="Open a terminal"})

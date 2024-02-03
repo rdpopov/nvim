@@ -7,11 +7,12 @@ local aerial = require('aerial')
 function get_git_status()
 
   local head = vim.b.gitsigns_head
+  local stat = vim.b.gitsigns_status
   if stat and string.len(stat) > 0 then
-    return " @"..stat .. " "
+    return " ("..stat .. ")"
   else
     if head and string.len(head) >0 then
-      return " "..head .. " "
+      return " ("..head .. ")"
     else
       return ""
     end
@@ -79,7 +80,7 @@ function My_statusline()
     local mode = " "..vim.fn.mode() .. " "
     local set_color_2 = "%#LineNr#"
     local file_name = " %f"
-    local modified = "%#String# %m %#LineNr#"
+    local modified = "%#String#%{&modified ? ' [+] ' : ' '}%#LineNr#"
     local crnt_funtion = aerial_gps()
     local align_right = "%="
     local filetype = " %y"
