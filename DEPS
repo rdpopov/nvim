@@ -3,3 +3,4 @@ libfuse2
 git
 curl
 ripgrep
+xclip
