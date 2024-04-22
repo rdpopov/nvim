@@ -1,4 +1,5 @@
-vim.cmd "colorscheme retrobox"
+-- vim.cmd "colorscheme GruberDarker"
+vim.cmd "colorscheme default"
 vim.o.laststatus = 3
 require"string"
 
