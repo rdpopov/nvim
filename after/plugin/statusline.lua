@@ -56,7 +56,8 @@ local function langlsp()
         is_spell = ":s"
     end 
     local lang_crnt = "%#Keyword#" ..  string.lower(vim.fn['GetInputLang']()) .. is_spell .. "%#LineNr#"
-    return "(" .. lang_crnt..") (" .. lsp_info() .. ")"
+    
+    return "('" .. vim.fn.complete_info()['mode'] .."') (" .. lsp_info() .. ")"
 end
 
 local function arduino_status()

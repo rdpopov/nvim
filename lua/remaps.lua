@@ -17,12 +17,10 @@ keymap('n','<Leader>q', ':q<cr>',{noremap = true, silent = true ,desc="Quit/Clos
 keymap('n','<Leader>Q', ':qa<cr>',{noremap = true, silent = true ,desc="Quit"})
 keymap('i','jk', '<Esc>',{noremap = true, silent = true ,desc="Remap esc for insert mode"})
 keymap('i','kj', '<Esc>',{noremap = true, silent = true ,desc="Remap esc for insert mode"})
-keymap('n','[c',':cnext<CR>',{noremap = true, silent = true ,desc="Jump to next item in qf list"})
-keymap('n',']c',':cprevious<CR>',{noremap = true, silent = true ,desc="Jump to previouys item in qf list"})
 keymap('n','[l',':lnext<CR>',{noremap = true, silent = true ,desc="Jump to next item in location list"})
 keymap('n',']l',':lprevious<CR>',{noremap = true, silent = true ,desc="Jump to previous item in location list"})
-keymap('n','<C-h>','<C-w><',{noremap = true, silent = true ,desc="Swith to split left"})
-keymap('n','<C-l>','<C-w>>',{noremap = true, silent = true ,desc="Swith to split right"})
-keymap('n','<C-k>','<C-w>+',{noremap = true, silent = true ,desc="Swith to split up"})
-keymap('n','<C-j>','<C-w>-',{noremap = true, silent = true ,desc="Swith to split down"})
+keymap('n','<C-k>',':cprev<CR>',{noremap = true, silent = true ,desc="Swith to split up"})
+keymap('n','<C-j>',':cnext<CR>',{noremap = true, silent = true ,desc="Swith to split down"})
 keymap('n',',/', ':nohlsearch<CR>',{noremap = true, silent = true ,desc="Turn temporarily searching off"})
+
+
