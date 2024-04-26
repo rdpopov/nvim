@@ -41,11 +41,13 @@ of time).
 Clone and install ripgrep
 
 ## Bespoke functionality outside plugins
-- build_helper.lua - Build system helper 
+- build_helper.lua - Build system helper
+
   A util modifies/and remembers build commands for specific projects or classes
-  of projects. A wrapper around the builtin `:make` or `:Make` from
-  [vim-dispatch]
+  of projects. A wrapper around the builtin `:make` or `:Make` from [vim-dispatch]
+
 - terminal_manager.vim - A terminal management helper
+
   A terminal management helper to spawn/bring up a terminal, and just keep one
 open.
 - utils.vim - Some vimscipt functions for quality of life
