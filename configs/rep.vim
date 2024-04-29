@@ -1,7 +1,8 @@
-let g:current_completion = "keyword"
+let g:rep_current_completion = "keyword"
 au CompleteDonePre * :call s:special_tab_complete()
 
-let g:to_feed = { "" : "\<C-n>",
+
+let s:rep_to_feed = { "" : "\<C-n>",
             \  "keyword" : "\<C-x>\<C-n>",
             \ "ctrl_x" : "\<C-n>",
             \  "scroll" : "\<C-x>\<C-s>",
@@ -19,12 +20,12 @@ let g:to_feed = { "" : "\<C-n>",
             \ "eval" : "\<C-n>",
             \ "unknown" : "\<C-n>" }
 
-let g:complete_command = g:to_feed['keyword']
+let g:rep_complete_command = s:rep_to_feed[g:rep_current_completion]
 
 function s:special_tab_complete()
-    let g:current_completion = complete_info()['mode'] 
-    let g:complete_command = g:to_feed[g:current_completion]
+    let g:rep_current_completion = complete_info()['mode'] 
+    let g:rep_complete_command = s:rep_to_feed[g:rep_current_completion]
 endfunction
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>"  :  g:complete_command
-inoremap <expr> <C-Tab> pumvisible() ? "\<C-p>"  :  g:complete_command
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>"  :  g:rep_complete_command
+inoremap <expr> <C-Tab> pumvisible() ? "\<C-p>"  :  g:rep_complete_command
