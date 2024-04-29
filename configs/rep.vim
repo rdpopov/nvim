@@ -1,36 +1,30 @@
-let g:current_completion = ""
-au CompleteChanged * let g:current_completion = complete_info()['mode']
+let g:current_completion = "keyword"
+au CompleteDonePre * :call s:special_tab_complete()
 
-let g:to_feed = { '' : '\<C-N>',
-            \  'keyword' : '\<C-X>\<C-N>',
-            \ 'ctrl_x' : '',
-            \  'scroll' : '\<C-X>\<C-s>',
-            \ 'whole_line' : '\<C-X>\<C-L>',
-            \ 'files' : '\<C-X>\<C-F>',
-            \ 'tags' : '\<C-X>\<C-]>',
-            \ 'path_defines' : '\<C-X>\<C-D>',
-            \ 'path_patterns' : '\<C-X>\<C-D>',
-            \ 'dictionary' : '\<C-X>\<C-K>',
-            \ 'thesaurus' : '\<C-X>\<C-K>',
-            \ 'cmdline' : '\<C-X>\<C-V>',
-            \ 'function' : '\<C-X>\<C-U>',
-            \ 'omni' : '\<C-X>\<C-O>',
-            \ 'spell' : '\<C-X>s',
-            \ 'eval' : '\<C-N>',
-            \ 'unknown' : '\<C-N>' }
+let g:to_feed = { "" : "\<C-n>",
+            \  "keyword" : "\<C-x>\<C-n>",
+            \ "ctrl_x" : "\<C-n>",
+            \  "scroll" : "\<C-x>\<C-s>",
+            \ "whole_line" : "\<C-x>\<C-l>",
+            \ "files" : "\<C-x>\<C-f>",
+            \ "tags" : "\<C-x>\<C-]>",
+            \ "path_defines" : "\<C-x>\<C-d>",
+            \ "path_patterns" : "\<C-x>\<C-i>",
+            \ "dictionary" : "\<C-x>\<C-k>",
+            \ "thesaurus" : "\<C-x>\<C-k>",
+            \ "cmdline" : "\<C-x>\<C-v>",
+            \ "function" : "\<C-x>\<C-u>",
+            \ "omni" : "\<C-x>\<C-o>",
+            \ "spell" : "\<C-x>s",
+            \ "eval" : "\<C-n>",
+            \ "unknown" : "\<C-n>" }
 
-function s:get_trigger_command(crnt)
-    try
-        return to_feed[a:crnt]
-    catch
-        return ''
-    endtry
+let g:complete_command = g:to_feed['keyword']
+
+function s:special_tab_complete()
+    let g:current_completion = complete_info()['mode'] 
+    let g:complete_command = g:to_feed[g:current_completion]
 endfunction
 
-function s:special_tab_complete(crnt)
-    if pumvisible()
-        feedkeys( '\<C-N>' )
-    else
-        feedkeys(get_trigger_command(crnt))
-    endif
-endfunction
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>"  :  g:complete_command
+inoremap <expr> <C-Tab> pumvisible() ? "\<C-p>"  :  g:complete_command
