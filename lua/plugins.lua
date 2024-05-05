@@ -32,17 +32,8 @@ bootstrap_paq({
     {'nvim-treesitter/nvim-treesitter', build=function() vim.api.nvim_command('TSUpdate') end },
     'nvim-treesitter/nvim-treesitter-context',
     -- lsp
-    'f3fora/cmp-spell',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
-    'hrsh7th/cmp-nvim-lua',
-    'hrsh7th/nvim-cmp',
     'neovim/nvim-lspconfig',
-    'saadparwaiz1/cmp_luasnip',
-    'hrsh7th/cmp-vsnip',
-    'hrsh7th/vim-vsnip',
-    'rafamadriz/friendly-snippets',
+    'nvimdev/epo.nvim',
     -- as is
     'tpope/vim-dispatch',
     'will133/vim-dirdiff',
@@ -58,10 +49,10 @@ bootstrap_paq({
     'dhananjaylatkar/cscope_maps.nvim',
     'norcalli/nvim-colorizer.lua',
     'williamboman/mason.nvim',
-    'rdpopov/azenburn',
+    -- 'rdpopov/azenburn',
     'junegunn/goyo.vim',
     -- 'mfussenegger/nvim-jdtls',
     -- 'stevearc/vim-arduino',
-    'danymat/neogen',
+    -- 'danymat/neogen',
 }
 )
