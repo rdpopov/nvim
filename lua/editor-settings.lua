@@ -51,6 +51,7 @@ local options   = {
  signcolumn     = "yes",
  lazyredraw     = true,
  mouse          = "a",
+ pumheight      = 10, 
  cpt            = ".,w,d,i,b,u",
  list           = true,
  -- listchars   = "tab:|.,trail:.,extends:#,nbsp:.",
