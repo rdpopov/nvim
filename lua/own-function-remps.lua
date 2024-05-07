@@ -105,3 +105,5 @@ keymap('n','<Leader>r', '<Plug>NvimSakInteractiveReplace',{noremap = true, silen
 keymap('n','<Leader>c', '<Plug>NvimSakAccumulate',{noremap = true, desc="Accumilate strings matching the pattern in visal selection"})
 keymap('n','<Leader>s', '<Plug>NvimSakRotate',{noremap = true, silent = true, desc="Replace in visuial selection"})
 keymap('n','<Leader>i', '<Plug>NvimSakInterleave',{noremap = true, desc="Accumilate strings matching the pattern in visal selection"})
+keymap('i','<Tab>', '<Plug>RepCompleteNext',{noremap = true, desc="Trigger completion or continue current, get next"})
+keymap('i','<S-Tab>', '<Plug>RepCompletePrev',{noremap = true, desc="Trigger completion or continue current, get previous"})
