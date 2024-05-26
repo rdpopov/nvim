@@ -1,5 +1,5 @@
 -- vim.cmd "colorscheme GruberDarker"
-vim.cmd "colorscheme default"
+vim.cmd "colorscheme muon"
 vim.o.laststatus = 3
 require"string"
 
