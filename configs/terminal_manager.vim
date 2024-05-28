@@ -14,19 +14,17 @@ function! g:Det_split()
 	let all_colmn=&columns
 	let cur_win_lines = winheight(0) + 1
 	let cur_win_colmn = winwidth(0)
-	if all_colmn == cur_win_colmn
-		return "vsplit"
-	else 
-		if all_lines == cur_win_lines && bufwinnr("NetrwTreeListing") == -1
-			return "split"
-		else
-			let res_lines = (cur_win_lines/4 - 1) 
-            if res_lines == 1
-                    res_lines = 4
-            endif
+
+    let res_lines = (cur_win_lines/4 - 1) 
+    if res_lines == 1
+        res_lines = 4
+    endif
+    if (cur_win_lines*3) > cur_win_colmn
+        if cur_win_lines < 10
             return res_lines."split"
-		endif
-	endif
+        endif
+        return "split"
+    endif
 	return "vsplit"
 endfunction
 
