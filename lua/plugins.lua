@@ -33,7 +33,11 @@ bootstrap_paq({
     'nvim-treesitter/nvim-treesitter-context',
     -- lsp
     'neovim/nvim-lspconfig',
-    'nvimdev/epo.nvim',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-vsnip',
+    'hrsh7th/vim-vsnip',
     -- as is
     'tpope/vim-dispatch',
     'will133/vim-dirdiff',
@@ -51,6 +55,7 @@ bootstrap_paq({
     'williamboman/mason.nvim',
     'rdpopov/rep.vim',
     'junegunn/goyo.vim',
+    'sirtaj/vim-openscad',
     -- 'mfussenegger/nvim-jdtls',
     -- 'stevearc/vim-arduino',
     -- 'danymat/neogen',
