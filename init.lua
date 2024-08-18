@@ -1,4 +1,4 @@
-vim.loader.enable()
+-- vim.loader.enable()
 require("plugins")
 require("editor-settings")
 require("viml-scripts")
