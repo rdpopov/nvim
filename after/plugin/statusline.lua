@@ -1,5 +1,5 @@
 -- vim.cmd "colorscheme GruberDarker"
-vim.cmd "colorscheme muon"
+vim.cmd "colorscheme everforest-mine"
 vim.o.laststatus = 3
 require"string"
 
@@ -34,7 +34,7 @@ local function aerial_gps()
 end
 
 local function LspDiagn(diagn)
-  if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
+  if not vim.tbl_isempty(vim.lsp.get_clients({bufnr=0})) then
       return #vim.diagnostic.get(0,{severity = vim.diagnostic.severity[diagn]})
   end
       return -1

@@ -42,6 +42,7 @@ bootstrap_paq({
     -- as is
     'tpope/vim-dispatch',
     'will133/vim-dirdiff',
+    'tpope/vim-fugitive',
     'tpope/vim-commentary',
     'junegunn/vim-easy-align',
     'tpope/vim-surround',
@@ -58,6 +59,8 @@ bootstrap_paq({
     'rdpopov/rep.vim',
     'junegunn/goyo.vim',
     'sirtaj/vim-openscad',
+    'dhananjaylatkar/cscope_maps.nvim',
+    'ThePrimeagen/harpoon',
     -- 'mfussenegger/nvim-jdtls',
     -- 'stevearc/vim-arduino',
     -- 'danymat/neogen',
