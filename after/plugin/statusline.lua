@@ -1,5 +1,6 @@
 -- vim.cmd "colorscheme GruberDarker"
 vim.cmd "colorscheme everforest-mine"
+-- vim.cmd "colorscheme aurora"
 vim.o.laststatus = 3
 require"string"
 

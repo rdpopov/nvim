@@ -55,11 +55,11 @@ local servers = {
     "ocamllsp",
     -- "nimls",
     "pylsp",
-    -- "tsserver",
     -- "html",
     "gopls",
     "zls",
     "dartls",
+    "ts_ls",
     -- "vimls",
     -- "hls",
     -- "racket_langserver",
@@ -73,6 +73,7 @@ local function diagn_toggle()
 		vim.diagnostic.setloclist()
 	end
 end
+
 local keymap = vim.api.nvim_set_keymap
 local opts = {noremap = true, silent = true}
 vim.g.mapleader = ' '
@@ -81,7 +82,7 @@ keymap('n','gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>',opts)
 keymap('n','gd', '<Cmd>lua vim.lsp.buf.definition()<CR>',opts)
 keymap('n','K', '<Cmd>lua vim.lsp.buf.hover()<CR>',opts)
 keymap('n','rn', '<cmd>lua vim.lsp.buf.rename()<CR>',opts)
-keymap('n','gca', '<cmd>lua vim.lsp.buf.code_action()<CR>',opts)
+keymap('n','gca', '<cmd>lua vim.lsp.{ "typescript-language-server", "--stdio" }buf.code_action()<CR>',opts)
 keymap('n','gr', ':Telescope lsp_references theme=get_ivy<CR>',opts)
 keymap('n','<leader>dl', '<cmd>lua vim.diagnostic.open_float()<CR>',opts)
 keymap('n','[d', '<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>',opts)
@@ -90,6 +91,24 @@ keymap('n',']d', '<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.s
 for _, srv in pairs(servers) do
     lsp[srv].setup {  capabilities = capabilities, }
 end
+
+-- local enhance_attach = function(client,bufnr)
+--   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+-- end
+
+-- configs.lsp_wl = {
+--   default_config = {
+--     cmd = {"nc", "localhost", "6536"},
+--     filetypes = { "m","mma", "wl"},
+--     root_dir = vim.util.path.dirname,
+--   }
+-- }
+
+-- lsp.lsp_wl.setup {
+--   on_attach = enhance_attach
+-- }
+
+
 require 'cscope_maps'.setup(
 {
   disable_maps = false,

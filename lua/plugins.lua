@@ -61,6 +61,7 @@ bootstrap_paq({
     'sirtaj/vim-openscad',
     'dhananjaylatkar/cscope_maps.nvim',
     'ThePrimeagen/harpoon',
+    'voldikss/vim-mma',
     -- 'mfussenegger/nvim-jdtls',
     -- 'stevearc/vim-arduino',
     -- 'danymat/neogen',
