@@ -31,7 +31,7 @@ local function aerial_gps()
 	else
         return ""
 	end
-    return "%#Function#" .. scp .. "%#LineNr#"
+    return "%#Function#" .. scp .. "%#Statusline#"
 end
 
 local function LspDiagn(diagn)
@@ -45,9 +45,9 @@ local function lsp_info()
     if LspDiagn("ERROR") == -1 then
         return "no lsp"
     end
-    local lsp_err  = "%#DiagnosticSignError#E:" .. LspDiagn("ERROR")   .. "%#LineNr# "
-    local lsp_warn = "%#DiagnosticSignWarn#W:"  .. LspDiagn("WARNING") .. "%#LineNr# "
-    local lsp_hint = "%#DiagnosticSignHint#H:"  .. LspDiagn("HINT")    .. "%#LineNr#"
+    local lsp_err  = "%#DiagnosticSignError#E:" .. LspDiagn("ERROR")   .. "%#Statusline# "
+    local lsp_warn = "%#DiagnosticSignWarn#W:"  .. LspDiagn("WARNING") .. "%#Statusline# "
+    local lsp_hint = "%#DiagnosticSignHint#H:"  .. LspDiagn("HINT")    .. "%#Statusline#"
     return lsp_err .. lsp_warn ..lsp_hint 
 end
 
@@ -56,7 +56,7 @@ local function langlsp()
     if vim.o.spell then 
         is_spell = ":s"
     end 
-    local lang_crnt = "%#Keyword#" ..  string.lower(vim.fn['GetInputLang']()) .. is_spell .. "%#LineNr#"
+    local lang_crnt = "%#Keyword#" ..  string.lower(vim.fn['GetInputLang']()) .. is_spell .. "%#Statusline#"
     local cmpl = vim.g.Rep_current_completion or ""
 
     return "('" .. cmpl .. ':' .. lang_crnt .. "') (" .. lsp_info() .. ")"
@@ -80,11 +80,12 @@ end
 
 function My_statusline()
     local set_color_1 = "%#PmenuSel#"
+    local added = "%#Added#"
     local branch = get_git_status()
     local mode = " "..vim.fn.mode() .. " "
-    local set_color_2 = "%#LineNr#"
+    local set_color_2 = "%#Statusline#"
     local file_name = " %f"
-    local modified = "%#String#%{&modified ? ' [+] ' : ' '}%#LineNr#"
+    local modified = "%#String#%{&modified ? ' [+] ' : ' '}%#Statusline#"
     local crnt_funtion = aerial_gps()
     local align_right = "%="
     local filetype = " %y"
@@ -97,7 +98,9 @@ function My_statusline()
         mode,
         set_color_2,
         file_name,
+        added,
         branch,
+        set_color_2,
         modified,
         crnt_funtion,
         align_right,
@@ -115,7 +118,7 @@ vim.api.nvim_create_autocmd({"WinEnter"}, {
       if #vim.api.nvim_tabpage_list_wins(0) == 1 or vim.g.goyo_mode_winbar then
           vim.opt.winbar=""
       else
-          vim.opt.winbar=" %#LineNr#%=%#String#%m %#LineNr#%f"
+          vim.opt.winbar=" %#Statusline#%=%#String#%m %#Statusline#%f"
       end
   end
 })

@@ -47,7 +47,6 @@ bootstrap_paq({
     'junegunn/vim-easy-align',
     'tpope/vim-surround',
     'NeogitOrg/neogit',
-    -- 'tpope/vim-fugitive',
     'rdpopov/nvim-sak',
     'nvim-lua/plenary.nvim',
     'mbbill/undotree',
@@ -62,7 +61,7 @@ bootstrap_paq({
     'dhananjaylatkar/cscope_maps.nvim',
     'ThePrimeagen/harpoon',
     'voldikss/vim-mma',
-    -- 'mfussenegger/nvim-jdtls',
+    'chomosuke/term-edit.nvim',
     -- 'stevearc/vim-arduino',
     -- 'danymat/neogen',
 }
