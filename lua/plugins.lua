@@ -55,13 +55,14 @@ bootstrap_paq({
     'dhananjaylatkar/cscope_maps.nvim',
     'norcalli/nvim-colorizer.lua',
     'williamboman/mason.nvim',
-    'rdpopov/rep.vim',
+    -- 'rdpopov/rep.vim',
     'junegunn/goyo.vim',
     'sirtaj/vim-openscad',
     'dhananjaylatkar/cscope_maps.nvim',
     'ThePrimeagen/harpoon',
     'voldikss/vim-mma',
     'chomosuke/term-edit.nvim',
+    'cbrgm/countdown.nvim'
     -- 'stevearc/vim-arduino',
     -- 'danymat/neogen',
 }

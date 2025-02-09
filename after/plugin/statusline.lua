@@ -6,6 +6,10 @@ require"string"
 
 local aerial = require('aerial')
 
+local timer = require('countdown')
+timer.setup({})
+
+
 function get_git_status()
 
   local head = vim.b.gitsigns_head
@@ -31,7 +35,7 @@ local function aerial_gps()
 	else
         return ""
 	end
-    return "%#Function#" .. scp .. "%#Statusline#"
+    return " %#Function#" .. scp .. "%#Statusline#"
 end
 
 local function LspDiagn(diagn)
@@ -55,11 +59,30 @@ local function langlsp()
     local is_spell = ""
     if vim.o.spell then 
         is_spell = ":s"
-    end 
+    end
     local lang_crnt = "%#Keyword#" ..  string.lower(vim.fn['GetInputLang']()) .. is_spell .. "%#Statusline#"
-    local cmpl = vim.g.Rep_current_completion or ""
 
-    return "('" .. cmpl .. ':' .. lang_crnt .. "') (" .. lsp_info() .. ")"
+    return  " ('" .. lang_crnt .. "') (" .. lsp_info() .. ")"
+end
+
+local function clock()
+    local c = timer.get_time()
+    local color = "%#Statusline#"
+    if  c ~= "" then
+        min = string.sub(c,4,5)
+        c = string.sub(c,4,-1)
+        if min < "01" then
+            color = "%#DiagnosticSignError#"
+        elseif min < "05" then
+            color = "%#DiagnosticSignWarn#"
+        elseif min < "10" then
+            color = "%#DiagnosticSignHint#"
+        end
+    else
+        color = "%#TSDanger#"
+        c = " Time's UP! "
+    end
+    return   color .. c .. "%#Statusline#"
 end
 
 local function arduino_status()
@@ -85,12 +108,13 @@ function My_statusline()
     local mode = " "..vim.fn.mode() .. " "
     local set_color_2 = "%#Statusline#"
     local file_name = " %f"
-    local modified = "%#String#%{&modified ? ' [+] ' : ' '}%#Statusline#"
+    local modified = "%#String#%{&modified ? ' [+]' : ''}%#St atusline#"
     local crnt_funtion = aerial_gps()
     local align_right = "%="
     local filetype = " %y"
     local ard = arduino_status()
     local lang_and_lsp = langlsp()
+    local cl = clock()
     local linecol = " %l:%c"
 
     return table.concat({
@@ -105,6 +129,7 @@ function My_statusline()
         crnt_funtion,
         align_right,
         ard,
+        cl,
         lang_and_lsp,
         filetype,
         linecol}
@@ -118,7 +143,7 @@ vim.api.nvim_create_autocmd({"WinEnter"}, {
       if #vim.api.nvim_tabpage_list_wins(0) == 1 or vim.g.goyo_mode_winbar then
           vim.opt.winbar=""
       else
-          vim.opt.winbar=" %#Statusline#%=%#String#%m %#Statusline#%f"
+          vim.opt.winbar="%#Statusline#%=%m%#Statusline#%f"
       end
   end
 })

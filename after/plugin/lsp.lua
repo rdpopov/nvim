@@ -1,9 +1,15 @@
 require("mason").setup()
 
+local keymap = vim.api.nvim_set_keymap
 local lsp = require'lspconfig'
+-- local has_words_before = function()
+--     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+--     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+
 local has_words_before = function()
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 local t = function(str)
@@ -16,11 +22,7 @@ cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-            -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-            -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+            vim.fn["vsnip#anonymous"](args.body)
         end,
     },
     window = {
@@ -33,6 +35,20 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                    cmp.select_next_item()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                    cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
@@ -53,6 +69,7 @@ local servers = {
     "bashls",
     "lua_ls",
     "ocamllsp",
+    -- "csharp_ls",
     -- "nimls",
     "pylsp",
     -- "html",
@@ -60,6 +77,7 @@ local servers = {
     "zls",
     "dartls",
     "ts_ls",
+    -- "phpactor",
     -- "vimls",
     -- "hls",
     -- "racket_langserver",
@@ -82,7 +100,7 @@ keymap('n','gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>',opts)
 keymap('n','gd', '<Cmd>lua vim.lsp.buf.definition()<CR>',opts)
 keymap('n','K', '<Cmd>lua vim.lsp.buf.hover()<CR>',opts)
 keymap('n','rn', '<cmd>lua vim.lsp.buf.rename()<CR>',opts)
-keymap('n','gca', '<cmd>lua vim.lsp.{ "typescript-language-server", "--stdio" }buf.code_action()<CR>',opts)
+keymap('n','gca', '<cmd>lua vim.lsp.buf.code_action()<CR>',opts)
 keymap('n','gr', ':Telescope lsp_references theme=get_ivy<CR>',opts)
 keymap('n','<leader>dl', '<cmd>lua vim.diagnostic.open_float()<CR>',opts)
 keymap('n','[d', '<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>',opts)
@@ -122,3 +140,4 @@ require 'cscope_maps'.setup(
     statusline_indicator = nil,
   }
 })
+

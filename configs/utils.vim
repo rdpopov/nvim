@@ -52,3 +52,6 @@ autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 if executable('rg') 
     set grepprg=rg\ --vimgrep\ --hidden\ --glob\ '!.git/'
 endif
+
+command! Pom execute 'CountdownStart 25'
+command! Rst execute 'CountdownStart 5'
