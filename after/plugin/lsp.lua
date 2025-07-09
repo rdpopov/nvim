@@ -136,7 +136,7 @@ require 'cscope_maps'.setup(
     exec = "cscope",
     picker = "telescope",
     skip_picker_for_single_result = false,
-    db_build_cmd_args = { "-bqkvc" },
+    db_build_cmd = { args = { "-bqkvc" } },
     statusline_indicator = nil,
   }
 })

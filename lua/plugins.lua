@@ -62,7 +62,8 @@ bootstrap_paq({
     'ThePrimeagen/harpoon',
     'voldikss/vim-mma',
     'chomosuke/term-edit.nvim',
-    'cbrgm/countdown.nvim'
+    'cbrgm/countdown.nvim',
+    'Bakudankun/PICO-8.vim'
     -- 'stevearc/vim-arduino',
     -- 'danymat/neogen',
 }
