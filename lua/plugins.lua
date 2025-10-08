@@ -50,8 +50,8 @@ bootstrap_paq({
     'rdpopov/nvim-sak',
     'nvim-lua/plenary.nvim',
     'mbbill/undotree',
-    'lervag/lists.vim',
-    'lervag/wiki.vim',
+    -- 'lervag/lists.vim',
+    -- 'lervag/wiki.vim',
     'dhananjaylatkar/cscope_maps.nvim',
     'norcalli/nvim-colorizer.lua',
     'williamboman/mason.nvim',
@@ -63,7 +63,10 @@ bootstrap_paq({
     'voldikss/vim-mma',
     'chomosuke/term-edit.nvim',
     'cbrgm/countdown.nvim',
-    'Bakudankun/PICO-8.vim'
+    'github/copilot.vim',
+    'Bakudankun/PICO-8.vim',
+    'obsidian-nvim/obsidian.nvim',
+    'MeanderingProgrammer/render-markdown.nvim',
     -- 'stevearc/vim-arduino',
     -- 'danymat/neogen',
 }
