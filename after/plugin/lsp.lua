@@ -1,7 +1,7 @@
 require("mason").setup()
 
 local keymap = vim.api.nvim_set_keymap
-local lsp = require'lspconfig'
+local lsp = vim.lsp.config
 -- local has_words_before = function()
 --     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 --     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -62,6 +62,7 @@ cmp.setup({
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- cmp
 --============================================================================
+--
 
 local servers = {
     "clangd",
@@ -77,6 +78,7 @@ local servers = {
     "zls",
     "dartls",
     "ts_ls",
+    "pico8-ls",
     -- "phpactor",
     -- "vimls",
     -- "hls",
@@ -107,7 +109,9 @@ keymap('n','[d', '<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.s
 keymap('n',']d', '<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>',opts)
 
 for _, srv in pairs(servers) do
-    lsp[srv].setup {  capabilities = capabilities, }
+    -- lsp[srv].setup {  capabilities = capabilities, }
+    vim.lsp.config(srv,{  capabilities = capabilities, })
+    vim.lsp.enable(srv)
 end
 
 -- local enhance_attach = function(client,bufnr)
@@ -125,7 +129,7 @@ end
 -- lsp.lsp_wl.setup {
 --   on_attach = enhance_attach
 -- }
-
+vim.diagnostic.config({ virtual_text = true })
 
 require 'cscope_maps'.setup(
 {
@@ -141,3 +145,15 @@ require 'cscope_maps'.setup(
   }
 })
 
+vim.api.nvim_create_autocmd({'BufNew', 'BufEnter'}, {
+    pattern = { '*.p8' },
+    callback = function(args)
+        vim.lsp.start({
+            name = 'pico8-ls',
+            cmd = { 'pico8-ls', '--stdio' },
+            root_dir = vim.fs.dirname(vim.api.nvim_buf_get_name(args.buf)),
+            -- Setup your keybinds in the on_attach function
+            on_attach = on_attach,
+        })
+    end
+})

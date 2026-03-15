@@ -46,7 +46,7 @@ bootstrap_paq({
     'tpope/vim-commentary',
     'junegunn/vim-easy-align',
     'tpope/vim-surround',
-    'NeogitOrg/neogit',
+    -- 'NeogitOrg/neogit',
     'rdpopov/nvim-sak',
     'nvim-lua/plenary.nvim',
     'mbbill/undotree',
@@ -56,7 +56,7 @@ bootstrap_paq({
     'norcalli/nvim-colorizer.lua',
     'williamboman/mason.nvim',
     -- 'rdpopov/rep.vim',
-    'junegunn/goyo.vim',
+    -- 'junegunn/goyo.vim',
     'sirtaj/vim-openscad',
     'dhananjaylatkar/cscope_maps.nvim',
     'ThePrimeagen/harpoon',
@@ -67,7 +67,13 @@ bootstrap_paq({
     'Bakudankun/PICO-8.vim',
     'obsidian-nvim/obsidian.nvim',
     'MeanderingProgrammer/render-markdown.nvim',
+    'https://github.com/folke/sidekick.nvim'
+    -- 'https://github.com/folke/sidekick.nvim',
     -- 'stevearc/vim-arduino',
     -- 'danymat/neogen',
 }
 )
+
+-- vim.pack.add({
+-- 	{src="https://github.com/folke/sidekick.nvim"}
+-- })

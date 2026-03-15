@@ -1,5 +1,6 @@
 -- vim.cmd "colorscheme GruberDarker"
 vim.cmd "colorscheme everforest-mine"
+-- vim.cmd "colorscheme muon"
 -- vim.cmd "colorscheme aurora"
 vim.o.laststatus = 3
 require"string"
@@ -9,6 +10,7 @@ local aerial = require('aerial')
 local timer = require('countdown')
 timer.setup({})
 
+vim.api.nvim_set_hl(0,"Statusline",{link='NormalNC' })
 
 function get_git_status()
 
@@ -49,9 +51,9 @@ local function lsp_info()
     if LspDiagn("ERROR") == -1 then
         return "no lsp"
     end
-    local lsp_err  = "%#DiagnosticSignError#E:" .. LspDiagn("ERROR")   .. "%#Statusline# "
-    local lsp_warn = "%#DiagnosticSignWarn#W:"  .. LspDiagn("WARNING") .. "%#Statusline# "
-    local lsp_hint = "%#DiagnosticSignHint#H:"  .. LspDiagn("HINT")    .. "%#Statusline#"
+    local lsp_err  = "%#DiagnosticVirtualTextError#E:" .. LspDiagn("ERROR")   .. "%#BufTabLineFill# "
+    local lsp_warn = "%#DiagnosticVirtualTextWarn#W:"  .. LspDiagn("WARNING") .. "%#BufTabLineFill# "
+    local lsp_hint = "%#DiagnosticVirtualTextHint#H:"  .. LspDiagn("HINT")    .. "%#BufTabLineFill#"
     return lsp_err .. lsp_warn ..lsp_hint 
 end
 
@@ -60,9 +62,9 @@ local function langlsp()
     if vim.o.spell then 
         is_spell = ":s"
     end
-    local lang_crnt = "%#Keyword#" ..  string.lower(vim.fn['GetInputLang']()) .. is_spell .. "%#Statusline#"
+    -- local lang_crnt = "%#Keyword#" ..  string.lower(vim.fn['GetInputLang']()) .. is_spell .. "%#Statusline#"
 
-    return  " ('" .. lang_crnt .. "') (" .. lsp_info() .. ")"
+    return  " (" .. lsp_info() .. ")"
 end
 
 local function clock()
