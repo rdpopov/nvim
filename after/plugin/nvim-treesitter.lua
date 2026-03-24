@@ -26,6 +26,7 @@ ensure_installed = { "c",
       enable = true,
   },
 }
+
 require'treesitter-context'.setup{
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
     max_lines = 4, -- How many lines the window should span. Values <= 0 mean no limit.
@@ -85,18 +86,18 @@ require'treesitter-context'.setup{
     separator = nil, -- Separator between context and content. Should be a single character string, like '-'.
 }
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-    callback = function()
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+--     callback = function()
 
-        -- check if treesitter has parser 
-        if require("nvim-treesitter.parsers").has_parser() then
-            -- use treesitter folding
-            vim.opt.foldmethod = "expr"
-            vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-        else
+--         -- check if treesitter has parser 
+--         if require("nvim-treesitter.parsers").has_parser() then
+--             -- use treesitter folding
+--             vim.opt.foldmethod = "expr"
+--             vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+--         else
 
-            -- use alternative foldmethod
-            -- vim.opt.foldmethod = "syntax"
-        end
-    end,
-})
+--             -- use alternative foldmethod
+--             -- vim.opt.foldmethod = "syntax"
+--         end
+--     end,
+-- })
