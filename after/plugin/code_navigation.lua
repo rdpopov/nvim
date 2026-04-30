@@ -1,3 +1,21 @@
+vim.pack.add({
+	{src="https://github.com/dhananjaylatkar/cscope_maps.nvim"},
+	{src="https://github.com/stevearc/aerial.nvim"}
+})
+require 'cscope_maps'.setup(
+{
+  disable_maps = false,
+  skip_input_prompt = false,
+  cscope = {
+    db_file = "./cscope.out",
+    exec = "cscope",
+    picker = "telescope",
+    skip_picker_for_single_result = false,
+    db_build_cmd = { args = { "-bqkvc" } },
+    statusline_indicator = nil,
+  }
+})
+
 local opts = {noremap = true, silent = true}
 local keymap = vim.api.nvim_set_keymap
 vim.g.mapleader = ' '
@@ -69,5 +87,3 @@ require("aerial").setup({
     update_delay = 300,
   },
 })
-
-

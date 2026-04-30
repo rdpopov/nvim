@@ -6,3 +6,4 @@ Session.vim
 localrc.vim
 machinerc.vim
 .undodir
+nvim-pack-lock.json

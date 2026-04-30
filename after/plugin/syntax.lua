@@ -1,3 +1,15 @@
+vim.pack.add({
+    { src = 'https://github.com/sirtaj/vim-openscad'},
+    { src = 'https://github.com/voldikss/vim-mma'},
+    { src = 'https://github.com/Bakudankun/PICO-8.vim'},
+    { src = 'https://github.com/obsidian-nvim/obsidian.nvim'},
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter'},
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter-context'},
+})
+-- , build=function() vim.api.nvim_command('TSUpdate') end },
+-- 'nvim-treesitter/nvim-treesitter-context',
+
+
 require'nvim-treesitter.configs'.setup {
 ensure_installed = { "c",
         "cpp",
@@ -86,18 +98,14 @@ require'treesitter-context'.setup{
     separator = nil, -- Separator between context and content. Should be a single character string, like '-'.
 }
 
--- vim.api.nvim_create_autocmd({ "FileType" }, {
---     callback = function()
-
---         -- check if treesitter has parser 
---         if require("nvim-treesitter.parsers").has_parser() then
---             -- use treesitter folding
---             vim.opt.foldmethod = "expr"
---             vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
---         else
-
---             -- use alternative foldmethod
---             -- vim.opt.foldmethod = "syntax"
---         end
---     end,
--- })
+local obs = require "obsidian"
+obs.setup( {
+    legacy_commands = false,
+    workspaces = {
+            {
+                name = "personal",
+                path = "~/vaults/notes",
+            },
+        },
+    }
+)

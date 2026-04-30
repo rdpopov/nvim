@@ -1,4 +1,5 @@
 -- vim.cmd "colorscheme GruberDarker"
+--
 vim.cmd "colorscheme everforest-mine"
 -- vim.cmd "colorscheme muon"
 -- vim.cmd "colorscheme aurora"
@@ -6,9 +7,6 @@ vim.o.laststatus = 3
 require"string"
 
 local aerial = require('aerial')
-
-local timer = require('countdown')
-timer.setup({})
 
 vim.api.nvim_set_hl(0,"Statusline",{link='NormalNC' })
 
@@ -49,7 +47,7 @@ end
 
 local function lsp_info()
     if LspDiagn("ERROR") == -1 then
-        return "no lsp"
+        return "no lsp" 
     end
     local lsp_err  = "%#DiagnosticVirtualTextError#E:" .. LspDiagn("ERROR")   .. "%#BufTabLineFill# "
     local lsp_warn = "%#DiagnosticVirtualTextWarn#W:"  .. LspDiagn("WARNING") .. "%#BufTabLineFill# "
@@ -67,25 +65,6 @@ local function langlsp()
     return  " (" .. lsp_info() .. ")"
 end
 
-local function clock()
-    local c = timer.get_time()
-    local color = "%#Statusline#"
-    if  c ~= "" then
-        min = string.sub(c,4,5)
-        c = string.sub(c,4,-1)
-        if min < "01" then
-            color = "%#DiagnosticSignError#"
-        elseif min < "05" then
-            color = "%#DiagnosticSignWarn#"
-        elseif min < "10" then
-            color = "%#DiagnosticSignHint#"
-        end
-    else
-        color = "%#TSDanger#"
-        c = " Time's UP! "
-    end
-    return   color .. c .. "%#Statusline#"
-end
 
 local function arduino_status()
   if vim.bo.filetype ~= "arduino" then
@@ -116,8 +95,7 @@ function My_statusline()
     local filetype = " %y"
     local ard = arduino_status()
     local lang_and_lsp = langlsp()
-    local cl = clock()
-    local linecol = " %l:%c"
+    local linecol =  " %l:%c"
 
     return table.concat({
         set_color_1,
@@ -131,8 +109,8 @@ function My_statusline()
         crnt_funtion,
         align_right,
         ard,
-        cl,
         lang_and_lsp,
+        "%#BufTabLineFill#",
         filetype,
         linecol}
     )

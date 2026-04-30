@@ -22,5 +22,13 @@ keymap('n',']l',':lprevious<CR>',{noremap = true, silent = true ,desc="Jump to p
 keymap('n','<C-k>',':cprev<CR>',{noremap = true, silent = true ,desc="Swith to split up"})
 keymap('n','<C-j>',':cnext<CR>',{noremap = true, silent = true ,desc="Swith to split down"})
 keymap('n',',/', ':nohlsearch<CR>',{noremap = true, silent = true ,desc="Turn temporarily searching off"})
+-- Goyo
+keymap('n','<Leader>z', ':Goyo<cr>',opts)
 
-
+keymap("n", "<leader>AA" , "<cmd>ArduinoAttach<CR>",opts)
+keymap("n", "<leader>AV" , "<cmd>ArduinoVerify<CR>",opts)
+keymap("n", "<leader>AU" , "<cmd>ArduinoUpload<CR>",opts)
+keymap("n", "<leader>AUS", " <cmd>ArduinoUploadAndSerial<CR>",opts)
+keymap("n", "<leader>AS" , "<cmd>ArduinoSerial<CR>",opts)
+keymap("n", "<leader>AB" , "<cmd>ArduinoChooseBoard<CR>",opts)
+keymap("n", "<Leadereadereader>AP" , "<cmd>ArduinoChooseProgrammer<CR>",opts)

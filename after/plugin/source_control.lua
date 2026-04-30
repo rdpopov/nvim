@@ -1,3 +1,8 @@
+vim.pack.add({
+    { src = 'https://github.com/tpope/vim-fugitive'},
+    { src = 'https://github.com/lewis6991/gitsigns.nvim'},
+})
+
 local opts = {noremap = true, silent = true}
 local keymap = vim.api.nvim_set_keymap
 vim.g.mapleader = ' '
@@ -5,6 +10,7 @@ keymap('n','<Leader>n', ':Gitsigns next_hunk<CR>',opts)
 keymap('n','<Leader>p', ':Gitsigns prev_hunk<CR>',opts)
 keymap('n','<Leader>A', ':Gitsigns preview_hunk<CR>',opts)
 keymap('n','<Leader>D', ':Gitsigns setqflist<CR>',opts)
+
 require('gitsigns').setup {
     signs = {
         add          = { text = '┃' },
