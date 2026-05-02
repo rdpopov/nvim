@@ -2,6 +2,7 @@ vim.pack.add({
    {src='https://github.com/nvim-lua/plenary.nvim'},
    {src='https://github.com/nvim-telescope/telescope.nvim'},
    {src='https://github.com/ThePrimeagen/harpoon'},
+   {src="https://github.com/dhananjaylatkar/cscope_maps.nvim"},
 })
 
 local opts = {noremap = true, silent = true}
@@ -44,6 +45,19 @@ require('telescope').setup{
         }
 }
 
+require 'cscope_maps'.setup(
+{
+  disable_maps = false,
+  skip_input_prompt = false,
+  cscope = {
+    db_file = "./cscope.out",
+    exec = "cscope",
+    picker = "telescope",
+    skip_picker_for_single_result = false,
+    db_build_cmd = { args = { "-bqkvc" } },
+    statusline_indicator = nil,
+  }
+})
 
 require("harpoon").setup({
     menu = {

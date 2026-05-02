@@ -10,7 +10,7 @@ vim.pack.add({
 -- 'nvim-treesitter/nvim-treesitter-context',
 
 
-require'nvim-treesitter.configs'.setup {
+require'nvim-treesitter.config'.setup {
 ensure_installed = { "c",
         "cpp",
         "python",
