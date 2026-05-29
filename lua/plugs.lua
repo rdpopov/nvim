@@ -1,0 +1,8 @@
+require ("plugs/code_navigation")
+require ("plugs/completion_lsp")
+require ("plugs/essential_plugins")
+require ("plugs/llm_support")
+require ("plugs/source_control")
+require ("plugs/statusline")
+require ("plugs/syntax")
+require ("plugs/text_navigation")

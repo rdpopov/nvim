@@ -1,5 +1,6 @@
 vim.loader.enable()
 require("editor-settings")
+require("plugs")
 require("viml-scripts")
 require("remaps")
 require("own-function-remps")
