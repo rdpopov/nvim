@@ -55,3 +55,4 @@ endif
 
 command! Pom execute 'CountdownStart 25'
 command! Rst execute 'CountdownStart 5'
+packadd PICO-8.vim

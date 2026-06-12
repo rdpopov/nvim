@@ -4,7 +4,8 @@
 -- vim.cmd "colorscheme everforest-mine"
 -- vim.cmd "colorscheme muon"
 -- vim.cmd "colorscheme aurora"
-vim.cmd "colorscheme el-bio-mine"
+-- vim.cmd "colorscheme el-bio-mine"
+vim.cmd "colorscheme melange-mine"
 vim.o.laststatus = 3
 require"string"
 
